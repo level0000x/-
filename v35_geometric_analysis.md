@@ -5,7 +5,6 @@
 ---
 
 ## 第182章：极小曲面
-
 极小曲面是局部面积极小的曲面，是几何变分问题最经典的例子。Plateau 问题（1840年代提出）是极小曲面理论的起源。
 
 ### 182.1 极小曲面方程
@@ -68,8 +67,9 @@ $$E(\mathbf{r}) = \frac{1}{2} \int_U (|\mathbf{r}_u|^2 + |\mathbf{r}_v|^2) \, du
 
 ---
 
-## 第183章：调和映射
+---
 
+## 第183章：调和映射
 调和映射是 Riemann 流形之间的映射，极小化能量泛函。它是极小曲面（调和函数）在流形间的推广。
 
 ### 183.1 能量泛函与调和映射方程
@@ -114,8 +114,9 @@ $$\frac{1}{2} \Delta \|df\|^2 = \|\nabla df\|^2 + \sum_i \langle df(\operatornam
 
 ---
 
-## 第184章：Ricci 流
+---
 
+## 第184章：Ricci 流
 Ricci 流是 Ricci 曲率驱动的几何演化方程，由 Hamilton 在 1982 年引入，Perelman 在 2002-2003 年用它证明了 Poincaré 猜想和 Thurston 几何化猜想。
 
 ### 184.1 Ricci 流方程
@@ -182,8 +183,9 @@ Cheeger-Gromoll 分裂定理是关于非负 Ricci 曲率完备 Riemann 流形结
 
 ---
 
-## 第185章：Yamabe 问题与共形几何
+---
 
+## 第185章：Yamabe 问题与共形几何
 Yamabe 问题是在给定 Riemann 度量的共形类中寻找常标量曲率度量的问题。它的解决是几何分析的一大里程碑。
 
 ### 185.1 Yamabe 问题
@@ -224,8 +226,9 @@ $$Y(g) = \inf_{u \in C^\infty, u > 0} \frac{\int_M (\frac{4(n-1)}{n-2}|\nabla u|
 
 ---
 
-## 第186章：几何 PDE 选讲
+---
 
+## 第186章：几何 PDE 选讲
 本章介绍几何分析中其他重要的几何 PDE：平均曲率流、Yang-Mills 方程和调和映射热流。
 
 ### 186.1 平均曲率流
@@ -274,14 +277,16 @@ $$\frac{\partial f_t}{\partial t} = \tau(f_t)$$
 
 ---
 
-## 第187章：Plateau 问题（变分视角）
+---
 
+## 第187章：Plateau 问题（变分视角）
 Plateau问题源于十九世纪比利时物理学家Plateau的肥皂膜实验：给定空间中的闭曲线$\Gamma$，求以$\Gamma$为边界的极小曲面。数学表述为在$C^1$参数化$X: D \to \mathbb{R}^3$（$D$为单位圆盘）的约束$X(\partial D) = \Gamma$下，最小化面积泛函$\mathcal{A}[X] = \iint_D |X_u \times X_v| du dv$。Douglas（1931）和Radó（1930）独立地使用变分方法证明了任何可求长Jordan曲线$\Gamma$都存在以它为边界的极小曲面，并获得了1936年首届Fields奖。其核心步骤为：(i)将面积泛函转化为Dirichlet能量$\mathcal{E}[X] = \frac{1}{2}\iint_D (|X_u|^2 + |X_v|^2) du dv$（极值下两者等价）；(ii)在Sobolev空间$H^1(D, \mathbb{R}^3)$中极小化，利用下半连续性和紧性得到弱解；(iii)证明弱解的光滑性。几何测度论将Plateau问题推广为：求整流传（integer multiplicity current）$T$使得$\partial T = \Gamma$且质量$\mathbf{M}(T)$极小，Federer-Fleming的闭包定理和紧性定理为此提供了严格的框架。
 
 ---
 
-## 第188章：谱几何
+---
 
+## 第188章：谱几何
 谱几何研究 Riemann 流形上 Laplace 算子的特征值谱与流形几何之间的深刻关系。"能否听到鼓的形状？"（Kac, 1966）是谱几何的核心问题：流形的 Laplace 谱在多大程度上决定了流形的几何（和拓扑）？
 
 ### 188.1 Laplace算子与热核
@@ -327,8 +332,9 @@ $$\lambda_1 \geq \frac{h(M)^2}{4}$$
 
 ---
 
-## 第189章：等周不等式与几何不等式
+---
 
+## 第189章：等周不等式与几何不等式
 等周不等式是几何学中最古老的不等式之一——给定固定体积（面积），最小表面积（周长）由球面（圆）达到。本章从经典等周不等式出发，推广到 Riemann 流形上的 Lévy-Gromov 等不等式和 Brunn-Minkowski 理论。
 
 ### 189.1 经典等周不等式
@@ -375,14 +381,16 @@ $$\int_{\mathbb{R}^n} h \geq \left(\int_{\mathbb{R}^n} f\right)^{1-t} \left(\int
 
 ---
 
-## 补充：分形几何与几何测度论
+---
 
+## 第344章（补充）
 > 分形几何（Fractal Geometry）由 Benoît Mandelbrot 在 1970 年代系统建立，研究处处不可微的、具有自相似结构的「粗糙」集合。几何测度论（Geometric Measure Theory）由 De Giorgi、Federer、Fleming 等人在 1960-1970 年代发展，使用测度论工具研究 $\mathbb{R}^n$ 中「广义曲面」的几何与拓扑性质，特别是 Plateau 问题（存在以给定曲线为边界的极小面积曲面）的严格数学解。两个领域都处理传统光滑微分几何无法描述的「奇异」几何对象，在现代分析、变分法和图像处理中有深刻应用。本卷在实分析（V9）、测度论（V9 Ch 45）和泛函分析（V14）的基础上，建立 Hausdorff 测度、分形维数、整流与电流、Plateau 问题和变分法的几何测度论基础。
 
 ---
 
-## 第247章：Hausdorff 测度与分形维数
+---
 
+## 第247章：Hausdorff 测度与分形维数
 分形几何的核心概念是用非整数维数来度量集合的「粗糙度」。Hausdorff 测度和 Hausdorff 维数是最基本的工具。
 
 ### 247.1 Hausdorff 测度
@@ -447,8 +455,9 @@ $$\sum_{i=1}^m c_i^s = 1$$
 
 ---
 
-## 第248章：分形结构的自相似与多重分形
+---
 
+## 第248章：分形结构的自相似与多重分形
 许多分形不能仅由一个维数完全描述——它们具有多层次的分形结构，需要**多重分形分析**（multifractal analysis）来刻画。
 
 ### 248.1 自仿射分形与随机分形
@@ -475,8 +484,9 @@ $$\sum_{i=1}^m c_i^s = 1$$
 
 ---
 
-## 第249章：整流与电流
+---
 
+## 第249章：整流与电流
 几何测度论使用**整流**和**电流**（rectifiable sets and currents）的概念精密地研究奇异曲面和变分问题。
 
 ### 249.1 可整流集
@@ -530,8 +540,9 @@ $$\int_A J_m f(x) \, d\mathcal{L}^n(x) = \int_{\mathbb{R}^m} \mathcal{H}^{n-m}(A
 
 ---
 
-## 第250章：Plateau 问题与极小曲面
+---
 
+## 第250章：Plateau 问题与极小曲面
 Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分法的古典问题。几何测度论用电流理论给出了第一个完全严格的解。
 
 ### 250.1 经典 Plateau 问题
@@ -564,8 +575,9 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 ---
 
-## 第251章：变分法的几何测度论
+---
 
+## 第251章：变分法的几何测度论
 几何测度论为变分法中的许多经典问题提供了严格的数学基础，包括集合的边界变分（Caccioppoli 集）和具有奇异性的最小化子。
 
 ### 251.1 Caccioppoli 集与有限周长集
@@ -618,8 +630,9 @@ $$F_\varepsilon(u) = \int_{\Omega} \left( \frac{\varepsilon}{2} |\nabla u|^2 + \
 
 ---
 
-## 补充篇：高维渐近凸几何
+---
 
+## 第350章（补充）
 高维渐近凸几何（Asymptotic Convex Geometry / Local Theory of Banach Spaces）研究高维凸体在大维数极限下的渐近行为。它以 Dvoretzky 定理（1971）和 Milman 的浓度现象为核心，连接泛函分析、概率论和组合数学。Princeton Companion 将其列为独立数学分支。
 
 ### 252.1 Dvoretzky定理
@@ -670,3 +683,6 @@ $$\operatorname{Vol}(K) \cdot \operatorname{Vol}(K^\circ) \leq \operatorname{Vol
 
 
 *本卷建立了几何分析的核心框架：极小曲面（面积泛函、Plateau 问题、Bernstein 定理）是几何变分问题最经典的范例；调和映射（能量泛函、Eells-Sampson 定理、气泡分析）将调和函数推广到流形间的映射；Ricci 流（Hamilton 方程、Perelman 的非塌缩和手术理论、Poincaré 猜想的证明）是 21 世纪数学最伟大的成就之一；Yamabe 问题（共形几何、临界 Sobolev 指数、正质量定理）揭示了共形不变量的深层结构；平均曲率流和 Yang-Mills 方程将几何 PDE 的方法推广到更广泛的几何演化问题；补充部分将分形几何与几何测度论（Hausdorff 测度与维数、自相似与多重分形、整流与电流理论、Plateau 问题的测度论解、Caccioppoli 集与 BV 函数、Γ-收敛）纳入本卷框架。几何分析是当代数学最活跃的前沿领域之一。*
+
+
+*卷三十五：几何分析终。*

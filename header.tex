@@ -1,0 +1,45 @@
+
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,amsthm,amscd}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+\geometry{a4paper, margin=2.5cm}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!60!black,
+    urlcolor=blue!70!black,
+    citecolor=green!50!black,
+    pdfauthor={数学教材},
+    pdftitle={从公理到中学数学：严谨推导全书},
+}
+
+% 常用数学运算符定义
+\DeclareMathOperator{\Sha}{III}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+
+% 证明结束符号定义
+\protected\def\proofend{\ensuremath{\blacksquare}}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}

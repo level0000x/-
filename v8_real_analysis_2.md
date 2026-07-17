@@ -5,7 +5,6 @@
 > **前置知识**：本卷建立在卷一（数系、确界原理、集合论）和卷四（极限、连续、导数、Riemann 积分）的基础之上。读者应熟悉 $\varepsilon$-$\delta$ 语言、确界原理、数列与函数的极限理论、以及 Riemann 积分的基本概念。
 
 ## Ch 45 集合的测度
-
 ### 45.1 引言：从 Riemann 积分到 Lebesgue 积分
 
 Riemann 积分将定义域划分为小区间，在每个小区间上取函数值近似。这一方法具有直观性，但存在以下局限：
@@ -181,8 +180,9 @@ $$
 
 ---
 
-## Ch 46 可测函数
+---
 
+## Ch 46 可测函数
 ### 46.1 可测函数的定义
 
 **定义 46.1.1（可测函数）**：设 $E \subseteq \mathbb{R}^n$ 可测，$f : E \to \overline{\mathbb{R}} = \mathbb{R} \cup \{\pm\infty\}$。若对任意 $\alpha \in \mathbb{R}$，
@@ -278,8 +278,9 @@ $$
 
 ---
 
-## Ch 47 Lebesgue 积分
+---
 
+## Ch 47 Lebesgue 积分
 ### 47.1 非负简单函数的积分
 
 **定义 47.1.1（非负简单函数的积分）**：设 $\varphi = \sum_{j=1}^{k} a_j \chi_{E_j}$ 为 $E$ 上的非负简单函数（$a_j \geq 0$，$E_j$ 两两不交可测）。定义 $\varphi$ 的 Lebesgue 积分为
@@ -427,8 +428,9 @@ $$
 
 ---
 
-## Ch 48  $L^p$ 空间
+---
 
+## Ch 48  $L^p$ 空间
 ### 48.1  $L^p$ 空间的定义
 
 **定义 48.1.1（ $L^p$ 范数）**：设 $E \subseteq \mathbb{R}^n$ 可测，$1 \leq p < \infty$。$f$ 的 $L^p$ **范数**定义为
@@ -539,8 +541,9 @@ $$
 
 ---
 
-## Ch 49 微分与积分的联系
+---
 
+## Ch 49 微分与积分的联系
 ### 49.1 有界变差函数
 
 **定义 49.1.1（有界变差函数）**：设 $f : [a, b] \to \mathbb{R}$。$f$ 在 $[a, b]$ 上的**全变差**定义为
@@ -605,8 +608,9 @@ $$
 
 ---
 
-## Ch 50 Fourier 级数
+---
 
+## Ch 50 Fourier 级数
 ### 50.1 正交系与 Bessel 不等式
 
 **定义 50.1.1（ $L^2$ 中的规范正交系）**：$L^2([-\pi, \pi])$ 中的函数列 $\{\varphi_k\}_{k=1}^{\infty}$ 称为**规范正交系**，若
@@ -732,8 +736,9 @@ $$
 
 ---
 
-## 补充篇：可和性理论
+---
 
+## 第74章（补充）
 可和性理论（Summability Theory）研究给不收敛（发散）的级数赋予"广义和"的各类求和法及它们之间的关系。它在 Fourier 级数解的求和（如 Fejér 定理）、发散积分的正则化和 Dirichlet 级数解析延拓中应用广泛。
 
 ### 基本概念与求和法比较
@@ -791,8 +796,9 @@ $$B\text{-}\sum_{k=0}^\infty a_k = \int_0^\infty e^{-t} \sum_{k=0}^\infty \frac{
 
 ---
 
-## Ch 51 位势论（Potential Theory）
+---
 
+## Ch 51 位势论（Potential Theory）
 位势论起源于 Newton 引力势和静电学，研究调和函数、上调和函数的性质及其与测度和容度的深刻关系。在 $\mathbb{R}^n$（$n \geq 3$）中，**Newton 核** $N(x, y) = \|x - y\|^{2-n}$ 是 Laplace 方程的基本解（$n = 2$ 时为 $-\log\|x - y\|$）。**Riesz 核** $R_\alpha(x, y) = \|x - y\|^{\alpha-n}$（$0 < \alpha < n$）将 Newton 位势推广至分数阶，是 Riesz 位势理论的基础。设 $\mu$ 为 Radon 测度，函数 $U^\mu(x) = \int N(x, y) d\mu(y)$ 称为 $\mu$ 的 Newton 位势，它是 $\mathbb{R}^n \setminus \operatorname{supp} \mu$ 上的调和函数。
 
 **上调和函数** $u$ 满足 $-\Delta u \geq 0$（分布意义下），具有三项基本性质：（1）局部可积且下半连续，在任意球上的平均值不小于球心值（**平均值不等式**）；（2）**最大值原理**——若 $u$ 在区域 $\Omega$ 内部达到全局最小值，则 $u$ 在 $\Omega$ 上为常数；（3）Riesz 分解定理——任意上调和函数可表为 Newton 位势与调和函数的和。
@@ -806,3 +812,6 @@ $$\operatorname{Cap}(E) = \sup\{\mu(E) \mid \operatorname{supp} \mu \subseteq E,
 $$\sum_{k=1}^{\infty} 2^{k(n-2)} \operatorname{Cap}\big(B(x_0, 2^{-k}) \setminus \Omega\big) = \infty$$
 
 （$n = 2$ 时用对数容度）。位势论与概率论有本质联系：调和函数对应于 **Brown 运动**的期望（$u(x) = \mathbb{E}^x[f(B_\tau)]$），容度与击中概率直接相关（$\operatorname{Cap}(E) > 0$ 当且仅当 Brown 运动以正概率击中 $E$）。这一深刻对应使位势论成为连接分析、几何与概率的桥梁，在随机过程、复分析和偏微分方程中有广泛应用。$\blacksquare$
+
+
+*卷八：实分析 II终。*
