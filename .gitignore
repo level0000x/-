@@ -1,6 +1,7 @@
 # Generated/built files
 *.pdf
 *.tex
+!header.tex
 从公理到*.md
 从公理到*.pdf
 
