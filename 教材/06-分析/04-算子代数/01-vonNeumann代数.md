@@ -1,0 +1,298 @@
+## 第124章：因子的 Murray-von Neumann 分类
+Murray 和 von Neumann（1936-1943）完成了因子的完整分类，依据是投影的维数函数的值域。这一分类是算子代数理论最辉煌的成就之一。
+
+### 214.1 维数函数与迹
+
+**定义 214.1**（维数函数）：设 $\mathcal{M}$ 是因子。定义映射 $D: \operatorname{Proj}(\mathcal{M}) \to [0, \infty]$ 满足：
+- $D(p) = D(q) \iff p \sim q$
+- $D(p+q) = D(p) + D(q)$（若 $p \perp q$）
+- $D(0) = 0$
+
+$D(p)$ 可视为投影 $p$ 的"相对维数"。$D$ 的存在性和值域决定了因子的类型。
+
+**定义 214.2**（有限/无限/半有限投影）：
+- 投影 $p$ 是**有限**的：若 $p \sim q \leq p \implies q = p$（即不存在真子投影等价于自身）
+- 投影 $p$ 是**无限**的：若 $p \sim q < p$（存在真子投影等价于自身）
+- 投影 $p$ 是**纯无限**的：$p$ 不含非零有限子投影
+- 投影 $p$ 是**半有限**的：$p$ 不含非零有限子投影？不——半有限指 $p$ 可写为相互正交的有限投影的和
+
+### 214.2 因子类型
+
+**定义 214.3**（因子的 Murray-von Neumann 分类）：
+- **I 型**：含极小投影的因子。$I_n$：$D$ 的值域 = $\{0, 1, 2, \ldots, n\}$（$n = 1, 2, \ldots, \infty$）
+  - $I_1$：$B(H)$ 上无其他因子的情况（$\dim H = 1$）
+  - $I_n$：$B(H) \cong M_n(\mathbb{C})$（$\dim H = n$）
+  - $I_\infty$：$B(H)$ 且 $\dim H = \infty$
+- **II 型**：无极小投影但含非零有限投影的因子
+  - **II$_1$ 型**：$I$ 本身是有限投影（即 $D(I) < \infty$）。值域 $D(\operatorname{Proj}(\mathcal{M})) = [0, 1]$
+  - **II$_\infty$ 型**：$I$ 是纯无限投影但含有限投影。值域 = $[0, \infty]$
+- **III 型**：所有非零投影都是无限投影的因子。值域 = $\{0, \infty\}$
+
+**定理 214.1**（II$_1$ 型因子的迹）：在 II$_1$ 型因子 $\mathcal{M}$ 上存在唯一的忠实正规迹 $\tau: \mathcal{M} \to \mathbb{C}$ 满足：
+- $\tau(xy) = \tau(yx)$
+- $\tau(x^*x) \geq 0$（正性）
+- $\tau(I) = 1$（归一化）
+- $\tau$ 是正规的（对弱收敛连续）
+
+且 $D(p) = \tau(p)$ 给出维数函数。
+
+### 214.3 具体实现与例子
+
+**定义 214.4**（群 von Neumann 代数）：设 $\Gamma$ 是离散群。$\Gamma$ 的**群 von Neumann 代数** $\mathcal{L}(\Gamma)$ 是左正则表示 $\lambda: \Gamma \to B(\ell^2(\Gamma))$（$\lambda_g \delta_h = \delta_{gh}$）的像的 WOT 闭包。
+
+$$\mathcal{L}(\Gamma) = \lambda(\Gamma)'' \subseteq B(\ell^2(\Gamma))$$
+
+**定理 214.2**（Murray-von Neumann, 1943）：
+- $\mathcal{L}(\Gamma)$ 是 II$_1$ 型因子当且仅当 $\Gamma$ 是无限可分共轭类群（ICC 群）
+- $\tau(x) = \langle x \delta_e, \delta_e \rangle$ 是 $\mathcal{L}(\Gamma)$ 上的规范忠实正规迹
+- 典型例子：$\mathcal{L}(\mathbb{F}_2)$（自由群 $n \geq 2$ 个生成元）、$\mathcal{L}(S_\infty)$（有限置换群的归并）
+
+**问题 214.1**（自由群因子同构问题）：$\mathcal{L}(\mathbb{F}_m) \cong \mathcal{L}(\mathbb{F}_n)$ 对 $m \neq n$ 是否成立？这是 von Neumann 代数理论中长期未解决的著名问题之一（与自由概率论和 Voiculescu 的微观状态方法相关）。
+
+**例 214.1**（超有限 II$_1$ 型因子）：$\mathcal{R}$ 是通过矩阵代数的归并极限获得的 II$_1$ 型因子：
+
+$$\mathcal{R} = \overline{\bigcup_{n} M_{2^n}(\mathbb{C})}^{\text{SOT}}$$
+
+Murray 和 von Neumann 证明 $\mathcal{R}$ 是唯一的超有限 II$_1$ 型因子（同构意义下）。
+
+**定义 214.5**（超有限因子 / Approximately Finite Dimensional, AFD）：因子 $\mathcal{M}$ 称为**超有限**的，如果 $\mathcal{M}$ 可由有限维子代数递增序列的并生成（在强算子拓扑下）。
+
+**定理 214.3**（Murray-von Neumann, 1943）：存在唯一（同构意义下）的超有限 II$_1$ 型因子，记作 $\mathcal{R}$。
+
+**推论 214.4**：$\mathcal{R} \cong \mathcal{L}(S_\infty) \cong \overline{\bigotimes}_{n} M_2(\mathbb{C})$（无限张量积）。
+
+### 214.4 Powers 因子与 III 型分类的序曲
+
+**定义 214.6**（Powers 因子，1967）：Powers 构造了连续族的互不同构的 III 型因子 $R_\lambda$（$0 < \lambda < 1$），通过对超有限 II$_1$ 型因子 $\mathcal{R}$ 作 $\lambda$-自同构迭代。这些因子可由无穷张量积构造：
+
+$$R_\lambda = \overline{\bigotimes}_{n=1}^\infty (M_2(\mathbb{C}), \phi_\lambda)$$
+
+其中 $\phi_\lambda$ 是 $M_2(\mathbb{C})$ 上的非迹状态。
+
+这一工作揭示了 III 型因子的丰富性，为 Connes 的分类铺平了道路。
+
+---
+
+---
+
+---
+
+---
+
+---
+---
+
+## 第125章：Tomita-Takesaki 模理论
+Tomita-Takesaki 模理论（1967-1970）是 von Neumann 代数理论中最重要的结构定理之一。它从给定的 von Neumann 代数和其上一个忠实的正规半有限权出发，构造了一个单参数自同构群——模自同构群（modular automorphism group）——并建立了正锥与模算子的理论。
+
+### 215.1 权的基本理论
+
+**定义 215.1**（权 / Weight）：von Neumann 代数 $\mathcal{M}$ 上的**权** $\varphi$ 是映射 $\varphi: \mathcal{M}_+ \to [0, \infty]$，满足
+- $\varphi(x + y) = \varphi(x) + \varphi(y)$
+- $\varphi(\lambda x) = \lambda \varphi(x)$（$\lambda \geq 0$，约定 $0 \cdot \infty = 0$）
+
+权是迹和状态的推广。有限权（$\varphi(I) < \infty$）可标准化为状态。
+
+**定义 215.2**（半有限/忠实/正规权）：
+- $\varphi$ 是**忠实**的：$\varphi(x) = 0 \implies x = 0$（$x \in \mathcal{M}_+$）
+- $\varphi$ 是**半有限**的：$\{x \in \mathcal{M}_+ : \varphi(x) < \infty\}$ 在 $\mathcal{M}_+$ 中稠密
+- $\varphi$ 是**正规**的：对 $\mathcal{M}_+$ 中任意递增网 $x_\alpha \uparrow x$，$\varphi(x_\alpha) \uparrow \varphi(x)$
+
+**定理 215.1**（权的基本事实）：任何 von Neumann 代数都容纳一个忠实的正规半有限权（fns weight）。这一结果依赖于 Hahn-Banach 定理和 von Neumann 代数的预对偶性质。
+
+### 215.2 GNS 构造与 Tomita 算子
+
+**定理 215.2**（GNS 构造 / Gelfand-Naimark-Segal, 1943）：设 $\varphi$ 是 $\mathcal{M}$ 上的忠实正规半有限权。则存在 Hilbert 空间 $L^2(\mathcal{M}, \varphi)$ 和忠实正规 \* -表示 $\pi_\varphi: \mathcal{M} \to B(L^2(\mathcal{M}, \varphi))$，使得 $\pi_\varphi(\mathcal{M})$ 是 von Neumann 代数，且有循环和分离向量。
+
+**定义 215.3**（Tomita 算子）：给定 von Neumann 代数 $\mathcal{M}$ 和循环分离向量 $\Omega$，定义 **Tomita 算子** $S$：
+
+$$S_0(x\Omega) = x^*\Omega, \quad x \in \mathcal{M}$$
+
+$S_0$ 是稠定的共轭线性算子。其闭包 $S = \overline{S_0}$ 称为 Tomita 算子。
+
+**定理 215.3**（极分解）：$S$ 有极分解 $S = J \Delta^{1/2}$，其中：
+- $J$ 是共轭线性等距（$J^2 = I$，$J = J^*$），称为**模共轭**（modular conjugation）
+- $\Delta = S^*S$ 是正的自伴算子，称为**模算子**（modular operator）
+
+### 215.3 Tomita-Takesaki 定理
+
+**定理 215.4**（Tomita-Takesaki 定理）：设 $\mathcal{M} \subseteq B(H)$ 是 von Neumann 代数，$\Omega$ 是循环分离向量。则：
+
+1. $J \mathcal{M} J = \mathcal{M}'$（模共轭将 $\mathcal{M}$ 映为其换位）
+
+2. $\Delta^{it} \mathcal{M} \Delta^{-it} = \mathcal{M}$ 对所有 $t \in \mathbb{R}$（模自同构群保持 $\mathcal{M}$）
+
+3. **模自同构群** $\sigma_t^\varphi(x) = \Delta^{it} x \Delta^{-it}$（$t \in \mathbb{R}$）是 $\mathcal{M}$ 的单参数自同构群
+
+4. **KMS 条件**：对任意 $x, y \in \mathcal{M}$，存在有界连续函数 $F(z)$ 在条带 $\{z : 0 \leq \Im(z) \leq 1\}$ 上解析，边界值为
+   $$F(t) = \varphi(\sigma_t^\varphi(x) y), \quad F(t+i) = \varphi(y \sigma_t^\varphi(x))$$
+
+*证明概要*：核心是证明 $S = J\Delta^{1/2}$ 满足以上性质。(1) 源于 $S$ 和 $F$（$F(x\Omega) = x^*\Omega$ 在 $\mathcal{M}'$ 上）的关系。$J\mathcal{M}J \subseteq \mathcal{M}'$ 通过 $S$ 与 $\mathcal{M}$ 和 $\mathcal{M}'$ 之间的代数关系论证。(2) 利用 Stone 定理构造 $\Delta^{it}$ 的单参数酉群，通过 KMS 条件的解析延拓证明 $\Delta^{it}\mathcal{M}\Delta^{-it} \subseteq \mathcal{M}$。(3-4) KMS 条件的证明依赖于复分析中的三线定理和 Phragmén-Lindelöf 原理。∎
+
+**推论 215.5**：对任意忠实正规半有限权 $\varphi$，存在唯一的一参数自同构群 $\sigma_t^\varphi$ 满足 KMS 条件。这称为 $\varphi$ 的**模自同构群**。
+
+### 215.4 Connes 的余循环定理与 III 型分类
+
+**定理 215.6**（Connes 余循环定理，1973）：设 $\varphi, \psi$ 是 $\mathcal{M}$ 上的两个忠实正规半有限权。则模自同构群 $\sigma_t^\varphi$ 和 $\sigma_t^\psi$ 是余循环等价的：存在连续映射 $u: \mathbb{R} \to \mathcal{U}(\mathcal{M})$ 满足 $u_{t+s} = u_t \sigma_t^\varphi(u_s)$，使得
+
+$$\sigma_t^\psi(x) = u_t \sigma_t^\varphi(x) u_t^*$$
+
+**定理 215.7**（Connes 的 III 型分类定理，1973）：设 $\mathcal{M}$ 是 III 型因子。定义
+
+$$S(\mathcal{M}) = \bigcap_{\varphi} \operatorname{Sp}(\Delta_\varphi) \subseteq [0, \infty)$$
+
+其中 $\Delta_\varphi$ 是权 $\varphi$ 的模算子，$\operatorname{Sp}$ 表示谱。Connes 的分类：
+
+- **III$_0$ 型**：$S(\mathcal{M}) = \{0, 1\}$
+- **III$_\lambda$ 型**（$0 < \lambda < 1$）：$S(\mathcal{M}) = \{0\} \cup \{\lambda^n : n \in \mathbb{Z}\}$
+- **III$_1$ 型**：$S(\mathcal{M}) = [0, \infty)$
+
+这些因子互不同构。Haagerup（1987）证明了 III$_1$ 型因子的唯一性。
+
+### 215.5 流与 Connes 的 T-不变量
+
+**定义 215.7**（非平凡流 / Flow of Weights, Connes-Takesaki）：对 III 型因子 $\mathcal{M}$，Connes 和 Takesaki 构造了 III 型因子的**权流**（flow of weights）：一个 $\mathbb{R}$ 作用在可交换 von Neumann 代数上的遍历流。对 III$_\lambda$ 型因子（$\lambda \neq 0$），此流是周期的（周期 $T = -2\pi/\ln\lambda$）。
+
+**定义 215.8**（$T$-不变量）：III 型因子的 $T$-集定义为
+
+$$T(\mathcal{M}) = \{t \in \mathbb{R} : \sigma_t^\varphi \text{ 是内自同构}\}$$
+
+$T(\mathcal{M})$ 是 $\mathbb{R}$ 的子群，不依赖于 $\varphi$ 的选择。对 III$_\lambda$ 型因子，$T(\mathcal{M}) = (2\pi/\ln\lambda)\mathbb{Z}$。
+
+---
+
+---
+
+---
+
+---
+
+---
+---
+
+## 第126章：自由概率论与随机矩阵
+自由概率论由 Voiculescu（1985）创立，是 von Neumann 代数理论和随机矩阵理论相结合的产物。它为 II$_1$ 型因子的研究提供了强大的新工具。
+
+### 216.1 非交换概率空间
+
+**定义 216.1**（非交换概率空间）：**非交换概率空间** $(\mathcal{A}, \varphi)$ 由单位元 \* -代数 $\mathcal{A}$ 和忠实的正线性泛函 $\varphi: \mathcal{A} \to \mathbb{C}$（$\varphi(1) = 1$，状态）组成。
+
+- **经典概率**：$(\mathcal{A}, \varphi) = (L^\infty(X, \mu), \mathbb{E}_\mu)$
+- **自由概率**：$(\mathcal{A}, \varphi) = (\mathcal{M}, \tau)$，其中 $\mathcal{M}$ 是 II$_1$ 型因子，$\tau$ 是忠实的正规迹
+
+### 216.2 自由独立性
+
+**定义 216.2**（自由独立性 / Freeness）：设 $(\mathcal{A}, \varphi)$ 是非交换概率空间。子代数族 $\mathcal{A}_1, \ldots, \mathcal{A}_n \subseteq \mathcal{A}$ 是**自由独立**的，如果对任意 $a_j \in \mathcal{A}_{i_j}$（$i_1 \neq i_2 \neq \cdots \neq i_k$，即相邻指标不同）且 $\varphi(a_j) = 0$，有
+
+$$\varphi(a_1 a_2 \cdots a_k) = 0$$
+
+**定义 216.3**（自由卷积）：若随机变量 $a, b$ 关于 $\varphi$ 的分布在解析意义下已知，且 $a, b$ 是自由独立的，则 $a+b$ 的分布由**自由加性卷积** $\mu \boxplus \nu$ 给出。
+
+**定理 216.1**（自由中心极限定理）：设 $a_1, a_2, \ldots$ 是自由独立且同分布的随机变量，$\varphi(a_i) = 0$，$\varphi(a_i^2) = 1$。则
+
+$$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^n a_i$$
+
+在分布意义下收敛于**半圆律**：$\mu_{SC}(dx) = \frac{1}{2\pi} \sqrt{4 - x^2} \, dx$（$|x| \leq 2$）。
+
+**推论 216.2**：半圆律在自由概率论中的地位类似于高斯分布（正态分布）在经典概率论中的地位。
+
+### 216.3 自由概率论的算子代数应用
+
+**定理 216.3**（Voiculescu, 1990-1995）：自由群因子 $\mathcal{L}(\mathbb{F}_n)$ 的微观状态方法：
+- $\mathcal{L}(\mathbb{F}_n)$ 可嵌入超有限 II$_1$ 型因子的超积中
+- 由此获得 $\mathcal{L}(\mathbb{F}_n)$ 中生成元的自由独立性和渐近自由性
+- 自由群因子同构问题可通过自由熵 $\chi^*(X_1, \ldots, X_n)$ 研究
+
+进一步：Dykema（1994）和 Radulescu（1994）独立证明了压缩自由群因子 $L(\mathbb{F}_n)_t$（$t > 0$ 连续参数）的理论，将其推广为连续参数的族。更一般地，Voiculescu 的自由维数（自由熵）发展为 $L^2$-Betti 数和 Atiyah 问题的关键工具。
+
+**定义 216.4**（自由熵 / Free Entropy）：Voiculescu 引入了微状态自由熵 $\chi(X_1, \ldots, X_n)$，度量 von Neumann 代数生成元集的"自由度"。自由熵与 $L^2$-Betti 数有深刻的联系，并在自由群因子同构问题的研究中起关键作用。
+
+---
+
+---
+
+---
+
+---
+
+---
+---
+
+## 第127章（补充）
+> 积分方程是未知函数出现在积分号下的方程，是泛函分析、数学物理和工程数学的经典交汇领域。本卷系统建立 Fredholm 积分方程、Volterra 积分方程、奇异性积分方程和 Wiener-Hopf 积分方程的理论及其数值方法。积分方程理论是 Hilbert 空间算子理论的直接应用，也是谱理论、紧算子和变分方法的经典范例。
+
+---
+
+---
+
+---
+
+---
+
+---
+---
+
+## 第128章：Fredholm 积分方程
+Fredholm 积分方程形如
+
+$$u(x) - \lambda \int_a^b K(x,y) u(y) dy = f(x)$$
+
+或其特征值问题 $\int_a^b K(x,y) u(y) dy = \mu u(x)$。这是一类由 Fredholm（1903）系统研究的积分方程，其理论与紧算子的谱理论完全对应。
+
+### 217.1 Fredholm 择一定理
+
+**定义 217.1**（Fredholm 积分算子）：在 $L^2([a,b])$ 上定义积分算子
+
+$$(Ku)(x) = \int_a^b K(x,y) u(y) dy$$
+
+若 $K \in L^2([a,b] \times [a,b])$，则 $K$ 是 Hilbert-Schmidt 算子，从而是紧算子。
+
+**定理 217.1**（Fredholm 择一定理）：对 Fredholm 积分方程 $(I - \lambda K)u = f$，以下二者恰有一者成立：
+- （第一择一）对任意 $f$，方程有唯一解 $u = (I - \lambda K)^{-1} f$
+- （第二择一）齐次方程 $(I - \lambda K)u = 0$ 有非零解，此时非齐次方程有解当且仅当 $f \in (\ker(I - \lambda K^*))^\perp$
+
+这是紧算子理论中谱的基本性质：紧算子的非零谱点必为特征值，且 $\lambda^{-1}$ 是 $K$ 的特征值当且仅当 $\lambda$ 是 $(I - \lambda K)^{-1}$ 的奇点。
+
+### 217.2 Fredholm 行列式
+
+**定义 217.2**（Fredholm 行列式）：对核为 $K(x,y)$ 的 Fredholm 积分方程，Fredholm 行列式定义为
+
+$$D(\lambda) = \sum_{n=0}^{\infty} \frac{(-\lambda)^n}{n!} \int_a^b \cdots \int_a^b \det(K(x_i, x_j))_{i,j=1}^n dx_1 \cdots dx_n$$
+
+**定理 217.2**：$D(\lambda)$ 是 $\lambda$ 的整函数，其零点恰为 $K$ 的特征值的倒数 $\lambda = 1/\mu$（重数对应）。预解核
+
+$$R(x,y;\lambda) = \frac{D(x,y;\lambda)}{D(\lambda)}$$
+
+其中 $D(x,y;\lambda)$ 是 Fredholm 一阶子式行列式。
+
+### 217.3 对称核与 Hilbert-Schmidt 定理
+
+**定理 217.3**（Hilbert-Schmidt 展开定理）：若 $K(x,y)$ 是实对称且平方可积的核（$K(x,y) = K(y,x)$，$\iint |K|^2 < \infty$），则
+
+$$K(x,y) = \sum_{n=1}^{\infty} \mu_n u_n(x) u_n(y)$$
+
+其中 $\{\mu_n\}$ 是 $K$ 的非零特征值（每个按重数列出），$\{u_n\}$ 是对应的标准正交特征函数。级数在 $L^2$ 意义下收敛；若 $K$ 连续且正定，则收敛是绝对且一致的（Mercer 定理）。
+
+**定理 217.4**（Mercer 定理）：若 $K$ 是连续对称正定核（即对任意 $f$，$\iint K(x,y)f(x)f(y)dx dy \geq 0$），则特征值 $\mu_n \geq 0$，且
+
+$$K(x,y) = \sum_{n=1}^{\infty} \mu_n u_n(x) u_n(y)$$
+
+收敛是绝对且一致的。特别地，迹公式 $\sum \mu_n = \int K(x,x) dx$ 成立。
+
+**应用**：Mercer 定理是核方法（kernel methods）——包括支持向量机（SVM）和高斯过程回归——的数学基础，将正定核表征为特征映射的内积。
+
+### 217.4 弱奇异性核
+
+**定义 217.3**（弱奇异核）：形如 $K(x,y) = H(x,y) / |x-y|^\alpha$ 的核（$\alpha < d$，其中 $d$ 是空间维数）虽然在对角线上奇异，但在 $L^2$ 中仍定义紧算子——奇异性由 Hardy-Littlewood-Sobolev 不等式控制。
+
+**定理 217.5**：若 $K(x,y)$ 满足 $\int |K(x,y)|^2 dy < \infty$ a.e. 且 $\int |K(x,y)|^2 dx < \infty$ a.e.，则 $K$ 在 $L^2$ 上是紧算子。Fredholm 择一定理和 Hilbert-Schmidt 定理均成立，且迭代预解核给出级数解。
+
+---
+
+---
+
+---
+
+---
+
+---
