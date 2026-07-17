@@ -2,27 +2,16 @@
 *.pdf
 *.tex
 !header.tex
-从公理到*.md
-从公理到*.pdf
 
-# Audit reports
-*审计*.md
-*审核*.md
-*审校*.md
-*审查*.md
-数学全书扩展蓝图.md
-知识体系覆盖分析报告.md
+# Build outputs
+build/
 
-# Old framework/temp files
-framework.md
-part*.md
-supplement*.md
-audit_v*.md
-v4_dependency_analysis_report.md
-appendix_dependency_chain.md
+# Archive (old framework, audit reports, reference docs)
+archive/
 
 # Backup files
 *.bak
 
 # Temp/workspace
 .trae-cn/
+uploads/
