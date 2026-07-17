@@ -124,6 +124,8 @@ $$\dim X = \operatorname{tr.deg}_k k(X)$$
 
 ---
 
+---
+
 ## 第173章：射影簇与态射
 射影簇是射影空间中齐次多项式的零点集，其紧致性（在经典拓扑中）使其在几何中具有重要地位。本章引入射影簇、有理映射和双有理等价的概念。
 
@@ -186,6 +188,8 @@ $$\sigma((x_0 : \cdots : x_n), (y_0 : \cdots : y_m)) = (\cdots : x_i y_j : \cdot
 给出。$\sigma$ 是闭嵌入，将积 $\mathbb{P}^n \times \mathbb{P}^m$ 实现为 $\mathbb{P}^{nm+n+m}$ 中的射影簇。
 
 **命题 82.4**：射影簇的积是射影簇（通过 Segre 嵌入）。仿射簇的积是仿射簇（$\mathbb{A}^n \times \mathbb{A}^m \cong \mathbb{A}^{n+m}$）。
+
+---
 
 ---
 
@@ -259,6 +263,8 @@ $$\operatorname{Hom}_S(Z, X \times_S Y) \cong \operatorname{Hom}_S(Z, X) \times 
 **定义 83.15**（基变换）：给定态射 $f: X \to S$ 和基变换 $T \to S$，$X$ 的**基变换**为 $X_T = X \times_S T$。基变换是「在 $T$ 上重新看待 $X$」的操作。
 
 **定义 83.16**（纤维）：态射 $f: X \to Y$ 在点 $y \in Y$ 处的**纤维** $X_y = X \times_Y \operatorname{Spec} k(y)$，其中 $k(y) = \mathcal{O}_{Y, y}/\mathfrak{m}_y$ 是剩余域。纤维是 $f$ 在 $y$ 上的几何纤维。
+
+---
 
 ---
 
@@ -383,6 +389,8 @@ $$\operatorname{ch}(f_!\mathcal{F}) \cdot \operatorname{td}(T_Y) = f_*(\operator
 
 ---
 
+---
+
 ## 第176章：环面簇与模空间
 环面簇是代数几何与组合数学的交叉领域，建立了扇（代数几何）与凸多面体（组合学）之间的精确字典。本章从扇的构造出发引入环面簇，并讨论模空间理论和极小模型纲领。
 
@@ -407,6 +415,8 @@ $$\operatorname{ch}(f_!\mathcal{F}) \cdot \operatorname{td}(T_Y) = f_*(\operator
 3. **小收缩型**：例外集余维$\geq 2$，此时$K_Y$不是$\mathbb{Q}$-Cartier的，需要**翻转**（flip）：构造双有理映射$X \dashrightarrow X^+$使得$K_{X^+}$在翻转曲线上为正。
 
 **Birkar-Cascini-Hacon-McKernan定理**（2010年）：特征零域上，任意光滑射影簇的典范环是有限生成的，且对数一般型簇的翻转存在。该结果证明了极小模型纲领在极大一般型的核心步骤，为此Birkar获得了2018年Fields奖。MMP的输出是一个极小模型（$K_X$是nef的）或Mori纤维空间，实现了双有理分类的最终目标。
+
+---
 
 ---
 
@@ -501,6 +511,8 @@ $n \geq 3$ 时 Luroth 问题的回答是**否定的**。反例构造是代数几
 
 ---
 
+---
+
 ## 第178章：极化簇与 Hilbert 概型
 极化簇和 Hilbert 概型是现代代数几何中模空间理论的核心工具。Hilbert 概型将闭子概型的参数化问题形式化为射影概型结构，而极化簇的 GIT（几何不变量理论）则为构造代数簇的模空间提供了标准方法。
 
@@ -563,6 +575,8 @@ $$\mu(x, \lambda) = -\operatorname{ord}_{t=0}(\lambda(t) \cdot \tilde{x})$$
 *证明思路*：若存在 1-PSG $\lambda$ 使 $\mu(x, \lambda) < 0$，则 $\lim_{t \to 0} \lambda(t) \cdot x$ 存在且不属于 $x$ 的轨道闭包，从而轨道不是闭的。反之，若所有 $\mu(x, \lambda) \geq 0$，利用 Hilbert-Mumford 定理（任何偏离 G-不变截面的方向必然由某个 1-PSG 的负数值体现）可得 $x$ 是半稳定的。∎
 
 **应用于稳定曲线**：曲线的 GIT 稳定性（Hilbert-Mumford 稳定性）恰好对应于 Deligne-Mumford 稳定性条件。一条曲线 $C$ 在 GIT 意义下是半稳定的（关于 $m$-典范嵌入）当且仅当它是 Deligne-Mumford 意义下的稳定曲线。
+
+---
 
 ---
 
@@ -647,8 +661,12 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 
 ---
 
+---
+
 ## 第180章（补充）
 > 范畴论是"数学的数学"，它提供了统一的语言和框架来描述数学结构及其相互关系。本卷从范畴、函子和自然变换的基本概念出发，建立极限、伴随函子、单子和 Abel 范畴的理论，为同调代数（V12 Ch 118）、代数拓扑（V14）和代数几何（V15）提供统一的范畴论基础。
+
+---
 
 ---
 
@@ -750,6 +768,8 @@ $$\operatorname{Nat}(\mathcal{C}(-, X), F) \cong F(X)$$
 
 ---
 
+---
+
 ## 第182章：极限与余极限
 极限和余极限是范畴论中最重要的构造，统一了积、余积、等化子、拉回、推出等概念。
 
@@ -801,6 +821,8 @@ $$\varprojlim D \longrightarrow \prod_{j \in J} D(j) \rightrightarrows \prod_{u:
 **定义 95.8**（保极限的函子）：函子 $F: \mathcal{C} \to \mathcal{D}$ 称为**保极限**的，如果对每个图 $D: J \to \mathcal{C}$，$F(\varprojlim D) \cong \varprojlim (F \circ D)$（自然同构）。
 
 **例 95.1**：Hom 函子 $\mathcal{C}(X, -)$ 保极限（所有极限）。$\mathcal{C}(-, X)$ 将余极限变为极限。
+
+---
 
 ---
 
@@ -867,6 +889,8 @@ $$\mathcal{D}(F(X), Y) \cong \mathcal{C}(X, G(Y))$$
 
 ---
 
+---
+
 ## 第184章：单子与代数
 单子（monad）是伴随函子的代数抽象，捕获了"代数结构"的普遍概念。它在函数式编程和形式语义学中也有重要应用。
 
@@ -912,6 +936,8 @@ $$\mathcal{D}(F(X), Y) \cong \mathcal{C}(X, G(Y))$$
 **定理 97.5**（Beck 单子性定理）：设 $G: \mathcal{D} \to \mathcal{C}$ 有左伴随 $F$。则比较函子 $K: \mathcal{D} \to \mathcal{C}^T$ 是范畴等价当且仅当 $G$ 反映同构且 $\mathcal{D}$ 有余等化子，且 $G$ 保这些余等化子。
 
 Beck 单子性定理提供了判断一个函子是否为"遗忘函子"的精确标准。
+
+---
 
 ---
 
@@ -979,6 +1005,8 @@ Abel 范畴是能进行同调代数的范畴框架。导出范畴是 Abel 范畴
 
 ---
 
+---
+
 ## 第186章（补充）
 拓扑斯理论（Topos Theory）由 Grothendieck（1963）、Lawvere（1964）和 Tierney（1972）创立，是连接逻辑、代数和几何的桥梁。一个拓扑斯是一个"广义的集合论宇宙"，在其中可以做几乎所有的数学——同时保留了范畴论的一致性和几何的局部性质。
 
@@ -1039,6 +1067,9 @@ Abel 范畴是能进行同调代数的范畴框架。导出范畴是 Abel 范畴
 ---
 
 *本卷从经典代数几何（仿射簇、射影簇、Hilbert 零点定理）出发，引入现代概形语言和层上同调方法。仿射代数簇与有限生成整代数的范畴等价建立了代数与几何的桥梁；概形理论将这一对应推广到所有交换环，统一了代数几何与数论；Serre 定理和 Serre 对偶为凝聚层上同调的计算提供了核心工具；Riemann-Roch 定理及其推广是代数几何最重要的定理之一，深刻影响了代数曲线、曲面和高维簇的分类理论。为后续数论 II（V16）中椭圆曲线和模形式的学习提供了几何基础。**补充部分**整合了范畴论基础——代数几何与同调代数的共同语言：范畴、函子与自然变换、Yoneda引理、极限与余极限、伴随函子、单子与代数、Abel范畴与导出范畴初步，为概形理论和层上同调提供了统一的范畴论框架。*
+
+
+*卷十五：代数几何终。*
 
 
 *卷十五：代数几何终。*

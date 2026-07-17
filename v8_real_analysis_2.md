@@ -184,6 +184,8 @@ $$
 
 ---
 
+---
+
 ## Ch 66 可测函数
 ### 46.1 可测函数的定义
 
@@ -277,6 +279,8 @@ $$
 **定理 46.3.2（Lusin 定理——几乎连续）**：设 $E \subseteq \mathbb{R}^n$ 可测且 $m(E) < \infty$，$f$ 为 $E$ 上 a.e. 有限的可测函数。则对任意 $\varepsilon > 0$，存在紧集 $K \subseteq E$ 使得 $m(E \setminus K) < \varepsilon$ 且 $f|_K$ 连续。
 
 **证明概要**：先用简单函数逼近 $f$，对简单函数用 Egorov 定理和可测集的内正则性，再通过极限过程推广到一般可测函数。$\blacksquare$
+
+---
 
 ---
 
@@ -436,6 +440,8 @@ $$
 
 ---
 
+---
+
 ## Ch 68  $L^p$ 空间
 ### 48.1  $L^p$ 空间的定义
 
@@ -551,6 +557,8 @@ $$
 
 ---
 
+---
+
 ## Ch 69 微分与积分的联系
 ### 49.1 有界变差函数
 
@@ -613,6 +621,8 @@ $$
 （$\Leftarrow$）若 $f(x) = f(a) + \int_a^x g(t) dt$，由积分的绝对连续性（Lebesgue 积分的绝对连续性：对 $g \in L^1$，$\forall \varepsilon > 0$，$\exists \delta > 0$，当 $m(A) < \delta$ 时 $\int_A |g| < \varepsilon$），$f$ 是绝对连续的。
 
 （$\Rightarrow$）$f$ 绝对连续 $\implies$ $f \in BV$。由 Jordan 分解，$f = f_1 - f_2$（$f_1, f_2$ 递增）。可以证明 $f_1, f_2$ 也是绝对连续的。由 Lebesgue 微分定理，$f'$ a.e. 存在且 $f' \in L^1$。定义 $h(x) = \int_a^x f'(t) dt$。则 $h$ 绝对连续且 $h' = f'$ a.e.。令 $\varphi = f - h$。$\varphi$ 绝对连续且 $\varphi' = 0$ a.e.。可以证明 $\varphi$ 为常数（需要 Vitali 覆盖引理），故 $f(x) - f(a) = h(x) - h(a) = \int_a^x f'(t) dt$。$\blacksquare$
+
+---
 
 ---
 
@@ -750,6 +760,8 @@ $$
 
 ---
 
+---
+
 ## 第71章（补充）
 可和性理论（Summability Theory）研究给不收敛（发散）的级数赋予"广义和"的各类求和法及它们之间的关系。它在 Fourier 级数解的求和（如 Fejér 定理）、发散积分的正则化和 Dirichlet 级数解析延拓中应用广泛。
 
@@ -812,6 +824,8 @@ $$B\text{-}\sum_{k=0}^\infty a_k = \int_0^\infty e^{-t} \sum_{k=0}^\infty \frac{
 
 ---
 
+---
+
 ## Ch 72 位势论（Potential Theory）
 位势论起源于 Newton 引力势和静电学，研究调和函数、上调和函数的性质及其与测度和容度的深刻关系。在 $\mathbb{R}^n$（$n \geq 3$）中，**Newton 核** $N(x, y) = \|x - y\|^{2-n}$ 是 Laplace 方程的基本解（$n = 2$ 时为 $-\log\|x - y\|$）。**Riesz 核** $R_\alpha(x, y) = \|x - y\|^{\alpha-n}$（$0 < \alpha < n$）将 Newton 位势推广至分数阶，是 Riesz 位势理论的基础。设 $\mu$ 为 Radon 测度，函数 $U^\mu(x) = \int N(x, y) d\mu(y)$ 称为 $\mu$ 的 Newton 位势，它是 $\mathbb{R}^n \setminus \operatorname{supp} \mu$ 上的调和函数。
 
@@ -826,6 +840,9 @@ $$\operatorname{Cap}(E) = \sup\{\mu(E) \mid \operatorname{supp} \mu \subseteq E,
 $$\sum_{k=1}^{\infty} 2^{k(n-2)} \operatorname{Cap}\big(B(x_0, 2^{-k}) \setminus \Omega\big) = \infty$$
 
 （$n = 2$ 时用对数容度）。位势论与概率论有本质联系：调和函数对应于 **Brown 运动**的期望（$u(x) = \mathbb{E}^x[f(B_\tau)]$），容度与击中概率直接相关（$\operatorname{Cap}(E) > 0$ 当且仅当 Brown 运动以正概率击中 $E$）。这一深刻对应使位势论成为连接分析、几何与概率的桥梁，在随机过程、复分析和偏微分方程中有广泛应用。$\blacksquare$
+
+
+*卷八：实分析 II终。*
 
 
 *卷八：实分析 II终。*

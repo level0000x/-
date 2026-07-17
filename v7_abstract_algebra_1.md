@@ -233,6 +233,8 @@ $$
 
 ---
 
+---
+
 ## Ch 58 群作用与 Sylow 定理
 ### 40.1 群作用
 
@@ -363,6 +365,8 @@ $$
 
 ---
 
+---
+
 ## Ch 59 环论基础
 ### 41.1 理想与商环
 
@@ -461,6 +465,8 @@ $$
 $$
 
 **证明**：$m_i\mathbb{Z} + m_j\mathbb{Z} = \gcd(m_i, m_j)\mathbb{Z} = \mathbb{Z}$（$\gcd(m_i, m_j) = 1$）。且 $m_1\mathbb{Z} \cap \cdots \cap m_n\mathbb{Z} = \operatorname{lcm}(m_1, \ldots, m_n)\mathbb{Z} = m_1 \cdots m_n \mathbb{Z}$。由定理 41.4.1 得证。$\blacksquare$
+
+---
 
 ---
 
@@ -599,6 +605,8 @@ $$
 
 ---
 
+---
+
 ## Ch 61 模论基础
 ### 43.1 模的定义与基本概念
 
@@ -652,6 +660,8 @@ $$
 **推论 43.3.3（Jordan 标准形的模论证明）**：设 $V$ 为 $F$ 上的 $n$ 维向量空间，$T \in \mathcal{L}(V)$。通过 $f(x) \cdot v = f(T)v$ 使 $V$ 成为 $F[x]$-模。$F[x]$ 是 PID。由结构定理，$V \cong \bigoplus F[x]/(p_i(x)^{e_i})$（$p_i$ 不可约）。每个 $F[x]/(p_i^{e_i})$ 对应一个 Jordan 块。这给出了 Jordan 标准形的一个简洁证明。
 
 **注记 43.3.1**：上述推论给出了卷六 Ch 54 中 Jordan 标准形的完整证明框架。
+
+---
 
 ---
 
@@ -803,6 +813,8 @@ $$
 
 ---
 
+---
+
 ## 第63章：除环与 Brauer 群
 除环（即体，skew field）是非交换代数结构的核心研究对象之一。Brauer 群则将域上中心单代数的分类组织为阿贝尔群。
 
@@ -825,6 +837,8 @@ $$
 **定理 48.3**（Skolem-Noether）：设 $A$ 为 $\mathbb{F}$ 上中心单代数，则 $A$ 的任意自同构均为内自同构：对任意 $\varphi \in \operatorname{Aut}_{\mathbb{F}}(A)$ 存在 $a \in A^{\times}$ 使 $\varphi(x) = a x a^{-1}$。
 
 **例**：$\operatorname{Br}(\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$（仅含 $[\mathbb{R}]$ 和 $[\mathbb{H}]$）；$\operatorname{Br}(\mathbb{F}_q) = 0$（有限域除环必为域）；$\operatorname{Br}(\mathbb{Q}_p)$ 在类域论中等价于 $\mathbb{Q}/\mathbb{Z}$。
+
+---
 
 ---
 
@@ -875,6 +889,9 @@ $$f(p) \leq q \iff p \leq g(q) \quad (\forall p \in P, q \in Q)$$
 - Dedekind-MacNeille完备化：通过 $f(A) = \{u : \forall a \in A, a \leq u\}$（上界算子）和 $g(B) = \{l : \forall b \in B, l \leq b\}$（下界算子），任何偏序集可嵌入完备格
 
 **定义**（闭包算子 / closure operator）：$P$ 上的**闭包算子**是映射 $c: P \to P$ 满足：(1) $p \leq c(p)$（扩张）；(2) $p \leq q \implies c(p) \leq c(q)$（单调）；(3) $c(c(p)) = c(p)$（幂等）。闭包算子的不动点构成 $P$ 的完备子半格。例子：拓扑空间的 Kuratowski 闭包、凸包、线性生成、代数闭包、逻辑中的演绎闭包。
+
+
+*卷七：抽象代数 I终。*
 
 
 *卷七：抽象代数 I终。*

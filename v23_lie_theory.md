@@ -76,6 +76,8 @@ CBH 公式表明李群在单位元附近的乘法完全由李代数决定。
 
 ---
 
+---
+
 ## 第284章：半单李代数
 半单李代数是李理论的核心研究对象，具有完全可约性和丰富的结构理论。本章讨论 Killing 型、Cartan 子代数、根系和 Dynkin 图分类。
 
@@ -132,6 +134,8 @@ $$\mathfrak{g} = \mathfrak{h} \oplus \bigoplus_{\alpha \in \Phi} \mathfrak{g}_\a
 - 例外李代数：$G_2$（14 维）、$F_4$（52 维）、$E_6$（78 维）、$E_7$（133 维）、$E_8$（248 维）
 
 这是数学中最优美的分类定理之一，与 Lie 和 Killing 在 19 世纪末的工作以及 Cartan 的完善。
+
+---
 
 ---
 
@@ -196,6 +200,8 @@ $$\chi_\lambda = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda + \rho)}}{\sum
 
 ---
 
+---
+
 ## 第286章：李群在几何中的应用
 李群在几何中有深刻的应用，包括齐性空间、对称空间和主丛上的联络理论。
 
@@ -251,6 +257,8 @@ $$d\omega = -\frac{1}{2}[\omega, \omega] + \Omega$$
 
 ---
 
+---
+
 ## 第287章：泛包络代数与PBW定理
 泛包络代数将李代数嵌入结合代数，使得李代数的表示论转化为结合代数的模论。PBW（Poincaré-Birkhoff-Witt）定理是泛包络代数的基本结构定理。
 
@@ -277,6 +285,8 @@ $$d\omega = -\frac{1}{2}[\omega, \omega] + \Omega$$
 **命题 123.1**（Casimir算子的作用）：在最高权为 $\lambda$ 的不可约表示 $V_\lambda$ 上，Casimir 算子作用为标量 $c(\lambda) = \kappa(\lambda + \rho, \lambda + \rho) - \kappa(\rho, \rho)$，其中 $\rho$ 是正根之和的一半。
 
 **定理 123.4**（Harish-Chandra 同构，1951）：中心 $\mathcal{Z}(\mathfrak{g}) \cong U(\mathfrak{h})^W$——即 $U(\mathfrak{g})$ 的中心同构于 Cartan 子代数的泛包络代数在 Weyl 群作用下的不变量。该同构由 Harish-Chandra 投影 $P: U(\mathfrak{g}) \to U(\mathfrak{h})$（滤过 $U(\mathfrak{g}) = U(\mathfrak{h}) \oplus (\mathfrak{n}^- U(\mathfrak{g}) + U(\mathfrak{g}) \mathfrak{n}^+)$ 的前项投影）的标准万有实现给出。这一定理将中心特征标与权 $\lambda$ 通过 $\chi_\lambda: \mathcal{Z}(\mathfrak{g}) \to \mathbb{C}$（即无穷小特征标）对应起来——两个不可约最高权模具有相同的无穷小特征标当且仅当它们的最高权相差 Weyl 群作用。
+
+---
 
 ---
 
@@ -311,6 +321,8 @@ $$H^0(\mathcal{B}, \mathcal{O}(\mathcal{L}_\lambda)) \cong V_\lambda$$
 **定义 124.3**（等变上同调与特征类）：$T$-等变上同调 $H_T^*(\mathcal{B})$ 中的 Schubert 类 $[X_w]$（$w \in W$）构成 $H_T^*(\mathcal{B})$ 的基。Schubert 类的乘积公式（Chevalley-Monk 公式）与表示论中张量积分解有深刻联系。
 
 **定理 124.3**（Borel 同构）：$H_T^*(\mathcal{B}) \cong \mathbb{C}[\mathfrak{h}] / (\mathbb{C}[\mathfrak{h}]^W_+)$，其中 $\mathbb{C}[\mathfrak{h}]^W_+$ 是 Weyl 群不变多项式中无常数项的理想。这给出了旗流形的等变上同调环的代数描述。
+
+---
 
 ---
 
@@ -374,8 +386,12 @@ $$\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho) - \rho} = \prod_{\alpha \in \Phi^+} (
 
 ---
 
+---
+
 ## 第290章（补充）
 > 表示论是研究代数结构（群、代数、李代数等）通过线性作用的具体实现的理论。V12 第 69 章已介绍了有限群表示论的基础，V23 涵盖了李群与李代数的表示论。本卷在此基础上深化表示论：有限群模表示论研究特征为素数的域上的表示结构；代数群表示论将群表示论推广到代数几何框架；几何表示论通过层论和相交上同调为表示论提供几何构造；仿射李代数与量子群表示论连接无限维李代数和可积系统；Langlands 纲领深化则从表示论角度揭示数论与调和分析之间的深刻联系。
+
+---
 
 ---
 
@@ -425,6 +441,8 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 **定义 222.9**（Green 对应 / Green Correspondence，1964）：设 $D$ 是 $G$ 的 $p$-子群，$H$ 是包含 $N_G(D)$ 的子群。Green 对应在 $k[G]$-模和 $k[H]$-模（具有顶点 $D$）之间建立了一一对应，是模表示论中最强大的工具之一。
 
 **定理 222.7**（Alperin 权猜想，1986）：$p$-块 $B$ 的不可约 Brauer 特征标数等于 $B$ 的局部子群中 $p$-权（Alperin 权重）的数目。这是模表示论中最重要的未完全解决的猜想之一。
+
+---
 
 ---
 
@@ -491,6 +509,8 @@ $$L(\lambda) = L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes L(\lambda_2)^{(2)
 
 ---
 
+---
+
 ## 第293章：几何表示论
 几何表示论通过几何对象（旗簇、Steinberg 簇、仿射 Grassmann 流形、箭图簇）的拓扑和层论来构造和研究代数群的表示。这是 20 世纪末和 21 世纪表示论最活跃的前沿之一。
 
@@ -531,6 +551,8 @@ $$\operatorname{Perv}_{G(k[[t]])}(\operatorname{Gr}_G) \cong \operatorname{Rep}(
 **定理 224.4**（Nakajima 定理）：箭图簇的拓扑 Borel-Moore 同调实现了 Kac-Moody 代数的可积最高权表示。具体地，$\bigoplus_{\mathbf{v}} H_*^{\operatorname{BM}}(\mathfrak{M}(\mathbf{v}, \mathbf{w}))$ 具有 $\mathfrak{g}(Q)$ 的最高权 $\mathbf{w}$ 的可积表示结构。
 
 **定义 224.9**（箭图簇与几何表示论的联系）：箭图簇为仿射量子群、杨振宁代数和 $\mathcal{W}$-代数的表示提供了统一的几何框架。Nakajima 的箭图簇理论是几何表示论的基础工具。
+
+---
 
 ---
 
@@ -581,6 +603,8 @@ $$\operatorname{ch} L(\lambda) = \frac{\sum_{w \in \hat{W}} (-1)^{\ell(w)} e^{w(
 **定理 225.4**（Baxter 的角转移矩阵与 Bethe 拟设）：量子仿射代数 $U_q(\hat{\mathfrak{sl}}_2)$ 的表示论与 XXZ 自旋链的 Bethe 拟设解直接相关。这是量子可积系统与量子群表示论的核心联系。
 
 **定义 225.8**（Frenkel-Reshetikhin 的 $q$-特征标，1999）：量子仿射代数的有限维表示的 $q$-特征标是经典特征标的 $q$-形变，满足与 Baxter 的 T-Q 关系类似的性质。
+
+---
 
 ---
 
@@ -648,6 +672,9 @@ $$\mathcal{D}\text{-}\operatorname{Mod}(\operatorname{Bun}_G) \cong \operatornam
 ---
 
 *本卷建立了李理论的核心框架：李群和李代数的基本关系（指数映射、CBH 公式、Lie 对应）将连续对称性转化为代数结构；半单李代数的分类理论（根系、Dynkin 图、Cartan-Killing 分类）是 19 世纪数学最伟大的成就之一；紧李群的表示论（Peter-Weyl 定理、最高权理论、Weyl 特征公式）为调和分析和量子力学提供了基础；齐性空间、对称空间和主丛上的联络理论将李群应用于微分几何。李理论是现代数学和物理学的核心语言，从基本粒子物理（规范理论）到数论（Langlands 纲领）都有深刻应用。**补充部分**整合了现代表示论深化，涵盖有限群模表示论（Brauer特征标、块论、Green对应）、代数群表示论（最高权理论、正特征表示论）、几何表示论（Springer理论、几何Satake、箭图簇）、仿射与量子群表示论，以及Langlands纲领深化（局部/整体对应、迹公式、几何Langlands），构建了从经典表示论到现代前沿的完整桥梁。*
+
+
+*卷二十三：李理论终。*
 
 
 *卷二十三：李理论终。*

@@ -79,6 +79,8 @@ $$\|\mathbf{f}(t, \mathbf{x}_1) - \mathbf{f}(t, \mathbf{x}_2)\| \leq L_K \|\math
 
 ---
 
+---
+
 ## 第202章：线性ODE系统
 线性 ODE 系统可借助矩阵指数和线性代数（V7）的工具完全求解。本章重点讨论常系数系统和稳定性理论。
 
@@ -132,6 +134,8 @@ $$\mathbf{x}(t) = e^{tA} \mathbf{x}_0 + \int_0^t e^{(t-s)A} \mathbf{b}(s) ds$$
 2. 若进一步 $\dot{V}(\mathbf{x}) < 0$（$\mathbf{x} \neq \mathbf{x}_*$），则 $\mathbf{x}_*$ 是渐近稳定的
 
 *证明*：由 $V$ 沿轨道递减，$\|\mathbf{x}(t) - \mathbf{x}_*\|$ 有界。若 $\dot{V} < 0$，则轨道趋于 $\mathbf{x}_*$。∎
+
+---
 
 ---
 
@@ -199,6 +203,8 @@ $$\frac{dx}{dt} = a(x, y, u), \quad \frac{dy}{dt} = b(x, y, u), \quad \frac{du}{
 5. **叠加原理**：通解为所有分离解的线性叠加 $u(x, t) = \sum_n c_n X_n(x) T_n(t)$，系数 $c_n$ 由初始条件通过特征函数的正交性（Fourier 级数展开）确定。
 
 该方法成功的关键在于 PDE 和边界条件均为线性齐次的，从而叠加原理成立。对于非齐次情形，可结合特征函数展开法或 Duhamel 原理处理。
+
+---
 
 ---
 
@@ -283,6 +289,8 @@ $$E(t) = \frac{1}{2} \int_\Omega (u_t^2 + |\nabla u|^2) dx$$
 
 ---
 
+---
+
 ## 第205章：Sobolev 空间与弱解
 现代 PDE 理论的核心工具是 Sobolev 空间。它将经典导数推广为弱导数（分布导数），使得在更广的函数空间中寻找 PDE 的解成为可能。
 
@@ -351,8 +359,12 @@ $$\int_\Omega \nabla u \cdot \nabla v \, dx = \int_\Omega f v \, dx$$
 
 ---
 
+---
+
 ## 第206章：D-模理论简介
 D-模理论将线性偏微分方程的研究代数化，是代数几何、表示论和数学物理的重要工具。设$X$是光滑代数簇，记$\mathcal{D}_X$为$X$上的微分算子层，局部上同构于Weyl代数$\mathbb{C}[x_1,\ldots,x_n]\langle\partial_1,\ldots,\partial_n\rangle$（满足$[\partial_i, x_j] = \delta_{ij}$）。线性PDE系统$P_1u = \cdots = P_ku = 0$对应于左$\mathcal{D}_X$-模$\mathcal{M} = \mathcal{D}_X/(\mathcal{D}_X P_1 + \cdots + \mathcal{D}_X P_k)$，其解空间同构于$\operatorname{Hom}_{\mathcal{D}_X}(\mathcal{M}, \mathcal{O}_X)$。这一代数化使得上同调方法得以系统运用。$\mathcal{M}$的特征簇$\operatorname{Ch}(\mathcal{M})$是余切丛$T^*X$中的闭代数子集，描述了奇异性的相位空间分布；其维数由Bernstein不等式控制：$\dim \operatorname{Ch}(\mathcal{M}) \geq \dim X$。Riemann-Hilbert对应是D-模理论的巅峰：在$X$光滑时，正则奇点D-模的导出范畴与$\mathbb{C}$-perverse层的导出范畴等价，将分析的奇异性问题转化为拓扑的层论问题。在表示论中，Beilinson-Bernstein局部化定理将半单Lie代数的表示范畴实现为旗簇上D-模的范畴，为Kazhdan-Lusztig猜想提供了几何框架。
+
+---
 
 ---
 
@@ -375,8 +387,12 @@ Painleve方程是六类二阶非线性常微分方程（P${}_{\rm I}$--P${}_{\rm
 
 ---
 
+---
+
 ## 第208章：混合型偏微分方程（Mixed-Type PDEs）
 混合型偏微分方程在区域的某一部分为椭圆型，另一部分为双曲型，其典型代表是 **Tricomi 方程** $y u_{xx} + u_{yy} = 0$：当 $y > 0$ 时为椭圆型，$y < 0$ 时为双曲型，$y = 0$ 为抛物退化线。这类方程在跨音速空气动力学（无激波跨音速流动）中自然出现——描述流场从亚音速（椭圆区域）到超音速（双曲区域）的平缓过渡。**核心理论**：（1）**Tricomi 问题**——在混合区域上指定适定的边界条件（椭圆部分给 Dirichlet，双曲部分在两条特征线上分别给不同的条件），F. Tricomi (1923) 通过将问题化归为奇异积分方程证明了存在性；（2）**Frankl 问题**——推广的边界值问题，出现于跨音速喷管设计，要求解在退化线上连续但允许法向导数跳跃；（3）**Keldysh 型方程**——另类退化方向 $u_{xx} + y^m u_{yy} = 0$（$m$ 为奇数）及其奇异 Cauchy 问题。**现代进展**：Morawetz (1956) 用乘子法得到 Tricomi 问题解的先验估计；Lupo-Payne (2004) 使用变分方法和临界点理论处理非线性混合型方程。混合型 PDE 在跨音速流动、等离子体物理（磁面方程）和金融数学中有实际应用。
+
+---
 
 ---
 
@@ -425,10 +441,14 @@ $$\Delta u \leq 0, \quad u \geq \psi, \quad (u - \psi) \Delta u = 0$$
 
 ---
 
+---
+
 ## 第210章：特殊函数与正交多项式
 特殊函数是满足特定 ODE 并通过超几何级数表达的经典函数的统称，在数学物理和渐近分析中有核心应用。**核心类型**：（1）**$\Gamma$ 函数**：$\Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt$（$\operatorname{Re}(z) > 0$），解析延拓到 $\mathbb{C} \setminus \{0, -1, -2, \ldots\}$。满足 $\Gamma(z+1) = z\Gamma(z)$，$\Gamma(n) = (n-1)!$。**Weierstrass 无穷乘积**：$\frac{1}{\Gamma(z)} = z e^{\gamma z} \prod_{n=1}^\infty (1 + \frac{z}{n}) e^{-z/n}$（$\gamma$ 为 Euler 常数）。**Beta 函数** $B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}$。（2）**Bessel 函数**：Bessel 微分方程 $z^2 y'' + z y' + (z^2 - \nu^2) y = 0$ 的解。第一类 $J_\nu(z) = \sum_{k=0}^\infty \frac{(-1)^k}{k! \Gamma(k+\nu+1)} (\frac{z}{2})^{2k+\nu}$，第二类 $Y_\nu(z)$（Weber 函数）。（3）**超几何函数**：$_2F_1(a,b;c;z) = \sum_{n=0}^\infty \frac{(a)_n (b)_n}{(c)_n n!} z^n$，其中 $(q)_n = q(q+1)\cdots(q+n-1)$ 为 Pochhammer 符号，收敛半径 1。其满足超几何微分方程，是几乎所有经典特殊函数（如 Legendre、Chebyshev、Jacobi 多项式）的统一母体。
 
 **正交多项式**是 $L^2([a,b], w(x)dx)$ 中通过 Gram-Schmidt 对 $\{1, x, x^2, \ldots\}$ 正交化构造的多项式系。**基本定理**（三项递推关系）：任意正测度生成的正交多项式系 $\{p_n(x)\}$ 满足 $x p_n(x) = p_{n+1}(x) + \alpha_n p_n(x) + \beta_n p_{n-1}(x)$（$\beta_n > 0$），该关系由谱定理和 Jacobi 矩阵刻画。**经典正交多项式分类**（Bochner, 1929）：仅有三类超几何型的正交多项式满足 Sturm-Liouville 问题——Jacobi（含 Gegenbauer、Legendre、Chebyshev）、Laguerre、Hermite。其生成函数、Rodrigues 公式和微分方程有统一结构。
+
+---
 
 ---
 
@@ -463,8 +483,12 @@ $$\Delta u \leq 0, \quad u \geq \psi, \quad (u - \psi) \Delta u = 0$$
 
 ---
 
+---
+
 ## 第212章（补充）
 > 本部分以种群模型和传染病模型为具体载体，研究非线性 ODE 系统的定性理论（平衡点、周期轨道、分岔、稳定性），以及反应-扩散系统的斑图形成与行波理论。内容本质上是 ODE 定性理论和 PDE 应用的特例研究。
+
+---
 
 ---
 
@@ -537,6 +561,8 @@ $$\int_0^\infty e^{-ra} \beta(a) \ell(a) da = 1, \quad \ell(a) = \exp\left(-\int
 
 ---
 
+---
+
 ## 第214章：传染病模型的数学结构
 本章研究一类仓室型 ODE 系统的定性性质（阈值现象、终态分析），并将其推广到 PDE 和网络上的动力系统。
 
@@ -593,6 +619,8 @@ $$c^* = 2\sqrt{d_I(\beta S_0 - \gamma)}$$
 
 ---
 
+---
+
 ## 第215章：反应-扩散系统的斑图形成与行波
 ### 239.1 Turing 不稳定性
 
@@ -631,6 +659,8 @@ $$\begin{cases} \frac{\partial u}{\partial t} = D_u \nabla^2 u - \chi \nabla \cd
 $$\begin{cases} \frac{\partial u}{\partial t} = D \nabla^2 u + u(1-u)(u-a) - v, \quad 0 < a < 1 \\ \frac{\partial v}{\partial t} = \varepsilon(bu - v), \quad \varepsilon \ll 1, \; b > 0 \end{cases}$$
 
 **定理 239.3**（行波的存在性——奇异摄动分析）：当 $\varepsilon \to 0$ 时，系统的行波解可由快-慢分解构造：快子系统（兴奋前沿）由反应-扩散波前给出，慢子系统（恢复期）由一维 ODE 的慢流形描述。行波的存在性通过对快、慢子系统的匹配渐近展开得出。
+
+---
 
 ---
 
@@ -690,10 +720,14 @@ $$\frac{dP(\mathbf{x}, t)}{dt} = \sum_{j=1}^R \left[a_j(\mathbf{x} - \nu_j) P(\m
 
 ---
 
+---
+
 ## 第217章（补充）
 > 动力系统研究随时间演化的系统的长期行为，起源于 Newton 力学和 Poincaré 对天体力学的研究。本卷在常微分方程（V18）的基础上，建立离散和连续动力系统的基本理论，包括稳定性、混沌、遍历论和分支理论。动力系统为理解自然界中的复杂动力学现象提供了统一的数学框架。
 
-> **前置知识**：本卷依赖V17（微分方程）和V10（拓扑学）的核心内容，建议在修读本卷前先掌握这两卷的基础。
+> **前置知识**：本子卷依赖本卷第201-210章（常微分方程和偏微分方程基础）和第90-94章（拓扑学）的核心内容。
+
+---
 
 ---
 
@@ -778,6 +812,8 @@ $$3 \triangleright 5 \triangleright 7 \triangleright \cdots \triangleright 2\cdo
 
 ---
 
+---
+
 ## 第219章：连续动力系统
 连续动力系统由微分方程定义，其解形成流（flow），是经典力学和许多物理系统的数学模型。
 
@@ -834,6 +870,8 @@ $W^s$ 和 $W^u$ 是浸入子流形，在 $x^*$ 处分别切于稳定子空间 $E
 **定义 138.6**（极限环）：极限环是孤立的周期轨道（即存在邻域内无其他周期轨道）。
 
 **定理 138.5**（Hopf 分支定理）：考虑依赖参数 $\mu$ 的 ODE 系统 $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mu)$。设平衡点 $\mathbf{x}^*(\mu)$ 在 $\mu = \mu_0$ 时有一对纯虚特征值 $\lambda(\mu) = \alpha(\mu) \pm i\omega(\mu)$，$\alpha(\mu_0) = 0$，$\omega(\mu_0) \neq 0$，且 $\alpha'(\mu_0) \neq 0$（横截条件）。则在 $\mu = \mu_0$ 处分支出唯一的极限环族。
+
+---
 
 ---
 
@@ -910,6 +948,8 @@ $$\lim_{n \to \infty} \frac{r_n - r_{n-1}}{r_{n+1} - r_n} = \delta \approx 4.669
 **定义 139.8**（间歇性通向混沌 / Pomeau-Manneville）：系统在长时间规则行为与短时间不规则爆发之间交替。
 
 **定义 139.9**（Ruelle-Takens-Newhouse 通向混沌）：经过三次 Hopf 分岔（环面→环面→环面）后，第三个环面不稳定，直接产生奇怪吸引子。
+
+---
 
 ---
 
@@ -997,6 +1037,8 @@ $$h_{top}(T) = \lim_{\varepsilon \to 0} \limsup_{n \to \infty} \frac{1}{n} \log 
 
 ---
 
+---
+
 ## 第222章：分支理论
 分支理论研究当参数变化时，动力系统的定性行为如何变化。分支点（bifurcation point）是参数值，在此处系统的拓扑结构发生改变。
 
@@ -1039,6 +1081,8 @@ $$\dot{r} = \mu r - r^3, \quad \dot{\theta} = \omega$$
 **定义 141.9**（Turing 分支，1952）：在反应扩散方程 $\partial_t u = D \Delta u + f(u, \mu)$ 中，当扩散系数比例改变时，齐次平衡态失稳，产生空间非齐次图案（Turing 斑图）。
 
 **定义 141.10**（Ginzburg-Landau 方程）：$\partial_t A = \mu A + (1+i\alpha)\partial_x^2 A - (1+i\beta)|A|^2 A$。这是 Hopf 分支在空间扩展系统中的标准形，描述了斑图形成的普适类。
+
+---
 
 ---
 
@@ -1111,6 +1155,9 @@ $$\int_I P_m(x) P_n(x) w(x) dx = h_n \delta_{mn}$$
 *本卷基于 V18（微分方程），建立了离散和连续动力系统、混沌与分形、遍历论和分支理论的系统理论。共 5 章。*
 
 *本卷建立了微分方程从经典到现代的理论框架：ODE 的存在唯一性理论（Picard-Lindelöf 定理）和稳定性理论（Lyapunov 方法）是动力系统研究的基础；三大经典 PDE（Laplace 方程、热方程、波动方程）的解法展示了 PDE 的丰富结构和物理背景；Sobolev 空间和弱解理论为现代 PDE 研究提供了强大的泛函分析框架（Lax-Milgram 定理、椭圆正则性理论）。补充内容涵盖微分方程的定性理论（Lotka-Volterra 系统、传染病模型的阈值动力学、Turing 不稳定性）和动力系统理论（离散/连续动力系统、混沌与分形、遍历论、分支理论），ODE 作为动力系统的连续版本形成了完整的学科体系。共 10 章。*
+
+
+*卷十七：微分方程终。*
 
 
 *卷十七：微分方程终。*

@@ -128,6 +128,8 @@ $$x = a_0 + \cfrac{1}{a_1 + \cfrac{1}{a_2 + \cdots}} = [a_0; a_1, a_2, \ldots]$$
 
 ---
 
+---
+
 ## 第188章：模形式导论
 模形式是全纯函数，在模群 $\operatorname{SL}_2(\mathbb{Z})$ 的作用下具有优美的变换性质。它们是连接数论、表示论和代数几何的桥梁。
 
@@ -207,6 +209,8 @@ $$(T_n f)(z) = n^{k-1} \sum_{ad = n} \frac{1}{d^k} \sum_{b=0}^{d-1} f\left(\frac
 $$L(s, f) = \sum_{n=1}^\infty \frac{a_n}{n^s}$$
 
 有 Euler 乘积：$L(s, f) = \prod_p \frac{1}{1 - a_p p^{-s} + p^{k-1-2s}}$。且 $L(s, f)$ 可解析延拓为整函数，满足函数方程。
+
+---
 
 ---
 
@@ -297,6 +301,8 @@ BSD 猜想是 Clay 数学研究所七大千禧年问题之一，目前仅对秩 
 
 ---
 
+---
+
 ## 第190章：类域论初步
 类域论是代数数论的最高成就，描述了数域（或局部域）的 Abel 扩张与其理想类群（或乘性群）之间的深刻对应。
 
@@ -354,6 +360,8 @@ $$\operatorname{Cl}(K) \cong \operatorname{Gal}(H_K/K)$$
 
 ---
 
+---
+
 ## 第191章：岩泽理论
 岩泽理论（Iwasawa Theory）由岩泽健吉于1950年代末创立，是研究数域无限扩域中理想类群和Galois模结构的深刻理论。设$K$为数域，取定素数$p$，考虑$K$的$\mathbb{Z}_p$-扩张$K_\infty/K$——即Galois群同构于加法群$\mathbb{Z}_p$的无限扩张。记$K_n$为中间域（$[K_n:K]=p^n$），$A_n$为$K_n$的理想类群的$p$-Sylow子群。岩泽发现逆向极限$X = \varprojlim A_n$上的Galois作用赋予$X$一个$\Lambda = \mathbb{Z}_p[[T]]$（岩泽代数）的模结构，且$X$是有限生成挠$\Lambda$-模。由结构定理，$X$对应一个特征多项式（岩泽不变量$\mu, \lambda, \nu$）。**岩泽主猜想**（Iwasawa Main Conjecture）断言：$X$的特征理想由$p$-adic $L$-函数生成——即$p$-adic解析对象与代数对象之间的精确等式。**Mazur-Wiles证明**（1984年）：利用模曲线和Galois表示的几何方法，对$\mathbb{Q}$的Abel扩张证明了主猜想，获1995年Cole奖。**Skinner-Urban的进展**（2010年代）：将主猜想推广至$GL(2)$自守形式情形，证明了更多一般代数自守表示对应的岩泽主猜想，是Langlands纲领与岩泽理论交叉的前沿成果。
 
@@ -363,8 +371,12 @@ $$\operatorname{Cl}(K) \cong \operatorname{Gal}(H_K/K)$$
 
 ---
 
+---
+
 ## 第192章：自守形式
 自守形式（Automorphic Forms）是模形式向一般约化代数群$G$的推广，是Langlands纲领的核心研究对象。对$G = GL(2)$，自守形式回到上半平面上的经典模形式；对$G = GL(n)$（$n \geq 3$），自守形式是定义在商空间$GL(n, \mathbb{Z}) \backslash GL(n, \mathbb{R}) / O(n)$上的光滑函数，满足缓增性、$K$-有限性和$Z(\mathfrak{g})$-有限性条件。每个尖点自守表示$\pi$对应一个**自守$L$-函数**$L(s, \pi) = \prod_p L_p(s, \pi_p)$，其中$L_p$为局部Langlands对应的Euler因子（如$GL(n)$情形下$L_p(s, \pi_p) = \prod_{i=1}^n (1 - \alpha_i(p) p^{-s})^{-1}$）。**Langlands函子性猜想**断言：若存在$L$-群之间的同态${}^L H \to {}^L G$，则$H$的自守表示可通过函子性提升为$G$的自守表示。**谷山-志村-韦伊猜想**（每条$\mathbb{Q}$上的椭圆曲线是模的，即对应于权2的$GL(2)$自守表示）正是Langlands函子性在$GL(2)$的特例。Wiles于1995年证明了该猜想的半稳定情形，从而奠定了费马大定理的证明；Breuil-Conrad-Diamond-Taylor于2001年完全证明了该猜想，这是Langlands纲领迄今为止最辉煌的成果。
+
+---
 
 ---
 
@@ -485,8 +497,12 @@ $$\zeta(\operatorname{Sh}_K, s) = \prod_{\pi} L(s - \frac{\dim \operatorname{Sh}
 
 ---
 
+---
+
 ## 第194章（补充）
 > 密码学是研究信息保密和认证的数学基础的科学，其数学内核包含数论（Euler 定理、离散对数）、代数（椭圆曲线群）、组合学和复杂性理论。本卷在数论 II（V17）、抽象代数（V8、V13）和计算理论（V31）的基础上，系统建立编码理论、对称密码、公钥密码、格密码与后量子密码以及密码协议的数学理论。
+
+---
 
 ---
 
@@ -526,6 +542,8 @@ $$\zeta(\operatorname{Sh}_K, s) = \prod_{\pi} L(s - \frac{\dim \operatorname{Sh}
 **定义 257.6**（LDPC 码 / 低密度校验码，Gallager 1963 / MacKay-Neal 1996）：LDPC 码由稀疏校验矩阵定义，使用置信传播（belief propagation）在 Tanner 图上的迭代解码。极长码长下接近 Shannon 极限。
 
 **定理 257.4**（Polar 码的极性化定理 / Arıkan）：通过信道极化（channel polarization）构造的 Polar 码，在码长 $N \to \infty$ 时可达对称信道容量。Polar 码是首个被严格证明可在所有对称二进制输入无记忆信道下达到 Shannon 信道容量的构造性编码方案。
+
+---
 
 ---
 
@@ -582,6 +600,8 @@ $$\Pr[M = m | C = c] = \Pr[M = m]$$
 
 ---
 
+---
+
 ## 第197章：公钥密码
 公钥密码（非对称密码）使用两个不同的密钥（公钥和私钥），其安全性基于数论困难问题（大整数分解、离散对数）的计算复杂性。
 
@@ -628,6 +648,8 @@ $$\Pr[M = m | C = c] = \Pr[M = m]$$
 
 ---
 
+---
+
 ## 第198章：格密码与后量子密码
 量子计算（Shor 算法）可以在多项式时间内分解大整数和求解离散对数，这对基于这些问题的密码体制（RSA、ECC）构成计算复杂性的挑战。**后量子密码**（PQC）研究在量子计算模型下仍然安全的密码体制。
 
@@ -667,6 +689,8 @@ $$\mathcal{L} = \left\{ \sum_{i=1}^n x_i \mathbf{b}_i : x_i \in \mathbb{Z} \righ
 
 ---
 
+---
+
 ## 第199章：密码协议
 密码协议使用密码学原语实现安全多方计算、零知识证明和数字签名等高级安全目标。
 
@@ -696,6 +720,8 @@ $$\mathcal{L} = \left\{ \sum_{i=1}^n x_i \mathbf{b}_i : x_i \in \mathbb{Z} \righ
 - **阈值密码**：解密/签名需要 $\ge t$ 个参与方合作
 
 **定理 261.3**（Yao 的乱码电路 / Garbled Circuit，1986）：任何多项式时间可计算函数都可以被两方安全地计算（在半诚实模型下）。这是安全两方计算的基础理论。
+
+---
 
 ---
 
@@ -760,6 +786,9 @@ $$(\mathbf{a}, b = \langle \mathbf{a}, \mathbf{s} \rangle + e \bmod q), \quad \m
 
 
 *本卷完成了从初等数论到现代数论的跨越：解析数论以 $\zeta(s)$ 和素数定理为核心，展示了分析工具在数论中的威力；模形式理论揭示了全纯函数与数论之间惊人的联系（Ramanujan $\tau$ 函数、Hecke 算子）；椭圆曲线以 Mordell-Weil 定理和 BSD 猜想为中心，连接了代数几何、模形式和 $L$-函数；类域论（局部和整体）以互反律为核心，完成了 Abel 扩张的分类；补充部分将密码学的数论基础（欧拉定理→RSA、离散对数→DH、椭圆曲线群→ECDSA、零知识证明→交互证明系统）纳入本卷框架。为后续 Langlands 纲领（如有需要）的学习奠定了基础。*
+
+
+*卷十六：数论 II终。*
 
 
 *卷十六：数论 II终。*

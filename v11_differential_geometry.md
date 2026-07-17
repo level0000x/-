@@ -79,6 +79,8 @@ $$N' = B' \times T + B \times T' = (-\tau N) \times T + B \times (\kappa N) = -\
 
 ---
 
+---
+
 ## 第96章：曲面论
 曲面论是经典微分几何的核心，研究 $\mathbb{R}^3$ 中二维曲面的内蕴几何与外蕴几何。
 
@@ -212,6 +214,8 @@ $$\frac{d^2 u^k}{ds^2} + \sum_{i,j=1}^2 \Gamma_{ij}^k \frac{du^i}{ds}\frac{du^j}
 
 ---
 
+---
+
 ## 第97章：微分流形
 微分流形将曲面概念推广到任意维数，是现代微分几何的基石。微分流形是一种局部同胚于欧氏空间的拓扑空间，每个点附近可通过局部坐标（坐标卡）用 $\mathbb{R}^n$ 中的坐标描述。不同坐标卡之间的重叠区域通过光滑的过渡映射（转移函数）相互联系，这种结构使得微积分运算得以在流形上全局一致地进行。
 
@@ -326,6 +330,8 @@ $$H^k_{dR}(M) = \frac{\ker(d: \Omega^k(M) \to \Omega^{k+1}(M))}{\operatorname{im
 **定理 64.4**（正则值定理）：设 $F: M \to N$ 是光滑映射，$\dim M \geq \dim N$。若 $q \in N$ 是 $F$ 的**正则值**（即对所有 $p \in F^{-1}(q)$，$dF_p$ 是满射），则 $F^{-1}(q)$ 是 $M$ 的 $\dim M - \dim N$ 维嵌入子流形。
 
 **定理 64.5**（Whitney 嵌入定理，陈述）：每个 $n$ 维光滑流形可以嵌入到 $\mathbb{R}^{2n}$ 中。
+
+---
 
 ---
 
@@ -448,6 +454,8 @@ $$\frac{d^2 x^k}{dt^2} + \sum_{i,j} \Gamma_{ij}^k \frac{dx^i}{dt}\frac{dx^j}{dt}
 
 ---
 
+---
+
 ## 第99章：曲率与拓扑
 本章揭示曲率（局部几何量）与拓扑（全局拓扑不变量）之间的深刻联系。
 
@@ -523,6 +531,8 @@ $W$ 具有与 $R$ 相同的对称性，且所有迹为零（$\sum_i W_{ijk}^i = 
 
 ---
 
+---
+
 ## 第100章：G-结构
 G-结构是微分流形切丛的结构群从一般线性群 $\operatorname{GL}(n,\mathbb{R})$ 约化到 Lie 子群 $G$ 的几何框架。形式化地，$n$ 维流形 $M$ 上的 $G$-结构是一个 $G$-主丛 $P \to M$ 连同 $G$-等变同构 $P \times_G \operatorname{GL}(n,\mathbb{R}) \cong FM$（$FM$ 为切标架丛），即切丛的每个标架均可通过 $G$ 的作用彼此转换。**可积性条件**由结构张量（挠率）的消去判定：若存在无挠联络与 $G$-结构相容，则 $G$-结构局部平坦。经典例子：（1）**Riemann 结构**——$G = \operatorname{O}(n)$，等价于 Riemann 度量的存在（正交标架丛）；（2）**复结构**——$G = \operatorname{GL}(n,\mathbb{C}) \subset \operatorname{GL}(2n,\mathbb{R})$，对应近复结构，可积性即 Newlander-Nirenberg 定理——近复结构来自复流形当且仅当其 Nijenhuis 张量消去；（3）**辛结构**——$G = \operatorname{Sp}(2n,\mathbb{R})$，对应非退化闭 2-形式，由 Darboux 定理总是局部可积（无局部不变量）。
 
@@ -535,6 +545,8 @@ G-结构是微分流形切丛的结构群从一般线性群 $\operatorname{GL}(n
 ### 67.5 Twistor 理论与超 Kähler 几何
 
 Twistor 理论由 Penrose (1967) 创立，通过构造 $\mathbb{R}^4$（共形紧化为 $S^4$）上的 **twistor 空间**——$\mathbb{CP}^3$（即复三维射影空间）——将四维 Riemann 几何问题转化为复几何问题。基本构造：$S^4$ 上的每个点对应 twistor 空间中的一条全纯 $\mathbb{CP}^1$（twistor 线），反自偶联络对应于全纯向量丛。**非线性引力子构造**（Penrose, 1976）：反自偶 Einstein 度量一一对应于 twistor 空间上具有全纯切触结构的形变。**超 Kähler 几何**：超 Kähler 流形是具有三个相容复结构 $I, J, K$（满足四元数关系 $IJ = K$）的 Riemann 流形。其 twistor 空间是全纯辛流形上的 $\mathbb{CP}^1$ 全族。关键例子：（1）$K3$ 曲面——唯一紧致四维超 Kähler 流形；（2）ALE 空间（Kronheimer 分类，对应 Dynkin 图）；（3）Hilbert 概型 $\operatorname{Hilb}^n(K3)$ 与广义 Kummer 簇——高维紧致超 Kähler 流形的两类基本构造。Atiyah-Hitchin-Singer (1978) 用 twistor 方法研究了磁单极模空间上的超 Kähler 度量。
+
+---
 
 ---
 
@@ -640,8 +652,12 @@ $$v_1 \wedge v_2 \wedge \cdots \wedge v_n = \det(v_1, \ldots, v_n) \, e_1 \wedge
 
 ---
 
+---
+
 ## 第102章（补充）
 > 辛几何是经典力学（Hamilton 力学）的天然数学语言，研究偶数维光滑流形上的非退化闭 2-形式（辛形式）。切触几何是奇数维流形上的对应理论。本部分作为微分几何的补充，建立辛流形、辛约化、Gromov-Witten 理论、切触几何和 Fukaya 范畴的系统理论。
+
+---
 
 ---
 
@@ -690,6 +706,8 @@ $$v_1 \wedge v_2 \wedge \cdots \wedge v_n = \det(v_1, \ldots, v_n) \, e_1 \wedge
 
 ---
 
+---
+
 ## 第104章：辛约化与矩映射
 辛约化（Marsden-Weinstein 约化）是构造新辛流形的基本方法，是经典力学中消除对称性（如守恒量）的数学抽象。
 
@@ -723,6 +741,8 @@ $$M /\!/ G(a) = \mu^{-1}(a) / G_a$$
 **定义 243.3**（环面辛流形 / Toric Symplectic Manifold）：紧致连通辛流形 $(M^{2n}, \omega)$ 是**环面的**，如果它容许 $\mathbb{T}^n$ 的有效 Hamilton 作用（最大可能的环面维数）。
 
 **定理 243.3**（Delzant 定理，1988）：紧致环面辛流形与 Delzant 多面体（有理多面体，满足在每个顶点处边方向形成 $\mathbb{Z}$-基）之间存在一一对应。矩映射的像 $\mu(M)$ 恰好是 Delzant 多面体。
+
+---
 
 ---
 
@@ -785,6 +805,8 @@ $$\alpha * \beta = \sum_{A \in H_2(M)} (\alpha * \beta)_A \cdot q^A$$
 
 ---
 
+---
+
 ## 第106章：切触几何
 切触几何是奇数维流形上的几何，与辛几何通过「辛化」（symplectization）紧密相连。切触几何是热力学、光学和三维拓扑的自然语言。
 
@@ -813,6 +835,8 @@ $$\alpha * \beta = \sum_{A \in H_2(M)} (\alpha * \beta)_A \cdot q^A$$
 **定义 245.5**（三维切触拓扑的特殊性）：维数 3 中切触结构 $\xi$ 的平面场可以用特征叶理（characteristic foliation）和开卷分解（open book decomposition）研究。Giroux 定理建立了开卷分解与切触结构之间的对应。
 
 **定理 245.2**（Giroux 定理，2000）：三维闭流形上的切触结构（模同痕）与开卷分解（模正稳定化）一一对应。这是理解和分类三维切触结构的基本工具。
+
+---
 
 ---
 
@@ -884,8 +908,12 @@ $$D^b \mathcal{F}uk(X) \cong D^b \operatorname{Coh}(\check{X})$$
 
 ---
 
+---
+
 ## 第108章（补充）
 > 非交换几何由 Alain Connes 在 1980 年代创立，将经典的微分几何推广到非交换代数框架。其核心思想是：空间与函数代数是等价的（Gelfand-Naimark 定理），非交换代数对应"非交换空间"。本卷在 C*-代数（V14）和 von Neumann 代数（V31）的基础上，建立谱三元组、循环上同调、非交换微分形式和标准模型几何。Connes 因算子代数理论（特别是 III 型因子的分类与结构定理）以及对叶状结构和微分几何的应用获 1982 年 Fields 奖。
+
+---
 
 ---
 
@@ -944,6 +972,8 @@ $$d(\varphi, \psi) = \sup\{|\varphi(a) - \psi(a)| : a \in \mathcal{A}, \|[D, a]\
 **定理 192.3**（Connes 的谱三元组公理）：实谱三元组满足 7 条公理，包括正则性、有限性、一阶条件（$[[\mathcal{D}, a], Jb^*J^{-1}] = 0$）、定向性、Poincaré 对偶等。这些公理精确刻画了"自旋流形上的 Dirac 算子"的代数量子化。
 
 *各公理的几何动机*：**(1) 正则性**：$\mathcal{A}$ 及 $[\mathcal{D},\mathcal{A}]$ 对 $\delta(\cdot)=[|\mathcal{D}|,\cdot]$ 的光滑性，对应流形上 $C^\infty$ 函数在Dirac算子下的光滑作用。**(2) 有限性**：$\bigcap_k \operatorname{Dom}(\mathcal{D}^k)$ 是有限投射 $\mathcal{A}$-模，推广了自旋丛截面的有限生成性。**(3) 一阶条件**：$[[\mathcal{D},a], Jb^*J^{-1}]=0$ 确保Dirac算子是一阶微分算子——$[\mathcal{D},a]$ 与右乘作用对易，这是流形上Dirac算子的本质特征。**(4) 定向性**：存在Hochschild $n$-圈 $c$ 满足 $\pi(c)=\gamma$，编码了体积形式的存在性。**(5) Poincaré对偶**：Fredholm指标与 $K$-理论的配对非退化，对应经典流形上的Poincaré对偶。**(6) 实结构符号**：$J^2, J\mathcal{D}, J\gamma$ 的八种符号组合对应KO-维数（Bott周期性模8），反映旋量表示的实结构分类。**(7) 谱维数**：$|\mathcal{D}|^{-1} \in \mathcal{L}^{(n,\infty)}$ 指定了非交换空间的维数。∎
+
+---
 
 ---
 
@@ -1010,6 +1040,8 @@ $$HP^0(\mathcal{A}) = \varinjlim HC^{2n}(\mathcal{A}), \quad HP^1(\mathcal{A}) =
 
 ---
 
+---
+
 ## 第111章：非交换微分形式
 非交换微分形式将经典微分几何的外代数推广到非交换代数，是非交换几何中积分和示性类的核心。
 
@@ -1067,6 +1099,8 @@ $$\operatorname{Index}(eFe) = \langle \operatorname{Ch}_*(e), \tau_* \rangle$$
 
 ---
 
+---
+
 ## 第112章：标准模型的非交换几何
 Connes 与 Lott（1991）和 Connes（1996）发现，粒子物理的标准模型（带 Higgs 场）可以自然地由非交换几何导出。这是非交换几何最壮观的应用。
 
@@ -1110,6 +1144,8 @@ $$S = \int_M \left(\frac{1}{2g^2} F_{\mu\nu}F^{\mu\nu} + \cdots\right) d^4x + \t
 - 轻微偏离标准模型：中微子必须是 Majorana 粒子，且存在质量
 
 这些预测使得非交换几何标准模型在 LHC 发现 Higgs 粒子（$m_H \approx 125$ GeV）后需要修正，但整体框架仍极具吸引力。
+
+---
 
 ---
 
@@ -1187,6 +1223,8 @@ $$bc = cb, \quad ad - da = (q - q^{-1})bc, \quad ad - q^{-1}bc = 1$$
 
 ---
 
+---
+
 ## 第114章：其他几何专题
 ### 67.1 Finsler 几何简介
 
@@ -1207,6 +1245,9 @@ $$N(\lambda) = \#\{\lambda_k \leq \lambda\} \sim \frac{\omega_n}{(2\pi)^n} \math
 $$L = \frac{1}{2} \int n_\ell(\Gamma) \, d\ell$$
 
 其中 $n_\ell(\Gamma)$ 为直线 $\ell$ 与 $\Gamma$ 的交点个数，积分对平面上的全体直线（赋以适当的运动群不变测度）进行。等价地，曲线长度等于其与随机直线相交的期望数乘以 $\pi/2$。**Radon 变换**将 $\mathbb{R}^n$ 上的函数 $f$ 映射为其在超平面上的积分值：$(\mathcal{R}f)(H) = \int_H f \, d\sigma$。Johann Radon 于 1917 年建立了 Radon 变换的反演公式，这一原理正是现代 CT 扫描（计算机断层成像）的数学基础。积分几何将度量几何性质（长度、面积、曲率）转化为群不变测度下的积分平均值，深刻体现了几何与分析、概率论的对偶关系，在凸几何、随机几何和医学成像中均有重要应用。$\blacksquare$
+
+
+*卷十一：微分几何终。*
 
 
 *卷十一：微分几何终。*

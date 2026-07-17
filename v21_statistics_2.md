@@ -76,6 +76,8 @@ $$\hat{\theta}_{\text{MLE}} = \arg\max_{\theta \in \Theta} L(\theta \mid X)$$
 
 ---
 
+---
+
 ## 第250章：假设检验
 假设检验是统计推断的另一个核心，用于判断数据是否支持某一假设。本章介绍 Neyman-Pearson 引理和一致最优势检验。
 
@@ -116,6 +118,8 @@ $$\Lambda(X) = \frac{\sup_{\theta \in \Theta_0} L(\theta \mid X)}{\sup_{\theta \
 **例 110.1**（$t$ 检验）：对正态均值 $\mu$ 的检验 $H_0: \mu = \mu_0$ vs $H_1: \mu \neq \mu_0$（$\sigma^2$ 未知），$t$ 统计量 $T = \sqrt{n}(\bar{X} - \mu_0)/S \sim t_{n-1}$（在 $H_0$ 下）。拒绝域：$|T| > t_{n-1, \alpha/2}$。
 
 **例 110.2**（$\chi^2$ 拟合优度检验）：检验样本是否来自某个分布。Pearson $\chi^2$ 统计量 $\sum (O_i - E_i)^2 / E_i \xrightarrow{d} \chi^2_{k-1}$（在 $H_0$ 下）。
+
+---
 
 ---
 
@@ -167,6 +171,8 @@ $$\pi(\theta \mid x) = \frac{f(x \mid \theta) \pi(\theta)}{\int_\Theta f(x \mid 
 **定理 111.3**（Bernstein-von Mises 定理）：在正则条件下，当样本量 $n \to \infty$ 时，后验分布渐近为正态分布 $\mathcal{N}(\hat{\theta}_{\text{MLE}}, (n I(\hat{\theta}_{\text{MLE}}))^{-1})$，且与先验分布无关（先验的影响随 $n \to \infty$ 消失）。
 
 **例 111.3**（Jeffreys 先验）：无信息先验的经典选择是 **Jeffreys 先验**：$\pi(\theta) \propto \sqrt{I(\theta)}$（$I(\theta)$ 是 Fisher 信息）。Jeffreys 先验在参数变换下不变。
+
+---
 
 ---
 
@@ -238,6 +244,8 @@ $$F = \frac{(\text{SSE}_{\text{reduced}} - \text{SSE}_{\text{full}}) / (p - q)}{
 
 ---
 
+---
+
 ## 第253章：多元分析
 多元分析处理多个响应变量同时观测的情形。本章介绍多元正态分布、主成分分析（PCA）和判别分析。
 
@@ -298,8 +306,12 @@ $$\max_{\mathbf{a}} \frac{\mathbf{a}^\top \mathbf{B} \mathbf{a}}{\mathbf{a}^\top
 
 ---
 
+---
+
 ## 第254章：信息几何
 信息几何由Amari和Chentsov在1980年代系统建立，将参数化概率分布族$\mathcal{M} = \{p(x \mid \theta) : \theta \in \Theta\}$视为统计流形，赋予Fisher信息度量$g_{ij}(\theta) = \mathbb{E}[\partial_i \ell \cdot \partial_j \ell]$（其中$\ell = \log p$）的Riemann几何结构。这一度量在参数变换下协变且由Chentsov定理唯一确定。进一步引入$\alpha$-联络$\Gamma_{ijk}^{(\alpha)} = \mathbb{E}[(\partial_i\partial_j\ell + \frac{1-\alpha}{2}\partial_i\ell \cdot \partial_j\ell)\partial_k\ell]$，$\alpha = \pm 1$分别对应指数联络和混合联络，两者关于Fisher度量对偶。Amari-Chentsov张量$T_{ijk} = \mathbb{E}[\partial_i\ell \cdot \partial_j\ell \cdot \partial_k\ell]$度量了统计流形的非平坦性。信息几何在机器学习中为自然梯度下降和EM算法的几何解释提供了理论基础，在神经网络的信息瓶颈原理和深度学习的流形学习中也有重要应用。
+
+---
 
 ---
 
@@ -316,8 +328,12 @@ $$\max_{\mathbf{a}} \frac{\mathbf{a}^\top \mathbf{B} \mathbf{a}}{\mathbf{a}^\top
 
 ---
 
+---
+
 ## 第256章：抽样方法与调查设计（Sampling Methods）
 抽样理论是统计学从有限总体中选取子集进行推断的方法论。**基本抽样方案**：（1）**简单随机抽样（SRS）**——每个大小为 $n$ 的子集等概率抽取，均值 $\bar{y}$ 是总体均值 $\bar{Y}$ 的无偏估计，方差为 $(1 - \frac{n}{N}) \frac{S^2}{n}$（有限总体修正因子 $1 - \frac{n}{N}$）；（2）**分层抽样**——将总体分为 $H$ 层，在各层内独立抽样，通过 Neyman 最优分配 $n_h \propto N_h S_h$ 最小化估计量的方差；（3）**系统抽样**——按固定间隔选取，当排序与变量相关时可显著提高精度；（4）**整群抽样**——在难以获取总体完整名单时，随机选取群（cluster）后调查群内全部个体；（5）**多阶段抽样**——先抽初级单元，再在选中单元内抽次级单元，逐级构造。**比值估计与回归估计**利用辅助变量提高精度：当辅助变量 $x$ 与目标变量 $y$ 高度线性相关时，比值估计 $\hat{Y}_R = \frac{\bar{y}}{\bar{x}} X$ 或回归估计 $\hat{Y}_{\text{reg}} = \bar{y} + \hat{\beta}(X - \bar{x})$ 可在大样本下显著降低方差。**Horvitz-Thompson 估计量**：$\hat{Y}_{HT} = \sum_{i \in \mathcal{S}} \frac{y_i}{\pi_i}$（$\pi_i$ 为个体 $i$ 的人样概率）对所有不等概率抽样设计一致有效。
+
+---
 
 ---
 
@@ -379,8 +395,12 @@ $$-\ell(\theta) \approx \frac{1}{2\pi} \int_{-\pi}^\pi \left( \log f_\theta(\ome
 
 ---
 
+---
+
 ## 第258章（补充）
 > 本卷从概率论、泛函分析和优化理论的视角，系统阐述统计学习理论的核心数学结构——PAC可学性、一致收敛、函数逼近和随机优化。内容涵盖PAC学习与VC维（概率论与组合数学）、神经网络的通用逼近定理（泛函分析中稠密性定理的特例）、随机梯度下降的收敛理论（非凸优化）、以及最优传输（Monge-Kantorovich问题与Brenier定理）。
+
+---
 
 ---
 
@@ -458,6 +478,8 @@ $$\mathbb{E}[(h_S(x) - y)^2] = \underbrace{(\mathbb{E}[h_S(x)] - \mathbb{E}[y|x]
 
 ---
 
+---
+
 ## 第260章：神经网络逼近理论
 神经网络逼近理论研究有限宽度和深度的神经网络作为函数逼近器的表达能力。从泛函分析的视角，核心问题是：由特定激活函数生成的函数空间在目标函数空间中的稠密性及逼近速率。
 
@@ -494,6 +516,8 @@ $$f_t(x) \approx \Theta(x, X)^\top \Theta(X, X)^{-1} (I - e^{-t \Theta(X, X)}) Y
 其中$\Theta(X, X)_{ij} = \Theta(x_i, x_j)$。这给出了神经网络训练的精确解析描述，将非凸神经网络优化问题转化为线性核方法。
 
 **定理 188.7**（NTK的谱性质）：NTK的特征值衰减速率决定了神经网络的学习速度。在均匀分布数据上，NTK的特征值随频率增加而衰减，因此梯度下降倾向于先学习低频函数——这一频谱偏差现象由NTK的Mercer特征分解自然导出。
+
+---
 
 ---
 
@@ -541,6 +565,8 @@ $$\frac{1}{T} \sum_{t=1}^T \mathbb{E}[\|\nabla \ell(\theta_t)\|^2] \leq O\left(\
 **定理 189.7**（Gunasekar等，2017）：在矩阵分解问题中，梯度下降隐式地最小化核范数，从而倾向于低秩解。这一结论将梯度下降的隐式偏差与迹范数正则化建立了精确的数学联系。
 
 **定理 189.8**（Arora等，2019）：在深度线性网络中，梯度下降隐式地倾向于低秩解，且收敛方向与初始化相关。对于深度矩阵分解，梯度下降在参数空间的轨迹可由特定的Riemannian梯度流近似。
+
+---
 
 ---
 
@@ -619,6 +645,8 @@ $$W_\varepsilon(\mu, \nu) = \min_{\gamma \in \Pi(\mu, \nu)} \int \|x - y\|^2 d\g
 
 ---
 
+---
+
 ## 第263章：序列决策的数学理论
 马尔可夫决策过程为序列决策提供了公理化数学框架。本章建立MDP的Bellman方程体系，并讨论信息瓶颈原理——从信息论视角理解表示学习中的数据压缩与信息保留权衡。
 
@@ -682,6 +710,9 @@ $$I(X; Z) = \sup_{f: \Omega \to \mathbb{R}} \mathbb{E}_{P_{XZ}}[f(x, z)] - \log 
 *本卷从概率论、泛函分析和优化理论的统一视角，系统阐述了统计学习理论的核心数学结构：PAC可学性与VC维提供了学习的可能性边界（概率论与组合数学）；神经网络逼近理论揭示了有限参数网络的表达能力（泛函分析中的稠密性与逼近速率）；SGD收敛理论和损失景观分析解释了非凸优化的训练动力学；最优传输理论（Monge-Kantorovich-Brenier）建立了概率测度空间上的几何结构；MDP的Bellman方程体系为序列决策提供了不动点理论框架；信息瓶颈原理从信息论角度统一了表示学习的压缩-保留权衡。共5章。*
 
 *本卷在初等统计（V6）和概率论 II（V20）的基础上，建立了数理统计的严格理论框架：估计理论（无偏性、相合性、Cramér-Rao 下界、MLE 的渐近最优性）为参数估计提供了理论基础；Neyman-Pearson 引理和似然比检验为假设检验提供了最优性准则；置信区间与假设检验的对偶关系揭示了统计推断的统一结构；贝叶斯方法通过先验分布融合先验信息，后验分布的渐近正态性（Bernstein-von Mises 定理）保证了与频率学派方法的一致性；线性模型（Gauss-Markov 定理、ANOVA）是应用最广泛的统计工具；多元分析（PCA、LDA）是处理高维数据的标准方法。**补充部分**将统计推断理论推广至机器学习：PAC学习理论建立了从有限样本到泛化误差的概率界限，VC维理论刻画了假设空间的复杂度，SGD收敛性分析为大规模优化提供了理论保证，Wasserstein距离统一了分布间的最优传输与生成模型，Markov决策过程的Bellman方程与策略梯度定理为强化学习提供了数学基础。*
+
+
+*卷二十一：统计 II终。*
 
 
 *卷二十一：统计 II终。*
