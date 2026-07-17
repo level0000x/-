@@ -1,0 +1,619 @@
+# 卷二十四：调和分析
+
+> 调和分析研究函数和算子的 Fourier 分解，是现代分析的核心分支。本卷从 Fourier 变换的 $L^1$ 和 $L^2$ 理论出发，建立 Schwartz 空间和缓增分布上的 Fourier 变换，然后深入到 Calderón-Zygmund 奇异积分理论、Hardy-Littlewood 极大函数和 Littlewood-Paley 理论，为现代调和分析和 PDE 研究提供核心工具。
+
+---
+
+## 第123章：Fourier 变换
+
+Fourier 变换是调和分析最基本的工具，它将函数从物理空间映射到频率空间。本章从 $L^1$ 和 $L^2$ 理论出发，建立缓增分布上的 Fourier 变换。
+
+### 123.1 $L^1$ 理论
+
+**定义 123.1**（Fourier 变换）：$f \in L^1(\mathbb{R}^n)$ 的 **Fourier 变换**为
+
+$$\hat{f}(\xi) = \mathcal{F}f(\xi) = \int_{\mathbb{R}^n} f(x) e^{-2\pi i x \cdot \xi} dx$$
+
+**Fourier 逆变换**（形式地）：$f(x) = \int_{\mathbb{R}^n} \hat{f}(\xi) e^{2\pi i x \cdot \xi} d\xi$（在 $L^2$ 或适当条件下成立）。
+
+**命题 123.1**（$L^1$ 理论的基本性质）：
+1. $\|\hat{f}\|_\infty \leq \|f\|_1$（$\hat{f}$ 是有界连续函数）
+2. $\widehat{f * g} = \hat{f} \hat{g}$（卷积的 Fourier 变换是乘积）
+3. $\widehat{f(\cdot - h)}(\xi) = e^{-2\pi i h \cdot \xi} \hat{f}(\xi)$（平移）
+4. $\widehat{e^{2\pi i x \cdot \eta} f(x)}(\xi) = \hat{f}(\xi - \eta)$（调制）
+5. $\widehat{f(\lambda x)}(\xi) = \lambda^{-n} \hat{f}(\xi/\lambda)$（伸缩）
+6. Riemann-Lebesgue 引理：$\hat{f}(\xi) \to 0$（$|\xi| \to \infty$）
+
+**定理 123.1**（Fourier 反演公式，$L^1$ 情形）：若 $f, \hat{f} \in L^1(\mathbb{R}^n)$，则
+
+$$f(x) = \int_{\mathbb{R}^n} \hat{f}(\xi) e^{2\pi i x \cdot \xi} d\xi \quad \text{几乎处处}$$
+
+*证明*：使用 Gauss 核近似恒等元。$f * \varphi_\varepsilon \to f$（$\varepsilon \to 0$），其中 $\varphi_\varepsilon(x) = \varepsilon^{-n} e^{-\pi |x|^2/\varepsilon^2}$。$\hat{\varphi}_\varepsilon(\xi) = e^{-\pi \varepsilon^2 |\xi|^2}$。由 Fourier 反演对 Gauss 函数成立，取极限。∎
+
+### 123.2 $L^2$ 理论与 Plancherel 定理
+
+**定理 123.2**（Plancherel 定理）：Fourier 变换可以唯一延拓为 $L^2(\mathbb{R}^n)$ 上的酉算子（在归一化后）：$\|\hat{f}\|_2 = \|f\|_2$。即
+
+$$\int_{\mathbb{R}^n} |f(x)|^2 dx = \int_{\mathbb{R}^n} |\hat{f}(\xi)|^2 d\xi$$
+
+**推论 123.3**（Parseval 恒等式）：$\langle f, g \rangle = \langle \hat{f}, \hat{g} \rangle$，即 $\int f \bar{g} = \int \hat{f} \bar{\hat{g}}$。
+
+**定理 123.4**（Hausdorff-Young 不等式）：对 $1 \leq p \leq 2$，$\|\hat{f}\|_{p'} \leq \|f\|_p$，其中 $1/p + 1/p' = 1$。即 Fourier 变换是 $L^p \to L^{p'}$ 的有界算子（$p \in [1, 2]$）。
+
+### 123.3 Schwartz 空间与缓增分布
+
+**定义 123.2**（Schwartz 空间）：**Schwartz 空间** $\mathcal{S}(\mathbb{R}^n)$ 是所有光滑函数 $\varphi$ 的集合，满足对所有多重指标 $\alpha, \beta$，
+
+$$\sup_{x \in \mathbb{R}^n} |x^\alpha D^\beta \varphi(x)| < \infty$$
+
+即 $\varphi$ 及其所有导数比任意多项式下降更快。
+
+**定理 123.5**：Fourier 变换是 $\mathcal{S}(\mathbb{R}^n)$ 上的同构（双射连续线性映射）。$\mathcal{S}$ 在 Fourier 变换下的自同构性是调和分析的核心。
+
+**定义 123.3**（缓增分布）：$\mathcal{S}(\mathbb{R}^n)$ 的对偶空间 $\mathcal{S}'(\mathbb{R}^n)$ 称为**缓增分布**空间。缓增分布 $u$ 的 **Fourier 变换** $\hat{u}$ 由对偶定义：
+
+$$\langle \hat{u}, \varphi \rangle = \langle u, \hat{\varphi} \rangle \quad (\varphi \in \mathcal{S})$$
+
+**例 123.1**（缓增分布的 Fourier 变换）：
+- $\hat{\delta}_0 = 1$（常数函数）
+- $\hat{1} = \delta_0$（Dirac $\delta$ 分布）
+- $\widehat{\operatorname{p.v.}(1/x)} = -\pi i \operatorname{sgn}(\xi)$（Hilbert 变换的 Fourier 乘子）
+- $\widehat{\operatorname{sgn}(x)} = \frac{1}{\pi i} \operatorname{p.v.}(1/\xi)$
+
+### 123.4 Poisson 求和公式
+
+**定理 123.6**（Poisson 求和公式）：设 $f$ 是 Schwartz 函数。则
+
+$$\sum_{n \in \mathbb{Z}^n} f(n) = \sum_{m \in \mathbb{Z}^n} \hat{f}(m)$$
+
+更一般地，$\sum_{n \in \mathbb{Z}^n} f(x + n) = \sum_{m \in \mathbb{Z}^n} \hat{f}(m) e^{2\pi i m \cdot x}$（分布意义下）。
+
+*证明*：定义 $F(x) = \sum_{n \in \mathbb{Z}^n} f(x + n)$（$\mathbb{Z}^n$-周期函数）。$F$ 的 Fourier 系数为 $\hat{f}(m)$，由 Fourier 级数理论即得。∎
+
+---
+
+## 第124章：奇异积分
+
+奇异积分是 Calderón-Zygmund 在 20 世纪 50 年代开创的理论，它将 Hilbert 变换（一维）推广到高维，并建立了 $L^p$ 有界性的一般框架。
+
+### 124.1 Hilbert 变换
+
+**定义 124.1**（Hilbert 变换）：$\mathbb{R}$ 上的 **Hilbert 变换** $H$ 定义为
+
+$$Hf(x) = \frac{1}{\pi} \operatorname{p.v.} \int_{-\infty}^\infty \frac{f(y)}{x - y} dy = \frac{1}{\pi} \lim_{\varepsilon \to 0} \int_{|x-y| > \varepsilon} \frac{f(y)}{x - y} dy$$
+
+**命题 124.1**（Hilbert 变换的性质）：
+1. $H$ 是 $L^2(\mathbb{R})$ 上的酉算子：$H^* = -H$，$H^2 = -I$
+2. Fourier 乘子：$\widehat{Hf}(\xi) = -i \operatorname{sgn}(\xi) \hat{f}(\xi)$
+3. $H$ 是 $L^p(\mathbb{R})$ 上的有界算子（$1 < p < \infty$）
+4. $H$ 与伸缩、平移交换
+
+**定理 124.1**（M. Riesz 定理）：Hilbert 变换在 $L^p(\mathbb{R})$ 上有界（$1 < p < \infty$）。$\|Hf\|_p \leq C_p \|f\|_p$。
+
+### 124.2 Calderón-Zygmund 分解
+
+**定理 124.2**（Calderón-Zygmund 分解）：设 $f \in L^1(\mathbb{R}^n)$，$f \geq 0$，$\lambda > 0$。则存在 $\mathbb{R}^n$ 的分解：$f = g + b$，其中
+- $g$（"好"部分）：$|g(x)| \leq 2^n \lambda$ 几乎处处，$\|g\|_1 \leq \|f\|_1$
+- $b = \sum_k b_k$（"坏"部分）：$b_k$ 支撑在不相交的二进方体 $Q_k$ 上，$\int_{Q_k} b_k = 0$，$\|b_k\|_1 \leq 2^{n+1} \lambda |Q_k|$，且 $\sum_k |Q_k| \leq \lambda^{-1} \|f\|_1$
+
+*构造与证明概要*：将 $\mathbb{R}^n$ 划分为二进方体（dyadic cubes）。对每个二进方体 $Q$，若 $\frac{1}{|Q|}\int_Q f > \lambda$，则将其二等分为子方体并递归检查。最终选出的"坏"方体族 $\{Q_k\}$ 满足：$\frac{1}{|Q_k|}\int_{Q_k} f > \lambda$，但每个 $Q_k$ 的父方体均值 $\leq \lambda$。定义 $g(x) = f(x)$（$x \notin \bigcup Q_k$）和 $g(x) = \frac{1}{|Q_k|}\int_{Q_k} f$（$x \in Q_k$），以及 $b_k(x) = (f(x) - \frac{1}{|Q_k|}\int_{Q_k} f) \mathbf{1}_{Q_k}(x)$。于是 $|g| \leq 2^n \lambda$ 由均值有界性保证，$\sum|Q_k| \leq \lambda^{-1}\|f\|_1$ 由 Chebyshev 型估计得到。此分解是 Calderón-Zygmund 理论的基石，关键之处在于将函数分解为 $L^\infty$ 控制的好部分和均值为零且支撑在不相交二进方体上的坏部分。∎
+
+*构造*：用二进方体分割 $\mathbb{R}^n$。对每个二进方体，若其均值 $> \lambda$，则从中提取"坏"部分。这是 Calderón-Zygmund 理论的基石。
+
+### 124.3 奇异积分算子
+
+**定义 124.2**（Calderón-Zygmund 核）：函数 $K: \mathbb{R}^n \setminus \{0\} \to \mathbb{C}$ 称为 **Calderón-Zygmund 核**（或标准核），如果满足：
+1. $|K(x)| \leq C |x|^{-n}$（大小条件）
+2. $|\nabla K(x)| \leq C |x|^{-n-1}$（光滑性条件）
+3. $\int_{r < |x| < R} K(x) dx = 0$（对所有 $0 < r < R$，消去条件）
+
+**定义 124.3**（奇异积分算子）：与核 $K$ 关联的**奇异积分算子** $T$ 定义为
+
+$$Tf(x) = \operatorname{p.v.} \int_{\mathbb{R}^n} K(x - y) f(y) dy = \lim_{\varepsilon \to 0} \int_{|x-y| > \varepsilon} K(x - y) f(y) dy$$
+
+**定理 124.3**（Calderón-Zygmund 定理）：若 $T$ 是奇异积分算子且在 $L^2$ 上有界，则 $T$ 在 $L^p$ 上有界（$1 < p < \infty$），且满足弱 $(1, 1)$ 型估计：
+
+$$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
+
+*证明思路*：使用 Calderón-Zygmund 分解。对"好"部分 $g$ 用 $L^2$ 有界性，对"坏"部分 $b$ 用核的光滑性和消去条件。弱 $(1, 1)$ 有界性 + $L^2$ 有界性 + Marcinkiewicz 插值定理 ⇒ $L^p$ 有界性（$1 < p < 2$）。对偶性处理 $p > 2$。∎
+
+**定理 124.5**（Cotlar 引理，1955）：设 $\{T_j\}_{j \in \mathbb{Z}}$ 是 Hilbert 空间 $\mathcal{H}$ 上的一族有界算子。若存在 $\gamma: \mathbb{Z} \to \mathbb{R}_{\geq 0}$ 满足 $\sum_{k \in \mathbb{Z}} \sqrt{\gamma(k)} < \infty$，使得 $\|T_i^* T_j\| \leq \gamma(i-j)^2$ 和 $\|T_i T_j^*\| \leq \gamma(i-j)^2$ 对所有 $i, j$ 成立，则级数 $\sum_j T_j$ 在强算子拓扑下收敛，且 $\|\sum_j T_j\| \leq \sum_k \sqrt{\gamma(k)}$。Cotlar 引理是证明奇异积分算子 $L^2$ 有界性的核心工具：将核 $K$ 按频率二进分解为 $K = \sum_j K_j$，对每个分片算子 $T_j$ 验证几乎正交性条件 $\|T_i^* T_j\| \leq C 2^{-|i-j|\varepsilon}$，则级数在 $L^2$ 上收敛且有界。其应用场景包括：Hilbert 变换的 $L^2$ 有界性、Calderón 交换子、Fourier 乘子定理以及仿积算子的有界性。
+
+**例 124.1**（Riesz 变换）：$n$ 维 Riesz 变换 $R_j$（$j = 1, \ldots, n$）具有核 $K_j(x) = c_n \frac{x_j}{|x|^{n+1}}$。Fourier 乘子为 $\widehat{R_j f}(\xi) = -i \frac{\xi_j}{|\xi|} \hat{f}(\xi)$。Riesz 变换是 Calderón-Zygmund 定理的典型应用。
+
+### 124.4 Marcinkiewicz 插值定理
+
+**定理 124.4**（Marcinkiewicz 插值定理）：设 $T$ 是次线性算子，满足：
+- 弱 $(p_0, q_0)$ 型：$|\{|Tf| > \lambda\}| \leq (A_0 \|f\|_{p_0} / \lambda)^{q_0}$
+- 弱 $(p_1, q_1)$ 型：$|\{|Tf| > \lambda\}| \leq (A_1 \|f\|_{p_1} / \lambda)^{q_1}$
+
+其中 $1 \leq p_0 < p_1 \leq \infty$，$1 \leq q_0, q_1 \leq \infty$，$q_0 \neq q_1$。则对 $p_\theta$ 满足 $\frac{1}{p_\theta} = \frac{1-\theta}{p_0} + \frac{\theta}{p_1}$，$T$ 在 $L^{p_\theta}$ 上是强有界的（$0 < \theta < 1$）。
+
+---
+
+## 第125章：Hardy-Littlewood 极大函数
+
+Hardy-Littlewood 极大函数是调和分析中最基本的算子之一，它控制了许多重要的算子（如奇异积分），是 Calderón-Zygmund 理论的关键工具。
+
+### 125.1 Hardy-Littlewood 极大函数
+
+**定义 125.1**（Hardy-Littlewood 极大函数）：$f \in L^1_{\text{loc}}(\mathbb{R}^n)$ 的 **Hardy-Littlewood 极大函数**为
+
+$$Mf(x) = \sup_{r > 0} \frac{1}{|B(x, r)|} \int_{B(x, r)} |f(y)| dy$$
+
+即 $f$ 在包含 $x$ 的球上的最大平均值。
+
+**定理 125.1**（Hardy-Littlewood 极大定理）：
+1. $M$ 是弱 $(1, 1)$ 型：$|\{x : Mf(x) > \lambda\}| \leq \frac{C_n}{\lambda} \|f\|_1$
+2. $M$ 是强 $(p, p)$ 型：$\|Mf\|_p \leq C_{n,p} \|f\|_p$（$1 < p \leq \infty$）
+
+*证明*（弱 $(1, 1)$ 型）：使用 Vitali 覆盖引理。对 $\{Mf > \lambda\}$ 中的每点，存在球 $B$ 使 $\int_B |f| > \lambda |B|$。由 Vitali 覆盖引理，可选出不相交的球 $B_i$ 覆盖 $\{Mf > \lambda\}$ 的缩放版本。$|\{Mf > \lambda\}| \leq C_n \sum |B_i| \leq \frac{C_n}{\lambda} \sum \int_{B_i} |f| \leq \frac{C_n}{\lambda} \|f\|_1$。∎
+
+**定理 125.2**（Lebesgue 微分定理）：对 $f \in L^1_{\text{loc}}(\mathbb{R}^n)$，
+
+$$\lim_{r \to 0} \frac{1}{|B(x, r)|} \int_{B(x, r)} f(y) dy = f(x) \quad \text{几乎处处}$$
+
+*证明*：由极大函数的弱 $(1, 1)$ 有界性和连续函数在 $L^1$ 中的稠密性证明。∎
+
+### 125.2 其他极大函数
+
+**定义 125.2**（非中心极大函数）：$M'f(x) = \sup_{B \ni x} \frac{1}{|B|} \int_B |f(y)| dy$（上确界取遍所有包含 $x$ 的球，不要求 $x$ 是球心）。$M'$ 与 $M$ 逐点等价：$Mf \leq M'f \leq 2^n Mf$。
+
+**定义 125.3**（锐极大函数，Sharp Maximal Function）：
+
+$$M^\sharp f(x) = \sup_{B \ni x} \frac{1}{|B|} \int_B |f(y) - f_B| dy$$
+
+其中 $f_B = \frac{1}{|B|} \int_B f$ 是 $f$ 在 $B$ 上的均值。$M^\sharp f$ 衡量 $f$ 的局部振荡。
+
+**定理 125.3**（Fefferman-Stein 不等式）：对 $1 < p < \infty$，$\|f\|_p \leq C_p \|M^\sharp f\|_p$（当 $f$ 满足适当消失条件时）。
+
+### 125.3 加权不等式
+
+**定义 125.4**（$A_p$ 权）：非负局部可积函数 $w$ 称为 **$A_p$ 权**（$1 < p < \infty$），如果
+
+$$\sup_B \left(\frac{1}{|B|} \int_B w(x) dx\right) \left(\frac{1}{|B|} \int_B w(x)^{-1/(p-1)} dx\right)^{p-1} < \infty$$
+
+$A_1$ 权：$M w(x) \leq C w(x)$ 几乎处处。
+
+**定理 125.4**（Muckenhoupt 定理）：Hardy-Littlewood 极大函数在加权 $L^p(w)$ 空间上有界当且仅当 $w \in A_p$（$1 < p < \infty$）。这给出了极大函数 $L^p$ 有界性权条件的精确刻画。
+
+---
+
+## 第126章：Littlewood-Paley 理论
+
+Littlewood-Paley 理论将函数分解为不同频率的分量，通过平方函数来研究函数的 $L^p$ 性质。它是现代调和分析的核心工具，广泛应用于 PDE 和奇异积分理论。
+
+### 126.1 二进分解
+
+**定义 126.1**（二进分解）：选择光滑函数 $\varphi \in C_c^\infty(\mathbb{R}^n)$，支撑在 $\{1/2 \leq |\xi| \leq 2\}$，满足 $\sum_{j \in \mathbb{Z}} \varphi(2^{-j} \xi) = 1$（$\xi \neq 0$）。定义 **Littlewood-Paley 算子**：
+
+$$\Delta_j f = \mathcal{F}^{-1}(\varphi(2^{-j} \cdot) \hat{f})$$
+
+$\Delta_j f$ 是 $f$ 在频率 $|\xi| \sim 2^j$ 附近的分量。
+
+**命题 126.1**（二进分解的性质）：$f = \sum_{j \in \mathbb{Z}} \Delta_j f$（在 $\mathcal{S}'$ 中，模去多项式）。$\Delta_j f$ 是光滑函数，频率集中在环形区域 $\{2^{j-1} \leq |\xi| \leq 2^{j+1}\}$。
+
+### 126.2 平方函数
+
+**定义 126.2**（Littlewood-Paley 平方函数）：**Littlewood-Paley $g$-函数**为
+
+$$g(f)(x) = \left(\sum_{j \in \mathbb{Z}} |\Delta_j f(x)|^2\right)^{1/2}$$
+
+**Lusin 面积函数**（$S$-函数）和 **Littlewood-Paley $g_\lambda^*$-函数**是 $g$-函数的变体，涉及时间和空间上的平均。
+
+**定理 126.1**（Littlewood-Paley 定理）：对 $1 < p < \infty$，存在常数 $C_p$ 使得
+
+$$C_p^{-1} \|f\|_p \leq \|g(f)\|_p \leq C_p \|f\|_p$$
+
+即 $L^p$ 范数与平方函数的 $L^p$ 范数等价。平方函数允许用"频率分量的大小"来刻画函数的 $L^p$ 性质。
+
+*证明思路*：$p = 2$ 时由 Plancherel 定理直接得到。对一般 $p$，使用 Calderón-Zygmund 理论或向量值奇异积分理论。∎
+
+**推论 126.2**（平方函数与 Sobolev 空间）：Sobolev 范数 $\|f\|_{W^{s,p}}$ 与 $\|(\sum_{j \in \mathbb{Z}} 2^{2js} |\Delta_j f|^2)^{1/2}\|_p$ 等价（$1 < p < \infty$）。
+
+### 126.3 Fourier 乘子
+
+**定义 126.3**（Fourier 乘子）：函数 $m: \mathbb{R}^n \to \mathbb{C}$ 定义 **Fourier 乘子算子** $T_m$ 为
+
+$$\widehat{T_m f}(\xi) = m(\xi) \hat{f}(\xi)$$
+
+**定理 126.3**（Mikhlin 乘子定理）：设 $m \in C^\infty(\mathbb{R}^n \setminus \{0\})$ 满足 $|\partial^\alpha m(\xi)| \leq C_\alpha |\xi|^{-|\alpha|}$ 对所有多重指标 $\alpha$。则 $T_m$ 在 $L^p(\mathbb{R}^n)$ 上有界（$1 < p < \infty$）。
+
+**定理 126.4**（Hörmander 乘子定理）：Mikhlin 条件的更精细版本，使用 Sobolev 空间代替逐点导数条件，允许乘子有更低的平滑性。
+
+**例 126.1**（Fourier 乘子的例子）：
+- Hilbert 变换：$m(\xi) = -i \operatorname{sgn}(\xi)$
+- Riesz 变换：$m_j(\xi) = -i \xi_j / |\xi|$
+- 分数次积分（Riesz 位势）：$m(\xi) = |\xi|^{-\alpha}$（$0 < \alpha < n$）
+- Bessel 位势：$m(\xi) = (1 + |\xi|^2)^{-\alpha/2}$
+
+### 126.4 函数空间的 Littlewood-Paley 刻画
+
+**定理 126.4**（Besov 空间与 Triebel-Lizorkin 空间）：使用 Littlewood-Paley 分解可以定义一般的函数空间尺度：
+- **Besov 空间** $B^s_{p,q}$：$\|f\|_{B^s_{p,q}} = \|(2^{js} \|\Delta_j f\|_p)_{j \in \mathbb{Z}}\|_{\ell^q}$
+- **Triebel-Lizorkin 空间** $F^s_{p,q}$：$\|f\|_{F^s_{p,q}} = \|(\sum_{j \in \mathbb{Z}} 2^{jsq} |\Delta_j f|^q)^{1/q}\|_p$
+
+这些空间统一了 Sobolev 空间（$F^s_{p,2} = W^{s,p}$，$1 < p < \infty$）、Hölder 空间（$B^s_{\infty,\infty} = C^s$）、Hardy 空间（$F^0_{p,2} = H^p$）和 BMO 空间（$F^0_{\infty,2} = \operatorname{BMO}$）。
+
+**定理 126.5**（Sobolev 嵌入的 Littlewood-Paley 证明）：使用平方函数和 Bernstein 不等式，Sobolev 嵌入定理（V18 定理 93.2）可以通过频率分解给出简洁证明。
+
+**定义 126.5**（仿积分解，Paraproduct）：Bony 的**仿积分解**（paraproduct decomposition）将两个函数的乘积分解为低频-低频、低频-高频和高频-低频三部分：
+
+$$fg = \pi_f(g) + \pi_g(f) + R(f, g)$$
+
+其中 $\pi_f(g)$ 是 $f$ 对 $g$ 的仿积（低频乘以高频），$R(f, g)$ 是余项（高频乘以高频）。仿积分是研究非线性 PDE 中乘积和复合函数正则性的关键工具。
+
+### 126.5 Hardy 空间 $H^1$ 的原子分解
+
+**定义 126.6**（$H^1$ 原子）：函数 $a \in L^2(\mathbb{R}^n)$ 称为 **$H^1$-原子**，如果存在球 $B$ 使得：(1) $\operatorname{supp}(a) \subseteq B$；(2) $\|a\|_\infty \leq |B|^{-1}$（大小条件）；(3) $\int_{\mathbb{R}^n} a(x) dx = 0$（消失矩条件）。
+
+**定理 126.6**（$H^1$ 的原子分解）：$f \in H^1(\mathbb{R}^n)$ 当且仅当存在 $H^1$-原子的可数族 $\{a_j\}$ 和系数 $\{\lambda_j\} \subseteq \mathbb{C}$ 满足 $\sum |\lambda_j| < \infty$，使得 $f = \sum_j \lambda_j a_j$（在分布意义下）。此时 $\|f\|_{H^1} \sim \inf \sum |\lambda_j|$。
+
+$H^1$ 取代 $L^1$ 在奇异积分理论中的角色是因为奇异积分核的消去条件与原子消失矩条件相匹配：$L^1$ 在奇异积分下不封闭（仅满足弱 $(1,1)$ 型），但 $H^1$ 是最大的满足 Calderón-Zygmund 算子在其上有界的函数空间。$H^1$ 原子分解由 Coifman 和 Weiss 建立，为研究奇异积分的端点估计提供了基本工具。
+
+---
+
+## 第127章：殆周期函数（Almost Periodic Functions）
+
+殆周期函数理论由 H. Bohr (1925) 创立，将周期函数的 Fourier 分析推广到具有"近似周期性"的连续函数。定义：$\mathbb{R}$ 上的连续函数 $f$ 称为 **Bohr 殆周期**，若对任意 $\varepsilon > 0$，存在相对稠密的平移数集——即存在长度 $L = L(\varepsilon) > 0$ 使得每个长为 $L$ 的区间至少含一个 $\tau$ 满足 $\|f(x+\tau) - f(x)\|_\infty < \varepsilon$。**核心定理**：（1）**Bohr 基本定理**——$f$ 殆周期当且仅当它是三角多项式 $\sum c_n e^{i\lambda_n x}$ 在一致范数下的极限（即 Fourier 级数具有可数个非零系数）；（2）**平均遍历定理**——平均 $\mathcal{M}\{f\} = \lim_{T\to\infty} \frac{1}{2T} \int_{-T}^{T} f(x)dx$ 存在，且 $\mathcal{M}\{|f|^2\} = \sum |c_n|^2$（Parseval 恒等式）；（3）**Bochner 准则**——$f$ 殆周期当且仅当 $\{f(x+h) : h \in \mathbb{R}\}$ 在 $\operatorname{C}(\mathbb{R})$ 中相对紧。Bochner (1927) 和 von Neumann (1934) 将该理论推广到群上的殆周期函数——$\operatorname{C}(G)$ 中的殆周期函数构成平移紧算子的谱理论，奠定了局部紧交换群上调和分析的公理化基础。
+
+**定义 127.1**（Bohr 殆周期）：$\mathbb{R}$ 上的连续函数 $f \in \operatorname{C}(\mathbb{R})$ 称为 **Bohr 殆周期**，若对任意 $\varepsilon > 0$，存在 $L = L(\varepsilon) > 0$ 使得 $\mathbb{R}$ 上任意长度为 $L$ 的区间至少含有一个 $\tau$ 满足对一切 $x \in \mathbb{R}$ 有 $|f(x+\tau) - f(x)| < \varepsilon$。$\tau$ 称为 $f$ 的 $\varepsilon$-殆周期。所有 Bohr 殆周期函数构成闭子代数 $\operatorname{AP}(\mathbb{R}) \subset \operatorname{C}_b(\mathbb{R})$（有界连续函数空间）。
+
+**定理 127.1**（Bohr 基本定理）：$f \in \operatorname{AP}(\mathbb{R})$ 当且仅当 $f$ 可在一致范数下被三角多项式逼近。等价地，存在至多可数个实数 $\lambda_n$（$f$ 的 Fourier 指数）和非零复数 $a_n$（$f$ 的 Fourier 系数）使得 $f(x) \sim \sum_n a_n e^{i\lambda_n x}$。*证明思路*：充分性——三角多项式显然殆周期，一致极限保持殆周期性质。必要性——定义平均值 $\mathcal{M}\{f(x)e^{-i\lambda x}\} = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^T f(x) e^{-i\lambda x} dx$，由 Bochner-Fejér 核的逼近性质证明该极限存在，且仅可数个 $\lambda$ 使该平均非零。用近似恒同的方法构造三角多项式的逼近序列。
+
+**定理 127.2**（Parseval 恒等式）：对 $f \in \operatorname{AP}(\mathbb{R})$，有 $\mathcal{M}\{|f|^2\} = \sum_n |a_n|^2$，其中平均值 $\mathcal{M}\{g\} = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^T g(x) dx$。*证明思路*：将三角逼近代入积分的平方展开，利用 $\mathcal{M}\{e^{i(\lambda_m - \lambda_n)x}\} = \delta_{mn}$ 的正交性。
+
+---
+
+## 第128章：积分变换深化（Integral Transforms）
+
+经典积分变换是以积分核为桥梁、实现微分方程求解和信号分析的基本工具。**核心内容**：（1）**Fourier 变换**——$\mathcal{F}[f](\xi) = \int_{-\infty}^{\infty} f(x) e^{-2\pi i x\xi} dx$，在 $L^2(\mathbb{R})$ 上为酉算子，Plancherel 定理 $\|\mathcal{F}f\|_{L^2} = \|f\|_{L^2}$；（2）**Laplace 变换**——$\mathcal{L}[f](s) = \int_0^\infty f(t) e^{-st} dt$，将常系数 ODE 化归为代数方程，逆变换由 Bromwich 积分 $\frac{1}{2\pi i} \int_{\gamma-i\infty}^{\gamma+i\infty} \mathcal{L}[f](s) e^{st} ds$ 给出；（3）**Mellin 变换**——$\mathcal{M}[f](s) = \int_0^\infty f(x) x^{s-1} dx$，在线性 PDE 边界值问题和数论（Dirichlet 级数）中自然出现；（4）**Hilbert 变换**——$\mathcal{H}[f](x) = \frac{1}{\pi} \operatorname{p.v.} \int_{-\infty}^{\infty} \frac{f(t)}{x-t} dt$，是信号解析表示和色散关系的数学基础；（5）**Radon 变换**——$Rf(\theta, s) = \int_{x \cdot \theta = s} f(x) d\sigma(x)$，作为 $\mathbb{R}^n$ 上的积分变换在 CT 断层扫描中起着核心数学支撑作用。反演公式（滤波反投影）由 Johann Radon (1917) 给出。**小波变换**——$\mathcal{W}_\psi f(a,b) = \frac{1}{\sqrt{|a|}} \int f(t) \overline{\psi(\frac{t-b}{a})} dt$，同时捕捉时间-频率局部特征，是 Fourier 变换的自然推广。
+
+---
+
+## 第129章：抽象调和分析（Abstract Harmonic Analysis）
+
+抽象调和分析将经典 Fourier 分析从 $\mathbb{R}^n$ 推广到任意局部紧交换群（LCA 群）上，其核心是 Pontryagin 对偶理论。
+
+**定义 129.1**（Pontryagin 对偶）：设 $G$ 为局部紧交换群。$G$ 的 **对偶群** $\widehat{G}$ 是所有连续群同态 $\chi: G \to \mathbb{T}$（$\mathbb{T} = \{z \in \mathbb{C} : |z|=1\}$）的集合，配以紧致-开拓补和逐点乘法构成 LCA 群。称 $\chi \in \widehat{G}$ 为 $G$ 的**特征标**。
+
+**定理 129.1**（Pontryagin 对偶定理）：存在自然同构 $G \cong \widehat{\widehat{G}}$。基本例子：$\widehat{\mathbb{R}} \cong \mathbb{R}$（$\chi_\xi(x) = e^{2\pi i x \xi}$）；$\widehat{\mathbb{T}} \cong \mathbb{Z}$（$\chi_n(e^{2\pi i \theta}) = e^{2\pi i n \theta}$）；$\widehat{\mathbb{Z}} \cong \mathbb{T}$；$\widehat{\mathbb{Z}/n\mathbb{Z}} \cong \mathbb{Z}/n\mathbb{Z}$。*证明思路*：利用紧群上的 Peter-Weyl 理论和 LCA 群的投影极限结构证明双向对偶，Gelfand-Raikov 定理给出充足的不可约酉表示。
+
+**定理 129.2**（LCA 群上的 Plancherel 定理）：设 $G$ 为 LCA 群，Haar 测度 $dx$。存在 $\widehat{G}$ 上的唯一 Haar 测度 $d\xi$（对偶测度）使得 Fourier 变换 $\mathcal{F}: L^1(G) \cap L^2(G) \to L^2(\widehat{G})$（定义为 $\widehat{f}(\chi) = \int_G f(x) \overline{\chi(x)} dx$）可唯一延拓为 $L^2(G)$ 到 $L^2(\widehat{G})$ 的酉算子：$\|f\|_{L^2(G)} = \|\widehat{f}\|_{L^2(\widehat{G})}$（Parseval 恒等式）。
+
+**定理 129.3**（LCA 群上的 Bochner 定理）：$G$ 上的连续正定函数 $\varphi$ 可唯一表示为 $\varphi(x) = \int_{\widehat{G}} \chi(x) d\mu(\chi)$，其中 $\mu$ 是 $\widehat{G}$ 上唯一的正有限 Borel 测度。该定理是功率谱密度与自协方差函数 Wiener-Khinchin 关系的抽象化，也是概率论中特征函数的调和分析基础。
+
+---
+
+## 第130章：积分变换精讲
+
+积分变换以积分核为桥梁，在线性 PDE 求解、信号处理和成像科学中是不可或缺的工具。
+
+**130.1 Fourier 变换**：$\mathcal{F}[f](\xi) = \int_{\mathbb{R}^n} f(x) e^{-2\pi i x \cdot \xi} dx$。
+**定理**（Plancherel）：$\|\mathcal{F}f\|_{L^2} = \|f\|_{L^2}$，对 Schwartz 空间 $\mathcal{S}(\mathbb{R}^n)$ 上得 $L^2$ 酉算子。
+**逆变换**：$f(x) = \int_{\mathbb{R}^n} \mathcal{F}[f](\xi) e^{2\pi i x \cdot \xi} d\xi$（$f \in \mathcal{S}$ 时逐点成立）。
+
+**130.2 Laplace 变换**：$\mathcal{L}[f](s) = \int_0^\infty f(t) e^{-st} dt$（$\operatorname{Re}(s) > \sigma_c$）。将卷积变为乘积 $\mathcal{L}[f * g] = \mathcal{L}[f] \cdot \mathcal{L}[g]$，将常系数 ODE 化归为代数方程。逆变换由 **Bromwich 积分** $\frac{1}{2\pi i} \int_{\gamma - i\infty}^{\gamma + i\infty} \mathcal{L}[f](s) e^{st} ds$ 给出。
+
+**130.3 Mellin 变换**：$\mathcal{M}[f](s) = \int_0^\infty f(x) x^{s-1} dx$。其核心性质 $\mathcal{M}[f(ax)](s) = a^{-s} \mathcal{M}[f](s)$ 使得它在解析数论（Dirichlet 级数）和尺度不变的 PDE 中自然出现。逆变换为 $f(x) = \frac{1}{2\pi i} \int_{c - i\infty}^{c + i\infty} \mathcal{M}[f](s) x^{-s} ds$。
+
+**130.4 Radon 变换**：$Rf(\theta, s) = \int_{\{x \cdot \theta = s\}} f(x) d\sigma(x)$（沿超平面的积分）。**Fourier 切片定理**：$\mathcal{F}_{1D}[Rf(\theta, \cdot)](r) = \mathcal{F}[f](r \theta)$（Radon 变换的一维 Fourier 变换等于原函数的 $n$ 维 Fourier 变换沿该方向的切片）。**反演**（滤波反投影）：$f = R^* (h * R f)$，其中 $R^*$ 是反投影算子，$h$ 的 Fourier 变换为 $|\xi|^{n-1}$。
+
+---
+
+
+
+---
+
+## 补充：小波分析与采样理论
+
+> 本卷以信号和图像为具体数学对象，展开 Fourier 分析、小波理论和采样理论的数学框架。内容本质上是调和分析在离散和连续 Hilbert 空间中的系统表述。
+
+---
+
+## 第282章：Fourier 分析与采样理论
+
+本章建立 Fourier 分析的数学框架，包括连续和离散 Fourier 变换、采样定理及其在 Hilbert 空间中的表述。
+
+### 282.1 Fourier 变换的基本理论
+
+**定义 282.1**（连续 Fourier 变换）：设 $f \in L^1(\mathbb{R}^d) \cap L^2(\mathbb{R}^d)$。其 Fourier 变换定义为
+
+$$\hat{f}(\omega) = \mathcal{F}[f](\omega) = \int_{\mathbb{R}^d} f(x) e^{-2\pi i \omega \cdot x} dx$$
+
+Fourier 逆变换为 $f(x) = \int_{\mathbb{R}^d} \hat{f}(\omega) e^{2\pi i \omega \cdot x} d\omega$。
+
+**定理 282.1**（Plancherel 定理）：Fourier 变换可扩展为 $L^2(\mathbb{R}^d)$ 上的酉算子：$\|\hat{f}\|_{L^2} = \|f\|_{L^2}$。这是 $L^2$ 空间上调和分析的基础。
+
+**定义 282.2**（卷积）：$f, g \in L^1(\mathbb{R}^d)$ 的卷积定义为
+
+$$(f * g)(x) = \int_{\mathbb{R}^d} f(x - y) g(y) dy$$
+
+**定理 282.2**（卷积定理）：$\mathcal{F}[f * g] = \mathcal{F}[f] \cdot \mathcal{F}[g]$。卷积在频域中对应于逐点乘积——这是线性时不变系统分析的核心原理。
+
+### 282.2 离散 Fourier 变换
+
+**定义 282.3**（离散 Fourier 变换 / DFT）：对 $\mathbf{x} = (x_0, \ldots, x_{N-1}) \in \mathbb{C}^N$，其 DFT 为
+
+$$\hat{x}_k = \sum_{n=0}^{N-1} x_n e^{-2\pi i k n / N}, \quad k = 0, \ldots, N-1$$
+
+DFT 矩阵 $F_N = (e^{-2\pi i kn/N})_{k,n=0}^{N-1}$ 满足 $F_N F_N^* = N I$，即 $\frac{1}{\sqrt{N}} F_N$ 是 $\mathbb{C}^N$ 上的酉矩阵。
+
+**定理 282.3**（离散卷积定理）：对循环卷积 $(x * y)_n = \sum_{m=0}^{N-1} x_m y_{(n-m) \bmod N}$，有 $\widehat{x * y}_k = \hat{x}_k \hat{y}_k$。
+
+### 282.3 Nyquist-Shannon 采样定理
+
+**定理 282.4**（Nyquist-Shannon 采样定理）：设 $f \in L^2(\mathbb{R})$ 是带限函数，即 $\operatorname{supp} \hat{f} \subset [-B, B]$。若以采样间隔 $\Delta t \leq 1/(2B)$ 均匀采样，则 $f$ 可由样本 $\{f(n\Delta t)\}_{n \in \mathbb{Z}}$ 完全重建：
+
+$$f(t) = \sum_{n=-\infty}^\infty f(n\Delta t) \cdot \operatorname{sinc}\left(\frac{t - n\Delta t}{\Delta t}\right), \quad \operatorname{sinc}(x) = \frac{\sin(\pi x)}{\pi x}$$
+
+其中 $2B$ 称为 Nyquist 率。
+
+*证明概要*：构造 Dirac 梳 $\operatorname{III}_{\Delta t}(t) = \sum_{n \in \mathbb{Z}} \delta(t - n\Delta t)$，采样信号的 Fourier 变换由 Poisson 求和公式给出：
+
+$$\widehat{f \cdot \operatorname{III}_{\Delta t}}(\omega) = \frac{1}{\Delta t} \sum_{k \in \mathbb{Z}} \hat{f}\left(\omega - \frac{k}{\Delta t}\right)$$
+
+当 $\Delta t \leq 1/(2B)$ 时，各周期化拷贝的支集互不重叠。在频域乘以 $\operatorname{rect}(\omega / (2B))$ 截取基带即恢复 $\hat{f}$，再取 Fourier 逆变换得重建公式。∎
+
+**定理 282.5**（采样定理的 Hilbert 空间表述）：带限函数空间 $\mathcal{B}_B = \{f \in L^2(\mathbb{R}) : \operatorname{supp} \hat{f} \subset [-B, B]\}$ 是 $L^2(\mathbb{R})$ 的闭子空间（Paley-Wiener 空间）。函数族 $\{\operatorname{sinc}(t/\Delta t - n)\}_{n \in \mathbb{Z}}$ 构成 $\mathcal{B}_B$ 的规范正交基（当 $\Delta t = 1/(2B)$ 时），采样值 $\{f(n\Delta t)\}$ 是该基下的展开系数。
+
+---
+
+## 第283章：多分辨分析与小波理论
+
+小波分析是 Fourier 分析的重大发展——它同时在时间（空间）和频率上提供局部化表示。多分辨分析（MRA）为构造正交小波基提供了系统的 Hilbert 空间框架。
+
+### 283.1 连续小波变换
+
+**定义 283.1**（连续小波变换 / CWT）：设 $\psi \in L^2(\mathbb{R})$ 满足**允许性条件**
+
+$$\int_{\mathbb{R}} \frac{|\hat{\psi}(\omega)|^2}{|\omega|} d\omega < \infty$$
+
+对 $f \in L^2(\mathbb{R})$，其连续小波变换定义为
+
+$$W_f(a, b) = \frac{1}{\sqrt{|a|}} \int_{\mathbb{R}} f(t) \overline{\psi\left(\frac{t-b}{a}\right)} dt$$
+
+其中 $a \in \mathbb{R} \setminus \{0\}$ 为尺度参数，$b \in \mathbb{R}$ 为平移参数。$\psi$ 称为母小波。
+
+**定理 283.1**（Calderon 重构公式）：若 $\psi$ 满足允许性条件，则对任意 $f \in L^2(\mathbb{R})$，
+
+$$f(t) = \frac{1}{C_\psi} \int_{-\infty}^\infty \int_{-\infty}^\infty W_f(a, b) \frac{1}{\sqrt{|a|}} \psi\left(\frac{t-b}{a}\right) \frac{da db}{a^2}$$
+
+其中 $C_\psi = \int_{\mathbb{R}} \frac{|\hat{\psi}(\omega)|^2}{|\omega|} d\omega$。CWT 是 $L^2(\mathbb{R})$ 上的可逆变换。
+
+**定义 283.2**（时频分析）：小波变换的时频窗为
+
+$$\left[b + a t^* - a \Delta_\psi, b + a t^* + a \Delta_\psi\right] \times \left[\frac{\omega^*}{a} - \frac{\Delta_{\hat{\psi}}}{a}, \frac{\omega^*}{a} + \frac{\Delta_{\hat{\psi}}}{a}\right]$$
+
+其中 $t^*, \omega^*$ 和 $\Delta_\psi, \Delta_{\hat{\psi}}$ 分别为 $\psi$ 及其 Fourier 变换的中心和半径。时间窗宽度 $\propto |a|$，频率窗宽度 $\propto 1/|a|$——满足 Heisenberg 不确定原理 $\Delta t \cdot \Delta \omega \geq 1/2$。这一恒 $Q$ 滤波特性使小波变换在分析瞬态和多尺度结构时具有天然优势。
+
+### 283.2 多分辨分析（MRA）
+
+**定义 283.3**（多分辨分析 / MRA）：$L^2(\mathbb{R})$ 的一个多分辨分析是一列嵌套闭子空间 $\cdots \subset V_{-1} \subset V_0 \subset V_1 \subset \cdots$ 满足：
+
+1. **稠密性与分离性**：$\overline{\bigcup_{j \in \mathbb{Z}} V_j} = L^2(\mathbb{R})$，$\bigcap_{j \in \mathbb{Z}} V_j = \{0\}$
+2. **二进尺度关系**：$f(t) \in V_j \iff f(2t) \in V_{j+1}$
+3. **平移不变性**：$f(t) \in V_0 \iff f(t - k) \in V_0$，$\forall k \in \mathbb{Z}$
+4. **Riesz 基存在性**：存在尺度函数 $\phi \in V_0$，使得 $\{\phi(t - k)\}_{k \in \mathbb{Z}}$ 构成 $V_0$ 的 Riesz 基
+
+MRA 的核心结构：定义小波空间 $W_j$ 为 $V_j$ 在 $V_{j+1}$ 中的正交补（$V_{j+1} = V_j \oplus W_j$），递归分解得
+
+$$L^2(\mathbb{R}) = \overline{\bigoplus_{j \in \mathbb{Z}} W_j}$$
+
+**定义 283.4**（两尺度方程）：尺度函数 $\phi$ 和小波函数 $\psi$ 满足
+
+$$\phi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} h_k \phi(2t - k), \quad \psi(t) = \sqrt{2} \sum_{k \in \mathbb{Z}} g_k \phi(2t - k)$$
+
+其中 $g_k = (-1)^k \overline{h_{1-k}}$。序列 $\{h_k\}$ 和 $\{g_k\}$ 分别是低通和高通共轭镜像滤波器（CQF）。
+
+**定理 283.2**（正交小波基的 Mallat 分解-重构）：由两尺度方程和正交性条件，信号的塔式分解（由细到粗）和重构（由粗到细）可表示为滤波器组卷积与下/上采样的级联：
+
+分解：$c_k^{j-1} = \sum_n \overline{h_{n-2k}} c_n^j$，$d_k^{j-1} = \sum_n \overline{g_{n-2k}} c_n^j$
+
+重构：$c_n^j = \sum_k h_{n-2k} c_k^{j-1} + \sum_k g_{n-2k} d_k^{j-1}$
+
+其中 $c^j$ 为第 $j$ 层尺度系数，$d^j$ 为第 $j$ 层小波系数。
+
+**定义 283.5**（消失矩）：小波 $\psi$ 具有 $N$ 阶消失矩，若
+
+$$\int_{\mathbb{R}} t^k \psi(t) dt = 0, \quad k = 0, 1, \ldots, N-1$$
+
+消失矩阶数与尺度函数 $\phi$ 的光滑性相关：$N$ 阶消失矩等价于 $\hat{\phi}(\omega)$ 在 $\omega = 0$ 处以 $N$ 阶零点衰减（Strang-Fix 条件）。
+
+**定义 283.6**（Daubechies 紧支集正交小波族）：对任意 $N \geq 1$，存在紧支集正交小波 $\psi_N$ 满足：(i) 支集长度为 $2N-1$；(ii) $N$ 阶消失矩；(iii) $\operatorname{supp} \phi_N = [0, 2N-1]$。$N = 1$ 即为 Haar 小波。
+
+### 283.3 Besov 空间与小波系数刻画
+
+**定义 283.7**（Besov 空间——差分刻画）：设 $s > 0$，$1 \leq p, q \leq \infty$。记 $\Delta_h^r f(x) = \sum_{k=0}^r \binom{r}{k} (-1)^{r-k} f(x + kh)$ 为 $r$ 阶差分（$r = \lfloor s \rfloor + 1$）。$f \in L^p(\mathbb{R}^d)$ 属于 Besov 空间 $B_{p,q}^s(\mathbb{R}^d)$，若其半范数
+
+$$|f|_{B_{p,q}^s} = \left(\int_0^\infty \left(t^{-s} \sup_{|h| \leq t} \|\Delta_h^r f\|_{L^p}\right)^q \frac{dt}{t}\right)^{1/q} < \infty$$
+
+（$q = \infty$ 时取 $\sup$）。范数为 $\|f\|_{B_{p,q}^s} = \|f\|_{L^p} + |f|_{B_{p,q}^s}$。
+
+**定理 283.3**（Besov 空间的小波系数刻画）：设 $\{\psi_{j,k}\}$ 为充分光滑的正交小波基。则 $f \in B_{p,q}^s(\mathbb{R}^d)$ 等价于
+
+$$\|f\|_{B_{p,q}^s} \asymp \|c_{0,\cdot}\|_{\ell^p} + \left\|\left(2^{j(s + d/2 - d/p)} \|d_{j,\cdot}\|_{\ell^p}\right)_{j \geq 0}\right\|_{\ell^q}$$
+
+其中 $d_{j,k} = \langle f, \psi_{j,k} \rangle$，$c_{0,k} = \langle f, \phi_{0,k} \rangle$。即小波系数在不同尺度上的 $\ell^p$ 范数以 $2^{-js}$ 速率衰减。特例：$B_{2,2}^s = H^s$（Sobolev 空间），$B_{\infty,\infty}^s = C^s$（Holder 空间，$s$ 非整数时）。
+
+---
+
+## 第284章：变分法与偏微分方程
+
+本章研究定义在函数空间上的变分问题——能量泛函的极小化——及其 Euler-Lagrange 方程（通常为 PDE）。
+
+### 284.1 全变差泛函与 ROF 模型
+
+**定义 284.1**（全变差 / Total Variation）：设 $\Omega \subset \mathbb{R}^d$ 为开集。函数 $u \in L^1(\Omega)$ 的全变差定义为
+
+$$TV(u) = \sup\left\{\int_\Omega u \cdot \operatorname{div} \phi \, dx : \phi \in C_c^1(\Omega, \mathbb{R}^d), \|\phi(x)\|_\infty \leq 1, \forall x \in \Omega\right\}$$
+
+若 $u \in C^1(\bar{\Omega})$，则 $TV(u) = \int_\Omega |\nabla u| dx$。$TV(u)$ 是 $W^{1,1}$ 半范数在有界变差函数空间 $BV(\Omega)$ 上的推广——它允许函数具有跳跃间断，因为阶跃函数的 TV 为其跳跃量的绝对值。
+
+**定理 284.1**（ROF 变分问题 / Rudin-Osher-Fatemi, 1992）：给定 $f \in L^2(\Omega)$，考虑以下极小化问题
+
+$$\min_{u \in BV(\Omega)} \left\{ \int_\Omega |\nabla u| dx + \frac{\lambda}{2} \int_\Omega (u - f)^2 dx \right\}, \quad \lambda > 0$$
+
+第一项 $TV(u)$ 为正则项（惩罚振荡但允许跳跃），第二项 $\frac{\lambda}{2}\|u - f\|_{L^2}^2$ 为保真项。解的存在性由 $BV(\Omega)$ 的紧性（$BV$ 到 $L^1$ 的紧嵌入）保证。
+
+**定理 284.2**（ROF 模型的 Euler-Lagrange 方程）：形如上的最优性条件为
+
+$$-\operatorname{div}\left(\frac{\nabla u}{|\nabla u|}\right) + \lambda(u - f) = 0$$
+
+第一项 $-\operatorname{div}(\nabla u / |\nabla u|)$ 是水平集 $\{u = c\}$ 的平均曲率算子。该 PDE 定义了**各向异性扩散**：扩散系数 $1/|\nabla u|$ 在梯度较大处被抑制，在梯度较小处被增强。
+
+### 284.2 Mumford-Shah 泛函与自由边界问题
+
+**定义 284.2**（Mumford-Shah 泛函，1989）：对 $u \in SBV(\Omega)$（特殊有界变差函数空间）和闭集 $\Gamma \subset \Omega$（$(d-1)$ 维），定义
+
+$$E(u, \Gamma) = \int_{\Omega \setminus \Gamma} |\nabla u|^2 dx + \mu \cdot \mathcal{H}^{d-1}(\Gamma) + \lambda \int_\Omega (u - f)^2 dx$$
+
+其中 $\mathcal{H}^{d-1}(\Gamma)$ 是 $\Gamma$ 的 $(d-1)$ 维 Hausdorff 测度（$\mathbb{R}^2$ 中为长度），$u$ 在 $\Omega \setminus \Gamma$ 上光滑，沿 $\Gamma$ 允许跳跃。这是一个涉及未知函数和未知边界的同时优化问题。
+
+当 $\mu \to \infty$ 时，$\Gamma = \emptyset$，泛函退化为 $H^1$ 正则化（Sobolev 空间光滑性）；当 $\mu \to 0$ 时，允许任意复杂的边界集。
+
+**定义 284.3**（Chan-Vese 水平集方法——Mumford-Shah 的变体）：用水平集函数 $\phi: \Omega \to \mathbb{R}$ 隐式表示边界 $\Gamma = \{x : \phi(x) = 0\}$。对二区域分段常值近似，能量泛函为
+
+$$E(c_1, c_2, \phi) = \lambda_1 \int_{\{\phi > 0\}} (f - c_1)^2 dx + \lambda_2 \int_{\{\phi < 0\}} (f - c_2)^2 dx + \mu \int_\Omega |\nabla H(\phi)| dx + \nu \int_\Omega H(\phi) dx$$
+
+其中 $H$ 为 Heaviside 函数（或其正则化光滑逼近）。对应的梯度下降流（PDE 演化）为
+
+$$\frac{\partial \phi}{\partial t} = \delta(\phi) \left[\mu \operatorname{div}\left(\frac{\nabla \phi}{|\nabla \phi|}\right) - \nu - \lambda_1 (f - c_1)^2 + \lambda_2 (f - c_2)^2\right]$$
+
+其中 $\delta(\phi)|\nabla\phi|$ 将演化限制在零水平集附近——这是水平集方法的典型结构。
+
+### 284.3 几何 PDE 与变分光流
+
+**定义 284.4**（Bertalmio-Sapiro 等照度线传播方程）：设 $D \subset \Omega$ 为待修复区域，信息沿等照度线方向 $\nabla^\perp u = (-\partial_y u, \partial_x u)$ 传播：
+
+$$\frac{\partial u}{\partial t} = \nabla(\Delta u) \cdot \nabla^\perp u$$
+
+这是一个三阶几何 PDE——Laplacian 的梯度沿等照度线的切向输送。
+
+**定义 284.5**（Horn-Schunck 变分问题，1981）：给定图像序列 $I(x, y, t)$，求向量场 $\mathbf{v} = (v_1, v_2)$ 极小化
+
+$$\min_{\mathbf{v}} \left\{ \int_\Omega (\nabla I \cdot \mathbf{v} + I_t)^2 dx dy + \alpha \int_\Omega (|\nabla v_1|^2 + |\nabla v_2|^2) dx dy \right\}, \quad \alpha > 0$$
+
+第一项为光流约束方程 $I_x v_1 + I_y v_2 + I_t = 0$ 的 $L^2$ 残差，第二项为 $H^1$-半范数正则化。Euler-Lagrange 方程为椭圆型 PDE 系统：
+
+$$(I_x^2 + \alpha \Delta)v_1 + I_x I_y v_2 = -I_x I_t, \quad I_x I_y v_1 + (I_y^2 + \alpha \Delta)v_2 = -I_y I_t$$
+
+---
+
+## 第285章：压缩感知与稀疏恢复理论
+
+压缩感知是线性代数和凸优化的深刻交叉——它证明 $\ell_1$ 极小化可以在远少于经典采样定理要求的测量数下精确恢复稀疏信号。
+
+### 285.1 稀疏性与 $\ell_0$ 问题
+
+**定义 285.1**（稀疏向量）：$\mathbf{x} \in \mathbb{R}^N$ 为 $s$-稀疏的，若 $\|\mathbf{x}\|_0 := |\operatorname{supp}(\mathbf{x})| \leq s \ll N$。更一般地，$\mathbf{x}$ 在基 $\Psi$ 下的表示 $\boldsymbol{\alpha} = \Psi \mathbf{x}$ 可能是稀疏的。
+
+**定义 285.2**（压缩感知问题）：给定测量矩阵 $A \in \mathbb{R}^{m \times N}$（$m \ll N$）和测量值 $\mathbf{y} = A\mathbf{x}$（或含噪版本 $\mathbf{y} = A\mathbf{x} + \mathbf{e}$），从 $\mathbf{y}$ 中重建 $\mathbf{x}$。最直接的形式为 $\ell_0$ 极小化：
+
+$$\min_{\mathbf{x} \in \mathbb{R}^N} \|\mathbf{x}\|_0 \quad \text{s.t.} \quad A\mathbf{x} = \mathbf{y}$$
+
+**命题 285.1**（$\ell_0$ 恢复的唯一性——Spark）：若 $\operatorname{spark}(A) > 2s$（Spark 为 $A$ 的最小线性相关列数），则至多存在一个 $s$-稀疏解满足 $A\mathbf{x} = \mathbf{y}$。
+
+$\ell_0$ 极小化是 NP-hard 的组合优化问题（在所有 $\binom{N}{s}$ 个可能支撑集上搜索）。
+
+### 285.2 $\ell_1$ 松弛与限制等距性质（RIP）
+
+**定理 285.1**（压缩感知基本定理 / $\ell_1$ 松弛的合理性）：若 $A$ 满足适当的 RIP 条件，则凸 $\ell_1$ 极小化
+
+$$\min_{\mathbf{x}} \|\mathbf{x}\|_1 \quad \text{s.t.} \quad A\mathbf{x} = \mathbf{y}$$
+
+（含噪情形：$\min_{\mathbf{x}} \|\mathbf{x}\|_1 \text{ s.t. } \|A\mathbf{x} - \mathbf{y}\|_2 \leq \epsilon$，即基追踪去噪 / BPDN）能以高概率精确重建 $s$-稀疏信号 $\mathbf{x}$，仅需测量数
+
+$$m \geq C \cdot s \cdot \log(N/s)$$
+
+其中 $C$ 为通用常数。对比 Nyquist 采样率（需 $m = \mathcal{O}(N)$），压缩感知的测量数仅与稀疏度 $s$ 对数依赖于信号维数 $N$。
+
+**定义 285.3**（限制等距性质 / RIP, Candes-Tao 2005）：矩阵 $A \in \mathbb{R}^{m \times N}$ 满足 $s$ 阶 RIP，若存在 $\delta_s \in (0, 1)$ 使得对**所有** $s$-稀疏向量 $\mathbf{x} \in \mathbb{R}^N$，
+
+$$(1 - \delta_s)\|\mathbf{x}\|_2^2 \leq \|A\mathbf{x}\|_2^2 \leq (1 + \delta_s)\|\mathbf{x}\|_2^2$$
+
+RIP 确保 $A$ 在 $s$-稀疏向量的子集上近似为等距映射，从而不破坏稀疏信号的几何结构。$\delta_s$ 越小，$A$ 在稀疏子空间上越接近正交投影。
+
+**定理 285.2**（RIP 的随机矩阵实现）：以下随机矩阵以高概率满足 $\delta_{2s} \leq \delta$，所需测量数 $m = \mathcal{O}(s \log(N/s))$：
+- 独立同分布 Gaussian 矩阵：$A_{ij} \sim \mathcal{N}(0, 1/m)$
+- Bernoulli 矩阵：$A_{ij} = \pm 1/\sqrt{m}$ 等概率
+- 部分随机 Fourier 矩阵：随机选取 $m$ 行 DFT 矩阵
+
+**定理 285.3**（$\ell_1$ 恢复的稳定性与稳健性）：若 $A$ 满足 $\delta_{2s} < \sqrt{2} - 1$，则对含噪观测 $\mathbf{y} = A\mathbf{x} + \mathbf{e}$（$\|\mathbf{e}\|_2 \leq \epsilon$），BPDN 解 $\hat{\mathbf{x}}$ 满足
+
+$$\|\hat{\mathbf{x}} - \mathbf{x}\|_2 \leq C_1 \epsilon + C_2 \frac{\|\mathbf{x} - \mathbf{x}_s\|_1}{\sqrt{s}}$$
+
+其中 $\mathbf{x}_s$ 为 $\mathbf{x}$ 的最佳 $s$-项逼近。该误差界揭示了两个核心性质：(i) 稳健性——恢复误差与噪声水平 $\epsilon$ 线性相关；(ii) 稳定性——即使信号不完全稀疏但可压缩，也能近似恢复。
+
+### 285.3 稀疏恢复的数学方法评述
+
+**定义 285.4**（稀疏建模的变分框架）：一般形式的稀疏恢复问题可写为
+
+$$\min_{\mathbf{x}} \left\{\|A\mathbf{x} - \mathbf{y}\|_2^2 + \lambda \|\mathbf{x}\|_1\right\}$$
+
+这是 $\ell_2$-$\ell_1$ 混合正则化的特例（LASSO 形式）。其最优性条件为 $A^T(A\mathbf{x} - \mathbf{y}) + \lambda \partial\|\mathbf{x}\|_1 \ni 0$，其中 $\partial\|\cdot\|_1$ 为 $\ell_1$ 范数的次微分。
+
+**定义 285.5**（分析算子模型 / Co-sparse 模型）：对偶于综合稀疏模型（$\mathbf{x} = D\boldsymbol{\alpha}$，$\|\boldsymbol{\alpha}\|_0$ 小），分析模型建模 $\|\Omega \mathbf{u}\|_1$ 的稀疏性，其中 $\Omega \in \mathbb{R}^{P \times N}$（$P \gg N$）为过完备分析算子。例如 TV 范数是梯度算子 $\nabla$ 作为分析算子的 $\ell_1$ 稀疏性度量：$\|\mathbf{u}\|_{TV} = \|\nabla \mathbf{u}\|_1$。
+
+综合模型直接建模信号本身，分析模型建模信号的变换。两者的数学对偶体现了稀疏表示理论的基本对称性。
+
+---
+
+## 补充篇：经典势论
+
+经典势论（Classical Potential Theory）研究 Laplace 方程 $\Delta u = 0$ 的解（调和函数）和 Newton 位势的性质。它与复分析、调和分析和概率论（Brown运动）有深刻联系。核心内容包括调和函数、Green函数、容量和 Dirichlet 问题的可解性。
+
+### 调和函数
+
+**定义**（调和函数与均值性质）：$\mathbb{R}^n$ 开集 $\Omega$ 上的 $C^2$ 函数 $u$ 满足 $\Delta u = \sum_{i=1}^n \frac{\partial^2 u}{\partial x_i^2} = 0$ 称为**调和函数**。调和函数的最基本性质是**均值性质**：对任意以 $x$ 为心、完全包含于 $\Omega$ 中的球 $B(x, r)$，
+$$u(x) = \frac{1}{\operatorname{Vol}(\partial B_r)} \int_{\partial B(x, r)} u(y) dS(y) = \frac{1}{\operatorname{Vol}(B_r)} \int_{B(x, r)} u(y) dy$$
+
+**定理**（调和函数的正则性）：调和函数自动是 $C^\infty$ -光滑（实际是实解析的）。这由卷积表示和椭圆正则性保证——调和函数的均值性质直接推出其解析性（任何满足均值性质的连续函数是调和的且光滑）。
+
+**定理**（极大值原理与唯一性）：调和函数在其定义域内不能取得严格局部极大值（除非为常数）。由此，Dirichlet问题 $\Delta u = 0$ 在 $\Omega$ 中、$u|_{\partial \Omega} = f$ 在充分光滑的边界下有唯一解（当解存在时）。
+
+**定义**（Harnack不等式）：对连通开集 $\Omega$ 的紧子集 $K$，存在常数 $C = C(K, \Omega)$ 使得任意正调和函数 $u > 0$ 在 $\Omega$ 中满足
+$$\sup_K u \leq C \inf_K u$$
+Harnack 不等式是调和函数的"刚性"性质的体现——正调和函数在紧子集上的值被其在同紧子集上的最小值倍数控制。
+
+### Green函数与Dirichlet问题
+
+**定义**（Green函数）：区域 $\Omega \subset \mathbb{R}^n$ 的 **Green 函数** $G_\Omega(x, y)$ 当 $n \geq 3$ 时为：
+$$G_\Omega(x, y) = \Phi(x - y) - h_y(x)$$
+其中 $\Phi(x) = c_n |x|^{2-n}$（基本解），$h_y(x)$ 是以 $y$ 为极点、边界条件为 $h_y|_{\partial \Omega} = \Phi(\cdot - y)|_{\partial \Omega}$ 的调和函数（即 $\Delta_y G_\Omega(x, y) = \delta_x$ 且 $G_\Omega(x, y) = 0$ 对所有 $y \in \partial \Omega$）。Green 函数对称：$G_\Omega(x, y) = G_\Omega(y, x)$。
+
+**定理**（Green表示公式 / Poisson积分公式的推广）：对 $C^2(\overline{\Omega})$ 函数 $u$，
+$$u(x) = \int_\Omega G_\Omega(x, y) \Delta u(y) dy + \int_{\partial \Omega} \frac{\partial G_\Omega}{\partial n_y}(x, y) u(y) dS(y)$$
+其中法向导数 $\frac{\partial G_\Omega}{\partial n_y}$ 定义在边界 $\partial \Omega$ 上。球上的 Poisson 核 $P(x, y) = \frac{\partial G_{B_r}}{\partial n}$ 显式为
+$$P(x, y) = \frac{r^2 - |x|^2}{r \omega_n |x - y|^n}$$
+
+### 容量
+
+**定义**（容量 / capacity）：紧集 $K \subset \mathbb{R}^n$（$n \geq 3$）的 **Newton容量**（静电容量）定义为
+$$\operatorname{cap}(K) = \sup \left\{ \mu(K) : \mu \text{ 是支撑在 } K \text{ 上的正测度}, \int_K \int_K \frac{d\mu(x) d\mu(y)}{|x - y|^{n-2}} \leq 1 \right\}$$
+即 $K$ 上能维持总能量不超过 1 的最大测度的总质量。
+
+**命题**（容量的基本性质）：
+- 单调性：$K_1 \subset K_2 \implies \operatorname{cap}(K_1) \leq \operatorname{cap}(K_2)$
+- 可数次可加性：$\operatorname{cap}(\bigcup_{i=1}^\infty K_i) \leq \sum \operatorname{cap}(K_i)$
+- 单点容量为零：$\operatorname{cap}(\{x\}) = 0$
+- 球的容量：$\operatorname{cap}(B(0, R)) = R^{n-2}$（与半径的 $n-2$ 次幂成正比，$\mathbb{R}^2$ 中对数位势不同）
+- 容量与等周不等式的联系：等周不等式中球最优，容量也体现类似极值——在所有给定体积的 Borel 集中，球的容量最小（容量的等周不等式）
+
+**定义**（容量的等价刻画——变分法）：Newton 容量的对偶定义为
+$$\operatorname{cap}(K) = \inf \left\{ \int_{\mathbb{R}^n} |\nabla u|^2 dx : u \in C_c^\infty(\mathbb{R}^n), u \geq 1 \text{ 在 } K \text{ 上} \right\}$$
+该定义将容量与 Dirichlet 能量联系起来——容量是"使 $u$ 在 $K$ 上 $\geq 1$ 的最小能量"。
+
+### 极集与细拓扑
+
+**定义**（极集 / polar set）：$E \subset \mathbb{R}^n$ 是**极集**，若 $\operatorname{cap}(E) = 0$（等价于存在一个上调和的局部可积函数 $v$ 使得 $E \subset \{v = +\infty\}$）。极集是调和函数除去可去奇异性的精确刻画——单点集为极集当且仅当 $n \geq 2$。
+
+**定理**（Kellogg定理 / Choquet容量定理）：Borel 集 $B$ 的 Newton 容量等于 $\sup \{\operatorname{cap}(K) : K \subset B, K \text{ 紧}\}$（即 Borel 容量的内部正则性）。换言之，容量的"Choquet容度性质"成立——容量是 Borel 集上的 Choquet 容量（外正则且降序连续）。
+
+**定义**（细拓扑 / fine topology）：$\mathbb{R}^n$ 上的**细拓扑**是使所有上调和解函数连续的最弱拓扑。细拓扑比 Euclid 拓扑更精细——细拓扑中的收敛等价于"除一个极集外"的 Euclid 收敛。细拓扑在概率论中的 Brown 运动理论中自然出现：Brown 路径的极限点由细拓扑刻画（Doob）。
+
+**推论**（Dirichlet问题的可解性）：有界区域 $\Omega$ 上的 Dirichlet 问题对所有连续边界函数 $f \in C(\partial \Omega)$ 有解当且仅当 $\partial \Omega$ 的每个点相对于 $\Omega^c$ 都是**正则**的（即"Wiener判别法"：细拓扑下的局部容量条件满足）。这给出了 Dirichlet 问题可解性的完全拓扑-位势论刻画。
+
+---
+
+*本卷建立了调和分析的核心理论框架：Fourier 变换的 $L^1$、$L^2$ 和 Schwartz 分布理论将函数从物理空间映射到频率空间；Calderón-Zygmund 奇异积分理论（分解引理、$L^p$ 有界性）为高维调和分析提供了基础；Hardy-Littlewood 极大函数是控制各类算子的基本工具；Littlewood-Paley 理论通过频率分解和平方函数，统一了函数空间理论（Sobolev 空间、Besov 空间、Triebel-Lizorkin 空间），并为非线性 PDE 的微局部分析提供了核心工具。补充内容将小波分析与采样理论（Fourier与采样定理、多分辨分析与正交小波基、全变差ROF模型与BV空间、压缩感知RIP理论与$\ell_1$恢复）纳入调和分析的应用数学框架。调和分析是连接 Fourier 分析、偏微分方程和概率论的桥梁，在现代数学中占有核心地位。*

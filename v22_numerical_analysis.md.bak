@@ -1,0 +1,933 @@
+# 卷二十二：数值分析
+
+> 数值分析研究连续数学问题的离散近似算法，是科学计算的基础。本卷从浮点运算和误差分析出发，建立线性方程组、特征值问题、数值积分和常微分方程数值解的核心算法理论，重点讨论算法的稳定性、收敛性和误差估计。
+
+---
+
+## 第114章：浮点运算与误差分析
+
+计算机中的实数运算是近似的，理解浮点运算的误差模型是数值分析的基础。本章介绍 IEEE 754 浮点标准、舍入误差和数值稳定性。
+
+### 114.1 浮点数系统
+
+**定义 114.1**（IEEE 754 双精度浮点数）：**双精度浮点数**（binary64）用 64 位表示：1 位符号 $s$、11 位指数 $e$（偏移 $1023$）、52 位尾数 $m$（隐含首位的 $1$）。数值为
+
+$$x = (-1)^s \times (1.m) \times 2^{e - 1023}$$
+
+**定义 114.2**（机器精度）：**机器精度**（machine epsilon）$\varepsilon_{\text{mach}}$ 是 $1$ 与大于 $1$ 的最小浮点数之间的差。双精度下 $\varepsilon_{\text{mach}} = 2^{-52} \approx 2.22 \times 10^{-16}$。
+
+**定义 114.3**（舍入）：浮点运算的 IEEE 标准舍入模式（默认：舍入到最近偶数）。记 $\operatorname{fl}(x)$ 为 $x$ 的浮点表示，则
+
+$$\operatorname{fl}(x) = x(1 + \delta), \quad |\delta| \leq \varepsilon_{\text{mach}}$$
+
+**定义 114.4**（浮点运算模型）：对基本运算 $\circ \in \{+, -, \times, \div\}$，
+
+$$\operatorname{fl}(x \circ y) = (x \circ y)(1 + \delta), \quad |\delta| \leq \varepsilon_{\text{mach}}$$
+
+### 114.2 误差分析
+
+**定义 114.5**（绝对误差与相对误差）：设 $\tilde{x}$ 是 $x$ 的近似值。
+- **绝对误差**：$|\tilde{x} - x|$
+- **相对误差**：$|\tilde{x} - x| / |x|$（$x \neq 0$）
+
+**定义 114.6**（前向误差与后向误差）：
+- **前向误差**：输出 $\tilde{y}$ 与真值 $y = f(x)$ 的差 $|\tilde{y} - y|$
+- **后向误差**：寻找 $\Delta x$ 使得 $\tilde{y} = f(x + \Delta x)$，后向误差为 $|\Delta x|$
+
+一个算法称为**后向稳定**的，如果后向误差为 $O(\varepsilon_{\text{mach}})$。
+
+**定义 114.7**（条件数）：问题 $f$ 在 $x$ 处的**（相对）条件数**为
+
+$$\kappa_f(x) = \lim_{\varepsilon \to 0} \sup_{\|\Delta x\| \leq \varepsilon} \frac{\|f(x + \Delta x) - f(x)\| / \|f(x)\|}{\|\Delta x\| / \|x\|}$$
+
+若 $\kappa_f(x)$ 很大，则问题是**病态**的（ill-conditioned）。前向误差 $\lesssim$ 条件数 $\times$ 后向误差。
+
+**例 114.1**（减法相消，catastrophic cancellation）：计算 $f(x) = \sqrt{x+1} - \sqrt{x}$（$x \gg 1$）。直接计算会导致有效数字严重丢失。重写为 $f(x) = 1/(\sqrt{x+1} + \sqrt{x})$ 可避免此问题。
+
+**定义 114.8**（数值稳定性）：算法是**数值稳定**的，如果输出对输入微小扰动不敏感。等价地，稳定的算法产生的结果接近精确问题的近似解（后向稳定）。
+
+---
+
+## 第115章：线性方程组数值解
+
+求解线性方程组 $A\mathbf{x} = \mathbf{b}$ 是数值计算最基本的任务。本章讨论直接法（LU 分解、QR 分解）和迭代法。
+
+### 115.1 高斯消元与 LU 分解
+
+**定理 115.1**（LU 分解）：设 $A \in \mathbb{R}^{n \times n}$ 的所有顺序主子式非零。则存在唯一的单位下三角矩阵 $L$（$L_{ii} = 1$）和上三角矩阵 $U$，使得 $A = LU$。
+
+*证明*：归纳构造。设 $A = \begin{pmatrix} a_{11} & \mathbf{w}^\top \\ \mathbf{v} & \tilde{A} \end{pmatrix}$。令 $L_1 = \begin{pmatrix} 1 & 0 \\ \mathbf{v}/a_{11} & I \end{pmatrix}$，则 $L_1^{-1} A = \begin{pmatrix} a_{11} & \mathbf{w}^\top \\ 0 & \tilde{A}_1 \end{pmatrix}$。对 $\tilde{A}_1$ 递归。∎
+
+**定义 115.1**（部分选主元，PA = LU）：为提高数值稳定性，在消元时选择列中绝对值最大的元素作为主元（行交换）。$PA = LU$，其中 $P$ 是置换矩阵。
+
+**算法 115.1**（求解 $A\mathbf{x} = \mathbf{b}$ 的步骤）：
+1. 计算 $PA = LU$ 分解（$O(n^3)$ 次运算）
+2. 解 $L\mathbf{y} = P\mathbf{b}$（前代，$O(n^2)$）
+3. 解 $U\mathbf{x} = \mathbf{y}$（回代，$O(n^2)$）
+
+**定理 115.2**（Cholesky 分解）：若 $A \in \mathbb{R}^{n \times n}$ 对称正定，则存在唯一的下三角矩阵 $G$（$G_{ii} > 0$）使得 $A = GG^\top$。计算量为 $n^3/3 + O(n^2)$（约为 LU 的一半）。
+
+### 115.2 QR 分解与最小二乘
+
+**定理 115.3**（QR 分解）：设 $A \in \mathbb{R}^{m \times n}$（$m \geq n$）满列秩。则存在正交矩阵 $Q \in \mathbb{R}^{m \times m}$（$Q^\top Q = I$）和上三角矩阵 $R \in \mathbb{R}^{n \times n}$，使得
+
+$$A = Q \begin{pmatrix} R \\ 0 \end{pmatrix} = \tilde{Q} R$$
+
+其中 $\tilde{Q} \in \mathbb{R}^{m \times n}$ 是 $Q$ 的前 $n$ 列（$\tilde{Q}^\top \tilde{Q} = I_n$）。
+
+*证明*：使用 Householder 反射或 Givens 旋转构造。第 $k$ 步用一个 Householder 反射将第 $k$ 列对角线以下的元素消为零。∎
+
+**定理 115.4**（最小二乘问题）：超定系统 $A\mathbf{x} \approx \mathbf{b}$ 的最小二乘解为
+
+$$\mathbf{x}^* = \arg\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|_2 = (A^\top A)^{-1} A^\top \mathbf{b}$$
+
+使用 QR 分解：$\mathbf{x}^* = R^{-1} \tilde{Q}^\top \mathbf{b}$（数值更稳定）。
+
+### 115.3 迭代法
+
+**定义 115.2**（迭代法的一般形式）：将 $A$ 分裂为 $A = M - N$（$M$ 可逆）。迭代格式为
+
+$$M\mathbf{x}^{(k+1)} = N\mathbf{x}^{(k)} + \mathbf{b}$$
+
+即 $\mathbf{x}^{(k+1)} = M^{-1}N\mathbf{x}^{(k)} + M^{-1}\mathbf{b}$。
+
+**定义 115.3**（经典迭代法）：
+- **Jacobi 迭代**：$M = D$（$A$ 的对角部分），$N = -(L + U)$
+- **Gauss-Seidel 迭代**：$M = D + L$，$N = -U$
+
+**定理 115.5**（收敛性）：迭代法收敛（对任意初始值）当且仅当迭代矩阵 $M^{-1}N$ 的谱半径 $\rho(M^{-1}N) < 1$。对对称正定矩阵，Gauss-Seidel 迭代收敛。
+
+**定理 115.6**（共轭梯度法，CG）：对对称正定 $A$，共轭梯度法在 $A$-范数 $\|\mathbf{x}\|_A = \sqrt{\mathbf{x}^\top A\mathbf{x}}$ 下最小化误差。理论上 CG 在 $n$ 步内精确求解（在精确算术下），但实际中通常作为迭代法使用。收敛速率：
+
+$$\|\mathbf{x}^{(k)} - \mathbf{x}^*\|_A \leq 2\left(\frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}\right)^k \|\mathbf{x}^{(0)} - \mathbf{x}^*\|_A$$
+
+其中 $\kappa = \lambda_{\max}(A) / \lambda_{\min}(A)$ 是 $A$ 的条件数。
+
+---
+
+## 第116章：特征值问题
+
+特征值问题是数值线性代数的核心问题之一。本章讨论幂迭代、QR 算法和 Jacobi 方法。
+
+### 116.1 特征值的基本理论
+
+**定义 116.1**（特征值问题）：求 $\lambda \in \mathbb{C}$ 和非零向量 $\mathbf{v} \in \mathbb{C}^n$ 使得 $A\mathbf{v} = \lambda \mathbf{v}$。
+
+**定理 116.1**（Schur 分解）：对任意 $A \in \mathbb{C}^{n \times n}$，存在酉矩阵 $Q$（$Q^*Q = I$）和上三角矩阵 $T$ 使得 $A = QTQ^*$。$T$ 的对角元是 $A$ 的特征值。
+
+**推论 116.2**（实 Schur 分解）：若 $A \in \mathbb{R}^{n \times n}$，存在正交矩阵 $Q$ 使得 $Q^\top A Q$ 是拟上三角矩阵（对角块为 $1 \times 1$ 或 $2 \times 2$）。
+
+**定理 116.3**（谱定理，Hermitian 情形）：若 $A$ 是 Hermitian 矩阵（$A^* = A$），则存在酉矩阵 $Q$ 和对角矩阵 $\Lambda$ 使得 $A = Q\Lambda Q^*$。特征值全为实数。
+
+### 116.2 幂迭代及其变体
+
+**定义 116.2**（幂迭代，Power Iteration）：对可对角化矩阵 $A$，设 $|\lambda_1| > |\lambda_2| \geq \cdots \geq |\lambda_n|$（$\lambda_1$ 是主特征值）。幂迭代为
+
+$$\mathbf{v}^{(k+1)} = A\mathbf{v}^{(k)} / \|A\mathbf{v}^{(k)}\|$$
+
+$\mathbf{v}^{(k)}$ 收敛到 $\lambda_1$ 对应的特征向量，收敛速率为 $|\lambda_2 / \lambda_1|^k$。Rayleigh 商 $\rho(\mathbf{v}) = \mathbf{v}^\top A\mathbf{v} / \mathbf{v}^\top \mathbf{v}$ 收敛到 $\lambda_1$。
+
+**定义 116.3**（反迭代）：对特征值 $\mu$ 附近的特征向量，反迭代为 $\mathbf{v}^{(k+1)} = (A - \mu I)^{-1} \mathbf{v}^{(k)}$（解线性系统）。收敛到离 $\mu$ 最近的特征值对应的特征向量，收敛极快。
+
+**定义 116.4**（Rayleigh 商迭代）：反迭代 + 动态更新 $\mu$：$\mu_k = \rho(\mathbf{v}^{(k)})$。三次收敛（在对称矩阵情形下）。
+
+### 116.3 QR 算法
+
+**算法 116.1**（QR 算法，基本形式）：$A_0 = A$。对 $k = 0, 1, 2, \ldots$：
+1. 计算 $A_k = Q_k R_k$（QR 分解）
+2. $A_{k+1} = R_k Q_k$
+
+$A_k$ 收敛到拟上三角矩阵（实 Schur 形式），对角块给出特征值。
+
+**定理 116.4**（QR 算法的收敛性）：若 $A$ 的特征值满足 $|\lambda_1| > |\lambda_2| > \cdots > |\lambda_n| > 0$，则 $A_k$ 的对角线以下元素以 $|\lambda_{i+1} / \lambda_i|^k$ 的速率收敛到 $0$。
+
+**算法 116.2**（实用 QR 算法）：
+1. 先约化为上 Hessenberg 形式（$O(n^3)$，但后续每步仅 $O(n^2)$）
+2. 引入位移（shift）加速收敛：$A_k - \mu I = Q_k R_k$，$A_{k+1} = R_k Q_k + \mu I$
+3. 使用 Wilkinson 位移（右下角 $2 \times 2$ 子矩阵的特征值中较近者）
+4. 实用中通常 2-3 次迭代就收敛一个特征值
+
+### 116.4 Jacobi 方法（对称矩阵）
+
+**算法 116.3**（Jacobi 方法）：对对称矩阵 $A$，反复应用 Givens 旋转 $J(p, q, \theta)$ 消去非对角元 $a_{pq}$（旋转角 $\theta$ 满足 $\tan 2\theta = 2a_{pq}/(a_{pp} - a_{qq})$）。$A \leftarrow J^\top A J$。
+
+**定理 116.5**（Jacobi 方法的收敛性）：Jacobi 方法二次收敛到对角矩阵（在每步消去最大非对角元的策略下）。非对角元素的 Frobenius 范数单调递减。
+
+---
+
+## 第117章：数值积分与微分
+
+数值积分（求积）和数值微分是逼近导数和定积分的算法。本章讨论 Newton-Cotes 公式、Gauss 求积和 Romberg 外推。
+
+### 117.1 数值积分基础
+
+**定义 117.1**（求积法则）：**求积法则** $Q(f) = \sum_{i=0}^n w_i f(x_i)$ 近似积分 $\int_a^b f(x) dx$。$x_i$ 称为**求积节点**，$w_i$ 称为**求积权**。
+
+**定义 117.2**（代数精度）：求积法则的**代数精度**为 $m$，如果它对所有次数 $\leq m$ 的多项式精确，但对某个 $m+1$ 次多项式不精确。
+
+**定理 117.1**（Newton-Cotes 公式）：使用等距节点 $x_i = a + ih$（$h = (b-a)/n$）的插值型求积：
+- $n = 1$（梯形法则）：$\int_a^b f(x) dx \approx \frac{h}{2}[f(a) + f(b)]$，误差 $-\frac{h^3}{12} f''(\xi)$
+- $n = 2$（Simpson 法则）：$\int_a^b f(x) dx \approx \frac{h}{3}[f(a) + 4f((a+b)/2) + f(b)]$，误差 $-\frac{h^5}{90} f^{(4)}(\xi)$
+- $n = 3$（Simpson 3/8 法则）：误差 $-\frac{3h^5}{80} f^{(4)}(\xi)$
+
+**定义 117.3**（复合求积法则）：将 $[a, b]$ 分为 $N$ 个子区间，每个子区间上应用低阶求积法则：
+- 复合梯形法则：$T_N = \frac{h}{2}[f(a) + 2\sum_{i=1}^{N-1} f(x_i) + f(b)]$，$h = (b-a)/N$，误差 $O(h^2)$
+- 复合 Simpson 法则：误差 $O(h^4)$
+
+### 117.2 Gauss 求积
+
+**定理 117.2**（Gauss 求积）：使用 $n+1$ 个节点的求积法则的代数精度最多为 $2n+1$。达到此上界的求积法则称为 **Gauss 求积**。
+
+**定理 117.3**（Gauss 求积的构造）：Gauss 求积的节点 $x_i$ 是区间 $[a, b]$ 上关于权函数 $w(x)$ 的正交多项式 $P_{n+1}(x)$ 的零点。权 $w_i$ 由插值条件确定。
+
+**例 117.1**（Gauss-Legendre 求积）：$w(x) = 1$，$[a, b] = [-1, 1]$。节点是 Legendre 多项式的零点。
+- $n = 1$：$x_0 = -1/\sqrt{3}$，$x_1 = 1/\sqrt{3}$，$w_0 = w_1 = 1$（代数精度 3）
+- 误差：$\frac{2^{2n+3} ((n+1)!)^4}{(2n+3)((2n+2)!)^3} f^{(2n+2)}(\xi)$
+
+### 117.3 Romberg 外推与自适应求积
+
+**定理 117.4**（Euler-Maclaurin 公式）：复合梯形法则的误差有渐近展开
+
+$$T_N = \int_a^b f(x) dx + c_2 h^2 + c_4 h^4 + c_6 h^6 + \cdots$$
+
+**定理 117.5**（Romberg 积分）：利用 Euler-Maclaurin 展开，通过 Richardson 外推消除低阶误差项：
+
+$$R_{k,0} = T_{2^k}, \quad R_{k,m} = \frac{4^m R_{k,m-1} - R_{k-1,m-1}}{4^m - 1}$$
+
+$R_{n,n}$ 以 $O(h^{2n+2})$ 的精度逼近积分。
+
+**定义 117.4**（自适应求积）：在函数变化剧烈处加密节点，变化平缓处稀疏节点。常用策略：比较两个不同阶的求积法则（如 Simpson 和 Boole）的差异，若差异超过阈值则细分区间。
+
+### 117.4 数值微分
+
+**定义 117.5**（有限差分公式）：
+- 前向差分：$f'(x) \approx \frac{f(x+h) - f(x)}{h}$，误差 $-\frac{h}{2} f''(\xi)$
+- 中心差分：$f'(x) \approx \frac{f(x+h) - f(x-h)}{2h}$，误差 $-\frac{h^2}{6} f'''(\xi)$
+- 五点公式：$f'(x) \approx \frac{-f(x+2h) + 8f(x+h) - 8f(x-h) + f(x-2h)}{12h}$，误差 $O(h^4)$
+
+**命题 117.1**（数值微分的不稳定性）：步长 $h$ 不能无限减小。由于舍入误差 $\sim \varepsilon/h$（$\varepsilon$ 是函数值误差），总误差 $\approx C h^p + \varepsilon/h$。最优 $h \approx \varepsilon^{1/(p+1)}$。
+
+---
+
+## 第118章：常微分方程数值解
+
+本章讨论 ODE 初值问题的数值解法，包括 Euler 方法、Runge-Kutta 方法和多步法。
+
+### 118.1 Euler 方法
+
+**定义 118.1**（ODE 初值问题）：$\dot{y} = f(t, y)$，$y(t_0) = y_0$。
+
+**定义 118.2**（前向 Euler 方法）：$y_{n+1} = y_n + h f(t_n, y_n)$（$h$ 为步长）。**局部截断误差** $O(h^2)$，**全局误差** $O(h)$（一阶方法）。
+
+**定义 118.3**（后向 Euler 方法）：$y_{n+1} = y_n + h f(t_{n+1}, y_{n+1})$（隐式方法，需解方程）。局部截断误差 $O(h^2)$，全局误差 $O(h)$（一阶方法）。
+
+**定义 118.4**（梯形法则）：$y_{n+1} = y_n + \frac{h}{2}[f(t_n, y_n) + f(t_{n+1}, y_{n+1})]$（隐式，二阶方法）。
+
+### 118.2 Runge-Kutta 方法
+
+**定义 118.5**（显式 Runge-Kutta 方法，$s$ 级）：$s$ 级显式 RK 方法为
+
+$$k_i = f\left(t_n + c_i h, y_n + h \sum_{j=1}^{i-1} a_{ij} k_j\right), \quad y_{n+1} = y_n + h \sum_{i=1}^s b_i k_i$$
+
+**例 118.1**（经典 RK4，四阶）：最常用的 RK 方法：
+$$\begin{aligned}
+k_1 &= f(t_n, y_n) \\
+k_2 &= f(t_n + h/2, y_n + h k_1/2) \\
+k_3 &= f(t_n + h/2, y_n + h k_2/2) \\
+k_4 &= f(t_n + h, y_n + h k_3) \\
+y_{n+1} &= y_n + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4)
+\end{aligned}$$
+
+局部截断误差 $O(h^5)$，全局误差 $O(h^4)$。
+
+**定理 118.1**（Butcher 障碍）：$s$ 级显式 RK 方法的阶 $p$ 满足 $p \leq s$（$s = 1, 2, 3, 4$），$p \leq s-1$（$s = 5, 6, 7$），$p \leq s-2$（$s = 8, 9$）等。
+
+*证明概要*（Butcher 1964-1965）：RK 方法的阶条件对应 Butcher 树（有根树）上的方程。对 $s$ 级方法，有 $s$ 个 $b_i$ 和 $s(s-1)/2$ 个 $a_{ij}$ 参数，但需要满足的方程数由阶条件决定。将阶条件按 Butcher 树组织：设 $t_k$ 为 $k$ 阶有根树的数量（$t_1=1, t_2=1, t_3=2, t_4=4, t_5=9, t_6=20, \dots$）。对 $s=1,2,3,4$，未知数个数 $\geq$ 方程数，故 $p_{\max}=s$。当 $s=5$ 时，$t_5=9$ 但可用的自由参数仅 7 个（扣除显式条件的 $a_{ij}=0, j \geq i$），故 $p_{\max}=4$。一般地，$s \geq 5$ 时有根树数量的超指数增长造成每个 $s$ 级方法的最大阶严格小于 $s$。∎
+
+### 118.3 多步法
+
+**定义 118.6**（线性多步法）：$k$ 步线性多步法为
+
+$$\sum_{j=0}^k \alpha_j y_{n+j} = h \sum_{j=0}^k \beta_j f(t_{n+j}, y_{n+j})$$
+
+其中 $\alpha_k = 1$，$|\alpha_0| + |\beta_0| > 0$。若 $\beta_k = 0$ 则为显式方法，否则为隐式方法。
+
+**定义 118.7**（Adams 方法）：
+- **Adams-Bashforth**（显式）：$\alpha_k = 1$，$\alpha_{k-1} = -1$，其余 $\alpha_j = 0$
+  - AB2：$y_{n+1} = y_n + \frac{h}{2}[3f_n - f_{n-1}]$（二阶）
+  - AB4：$y_{n+1} = y_n + \frac{h}{24}[55f_n - 59f_{n-1} + 37f_{n-2} - 9f_{n-3}]$（四阶）
+- **Adams-Moulton**（隐式，通常作为校正步）：$\beta_k \neq 0$
+  - AM4：$y_{n+1} = y_n + \frac{h}{24}[9f_{n+1} + 19f_n - 5f_{n-1} + f_{n-2}]$（四阶）
+
+### 118.4 稳定性与刚性方程
+
+**定义 118.8**（绝对稳定性区域）：对检验方程 $\dot{y} = \lambda y$（$\Re(\lambda) < 0$），数值方法产生 $y_{n+1} = R(z) y_n$，其中 $z = h\lambda$。**绝对稳定性区域**为 $\{z \in \mathbb{C} : |R(z)| < 1\}$。
+
+**命题 118.1**（各方法的稳定性区域）：
+- 前向 Euler：$|1 + z| < 1$（圆盘，半径 $1$，中心 $-1$）
+- 后向 Euler：$|1 - z| > 1$（整个左半平面为稳定区域，A-稳定）
+- 梯形法则：$|(1+z/2)/(1-z/2)| < 1 \iff \Re(z) < 0$（A-稳定）
+- RK4：与显式 Euler 类似但稍大（有限稳定区域）
+
+**定义 118.9**（A-稳定性）：方法称为**A-稳定**的，如果其绝对稳定性区域包含整个左半平面 $\{z : \Re(z) < 0\}$。
+
+**定义 118.10**（刚性方程）：若问题的不同分量以相差极大的速率变化（$\max |\Re(\lambda)| / \min |\Re(\lambda)| \gg 1$），则方程为**刚性**的。显式方法需极小步长，隐式方法（A-稳定）更适用。
+
+**定义 118.11**（预测-校正方法）：**预测-校正**（Predictor-Corrector, PECE）方法：用显式方法预测 $y_{n+1}^P$，再用隐式方法校正 $y_{n+1}$。例：AB4 预测 + AM4 校正（均为四阶）。
+
+---
+
+## 第119章：数值线性代数精讲
+
+数值线性代数是科学计算中最重要的核心算法集合，大多数大规模科学计算最终归结为线性方程组的求解或特征值问题。
+
+### 119.1 矩阵分解
+
+**定义 119.1**（LU 分解 / LU Decomposition）：将矩阵 $A \in \mathbb{R}^{n \times n}$ 分解为下三角矩阵 $L$ 与上三角矩阵 $U$ 的乘积 $A = LU$。这是 Gauss 消去法的矩阵形式——消去过程的乘子按列存储于 $L$ 中，消去结果存于 $U$。部分主元策略（partial pivoting）引入置换矩阵 $P$ 得 $PA = LU$，避免小主元导致的数值不稳定。
+
+**定理 119.1**（LU 分解的存在性）：若 $A$ 的所有顺序主子式非零，则存在唯一的单位下三角矩阵 $L$ 和上三角矩阵 $U$ 使得 $A = LU$。
+
+**定义 119.2**（Cholesky 分解）：若 $A \in \mathbb{R}^{n \times n}$ 对称正定，则存在唯一的下三角矩阵 $L$（主对角元为正）使得 $A = LL^T$。运算量约为 $\frac{1}{3}n^3$（LU 分解的一半），且数值稳定性优良。
+
+**定义 119.3**（QR 分解 / QR Decomposition）：将 $A \in \mathbb{R}^{m \times n}$（$m \geq n$）分解为 $A = QR$，其中 $Q \in \mathbb{R}^{m \times m}$ 是正交矩阵（$Q^T Q = I$），$R \in \mathbb{R}^{m \times n}$ 是上三角矩阵。构造方法包括：
+
+- **Householder 反射**：$H = I - 2 v v^T$（$v$ 为单位向量）。通过 $n-1$ 次反射将 $A$ 的列依次消去对角线下方元素
+- **Givens 旋转**：$G(i, j, \theta)$ 在 $(i,j)$ 平面上旋转以消去单个元素，适用于稀疏矩阵和并行计算
+
+**定理 119.2**（QR 分解求解最小二乘问题）：对于超定方程组 $\min_x \|Ax - b\|_2$（$m \geq n$），令 $A = QR$，$Q^T b = \begin{pmatrix} c \\ d \end{pmatrix}$（$c \in \mathbb{R}^n$），则解为 $x = R^{-1} c$，残差范数为 $\|d\|_2$。
+
+### 119.2 特征值算法
+
+**定义 119.4**（QR 算法 / Francis, 1961-1962）：对 $A_0 = A$，迭代执行：
+1. 对 $A_k - \mu_k I$ 进行 QR 分解：$A_k - \mu_k I = Q_k R_k$
+2. 重构：$A_{k+1} = R_k Q_k + \mu_k I$
+
+适当地选择位移 $\mu_k$（Wilkinson 位移、Rayleigh 商位移），$A_k$ 收敛到实 Schur 形式（拟上三角形，对角块为 $1\times 1$ 或 $2\times 2$），特征值出现在对角线上。
+
+**定义 119.5**（Lanczos 算法 / Lanczos Iteration）：对对称矩阵 $A \in \mathbb{R}^{n \times n}$，Lanczos 算法构造 Krylov 子空间 $\mathcal{K}_k(A, v) = \operatorname{span}\{v, Av, A^2 v, \ldots, A^{k-1} v\}$ 的一组正交基 $\{q_1, \ldots, q_k\}$，满足三对角递推 $A Q_k = Q_k T_k + \beta_k q_{k+1} e_k^T$，其中 $T_k$ 为对称三对角矩阵。$T_k$ 的极值特征值在 $k \ll n$ 时即收敛到 $A$ 的极值特征值。
+
+**定义 119.6**（Divide-and-Conquer 特征值算法）：将对称三对角矩阵分块为 $T = \begin{pmatrix} T_1 & 0 \\ 0 & T_2 \end{pmatrix} + \rho v v^T$，递归计算 $T_1$、$T_2$ 的特征分解，通过求解 secular 方程 $f(\lambda) = 1 + \rho \sum_{j=1}^n \frac{v_j^2}{d_j - \lambda} = 0$ 合并。总复杂度 $O(n^3)$ 但常数小，LAPACK 中为默认选择。
+
+### 119.3 Krylov 子空间迭代法
+
+**定义 119.7**（共轭梯度法 / CG / Conjugate Gradient）：对对称正定的 $Ax = b$，共轭梯度法沿着 $A$-正交（$p_i^T A p_j = 0$）的搜索方向迭代：
+
+$$\begin{aligned} r_0 &= b - A x_0, \quad p_0 = r_0 \\ \alpha_k &= \frac{r_k^T r_k}{p_k^T A p_k} \\ x_{k+1} &= x_k + \alpha_k p_k \\ r_{k+1} &= r_k - \alpha_k A p_k \\ \beta_k &= \frac{r_{k+1}^T r_{k+1}}{r_k^T r_k} \\ p_{k+1} &= r_{k+1} + \beta_k p_k \end{aligned}$$
+
+**定理 119.3**（CG 收敛性）：在精确算术下，CG 在至多 $n$ 步给出精确解。第 $k$ 步的误差满足
+
+$$\|x_k - x_*\|_A \leq 2 \left( \frac{\sqrt{\kappa(A)} - 1}{\sqrt{\kappa(A)} + 1} \right)^k \|x_0 - x_*\|_A$$
+
+其中 $\kappa(A) = \|A\|_2 \|A^{-1}\|_2 = \lambda_{\max} / \lambda_{\min}$ 为条件数，$\|x\|_A = \sqrt{x^T A x}$。
+
+**定义 119.8**（预条件 / Preconditioning）：引入预条件子 $M \approx A$（$M$ 易于求逆），求解等价系统 $M^{-1} A x = M^{-1} b$。预条件目的是降低等价系统的条件数。常用预条件子包括 Jacobi（对角）、不完全 Cholesky、多重网格。预条件共轭梯度法（PCG）是实际大规模求解的主流方法。
+
+**定义 119.9**（GMRES / Generalized Minimal Residual）：对非对称 $Ax = b$，GMRES 在 Krylov 子空间 $\mathcal{K}_k$ 中寻找使残差 $\|b - A x_k\|_2$ 最小的 $\tilde{x}_k$。通过 Arnoldi 迭代构造 $\mathcal{K}_k$ 的正交基，将最小二乘问题化为小型 Hessenberg 矩阵的最小二乘问题。存储需求随 $k$ 线性增长，实际使用重启（restarted）GMRES($m$)。
+
+---
+
+
+
+---
+
+## 补充：误差分析与有限元数学理论
+
+> 计算数学将偏微分方程等连续数学问题转化为离散问题的数学理论，其基础涵盖泛函分析、逼近论和线性代数。本卷建立在数值分析（V23）和微分方程（V18）的基础上，系统建立有限元方法的数学理论、谱方法的逼近性质、多重网格法的收敛性分析，以及守恒律和流体方程的数值格式理论。计算数学的核心在于精度与效率的数学分析——收敛阶、稳定性条件和计算复杂度的严格估计。
+
+---
+
+## 第277章：有限元方法理论基础
+
+有限元方法（FEM）是求解偏微分方程最强大的数值工具之一。其核心思想是将问题从无穷维函数空间的强形式转化为有限维子空间中的弱形式（变分形式），从而将 PDE 转化为代数方程组。
+
+### 277.1 变分原理与弱形式
+
+**定义 277.1**（抽象变分问题）：设 $V$ 为 Hilbert 空间，$a: V \times V \to \mathbb{R}$ 为连续强制双线性形式，$f \in V'$。求 $u \in V$ 使得
+
+$$a(u, v) = f(v), \quad \forall v \in V$$
+
+**定理 277.1**（Lax-Milgram 引理）：若 $a$ 满足有界性 $|a(u,v)| \leq M\|u\|\|v\|$ 和强制性 $a(u,u) \geq \alpha\|u\|^2$（$\alpha > 0$），则变分问题存在唯一解 $u \in V$ 且 $\|u\|_V \leq \frac{1}{\alpha}\|f\|_{V'}$。
+
+**例 277.1**（Poisson 方程的弱形式）：$-\Delta u = f$ 在 $\Omega$，$u|_{\partial\Omega} = 0$。取 $V = H_0^1(\Omega)$，$a(u,v) = \int_\Omega \nabla u \cdot \nabla v \, dx$，$f(v) = \int_\Omega f v \, dx$。Poincaré 不等式确保强制性。
+
+### 277.2 有限元离散与 Céa 引理
+
+**定义 277.2**（Galerkin 逼近）：选取有限维子空间 $V_h \subset V$，其中 $h$ 为网格参数。求 $u_h \in V_h$ 使得
+
+$$a(u_h, v_h) = f(v_h), \quad \forall v_h \in V_h$$
+
+**定理 277.2**（Céa 引理）：设 $a$ 连续强制，$u$ 和 $u_h$ 分别为连续问题和离散问题的解。则
+
+$$\|u - u_h\|_V \leq \frac{M}{\alpha} \inf_{v_h \in V_h} \|u - v_h\|_V$$
+
+即有限元解的误差控制在最佳逼近误差的常数倍之内。
+
+**定义 277.3**（Lagrange 有限元空间）：对区域 $\Omega$ 的三角剖分 $\mathcal{T}_h$，定义分片多项式空间
+
+$$V_h^k = \{v_h \in C^0(\bar{\Omega}) : v_h|_K \in P_k(K), \forall K \in \mathcal{T}_h, v_h|_{\partial\Omega} = 0\}$$
+
+其中 $P_k$ 为次数不超过 $k$ 的多项式空间。
+
+**定理 277.3**（插值误差估计）：设 $u \in H^{k+1}(\Omega)$，$I_h u$ 为其在 $V_h^k$ 中的节点插值。则
+
+$$\|u - I_h u\|_{L^2} + h\|u - I_h u\|_{H^1} \leq C h^{k+1} |u|_{H^{k+1}}$$
+
+**定理 277.4**（有限元误差估计）：对于 Poisson 问题，若 $u \in H^{k+1}(\Omega) \cap H_0^1(\Omega)$，用 $P_k$ 有限元离散，则
+
+$$\|u - u_h\|_{H^1} \leq C h^k \|u\|_{H^{k+1}}, \quad \|u - u_h\|_{L^2} \leq C h^{k+1} \|u\|_{H^{k+1}}$$
+
+（$L^2$ 估计通过 Aubin-Nitsche 对偶论证得到）。
+
+### 277.3 混合有限元与 inf-sup 条件
+
+**定义 277.4**（鞍点问题）：求 $(u, p) \in V \times Q$ 使得
+
+$$a(u, v) + b(v, p) = f(v), \quad b(u, q) = g(q), \quad \forall (v, q) \in V \times Q$$
+
+**定理 277.5**（Brezzi 分裂定理 / inf-sup 条件）：鞍点问题适定的充要条件是 inf-sup 条件（Ladyzhenskaya-Babuška-Brezzi 条件）：
+
+$$\inf_{q \in Q} \sup_{v \in V} \frac{b(v, q)}{\|v\|_V \|q\|_Q} \geq \beta > 0$$
+
+这是混合有限元（如 Stokes 问题和弹性力学问题的稳定化格式）的理论基石。
+
+### 277.4 自适应有限元与后验误差估计
+
+**定义 277.5**（后验误差估计子）：对每个单元 $K \in \mathcal{T}_h$，残差型后验误差估计子为
+
+$$\eta_K^2 = h_K^2 \|f + \Delta u_h\|_{L^2(K)}^2 + \frac{1}{2} \sum_{e \subset \partial K} h_e \|[\nabla u_h \cdot \mathbf{n}_e]\|_{L^2(e)}^2$$
+
+其中 $[\nabla u_h \cdot \mathbf{n}_e]$ 表示跨越单元边界 $e$ 的法向梯度跳跃。
+
+**定理 277.6**（可靠性与有效性的上下界）：存在常数 $C_1, C_2$（与 $h$ 无关）使得
+
+$$C_1 \|u - u_h\|_{H^1} \leq \left(\sum_K \eta_K^2\right)^{1/2} \leq C_2 \|u - u_h\|_{H^1}$$
+
+后验误差估计的可靠性确保估计是误差的上界，有效性确保估计不会过高估计真实误差。基于此的 **自适应有限元方法** 对误差较大的单元进行局部加密（$h$-细化）或提高多项式次数（$p$-细化），从而以最优计算代价达到目标精度。
+
+---
+
+## 第278章：谱方法
+
+谱方法利用全局光滑基函数（如 Fourier 级数、Chebyshev 多项式、Legendre 多项式）逼近微分方程的解，在光滑解情形下具有"指数收敛"（谱精度）的卓越性质。
+
+### 278.1 Fourier 谱方法
+
+**定义 278.1**（Fourier-Galerkin 方法）：在周期区域 $[0, 2\pi]^d$ 上，取有限维子空间 $V_N = \text{span}\{e^{ik\cdot x} : |k|_\infty \leq N\}$。求 $u_N \in V_N$ 使得残差与 $V_N$ 中的检验函数正交。
+
+**定理 278.1**（谱精度 / 指数收敛）：若 $u$ 是解析的（周期情形下），则 Fourier 谱逼近的误差满足
+
+$$\|u - u_N\|_{H^s} \leq C e^{-\gamma N} \|u\|_{\text{解析}}, \quad \gamma > 0, s \geq 0$$
+
+与有限元的代数收敛 $\mathcal{O}(h^k)$ 形成鲜明对比。
+
+### 278.2 Chebyshev 谱方法与 Gauss 求积
+
+**定义 278.2**（Chebyshev 多项式）：在 $[-1, 1]$ 上定义 $T_n(x) = \cos(n \arccos x)$。$\{T_n\}$ 构成加权 $L^2_w(-1, 1)$（$w(x) = 1/\sqrt{1-x^2}$）的完备正交基。
+
+**定理 278.2**（Chebyshev-Gauss-Lobatto 求积公式）：$N+1$ 点 CGL 求积公式 $\int_{-1}^1 f(x) w(x) dx \approx \sum_{j=0}^N w_j f(x_j)$ 对所有次数 $\leq 2N-1$ 的多项式精确成立。节点 $x_j = \cos(\pi j / N)$。
+
+### 278.3 伪谱方法与非线性项处理
+
+**定义 278.3**（伪谱方法）：在物理空间（配置点）和谱空间（Fourier/Chebyshev 系数）之间通过快速变换（FFT）来回转换，在物理空间计算非线性项，避免系数空间的卷积运算。
+
+**命题 278.1**（去混淆 / 3/2 规则）：对于 Fourier 伪谱方法，若保留 $N$ 个模，为防止二次非线性项的混淆误差，非线性计算应在 $3N/2$ 个点上进行。
+
+### 278.4 谱元法（Spectral Element Method）
+
+**定义 278.4**（谱元法）：谱元法结合了有限元的几何灵活性和谱方法的高精度——将区域分解为若干四边形/六面体单元，在每个单元上使用高阶多项式（通常 $N = 5$ 至 $15$）和 Gauss-Lobatto-Legendre (GLL) 配置点。质量矩阵由于配置点与求积点重合而自然对角化。
+
+**定理 278.3**（谱元法的误差估计）：对于 $d$ 维椭圆问题，若解 $u \in H^{m}(\Omega)$，使用 $N$ 次多项式的谱元法，$hp$-误差估计为
+
+$$\|u - u_{hp}\|_{H^1} \leq C \frac{h^{\min(N+1, m)-1}}{N^{m-1}} \|u\|_{H^m}$$
+
+当解光滑（$m$ 很大）时，增大 $N$（$p$-细化）比减小 $h$（$h$-细化）能获得更快的收敛速度——这是谱元法相比传统有限元的核心优势。
+
+---
+
+## 第279章：多重网格法与预处理
+
+多重网格法是大规模科学计算中求解离散椭圆问题的最快迭代方法之一——其巧妙之处在于利用不同尺度网格之间的信息传递，将迭代法的"光滑"收敛特性转化为"全谱"的最优收敛速度。
+
+### 279.1 经典迭代法的光滑性质
+
+**定义 279.1**（迭代法的矩阵分裂）：求解 $Au = f$。分裂 $A = M - N$（$M$ 可逆），迭代格式 $u^{(k+1)} = M^{-1}N u^{(k)} + M^{-1}f$。迭代矩阵 $G = M^{-1}N = I - M^{-1}A$。
+
+- **Jacobi 方法**：$M = D = \text{diag}(A)$
+- **Gauss-Seidel 方法**：$M = D + L$（下三角）
+
+**定理 279.1**（光滑性质）：对 Gauss-Seidel 和加权 Jacobi 迭代，高频误差分量迅速衰减（每次迭代衰减约 $\rho_{\text{high}} \ll 1$），而低频误差分量几乎不衰减（$\rho_{\text{low}} \approx 1$）。因此，经典迭代法是优秀的"光滑器"。
+
+### 279.2 两网格法与多重网格原理
+
+**定义 279.2**（两网格法）：(1) 在前处理（光滑）阶段在细网格上执行 $\nu_1$ 次 Gauss-Seidel 迭代消除高频误差；(2) 将残差限制到粗网格上求解粗网格校正方程；(3) 将校正延拓回细网格；(4) 在后处理阶段再执行 $\nu_2$ 次光滑迭代。
+
+**定理 279.2**（两网格收敛因子）：对模型问题（Poisson 方程，一致网格，双线性插值），两网格法的收敛因子满足
+
+$$\rho_{TG} \leq \frac{C}{1 + C} < 1$$
+
+与网格尺寸 $h$ 无关。这意味着迭代次数不随问题规模增长而增加（数值可扩展性）。
+
+**定理 279.3**（多重网格复杂度）：对 $d$ 维椭圆问题，一次 V-循环多重网格迭代的计算复杂度为 $\mathcal{O}(N)$（$N$ 为未知量总数），在适当条件下可达到网格无关收敛。完整求解（达到离散精度）的复杂度为 $\mathcal{O}(N)$，这是求解离散椭圆 PDE 的理论下限。
+
+### 279.3 代数多重网格（AMG）方法
+
+**定义 279.3**（代数多重网格）：经典多重网格依赖几何网格层级。AMG 直接从系数矩阵 $A$ 的代数结构出发，通过聚合或匹配算法自动构造粗网格层级，适用于复杂几何和高度非结构化网格。
+
+**定理 279.4**（AMG 的两网格收敛理论）：若 $A$ 是对称正定的 M-矩阵，则 AMG 的两网格收敛因子 $\leq 1 - 1/\kappa$，其中 $\kappa$ 依赖于粗化和插值算子的构造质量。
+
+### 279.4 Krylov 子空间预处理方法
+
+**定义 279.4**（Krylov 子空间方法）：对于大型稀疏线性系统 $Au = f$，Krylov 子空间方法在第 $m$ 步寻求 $u_m \in u_0 + \mathcal{K}_m(A, r_0)$，其中
+
+$$\mathcal{K}_m(A, r_0) = \text{span}\{r_0, Ar_0, A^2 r_0, \ldots, A^{m-1} r_0\}$$
+
+**CG 方法**（共轭梯度法）：当 $A$ 对称正定时，按 $A$-范数实现最优逼近。收敛速率 $\|u - u_m\|_A \leq 2\left(\frac{\sqrt{\kappa} - 1}{\sqrt{\kappa} + 1}\right)^m \|u - u_0\|_A$，其中 $\kappa = \kappa_2(A)$。
+
+**GMRES 方法**（广义极小残量法）：对非对称矩阵，最小化残差 $\|Au_m - f\|_2$ 在 $\mathcal{K}_m$ 上的投影。
+
+**定理 279.5**（预处理的本质）：预处理是将 $A$ 替换为 $P^{-1}A$（左预处理）或 $AP^{-1}$（右预处理），使得预处理后的矩阵条件数大幅减小。多重网格法作为预处理算子 $P^{-1}$ 与 CG 或 GMRES 结合（MG-CG、MG-GMRES），是当前求解大规模稀疏线性系统的最有效策略之一。
+
+---
+
+## 第280章：双曲型方程与守恒律数值方法
+
+双曲型方程（波动方程、Euler 方程、浅水波方程等）的数值求解具有特殊的挑战——解可能出现激波等间断，对数值格式的守恒性、熵条件和 TVD（Total Variation Diminishing）性质提出严格要求。
+
+### 280.1 守恒律与弱解
+
+**定义 280.1**（标量守恒律）：一维标量守恒律
+
+$$\frac{\partial u}{\partial t} + \frac{\partial f(u)}{\partial x} = 0, \quad u(x, 0) = u_0(x)$$
+
+其中 $f$ 为通量函数。即使初始条件光滑，解也可能在有限时间内产生间断（激波），因此需要弱解概念。
+
+**定义 280.2**（熵条件）：满足守恒律的弱解可能不唯一。物理相关的唯一解由 **熵条件** 选取：存在凸熵函数 $U(u)$ 和熵通量 $F(u)$（$F' = U' f'$），使得熵不等式 $\partial_t U + \partial_x F \leq 0$ 在分布意义下成立。
+
+### 280.2 Godunov 方法与迎风格式
+
+**定义 280.3**（数值通量与守恒格式）：守恒格式具有形式
+
+$$u_j^{n+1} = u_j^n - \frac{\Delta t}{\Delta x} (\hat{f}_{j+1/2} - \hat{f}_{j-1/2})$$
+
+其中数值通量 $\hat{f}_{j+1/2} = \hat{f}(u_j^n, u_{j+1}^n)$ 须满足相容性 $\hat{f}(u, u) = f(u)$。
+
+**定义 280.3a**（CFL 条件 / Courant-Friedrichs-Lewy 条件，1928）：对线性对流方程 $u_t + c u_x = 0$ 的显式差分格式，数值依赖域必须包含 PDE 的物理依赖域，否则格式必不稳定。具体地，CFL 条件要求
+
+$$\left|c\right| \frac{\Delta t}{\Delta x} \leq 1$$
+
+*推导概要*：方程的特征线为 $x = ct + x_0$，$u(x,t) = u_0(x - ct)$——解在 $(x_j, t_{n+1})$ 的值完全由初始数据在特征线与 $t = t_n$ 交点处的值决定。数值格式（如迎风格式）中 $u_j^{n+1}$ 仅依赖于 $\{u_{j-1}^n, u_j^n, u_{j+1}^n\}$（即空间跨度至多为 $2\Delta x$）。若物理依赖点 $x_j - c\Delta t$ 不在数值依赖区间 $[x_{j-1}, x_{j+1}]$ 内，即 $|c|\Delta t > \Delta x$，则无论数值格式设计如何精良，均无法收敛到真解——此为 CFL 条件的必要性。更一般地，对非线性问题 $u_t + f(u)_x = 0$，CFL 条件推广为 $\max |f'(u)| \cdot \Delta t / \Delta x \leq 1$。注：CFL 条件是稳定性的必要非充分条件——满足 CFL 条件不保证格式稳定（如中心差分格式），但不满足则必不稳定。∎
+
+**定理 280.1**（Godunov 定理）：线性常系数情形下，单调守恒格式的精度最多为一阶。
+
+**定义 280.4**（Godunov 型格式）：在每个单元界面上精确求解 Riemann 问题（初值间断的守恒律），然后对解进行单元平均。Riemann 问题的自相似解是 Godunov 方法的核心组成部分。
+
+### 280.3 高分辨率格式：TVD、ENO、WENO
+
+**定义 280.5**（TVD 格式）：数值格式称为 **TVD**（Total Variation Diminishing），若
+
+$$TV(u^{n+1}) \leq TV(u^n), \quad TV(u) = \sum_j |u_{j+1} - u_j|$$
+
+TVD 条件确保无虚假振荡（Gibbs 现象被抑制）。
+
+**定理 280.2**（Harten 引理）：若格式可写为 $u_j^{n+1} = u_j^n - C_{j-1/2}(u_j^n - u_{j-1}^n) + D_{j+1/2}(u_{j+1}^n - u_j^n)$ 且 $C_{j-1/2}, D_{j+1/2} \geq 0$，$C_{j-1/2} + D_{j+1/2} \leq 1$，则该格式是 TVD 的。
+
+**定义 280.6**（ENO 与 WENO 格式）：ENO（Essentially Non-Oscillatory）格式通过自适应选择最光滑的模板构造高阶重构多项式，避免跨间断插值。WENO（Weighted ENO）进一步通过凸组合多个模板，在光滑区域获得更高阶精度，在间断附近自动降阶——实现了高精度和无振荡的统一。
+
+**定理 280.3**（Lax-Wendroff 定理）：若守恒格式的数值解 $u_h$ 在 $h \to 0$ 时几乎处处收敛到某个函数 $u$，且格式守恒，则 $u$ 是守恒律的弱解。
+
+### 280.4 一维和二维 Euler 方程的数值求解
+
+**定义 280.7**（一维 Euler 方程）：理想气体的 Euler 方程为
+
+$$\frac{\partial}{\partial t}\begin{pmatrix} \rho \\ \rho u \\ E \end{pmatrix} + \frac{\partial}{\partial x}\begin{pmatrix} \rho u \\ \rho u^2 + p \\ u(E + p) \end{pmatrix} = 0$$
+
+其中 $\rho$ 为密度，$u$ 为速度，$E$ 为总能量，$p = (\gamma - 1)(E - \frac{1}{2}\rho u^2)$ 为压力（理想气体状态方程）。
+
+**Riemann 问题的波系结构**：一维 Euler 方程的 Riemann 问题产生三种基本波——激波（shock）、接触间断（contact discontinuity）和稀疏波（rarefaction wave）。精确 Riemann 求解器通过迭代求解非线性方程确定中间状态；近似 Riemann 求解器（如 Roe 求解器、HLL/HLLC 求解器）以较低计算代价获得可接受的精度。二维 Euler 方程的数值求解通常采用 **维数分裂（dimensional splitting）** 或 **非结构网格** 上的有限体积法。
+
+---
+
+## 第281章：计算流体力学数学基础
+
+Navier-Stokes 方程的数值求解涉及不可压缩流、可压缩流和湍流的多尺度建模，其数学分析是计算数学最具挑战性的领域之一。
+
+### 281.1 Navier-Stokes 方程的数值挑战
+
+**定义 281.1**（不可压缩 Navier-Stokes 方程）：
+
+$$\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u} = -\nabla p + \nu \Delta \mathbf{u} + \mathbf{f}, \quad \nabla \cdot \mathbf{u} = 0$$
+
+**挑战**：(1) 不可压缩约束 $\nabla \cdot \mathbf{u} = 0$ 导致速度-压力耦合的鞍点问题——离散化必须满足 inf-sup 条件（LBB 条件）；(2) 高 Reynolds 数下对流项占优，需要稳定化处理；(3) 湍流的多尺度特性使直接数值模拟（DNS）的计算代价极高（$\propto Re^3$）。
+
+**定义 281.2**（无量纲参数）：Reynolds 数 $Re = U L / \nu$ 刻画惯性力与粘性力之比。低 $Re$ 为层流（稳态光滑），高 $Re$ 为湍流（非稳态混沌）。另外，Mach 数 $Ma = U/c$（$c$ 为声速）判明压缩性——$Ma < 0.3$ 可视作不可压缩。
+
+### 281.2 投影法与分步法
+
+**定义 281.3**（Chorin-Temam 投影法）：(1) 预测步：忽略压力梯度求解中间速度
+
+$$\frac{\mathbf{u}^* - \mathbf{u}^n}{\Delta t} = \nu \Delta \mathbf{u}^* - (\mathbf{u}^n \cdot \nabla)\mathbf{u}^n + \mathbf{f}$$
+
+(2) 投影步：将 $\mathbf{u}^*$ 投影到无散度空间 $\mathbf{u}^{n+1} = \mathcal{P}(\mathbf{u}^*)$，其中 $\mathcal{P} = I - \nabla \Delta^{-1} \nabla\cdot$（Leray-Helmholtz 投影），投影步需求解 Poisson 方程 $\Delta \phi = \nabla \cdot \mathbf{u}^*$。
+
+**定理 281.1**（投影法的 Helmholtz-Hodge 分解）：对任意充分光滑的向量场 $\mathbf{w}$，存在唯一正交分解 $\mathbf{w} = \mathbf{u} + \nabla q$，其中 $\nabla \cdot \mathbf{u} = 0$ 且 $\mathbf{u} \cdot \mathbf{n}|_{\partial\Omega} = 0$。投影算子 $\mathcal{P}: \mathbf{w} \mapsto \mathbf{u}$ 是 $L^2$ 正交投影。
+
+**定理 281.2**（投影法的精度）：标准 Chorin 投影法对速度是一阶时间精度的。通过引入压力的时间外推（如压力校正投影法或旋转投影法），可将时间精度提升至二阶。
+
+**注 281.1**（旋转投影法 / Rotational Projection Method）：标准投影法的 Helmholtz-Hodge 分解中，压力项采用 $\nabla p$ 的形式，导致边界层误差积累限制时间精度。**旋转投影法**（Timmermans-Minev-Van De Vosse 1996, Guermond-Shen 2006）将压力梯度替换为 $\nabla \times \nabla \times$ 形式（利用恒等式 $\Delta = \nabla(\nabla\cdot) - \nabla \times \nabla \times$），通过显式处置涡量边界条件，消除了标准投影法在无滑移边界上产生的法向压力梯度的人工边界层，从而将整体时间精度提升至二阶。该方法在旋转坐标系（rotational form of Navier-Stokes）下自然导出，故名"旋转投影法"。
+
+### 281.3 稳定化有限元方法
+
+**定义 281.4**（对流-扩散方程）：$-\varepsilon \Delta u + \mathbf{b} \cdot \nabla u = f$。当 Péclet 数 $Pe = \|\mathbf{b}\|h/(2\varepsilon) > 1$ 时，标准 Galerkin 方法产生非物理振荡。需引入稳定化。
+
+**SUPG（Streamline Upwind Petrov-Galerkin）方法**：修改检验函数 $v \mapsto v + \tau \mathbf{b}\cdot\nabla v$，沿流线方向增加人工扩散而不破坏精度。$\tau$ 的选取通过误差分析确定：
+
+$$\tau_K = \frac{h_K}{2\|\mathbf{b}\|}\left(\coth Pe_K - \frac{1}{Pe_K}\right)$$
+
+其中 $Pe_K = \|\mathbf{b}\| h_K / (2\varepsilon)$ 为单元 Péclet 数。该公式的含义为：当对流占优时（$Pe_K \gg 1$，$\coth Pe_K \to 1$），$\tau_K \approx h_K / (2\|\mathbf{b}\|)$，沿流线方向引入的稳定化量与局部网格尺寸和流速匹配；当扩散占优时（$Pe_K \to 0$，$\coth Pe_K - 1/Pe_K \approx Pe_K / 3$），$\tau_K \approx \varepsilon h_K^2 / (6\|\mathbf{b}\|^2)$，稳定化自动减弱以避免过度扩散。$\tau_K$ 的这一双渐近公式确保 SUPG 在从纯对流到纯扩散的整个参数范围内都表现最优。
+
+**GLS（Galerkin Least-Squares）方法**：在变分形式中加入最小二乘项 $\sum_K \tau_K (\mathcal{L}v, \mathcal{L}u - f)_K$，同时稳定对流项和压力项，适用于多物理场耦合的复杂情形。
+
+### 281.4 湍流模型与 LES
+
+**定义 281.5**（大涡模拟 / LES）：不直接求解所有尺度的湍流运动，而是通过滤波操作 $\bar{u}(\mathbf{x}) = \int G(\mathbf{x} - \boldsymbol{\xi}) u(\boldsymbol{\xi}) d\boldsymbol{\xi}$ 分离大尺度（可解析尺度）和小尺度（亚格子尺度），并对亚格子应力建立封闭模型。
+
+**Smagorinsky 模型**：涡粘性假设
+
+$$\tau_{ij} - \frac{1}{3}\tau_{kk}\delta_{ij} = -2\nu_t \bar{S}_{ij}, \quad \nu_t = (C_s \Delta)^2 |\bar{S}|$$
+
+其中 $\bar{S}_{ij} = \frac{1}{2}(\partial \bar{u}_i/\partial x_j + \partial \bar{u}_j/\partial x_i)$ 为滤波后的应变率张量，$|\bar{S}| = \sqrt{2\bar{S}_{ij}\bar{S}_{ij}}$，$C_s \approx 0.1$–$0.2$ 为 Smagorinsky 常数，$\Delta$ 为滤波宽度。
+
+**RANS（Reynolds-Averaged Navier-Stokes）方法**：将瞬时量分解为时间平均和脉动量（$u = \bar{u} + u'$），得到 Reynolds 平均方程——包含 Reynolds 应力张量 $\overline{u_i' u_j'}$ 需湍流模型封闭（如 $k$-$\varepsilon$ 模型、$k$-$\omega$ SST 模型）。
+
+**定理 281.3**（DNS 的计算代价）：对均匀各向同性湍流，直接数值模拟（DNS）的空间自由度 $N \propto Re^{9/4}$，计算代价 $\propto Re^{3}$。这意味着 $Re$ 每增大 10 倍，计算量增大约 1000 倍——这解释了为何 DNS 目前仅限于低至中等 Reynolds 数的流动。
+
+### 结语
+
+计算数学将泛函分析、PDE 理论和线性代数的数学结构转化为可分析的算法框架。从有限元的 Sobolev 空间理论到多重网格的 $\mathcal{O}(N)$ 复杂度，从双曲守恒律的熵条件到 Navier-Stokes 的投影法——计算数学的每一步发展都建立在严格的数学理论基础之上。
+
+---
+
+---
+
+## 补充：逼近论
+
+> 逼近论研究用简单函数（多项式、有理函数、样条、小波等）逼近复杂函数的理论和方法。从 Weierstrass 逼近定理到 Chebyshev 最佳逼近，从有理逼近与 Pade 逼近到样条与小波，逼近论为数值计算、信号处理和机器学习提供了坚实的数学基础。本卷系统建立最佳逼近的存在性与唯一性理论、多项式逼近的 Jackson 与 Bernstein 定理、有理逼近、样条插值与光滑性、小波的多分辨分析框架，以及径向基函数与高维逼近方法。
+
+> **卷序说明**：本章节号（Ch 208-211）反映其在全书逻辑链中的位置。物理卷序上本卷位于V52，作为逼近论方向的专题补充卷。
+
+---
+
+## 第208章：Weierstrass 逼近定理与 Jackson 定理
+
+Weierstrass 逼近定理（1885）是逼近论的奠基性结果——它断言闭区间上的任何连续函数均可被多项式一致逼近。Bernstein（1912）给出了一个构造性的概率证明，开创了用 Bernstein 多项式逼近连续函数的先河。Jackson 定理（1911）进一步建立了光滑性与逼近阶之间的定量关系。
+
+### 208.1 Weierstrass 第一逼近定理
+
+**定理 208.1**（Weierstrass 第一逼近定理，1885）：设 $f \in C[a, b]$。则对任意 $\varepsilon > 0$，存在多项式 $p(x)$ 使得
+$$\max_{x \in [a, b]} |f(x) - p(x)| < \varepsilon$$
+即多项式空间 $\mathcal{P}$ 在 $C[a, b]$（一致范数拓扑）中稠密。
+
+### 208.2 Bernstein 多项式与构造性证明
+
+**定义 208.1**（Bernstein 多项式，1912）：设 $f \in C[0, 1]$。$f$ 的 $n$ 次 **Bernstein 多项式** 定义为
+$$B_n(f; x) = \sum_{k=0}^n f\left(\frac{k}{n}\right) \binom{n}{k} x^k (1-x)^{n-k}, \quad x \in [0, 1]$$
+
+注意 $B_n(f; x)$ 恰为二项分布 $\operatorname{Bin}(n, x)$ 下 $f(k/n)$ 的数学期望 $\mathbb{E}_x[f(S_n / n)]$，其中 $S_n \sim \operatorname{Bin}(n, x)$。这赋予 Bernstein 多项式自然的概率解释。
+
+**定理 208.2**（Bernstein 多项式的收敛性）：对任意 $f \in C[0, 1]$，
+$$\lim_{n \to \infty} \max_{x \in [0, 1]} |f(x) - B_n(f; x)| = 0$$
+
+*证明（基于概率论）*：由一致连续性，对任意 $\varepsilon > 0$，存在 $\delta > 0$ 使得 $|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon$。记 $M = \|f\|_\infty$。则
+$$\begin{aligned}
+|f(x) - B_n(f; x)| &= \left|\mathbb{E}_x\left[f(x) - f\left(\frac{S_n}{n}\right)\right]\right| \\
+&\leq \mathbb{E}_x\left|f(x) - f\left(\frac{S_n}{n}\right)\right| \cdot \left[\mathbf{1}_{\{|S_n/n - x| < \delta\}} + \mathbf{1}_{\{|S_n/n - x| \geq \delta\}}\right] \\
+&\leq \varepsilon + 2M \cdot \mathbb{P}_x\left(\left|\frac{S_n}{n} - x\right| \geq \delta\right)
+\end{aligned}$$
+
+由 Chebyshev 不等式，$\mathbb{P}_x(|S_n/n - x| \geq \delta) \leq \frac{\operatorname{Var}(S_n/n)}{\delta^2} = \frac{x(1-x)}{n\delta^2} \leq \frac{1}{4n\delta^2}$。因此
+$$\max_{x \in [0, 1]} |f(x) - B_n(f; x)| \leq \varepsilon + \frac{M}{2n\delta^2}$$
+
+取 $n > M / (2\varepsilon \delta^2)$ 即得 $\|f - B_n(f)\|_\infty < 2\varepsilon$。∎
+
+**注 208.1**（Bernstein 多项式的局限）：尽管 Bernstein 多项式给出了一致收敛的构造性证明，但其收敛速度很慢——对被逼近函数 $f$ 即使非常光滑（如 $f(x) = x^2$），误差也仅为 $O(1/n)$（而非 $O(1/n^2)$ 或更快）。这促使后人寻求更高效的逼近方法（如 Chebyshev 多项式插值、Jackson 定理等）。
+
+**推论 208.1**（推广到一般区间）：对 $f \in C[a, b]$，通过线性变换 $t = (x-a)/(b-a)$ 将 $[a, b]$ 映射到 $[0, 1]$，即得 $[a, b]$ 上的 Weierstrass 逼近定理。
+
+### 208.3 Jackson 定理——直接定理
+
+Weierstrass 定理回答了"是否存在多项式逼近"的问题，Jackson 定理进一步回答了"误差随多项式次数如何衰减"的定量问题。
+
+**定理 208.3**（Jackson 定理 / 直接定理，Jackson 1911）：设 $f \in C^r[-1, 1]$。则对任意正整数 $n \geq r$，存在次数不超过 $n$ 的多项式 $p_n$ 使得
+$$\|f - p_n\|_\infty \leq \frac{C_r}{n^r} \cdot \omega\left(f^{(r)}; \frac{1}{n}\right)$$
+其中 $\omega(g; \delta) = \sup_{|x-y| \leq \delta} |g(x) - g(y)|$ 为连续模（modulus of continuity），$C_r$ 为仅依赖于 $r$ 的常数。
+
+特别地，若 $f^{(r)} \in \operatorname{Lip}_\alpha$（$\alpha$-Holder 连续，$0 < \alpha \leq 1$），则
+$$\|f - p_n\|_\infty \leq \frac{C_{r, \alpha}}{n^{r+\alpha}}$$
+
+**定理 208.4**（Jackson 定理的简化形式）：设 $f \in C^k[-1, 1]$。则存在仅依赖于 $k$ 的常数 $C_k$ 使得对任意 $n \geq k$，
+$$E_n(f) := \inf_{p \in \mathcal{P}_n} \|f - p\|_\infty \leq \frac{C_k}{n^k} \cdot \omega\left(f^{(k)}; \frac{1}{n}\right)$$
+
+**推论 208.2**（光滑性 $\Rightarrow$ 逼近阶）：若 $f \in C^r[-1, 1]$ 且 $f^{(r)}$ 满足 Lipschitz 条件，则 $E_n(f) = O(n^{-r-1})$。光滑性越高，多项式逼近的代数收敛阶越高。
+
+**评注 208.1**（Jackson 定理的意义）：Jackson 定理精确刻画了"函数的可微性阶数 $r$ 决定多项式最佳逼近的代数收敛阶 $\geq r+1$"。这是逼近论中**直接定理**（direct theorem）的核心——从函数的光滑性信息推断最佳逼近的收敛速率。反方向的**逆定理**（Bernstein / Stechkin 逆定理）则从逼近速率反推函数的光滑性，两者共同构成完整的逼近论等价关系。
+
+---
+
+## 第209章：有理逼近与 Padé 逼近
+
+有理函数逼近通常比多项式逼近更高效，特别是在函数有极点时。Padé 逼近通过匹配 Taylor 系数构造最优有理逼近。
+
+### 209.1 有理逼近的基本理论
+
+**定义 209.1**（有理函数）：$[m/n]$ 型**有理函数**为 $r(x) = p_m(x) / q_n(x)$，其中 $p_m \in \mathcal{P}_m$，$q_n \in \mathcal{P}_n$（$q_n \not\equiv 0$）。
+
+**定义 209.2**（有理最佳逼近）：$f \in C[a,b]$ 在 $\mathcal{R}_{m,n}$（$[m/n]$ 型有理函数全体）中的**最佳一致有理逼近** $r^*$ 满足
+
+$$\|f - r^*\|_\infty = \inf_{r \in \mathcal{R}_{m,n}} \|f - r\|_\infty$$
+
+**定理 209.1**（有理逼近的 Chebyshev 交替定理）：$r^* \in \mathcal{R}_{m,n}$ 是 $f$ 的最佳一致有理逼近当且仅当 $f - r^*$ 在 $[a,b]$ 上至少存在 $m+n+2 - d$ 个点的交替点集，其中 $d = \min(m - \deg p^*, n - \deg q^*)$。
+
+**定理 209.2**（Newman 定理，1964）：$|x|$ 在 $[-1, 1]$ 上的有理逼近收敛速率远快于多项式逼近：
+
+$$\min_{r \in \mathcal{R}_{n,n}} \||x| - r(x)\|_\infty \leq 3 e^{-\sqrt{n}}$$
+
+而多项式逼近的速率仅为 $O(1/n)$。这展示了有理逼近在处理非光滑函数时的巨大优势。
+
+### 209.2 Padé 逼近
+
+**定义 209.3**（Padé 逼近，1892）：设 $f(z) = \sum_{k=0}^\infty c_k z^k$ 在 $0$ 处解析。**$[m/n]$ 型 Padé 逼近** $r_{m,n}(z) = p_m(z) / q_n(z)$（$q_n(0)=1$）满足
+
+$$f(z) - r_{m,n}(z) = O(z^{m+n+1}) \quad (z \to 0)$$
+
+即 Padé 逼近匹配 $f$ 在 $0$ 处的 Taylor 系数的前 $m+n+1$ 项。
+
+**定理 209.3**（Padé 逼近的构造）：Padé 逼近的系数通过求解线性方程组确定：
+
+$$c_0 q_0 = p_0$$
+$$c_1 q_0 + c_0 q_1 = p_1$$
+$$\vdots$$
+
+其中 $q_j = 0$（$j > n$），$p_j = 0$（$j > m$）。$q_j$ 的确定需要求解 Hankel 矩阵方程组。
+
+**定义 209.4**（Padé 表）：$[m/n]$ Padé 逼近的二维阵列称为 **Padé 表**。Padé 表的对角线 $[n/n]$（对角线 Padé 逼近）和次对角线 $[n-1/n]$ 具有特别的重要性。
+
+**例 209.1**（指数函数的 Padé 逼近）：$e^z$ 的 $[n/n]$ Padé 逼近为
+
+$$r_{n,n}(z) = \frac{\sum_{k=0}^n \frac{(2n-k)! n!}{(2n)! k! (n-k)!} z^k}{\sum_{k=0}^n \frac{(2n-k)! n!}{(2n)! k! (n-k)!} (-z)^k}$$
+
+### 209.3 Padé 逼近的收敛性
+
+**定理 209.4**（Padé 逼近的收敛性，Nuttall-Pommerenke 定理）：对大部分亚纯函数，对角线 Padé 序列 $[n/n]$ 在容量意义下收敛到 $f$（在极点以外的区域）。Padé 逼近自然地捕捉了函数的极点。
+
+**定理 209.5**（Stahl 定理，1986）：对具有分支切割的代数函数，对角线 Padé 逼近的极限在容量意义下存在，且极点的极限分布由 $f$ 的奇异性的最小容量集合给出。
+
+**定义 209.5**（Padé 逼近与连分式）：Padé 逼近与连分式展开有自然联系。$[n/n]$ 和 $[n-1/n]$ Padé 逼近是函数连分式展开的截断。
+
+---
+
+## 第210章：样条与小波
+
+样条是分段多项式函数，具有优良的逼近性质和计算效率。小波是时间-频率局部化的基函数，是信号处理的核心工具。
+
+### 210.1 样条函数
+
+**定义 210.1**（$k$ 次样条）：给定节点 $a = x_0 < x_1 < \cdots < x_N = b$，**$k$ 次样条函数** $s(x)$ 满足：
+1. $s$ 在每个子区间 $[x_i, x_{i+1}]$ 上是次数 $\leq k$ 的多项式
+2. $s \in C^{k-1}[a,b]$（$k-1$ 阶连续可微）
+
+**定义 210.2**（自然三次样条）：**自然三次样条**（$k=3$）是满足端点条件 $s''(a) = s''(b) = 0$ 的三次样条。
+
+**定理 210.1**（样条插值的最优性质）：在所有满足插值条件 $s(x_i) = f(x_i)$ 且 $s'' \in L^2[a,b]$ 的函数中，自然三次样条插值极小化弯曲能量
+
+$$E(s) = \int_a^b |s''(x)|^2 \, dx$$
+
+**定理 210.2**（样条逼近的误差估计）：对 $f \in C^4[a,b]$，三次样条插值 $s$ 满足
+
+$$\|f - s\|_\infty \leq \frac{5}{384} \|f^{(4)}\|_\infty h^4, \quad \|f' - s'\|_\infty \leq \frac{1}{24} \|f^{(4)}\|_\infty h^3$$
+
+其中 $h = \max_i (x_{i+1} - x_i)$。
+
+### 210.2 B-样条基
+
+**定义 210.3**（B-样条，Cox-de Boor 递推，1972）：**$k$ 次 B-样条** $B_{i,k}(x)$ 由递推定义：
+
+$$B_{i,0}(x) = \begin{cases} 1 & x \in [x_i, x_{i+1}) \\ 0 & \text{否则} \end{cases}$$
+
+$$B_{i,k}(x) = \frac{x - x_i}{x_{i+k} - x_i} B_{i,k-1}(x) + \frac{x_{i+k+1} - x}{x_{i+k+1} - x_{i+1}} B_{i+1,k-1}(x)$$
+
+**命题 210.1**（B-样条的性质）：
+- 局部支撑：$B_{i,k}(x)$ 仅在 $[x_i, x_{i+k+1}]$ 上非零
+- 非负性：$B_{i,k}(x) \geq 0$
+- 单位分解：$\sum_i B_{i,k}(x) = 1$（对所有 $x$）
+- 线性无关：$\{B_{i,k}\}$ 是 $k$ 次样条空间的基
+
+**定理 210.3**（B-样条的导数）：$B_{i,k}'(x) = \frac{k}{x_{i+k} - x_i} B_{i,k-1}(x) - \frac{k}{x_{i+k+1} - x_{i+1}} B_{i+1,k-1}(x)$。
+
+### 210.3 小波分析
+
+**定义 210.4**（多分辨分析，Mallat 1989）：$L^2(\mathbb{R})$ 的**多分辨分析**（MRA）是一列闭子空间 $\cdots \subset V_{-1} \subset V_0 \subset V_1 \subset \cdots$ 满足：
+1. $\bigcup V_j$ 在 $L^2(\mathbb{R})$ 中稠密，$\bigcap V_j = \{0\}$
+2. $f(x) \in V_j \iff f(2x) \in V_{j+1}$
+3. 存在缩放函数（尺度函数）$\phi \in V_0$，其整数平移构成 $V_0$ 的规范正交基
+
+**定义 210.5**（小波函数）：设 $W_j$ 是 $V_j$ 在 $V_{j+1}$ 中的正交补（$V_{j+1} = V_j \oplus W_j$）。**小波函数**（母小波）$\psi \in W_0$，其整数平移构成 $W_0$ 的规范正交基。$\{\psi_{j,k}(x) = 2^{j/2} \psi(2^j x - k)\}_{j,k \in \mathbb{Z}}$ 构成 $L^2(\mathbb{R})$ 的规范正交基。
+
+**定理 210.4**（Daubechies 小波，1988）：存在具有紧支撑的任意高阶光滑小波函数。Daubechies 小波 $\psi_N$ 的支撑为 $[0, 2N-1]$，具有 $N$ 个消失矩：$\int x^k \psi_N(x) dx = 0$（$k = 0, \ldots, N-1$）。
+
+**定理 210.5**（小波的逼近性质）：具有 $N$ 个消失矩的小波，函数 $f$ 的小波系数的衰减速率刻画了 $f$ 的光滑性：
+
+$$|\langle f, \psi_{j,k} \rangle| \leq C 2^{-j(N+1/2)} \|f^{(N)}\|_\infty$$
+
+### 210.4 小波在信号处理中的应用
+
+**定义 210.6**（快速小波变换，FWT = Mallat 算法）：小波分解和重构可通过滤波器组（低通 $h$ 和高通 $g$）以 $O(n)$ 时间复杂度实现：
+
+$$a_{j,k} = \sum_m h_{m-2k} a_{j+1,m}, \quad d_{j,k} = \sum_m g_{m-2k} a_{j+1,m}$$
+
+**定理 210.6**（小波收缩与降噪，Donoho-Johnstone 1994）：通过阈值处理小波系数（软阈值或硬阈值），小波方法在降噪中达到近乎最优的最小最大速率。
+
+---
+
+## 第211章：径向基函数与高维逼近
+
+径向基函数（RBF）是处理高维散乱数据逼近和插值的主要工具，在机器学习和偏微分方程无网格方法中有广泛应用。
+
+### 211.1 径向基函数
+
+**定义 211.1**（径向基函数）：**径向基函数**（RBF）$\phi(x) = \phi(\|x\|)$ 仅依赖于到原点的距离。常用的 RBF 包括：
+- **Gauss**：$\phi(r) = e^{-(\varepsilon r)^2}$
+- **多二次**（Multiquadric）：$\phi(r) = \sqrt{1 + (\varepsilon r)^2}$
+- **逆多二次**（Inverse Multiquadric）：$\phi(r) = 1 / \sqrt{1 + (\varepsilon r)^2}$
+- **薄板样条**（Thin Plate Spline）：$\phi(r) = r^2 \log r$（$d=2$）
+
+**定义 211.2**（RBF 插值）：给定散乱数据点 $\{(x_i, f_i)\}_{i=1}^N \subset \mathbb{R}^d \times \mathbb{R}$，RBF 插值具有形式
+
+$$s(x) = \sum_{i=1}^N \lambda_i \phi(\|x - x_i\|) + \sum_{j=1}^M \beta_j p_j(x)$$
+
+其中 $p_j$ 是多项式基（保证唯一可解性）。系数 $\lambda_i, \beta_j$ 由插值条件和矩条件 $\sum \lambda_i p_j(x_i) = 0$ 确定。
+
+### 211.2 正定函数与再生核 Hilbert 空间
+
+**定义 211.3**（正定函数）：函数 $\Phi: \mathbb{R}^d \to \mathbb{R}$ 称为**正定**的，如果对任意 $\{x_1, \ldots, x_N\} \subset \mathbb{R}^d$ 和 $\{c_1, \ldots, c_N\} \subset \mathbb{R}$，
+
+$$\sum_{i,j=1}^N c_i c_j \Phi(x_i - x_j) \geq 0$$
+
+**定理 211.1**（Bochner 定理，1933）：连续函数 $\Phi$ 是正定的当且仅当它是有限正 Borel 测度的 Fourier 变换：$\Phi(x) = \int_{\mathbb{R}^d} e^{i x \cdot \omega} d\mu(\omega)$。Gauss 核是正定的，多二次核是条件正定的。
+
+**定义 211.4**（再生核 Hilbert 空间，RKHS）：设 $\mathcal{H}$ 是函数 $f: \Omega \to \mathbb{R}$ 的 Hilbert 空间。$\mathcal{H}$ 是**再生核 Hilbert 空间**，如果存在核 $K: \Omega \times \Omega \to \mathbb{R}$ 使得对任意 $x \in \Omega$，$K(\cdot, x) \in \mathcal{H}$ 且 $f(x) = \langle f, K(\cdot, x) \rangle_{\mathcal{H}}$（再生性质）。
+
+**定理 211.2**（RBF 与 RKHS 的等价性）：每个正定 RBF $\phi$ 关联一个唯一的 RKHS $\mathcal{N}_\phi(\Omega)$（Native 空间）。RBF 插值在此空间中是误差最小的：
+
+$$\|f - s\|_{\mathcal{N}_\phi} \leq \|f\|_{\mathcal{N}_\phi}$$
+
+### 211.3 RBF 逼近的收敛性
+
+**定理 211.3**（RBF 插值的误差估计）：对 Gauss 核 $\phi(r) = e^{-(\varepsilon r)^2}$，在 Native 空间中，
+
+$$\|f - s_{X,\varepsilon}\|_\infty \leq C e^{-c \varepsilon / h_{X,\Omega}} \|f\|_{\mathcal{N}_\phi}$$
+
+其中 $h_{X,\Omega}$ 是填充距离（fill distance）。$h_{X,\Omega} \to 0$ 时误差以谱精度收敛。
+
+**定理 211.4**（权衡原则，Trade-off Principle）：RBF 插值在精度和稳定性之间存在权衡。小 $\varepsilon$（平坦核）提高精度但增大条件数，大 $\varepsilon$ 提高稳定性但降低精度。这是 RBF 方法的核心挑战。
+
+**定理 211.5**（平坦极限与多项式，Driscoll-Fornberg 2002）：当 $\varepsilon \to 0$（平坦极限），某些 RBF 插值收敛到（多元）多项式插值。这解释了 RBF 方法在平坦极限下的行为。
+
+### 211.4 RBF 在 PDE 中的应用
+
+**定义 211.5**（Kansa 方法，RBF 配置法，1990）：用 RBF 配置法求解 PDE：将解近似为 $u(x) \approx \sum_{i=1}^N \lambda_i \phi(\|x - x_i\|)$，在配置点 $x_j$ 上强制 PDE 满足，得到关于 $\lambda_i$ 的线性方程组。
+
+**定理 211.6**（RBF 方法在无网格 PDE 求解中的优势）：RBF 方法自然地处理高维和不规则区域上的 PDE，无需网格生成。对于椭圆形 PDE，RBF 配置法可达谱精度。
+
+---
+
+## 第212章：Chebyshev理论与最佳一致逼近
+
+Chebyshev（1850s）创立了最佳一致逼近理论。本章讨论 Chebyshev 多项式、交替定理和 Remez 不等式——这些是一致逼近的核心工具。
+
+### 212.1 Chebyshev多项式
+
+**定义 212.1**（Chebyshev 多项式）：第一类 Chebyshev 多项式 $T_n(x) = \cos(n \arccos x)$，$x \in [-1, 1]$。第二类 $U_n(x) = \frac{\sin((n+1) \arccos x)}{\sin(\arccos x)}$。$T_n$ 是次数为 $n$ 的首一多项式（乘以 $2^{1-n}$），在 $[-1, 1]$ 上满足 $|T_n(x)| \leq 1$。
+
+**命题 212.1**（$T_n$ 的递推与正交性）：$T_0(x) = 1$，$T_1(x) = x$，$T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)$。在 $[-1, 1]$ 上，$\int_{-1}^1 \frac{T_m(x) T_n(x)}{\sqrt{1 - x^2}} dx = \begin{cases} \pi & m = n = 0 \\ \pi/2 & m = n \neq 0 \\ 0 & m \neq n \end{cases}$。
+
+**定理 212.1**（Chebyshev 多项式的极值性质）：在所有 $n$ 次首一多项式中，$2^{1-n} T_n(x)$ 在 $[-1, 1]$ 上具有最小的一致范数：
+$$\min_{P \in \mathcal{P}_n, P \text{ 首一}} \max_{x \in [-1,1]} |P(x)| = 2^{1-n}$$
+且极小化元是唯一的（$2^{1-n} T_n$）。此极值性质给出了多项式插值节点的最优选取——Chebyshev 节点。
+
+**推论 212.1**（Chebyshev 交替定理的特例）：$2^{1-n} T_n(x)$ 在 $[-1, 1]$ 上达到最大值 $2^{1-n}$ 的 $n+1$ 个交替点：$x_k = \cos(k\pi/n)$，$k = 0, 1, \ldots, n$。这是交替定理的具体体现——误差函数在这些点上达到极值且符号交替。
+
+### 212.2 Chebyshev交替定理
+
+**定理 212.2**（Chebyshev 交替定理，1853）：$p_n^* \in \mathcal{P}_n$ 是 $f \in C[a, b]$ 的最佳一致多项式逼近（即 $\|f - p_n^*\|_\infty = E_n(f)$），当且仅当存在 $[a, b]$ 中的 $n+2$ 个点 $a \leq x_1 < x_2 < \cdots < x_{n+2} \leq b$，使得误差 $e(x) = f(x) - p_n^*(x)$ 在这些点上交错地取极值：$e(x_k) = \pm (-1)^k \|f - p_n^*\|_\infty$（或 $\mp (-1)^k$）。这就是**交替点集**。
+
+*证明思路*：必要性使用反证法——若无 $n+2$ 个交替点，则可构造 $q \in \mathcal{P}_n$ 使 $\|f - (p_n^* + \epsilon q)\|_\infty < \|f - p_n^*\|_\infty$。充分性（唯一性）由 Harr 条件（Chebyshev 系统的唯一性）保证——$\mathcal{P}_n$ 在 $[a, b]$ 上是 Harr 子空间，故最佳一致逼近是唯一的。
+
+**推论 212.2**（最佳逼近的误差公式）：若 $f \in C^{n+1}[a, b]$ 且 $f^{(n+1)}$ 在 $(a, b)$ 中不变号，取 $p_n^*$ 为 Lagrange 插值多项式（节点为 $f - p_n^*$ 的 Chebyshev 交替点附近的点），则 $E_n(f) \geq \frac{\min|f^{(n+1)}|}{2^n (n+1)!} (b-a)^{n+1}$。
+
+**定理 212.3**（de la Vallée Poussin 下界定理，1910）：设 $p \in \mathcal{P}_n$，且存在 $n+2$ 个点 $x_1 < \cdots < x_{n+2}$ 使 $f(x_k) - p(x_k)$ 交替变号。则
+$$E_n(f) \geq \min_k |f(x_k) - p(x_k)|$$
+这给出了最佳逼近的下界估计——只需找一个产生交替符号的多项式即可判定逼近精度。
+
+### 212.3 Chebyshev多项式展开与谱方法
+
+**定义 212.2**（Chebyshev 级数展开）：函数 $f \in C[-1, 1]$ 的 Chebyshev 级数为 $f(x) \sim \sum_{k=0}^\infty a_k T_k(x)$，其中 $a_k = \frac{2}{\pi} \int_{-1}^1 \frac{f(x) T_k(x)}{\sqrt{1-x^2}} dx$（$k \geq 1$），$a_0 = \frac{1}{\pi} \int_{-1}^1 \frac{f(x)}{\sqrt{1-x^2}} dx$。Chebyshev 级数收敛极快（对解析函数呈几何收敛），因而是数值分析和谱方法的基础。
+
+**定理 212.4**（Chebyshev 级数的收敛速度）：若 $f$ 在包含 $[-1, 1]$ 的 Bernstein 椭圆 $\mathcal{E}_\rho$（椭圆半轴 $(\rho + \rho^{-1})/2 \times (\rho - \rho^{-1})/2$）内解析，则 $|a_k| \leq 2M \rho^{-k}$（几何收敛）。解析性越强（$\rho$ 越大），Chebyshev 系数衰减越快。
+
+**定理 212.5**（Remez 不等式，1936）：设 $p_n \in \mathcal{P}_n$ 在 $[a, b]$ 的一个可测子集 $E \subset [a, b]$ 上满足 $|p_n(x)| \leq M$（$|E| > 0$）。则
+$$\max_{x \in [a, b]} |p_n(x)| \leq M \cdot T_n\left(\frac{2b - 2a + |E|}{2b - 2a - |E|}\right)$$
+Remez 不等式说明：多项式在一个子集上的有界性控制它在整个区间上的最大值——增长因子由 Chebyshev 多项式决定。这是多项式不等式中最基本的结果之一，在构造插值算子和证明逆逼近定理中起关键作用。
+
+**推论 212.3**（Nikolskii 型不等式）：对 $p_n \in \mathcal{P}_n$ 和 $0 < p < q \leq \infty$（$L^p$ 范数），$\|p_n\|_q \leq C n^{2(1/p - 1/q)} \|p_n\|_p$。这推广了 Remez 不等式到积分范数，建立了不同 $L^p$ 范数下的多项式比较。
+
+---
+
+## 第213章：逆定理与Müntz-Szász定理
+
+逼近论的直接定理（Jackson）从光滑性推出逼近速率，而**逆定理**（Bernstein / Stechkin）从逼近速率反推光滑性——两者共同构成逼近论的基本等价关系。Müntz-Szász 定理则回答了"哪些幂函数的线性组合足以逼近所有连续函数"——是 Weierstrass 逼近定理在单项式子集上的深刻推广。
+
+### 213.1 Bernstein逆定理
+
+**定理 213.1**（Bernstein 不等式，1912）：对 $p_n \in \mathcal{P}_n$（次数 $\leq n$ 的代数多项式），在 $[-1, 1]$ 上有
+$$\|p_n'\|_\infty \leq n^2 \|p_n\|_\infty$$
+这是多项式导数与函数值范数之间的基本关系：$n$ 次多项式的导数范数不能超过函数值范数的 $n^2$ 倍。对三角多项式 $T_n(\theta) = \sum_{k=-n}^n c_k e^{ik\theta}$，有更精确的 $\|T_n'\|_\infty \leq n \|T_n\|_\infty$。
+
+**定理 213.2**（Bernstein 逆定理，1912）：设 $f \in C[-1, 1]$ 满足 $E_n(f) \leq C n^{-(r+\alpha)}$（对所有 $n$），其中 $r \in \mathbb{Z}_{\geq 0}$，$0 < \alpha \leq 1$。则 $f^{(r)}$ 存在且连续（或当 $\alpha=1$ 时满足 Zygmund 条件），且 $f^{(r)} \in \operatorname{Lip}_\alpha$（即 $f^{(r)}$ 的连续模 $\omega(f^{(r)}; \delta) \leq C' \delta^\alpha$）。
+
+*证明思路*（核心使用了 Bernstein 不等式）：由逼近速率 $E_n(f)$，构造多项式序列 $p_{2^k}$ 逼近 $f$（几何级数的阶）。利用 telescoping 展开 $f = p_1 + \sum_{k=1}^\infty (p_{2^k} - p_{2^{k-1}})$，并应用 Bernstein 不等式逐项估计导数。Jackson 定理给出了 $C^{r,\alpha} \implies O(n^{-(r+\alpha)})$，Bernstein 逆定理给出 $O(n^{-(r+\alpha)}) \implies C^{r,\alpha}$——两者共同建立了光滑性与多项式逼近速率的等价关系。
+
+**定理 213.3**（Stechkin 逆定理，1950s）：Bernstein 逆定理的推广——将多项式的最佳逼近误差 $E_n(f)$ 替换为更强的连续模条件，得到函数光滑性的更精细分类。构造多项式理论（constructive function theory）的基本框架由此建立。
+
+**推论 213.1**（光滑性的等价刻画）：$f \in C^\infty[-1, 1]$ 当且仅当 $E_n(f) = O(n^{-k})$ 对所有 $k$ 成立。$f$ 在 $[-1, 1]$ 上解析当且仅当 $E_n(f) = O(\rho^{-n})$ 对某 $\rho > 1$（几何收敛）。
+
+### 213.2 Müntz-Szász定理
+
+**定理 213.4**（Müntz 定理，1914 / Szász 推广，1916）：设 $\Lambda = \{\lambda_0, \lambda_1, \ldots\} \subset [0, \infty)$ 且 $\lambda_0 = 0$。则幂函数集合 $\{x^{\lambda_k}\}_{k=0}^\infty$ 的线性张成在 $C[0, 1]$（一致范数拓扑）中稠密，当且仅当
+$$\sum_{k=1}^\infty \frac{1}{\lambda_k} = \infty$$
+
+**推论 213.2**（Müntz-Szász 定理的特殊情况与含义）：
+- $\{1, x, x^2, x^3, \ldots\}$：$\lambda_k = k$（整数幂），$\sum \frac{1}{k} = \infty$ → 稠密（Weierstrass 定理的推论）
+- $\{1, x^2, x^4, x^6, \ldots\}$（仅偶次幂）：$\lambda_k = 2k$，$\sum \frac{1}{2k} = \infty$ → 稠密
+- $\{1, x^2, x^3, x^5, x^7, \ldots\}$：省略 $x^1$ 和 $x^4$（有限个缺失），$\sum \frac{1}{\lambda_k}$ 仍发散 → 稠密
+- $\{1, x^2, x^4, x^8, x^{16}, \ldots\}$（几何级数间距）：$\lambda_k = 2^k$，$\sum \frac{1}{2^k} = 1 < \infty$ → **不稠密**——存在不能被只含 $x^{2^k}$ 次幂的多项式逼近的连续函数
+- $\{1, x^n, x^{n+1}, \ldots\}$ 和 $\{1, x^n\}$：前者 $\sum 1/k$ 仍从 $n$ 开始发散 → 稠密；后者仅有一个非零指数 → $\sum 1/\lambda_1 = 1/n < \infty$ → 不稠密
+
+Müntz-Szász 定理深刻揭示了：仅靠无穷多个幂函数并不能保证稠密性；这些幂指数的倒数级数必须发散——即幂指数必须"充分密集"。
+
+*证明思路*（使用泛函分析）：由 Hahn-Banach 定理，$\operatorname{span}\{x^{\lambda_k}\}$ 在 $C[0,1]$ 中不稠密当且仅当存在非零 Borel 测度 $\mu$ 使得 $\int_0^1 x^{\lambda_k} d\mu(x) = 0$（对所有 $k$）。考虑复变函数 $F(z) = \int_0^1 x^z d\mu(x)$（$z \in \mathbb{C}$，$\Re z > 0$），其在右半平面解析且以 $\lambda_k$ 为零点。Jensen 公式将零点分布与 $\sum 1/\lambda_k$ 关联——若级数收敛，可构造满足 Blaschke 条件的解析函数 $F$ 及其反 Laplace 变换 $\mu$；若级数发散，$F$ 由恒为零的唯一性定理必为零，从而 $\mu = 0$。
+
+**定理 213.5**（Müntz-Szász 定理的 $L^p$ 推广，Clarkson-Erdős 1943 / Schwartz 1959）：Müntz-Szász 定理在 $L^p[0, 1]$（$1 \leq p < \infty$）中同样成立——稠密性条件仍为 $\sum 1/\lambda_k = \infty$（需 $\lambda_k \geq 0$，且当 $p \geq 1$ 时需 $\lambda_k > -1/p$ 以保证 $x^{\lambda_k} \in L^p$）。
+
+**定理 213.6**（完整 Müntz-Szász 定理——同时处理有限和无限缺失）：若 $\liminf_{k \to \infty} (\lambda_{k+1} - \lambda_k) > 0$（即 $\Lambda$ 具有正的下渐近间隙），则 $\sum 1/\lambda_k < \infty$ 等价于 $\operatorname{span}\{x^{\lambda_k}\}$ 在 $C[0, 1]$ 中不稠密。这提供了判断稠密性的实用判据。
+
+---
+
+*本卷建立了逼近论的核心理论框架：Weierstrass 逼近定理与 Bernstein 多项式证明建立了多项式逼近的存在性基础，Jackson 直接定理给出了光滑性与逼近阶的定量关系；有理逼近与 Padé 逼近（Newman 定理、Padé 表、收敛性）在处理非光滑函数和极点上远优于多项式；样条与小波（B-样条基、多分辨分析、Daubechies 小波、快速小波变换）提供了高效且局部化的逼近工具；径向基函数（正定核、RKHS、散乱数据逼近、无网格 PDE 方法）是处理高维和复杂几何问题的主要工具。逼近论是连接泛函分析、数值分析和信号处理的桥梁。*
+
+---
+
+*本卷在已有内容基础上，扩展至 6 章。*
+
+---
+
+*本卷从浮点运算和误差分析出发，建立了线性方程组、特征值问题、数值积分和常微分方程数值解的核心算法体系。补充内容拓展至计算数学的理论深层：有限元方法的Sobolev空间理论基础（Lax-Milgram、Céa引理、inf-sup条件、后验误差估计）、谱方法与谱元法（指数收敛与hp-细化）、多重网格法（$\mathcal{O}(N)$最优复杂度）、双曲守恒律数值格式（Godunov定理、TVD/ENO/WENO）、以及计算流体力学（投影法、稳定化有限元、大涡模拟）。**补充部分二**引入了逼近论——数值分析的理论基石：Weierstrass逼近定理与Bernstein多项式、Chebyshev最佳一致逼近与交替定理、Jackson直接定理与Bernstein逆定理、有理逼近与Padé逼近、样条与小波（B-样条基、多分辨分析、Daubechies小波）、径向基函数与高维逼近、以及Müntz-Szász定理。共 10 章。*
