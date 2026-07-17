@@ -309,3 +309,46 @@ $$\mathcal{D}\text{-}\operatorname{Mod}(\operatorname{Bun}_G) \cong \operatornam
 
 
 *卷二十六：李理论终。*
+---
+
+## Hopf 代数与量子群导引
+
+> **前置知识**：第60-65章（抽象代数一）、第81-87章（李理论）
+
+Hopf 代数是一种同时具有代数结构和余代数结构的对象，它统一了群代数、包络代数和量子群。
+
+### 定义
+
+一个 **Hopf 代数** 是域 $k$ 上的向量空间 $H$ 配备：
+- **乘法** $\mu: H \otimes H \to H$ 和 **单位** $\eta: k \to H$（代数结构）
+- **余乘法** $\Delta: H \to H \otimes H$ 和 **余单位** $\\varepsilon: H \to k$（余代数结构）
+- **对极**（antipode）$S: H \to H$
+
+满足两组相容性条件：乘法与余乘法的兼容（双代数条件），以及对极的 Hopf 公理。
+
+### 关键例子
+
+| Hopf 代数 | 底代数 | 余乘法 |
+|-----------|--------|--------|
+| 群代数 $k[G]$ | 群的卷积代数 | $\Delta(g) = g \otimes g$ |
+| 包络代数 $U(\mathfrak{g})$ | 李代数的泛包络代数 | $\Delta(x) = x \otimes 1 + 1 \otimes x$（$x \in \mathfrak{g}$） |
+| 坐标环 $\mathcal{O}(G)$ | 代数群的正则函数环 | $\Delta(f)(g,h) = f(gh)$ |
+| 量子包络代数 $U_q(\mathfrak{g})$ | $U(\mathfrak{g})$ 的 q-形变 | 依赖 $\mathfrak{g}$ 的 Cartan 矩阵 |
+
+### 量子群
+
+**Drinfeld-Jimbo 量子群** $U_q(\mathfrak{g})$ 是半单李代数 $\mathfrak{g}$ 的泛包络代数的单参数形变。其定义关系用 $q$-整数替换经典整数：
+
+$$[E_i, F_j] = \delta_{ij} \frac{K_i - K_i^{-1}}{q_i - q_i^{-1}}$$
+
+当 $q \to 1$ 时恢复经典包络代数。
+
+### 表示论与 R-矩阵
+
+量子群具有**拟三角结构**（quasitriangular structure）——存在泛 R-矩阵：
+$$\mathcal{R} \in U_q(\mathfrak{g}) \hat{\otimes} U_q(\mathfrak{g})$$
+
+使得两个表示的张量积可自然地交换顺序，这给出辫子幺半范畴结构。这直接联系到：
+- **Yang-Baxter 方程**的可解性
+- **辫群**（braid group）的线性表示
+- **纽结不变量**（如 Jones 多项式）的量子群构造
