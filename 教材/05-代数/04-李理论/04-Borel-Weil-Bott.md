@@ -1,59 +1,100 @@
-## 第87章：Kac-Moody代数与无限维李代数
-Kac-Moody 代数是半单李代数的无限维推广，由 Cartan 矩阵定义，去掉了正定性条件。仿射 Kac-Moody 代数在共形场论、弦论和可积系统中起核心作用。
+## 第87章：Borel-Weil-Bott 定理
 
-### 125.1 Kac-Moody代数的定义
+### 87.1 旗簇与齐性线丛
 
-**定义 125.1**（广义 Cartan 矩阵）：$n \times n$ 整数矩阵 $A = (a_{ij})$ 称为**广义 Cartan 矩阵**，如果：
-1. $a_{ii} = 2$
-2. $a_{ij} \leq 0$（$i \neq j$）
-3. $a_{ij} = 0 \iff a_{ji} = 0$
+**定义 87.1**（旗簇）：设 $G$ 为 $\mathbb{C}$ 上的连通半单代数群，$B \subset G$ 为 Borel 子群（极大连通可解子群），$T \subset B$ 为极大环面。**旗簇**（flag variety）定义为完备齐性空间
+$$\mathcal{B} = G/B$$
+$\mathcal{B}$ 为光滑射影簇，维数 $\dim \mathcal{B} = |\Phi^+|$（正根的个数）。$G$ 通过左平移传递作用于 $\mathcal{B}$。基本例子：$G = GL_n(\mathbb{C})$ 时，$\mathcal{B}$ 同构于 $\mathbb{C}^n$ 中全体完全旗 $\{0\} = V_0 \subset V_1 \subset \cdots \subset V_n = \mathbb{C}^n$（$\dim_\mathbb{C} V_i = i$）构成的空间。
 
-若 $A$ 是正定的，则为有限维半单李代数的 Cartan 矩阵。若 $A$ 是半正定的（$\det A = 0$ 但所有主子式 $\geq 0$），对应**仿射型** Kac-Moody 代数。其他情形为**不定型**。
+**定义 87.2**（权与特征）：权格为 $\Lambda = \operatorname{Hom}_{\text{alg}}(T, \mathbb{C}^\times)$。Borel 子群 $B$ 决定了正根集 $\Phi^+ \subset \Phi$。**支配整权**集为
+$$\Lambda^+ = \{\lambda \in \Lambda : \langle \lambda, \alpha^\vee \rangle \geq 0,\ \forall \alpha \in \Phi^+\}$$
+$\rho = \frac{1}{2} \sum_{\alpha \in \Phi^+} \alpha$ 为全部正根之和的一半。
 
-**定义 125.2**（Kac-Moody代数）：由广义 Cartan 矩阵 $A = (a_{ij})_{1 \leq i,j \leq n}$ 生成的 **Kac-Moody 代数** $\mathfrak{g}(A)$ 由 $3n$ 个生成元 $\{e_i, f_i, h_i\}_{i=1}^n$ 和以下关系定义：
-- $[h_i, h_j] = 0$
-- $[h_i, e_j] = a_{ij} e_j$，$[h_i, f_j] = -a_{ij} f_j$
-- $[e_i, f_j] = \delta_{ij} h_i$
-- $(\operatorname{ad} e_i)^{1 - a_{ij}}(e_j) = 0$（$i \neq j$，Serre 关系）
-- $(\operatorname{ad} f_i)^{1 - a_{ij}}(f_j) = 0$
+**定义 87.3**（齐性线丛）：对每个权 $\lambda \in \Lambda$，定义一维系数的 $B$-模 $\mathbb{C}_\lambda$：$b \in B$ 通过投射 $B \twoheadrightarrow B/U \cong T$ 后以特征 $\lambda$ 作用于 $\mathbb{C}$。定义 $G/B$ 上的**齐性线丛**为均衡积
+$$\mathcal{L}_\lambda = G \times_B \mathbb{C}_\lambda \longrightarrow G/B,\quad (g, z) \sim (gb, \lambda(b)^{-1} z)$$
+投影映射为 $(g, z) \mapsto gB$。$\mathcal{L}_\lambda$ 是 $G/B$ 上的 $G$-等变全纯线丛。当 $\lambda \in \Lambda^+$ 时，$\mathcal{L}_\lambda$ 为丰沛线丛（ample line bundle）。
 
-**定理 125.1**（Kac-Kazhdan 定理）：$\mathfrak{g}(A)$ 可通过最高权表示理论分类。所有可积最高权表示（即 $e_i, f_i$ 局部幂零作用）由其最高权完全分类——恰好对应于支配整权。
+### 87.2 Borel-Weil 定理
 
-### 125.2 仿射李代数
+**定理 87.1**（Borel-Weil，1954）：设 $\lambda \in \Lambda^+$ 为支配整权。则整体截面空间 $H^0(G/B, \mathcal{L}_\lambda)$ 作为 $G$-模同构于最高权为 $\lambda$ 的不可约有限维表示 $V_\lambda$：
+$$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$$
+若 $\lambda \notin \Lambda^+$（非支配权），则 $H^0(G/B, \mathcal{L}_\lambda) = 0$。
 
-**定义 125.3**（仿射 Kac-Moody 代数）：仿射李代数对应于半正定广义 Cartan 矩阵（$\det A = 0$），等价于有限维单李代数 $\mathfrak{g}$ 的**环代数**（loop algebra）的中心扩张：$\hat{\mathfrak{g}} = \mathfrak{g} \otimes \mathbb{C}[t, t^{-1}] \oplus \mathbb{C} K \oplus \mathbb{C} d$，其中 $K$ 是中心元，$d = t \frac{d}{dt}$ 是导子（degree operator）。
+**证明**（框架）：利用 $G$ 的 Bruhat 分解 $G = \bigsqcup_{w \in W} BwB$（$W = N_G(T)/T$ 为 Weyl 群）。$G/B$ 分解为 $B$-轨道的并 $\mathcal{B} = \bigsqcup_{w \in W} \mathcal{O}_w$（Schubert 胞腔），每个 $\mathcal{O}_w = BwB/B \cong \mathbb{C}^{\ell(w)}$ 为仿射空间。截面 $s \in H^0(G/B, \mathcal{L}_\lambda)$ 对应于全纯函数 $\varphi : G \to \mathbb{C}$ 满足 $\varphi(gb) = \lambda(b) \varphi(g)$。由最高权理论，此类函数生成的 $G$-模恰为对偶表示 $V_\lambda^*$ 的最高权向量轨道的线性张成。故 $H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$。$\blacksquare$
 
-**定理 125.2**（仿射 Dynkin 图分类）：不可约仿射 Kac-Moody 代数由（扩展的）仿射 Dynkin 图分类：
-- $A_n^{(1)}$（$n \geq 1$）、$B_n^{(1)}$（$n \geq 3$）、$C_n^{(1)}$（$n \geq 2$）、$D_n^{(1)}$（$n \geq 4$）
-- $E_6^{(1)}, E_7^{(1)}, E_8^{(1)}, F_4^{(1)}, G_2^{(1)}$
-- 扭仿射型（twisted）：$A_{2n}^{(2)}, A_{2n-1}^{(2)}, D_n^{(2)}, E_6^{(2)}, D_4^{(3)}$
+**定理 87.2**（Borel-Weil 与 Weyl 特征公式）：作为 Euler-Poincaré 特征，
+$$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)}}{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho)}} = \operatorname{ch} V_\lambda$$
 
-**命题 125.1**（仿射李代数的有心扩张）：中心扩张 $\hat{\mathfrak{g}}$ 的中心元 $K$ 称为**中心荷**（central charge）或**水平**（level）。不可约最高权表示 $L(\Lambda)$ 的水平 $k = \Lambda(K)$ 是基本的离散参数。
+### 87.3 Bott-Borel-Weil 定理
 
-### 125.3 Weyl-Kac特征公式与Macdonald恒等式
+**定义 87.4**（Weyl 群的点作用）：对 $w \in W$ 和 $\lambda \in \Lambda$，定义平移 Weyl 群作用（点作用）
+$$w \bullet \lambda = w(\lambda + \rho) - \rho$$
+权 $\lambda$ 称为**正则**的，若对所有 $\alpha \in \Phi$，$\langle \lambda + \rho, \alpha^\vee \rangle \neq 0$（即 $\lambda + \rho$ 不落在任何 Weyl 腔的壁上）。$\lambda$ 称为**奇异**的，若存在 $\alpha$ 使得 $\langle \lambda + \rho, \alpha^\vee \rangle = 0$。
 
-**定理 125.3**（Weyl-Kac 特征公式，Kac 1968）：不可约最高权 $\Lambda$ 的可积模 $L(\Lambda)$ 的（形式）特征标为
-$$\operatorname{ch} L(\Lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\Lambda + \rho) - \rho}}{\prod_{\alpha \in \Phi^+} (1 - e^{-\alpha})^{\dim \mathfrak{g}_\alpha}}$$
-其中 $W$ 是仿射 Weyl 群（由单根生成），$\rho$ 是仿射 Weyl 向量。
+**定理 87.3**（Bott-Borel-Weil，Bott 1957）：设 $\lambda \in \Lambda$。
 
-**定理 125.4**（Macdonald 恒等式，1972）：取 $\Lambda = 0$（平凡表示），Weyl-Kac 分母恒等式化为
-$$\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho) - \rho} = \prod_{\alpha \in \Phi^+} (1 - e^{-\alpha})^{\dim \mathfrak{g}_\alpha}$$
-对 $\hat{\mathfrak{sl}}(n)$，此即经典 Macdonald 恒等式的 $q$-级数推广，包含 Euler 五角数定理和 Jacobi 三重积恒等式作为特例。
+1. 若 $\lambda + \rho$ 为正则的，则存在唯一的 $w \in W$ 使得 $w \bullet \lambda \in \Lambda^+$（支配），且
+$$H^i(G/B, \mathcal{L}_\lambda) \cong \begin{cases}
+V_{w \bullet \lambda} & \text{若 } i = \ell(w) \\
+0 & \text{若 } i \neq \ell(w)
+\end{cases}$$
 
-### 125.4 顶点算子代数与共形场论
+2. 若 $\lambda + \rho$ 为奇异的，则对所有 $i \geq 0$，$H^i(G/B, \mathcal{L}_\lambda) = 0$。
 
-**定义 125.4**（顶点算子代数，Borcherds 1986 / Frenkel-Lepowsky-Meurman 1988）：仿射 Kac-Moody 代数 $\hat{\mathfrak{g}}$ 的最高权表示 $L(k\Lambda_0)$（水平 $k$）承载了**顶点算子代数**（Vertex Operator Algebra, VOA）的结构，其中顶点算子由生成元 $e_i(z) = \sum_n e_i(n) z^{-n-1}$ 的生成函数给出。VOA 的公理化框架（Borcherds）统一了共形场论、有限单群的月光猜想和仿射李代数表示论。
+**证明**（框架）：证明基于三个关键技术。
 
-**定理 125.5**（Sugawara 构造，1968）：仿射 Lie 代数 $\hat{\mathfrak{g}}$ 的泛包络代数的完备化中，可通过生成元的正规序二次型构造 Virasoro 代数生成元 $L_n$——满足 $[L_m, L_n] = (m-n)L_{m+n} + \frac{c}{12}(m^3 - m)\delta_{m+n,0}$。这给出了共形场论中能量-动量张量的数学实现。中心荷 $c = \frac{k \dim \mathfrak{g}}{k + h^\vee}$（其中 $h^\vee$ 是对偶 Coxeter 数）。
+（i）**Schubert 胞腔的层上同调**：将 $G/B$ 按 Schubert 胞腔 $\mathcal{O}_w$ 分层，使用关于闭嵌入和开嵌入的上同调长正合列。对每个 Schubert 簇 $X_w = \overline{\mathcal{O}_w}$，$\mathcal{L}_\lambda|_{X_w}$ 的上同调可通过归纳计算。
 
----
+（ii）**Demazure 算符**：对每个单根 $\alpha \in \Delta$，定义 Demazure 算符 $D_\alpha$ 作用于权的形式特征标上：
+$$D_\alpha(e^\lambda) = \frac{e^\lambda - e^{s_\alpha(\lambda) - \alpha}}{1 - e^{-\alpha}}$$
+其几何意义为 $\pi_\alpha : G/B \to G/P_\alpha$（$\mathbb{P}^1$-纤维化）诱导的上同调推移。
 
----
+（iii）**归纳论证**：设 $\lambda + \rho$ 为正则且 $\langle \lambda + \rho, \alpha^\vee \rangle < 0$，则 $\mathcal{L}_\lambda$ 在 $\mathbb{P}^1$-纤维上没有截面，上同调集中于 $H^1$。每一次穿越单根 $\alpha$ 的壁，上同调群移动一个指标并相应改变权。通过对 $\ell(w)$ 归纳，归约到 $w = \operatorname{id}$（Borel-Weil 定理的情形）。$\blacksquare$
 
----
+**定理 87.4**（Weyl 特征公式作为推论）：对任意 $\lambda \in \Lambda$，由 Euler-Poincaré 特征
+$$\chi(G/B, \mathcal{L}_\lambda) = \sum_{i \geq 0} (-1)^i \operatorname{ch} H^i(G/B, \mathcal{L}_\lambda)$$
+- 若 $\lambda \in \Lambda^+$，仅有 $H^0$ 非零，$\chi = \operatorname{ch} V_\lambda$
+- 若 $\lambda + \rho$ 为正则且 $w \bullet \lambda \in \Lambda^+$，$\chi = (-1)^{\ell(w)} \operatorname{ch} V_{w \bullet \lambda}$
 
----
+因为特征标映射是 $K$-理论中的加性不变量，上述 Euler-Poincaré 特征恒等于 Atiyah-Bott 不动点公式给出的表达式
+$$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)}}{\prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2})}$$
+其中分母 $\prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2}) = e^{-\rho} \prod_{\alpha \in \Phi^+} (e^\alpha - 1) = \sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho) - \rho}$ 为 Weyl 分母恒等式。分子分母化简即得标准 Weyl 特征公式。
 
----
+### 87.4 与几何量子化的联系
 
----
+**注记 87.1**（几何量子化，Kostant-Souriau 1960年代）：Borel-Weil-Bott 定理是几何量子化最经典的范例。在几何量子化框架中：
+
+- 余伴随轨道 $\mathcal{O}_\lambda = G \cdot \lambda \subseteq \mathfrak{g}^*$（$G$ 为紧实形 $G_c$ 时）是 $G_c$ 的齐性辛流形，$\mathcal{O}_\lambda \cong G_c / G_{c,\lambda} \cong G/B$（作为复流形）
+- $\mathcal{L}_\lambda \to \mathcal{O}_\lambda$ 为**预量子化线丛**，其联络曲率恰为 Kostant-Kirillov-Souriau 辛形式
+- Borel 子群 $B$ 给出的复结构 $J$ 构成 Kähler 极化。极化下的量子化 = 全纯截面的空间 $H^0$，恰好实现不可约酉表示 $V_\lambda$
+- Bott-Borel-Weil 定理计算了高次上同调，证明了正则权情形的量子化无反常（anomalies）——上同调集中于单一度数
+
+这完美体现了 Kostant-Kirillov "轨道法" 哲学：紧 Lie 群的不可约酉表示 <-> 余伴随轨道，且表示的特征标由轨道上 Liouville 测度的 Fourier 变换给出（Harish-Chandra 特征标公式）。
+
+### 87.5 Demazure 模与 Schubert 簇
+
+**定义 87.5**（Schubert 簇）：对 $w \in W$，**Schubert 簇** $X_w = \overline{B w B / B} \subseteq G/B$ 是 Schubert 胞腔 $\mathcal{O}_w \cong \mathbb{C}^{\ell(w)}$ 的 Zariski 闭包。$\dim_\mathbb{C} X_w = \ell(w)$，且 $X_w$ 为正规射影簇（一般非光滑）。全体 $\{X_w\}_{w \in W}$ 按 Bruhat 偏序 $v \leq w \iff X_v \subseteq X_w$ 分层。
+
+**定义 87.6**（Demazure 模）：对 $\lambda \in \Lambda^+$ 和 $w \in W$，**Demazure 模** $V_\lambda(w)$ 为 $V_\lambda$ 中由极值权空间 $V_\lambda(w\lambda)$ 在 Borel 子代数 $\mathfrak{b}$ 作用下生成的子模：
+$$V_\lambda(w) = U(\mathfrak{b}) \cdot V_\lambda(w\lambda) \subseteq V_\lambda$$
+其中 $V_\lambda(w\lambda)$ 为权 $w\lambda$ 的一维权空间。$V_\lambda(w)$ 是 $B$ 的（无限维）表示，其有限维部分由 $V_\lambda$ 的唯一性确定。
+
+**定理 87.5**（Demazure 特征公式）：设 $\lambda \in \Lambda^+$。则
+$$H^0(X_w, \mathcal{L}_\lambda|_{X_w}) \cong V_\lambda(w)^*$$
+且特征标由 Demazure 算符给出：$\operatorname{ch} V_\lambda(w) = D_w(e^\lambda)$，其中 $D_w = D_{\alpha_{i_1}} \circ \cdots \circ D_{\alpha_{i_\ell}}$（$w = s_{i_1} \cdots s_{i_\ell}$ 为约化分解），而单根算符为
+$$D_\alpha(e^\mu) = \frac{e^\mu - e^{s_\alpha(\mu) - \alpha}}{1 - e^{-\alpha}}$$
+取 $w = w_0$（最长元）时 $V_\lambda(w_0) = V_\lambda$，即回到 Borel-Weil 定理。
+
+**证明**（框架）：对 $\ell(w)$ 归纳。单反射 $s_\alpha$ 情形利用 $\mathbb{P}^1$-纤维化 $\pi_\alpha : G/B \to G/P_\alpha$ 的 Leray 谱序列计算 $H^0$。一般 $w$ 写为约化乘积，每一步施行 Demazure 算符并通过归纳构造截面空间。几何上，$X_w$ 上的截面由 $w$ 决定的极值向量生成的 $U(\mathfrak{b})$ 张成空间所刻画。$\blacksquare$
+
+### 87.6 Beilinson-Bernstein 局部化
+
+**定理 87.6**（Beilinson-Bernstein 局部化，1981）：设 $\mathfrak{g}$ 为复半单 Lie 代数，$\lambda \in \mathfrak{h}^*$ 为支配正则权。则存在范畴等价
+$$\mathcal{M}(\mathfrak{g}, \lambda) \cong \operatorname{QCoh}(G/B, \mathcal{D}_\lambda)$$
+其中左端为具有平凡广义中心特征的 $\mathfrak{g}$-模（Harish-Chandra 双模范畴），右端为 $G/B$ 上扭折微分算符层 $\mathcal{D}_\lambda$ 的拟凝聚层范畴。该等价将 Verma 模映为标准 $\mathcal{D}$-模，将单最高权模映为连接 $\mathcal{D}$-模（即全纯线丛的 $\mathcal{D}$-模推送）。
+
+**定理 87.7**（局部化与 Borel-Weil-Bott 的联系）：对支配正则权 $\lambda$，整体截面函子 $\Gamma(G/B, -)$ 在扭折 $\mathcal{D}$-模上正合，且
+$$\Gamma(G/B, \mathcal{D}_\lambda \otimes_{\mathcal{O}} \mathcal{L}_\mu) \cong M(\mu)^* \quad (\text{$\mu$ 与 $\lambda$ 全整链接})$$
+其中 $M(\mu)$ 为权 $\mu$ 的 Verma 模。对反支配权（antidominant），$\Gamma$ 函子非正合而需考察高次上同调，这正好对应于 Bott-Borel-Weil 定理中的上同调转移现象。对奇异权（$\lambda+\rho$ 落在 Weyl 腔壁上），通过平移函子将问题归约至正则情形，给出全部 $H^i(G/B, \mathcal{L}_\mu)$ 的代数刻画。
+
+**注记 87.2**：Beilinson-Bernstein 局部化定理是几何表示论的基石，将代数 $\mathcal{D}$-模理论与李代数表示论统一。该定理为 Kazhdan-Lusztig 猜想（由 Brylinski-Kashiwara 与 Beilinson-Bernstein 于 1981 年独立证明）提供了几何框架，将 Borel-Weil-Bott 嵌入为宏观对应体系的特例：旗簇上的 $\mathcal{D}$-模、反常层和反常复形精确分类了李代数的全体表示。

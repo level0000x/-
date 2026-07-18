@@ -1,113 +1,111 @@
 ## Ch 108 值分布理论（Nevanlinna 理论）
-Nevanlinna 理论是复分析中研究亚纯函数值分布的核心框架，由 R. Nevanlinna 于 1925 年创立，将 Picard 定理从定性陈述提升为精密的定量理论。任给 $\mathbb{C}$ 上的亚纯函数 $f$ 及 $a \in \hat{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$，引入计数函数 $N(r, a, f)$（计及重数的 $a$ 值点个数的对数平均）与逼近函数 $m(r, a, f)$（$f$ 在圆周 $|z| = r$ 上接近 $a$ 的程度的对数平均）。定义**特征函数** $T(r, f) = m(r, \infty, f) + N(r, \infty, f)$，它刻画 $f$ 的整体增长速率。**第一基本定理**断言：对任意 $a \in \hat{\mathbb{C}}$，
 
-$$T(r, f) = m(r, a, f) + N(r, a, f) + O(1)$$
+Nevanlinna理论由R. Nevanlinna于1925年创立，将Picard定理从定性陈述提升为精密的定量理论，是复分析中亚纯函数值分布的核心框架。
 
-即和 $m(r,a) + N(r,a)$ 与目标值 $a$ 无关（至多相差有界量），表明 $f$ 以相同速率趋向每个值。**第二基本定理**是理论的核心深度结果：对任意 $q \geq 3$ 个互异值 $a_1, \ldots, a_q \in \hat{\mathbb{C}}$，
+**定义108.1**（Poisson-Jensen公式与特征函数）：设$f$为$\mathbb{C}$上非常数亚纯函数。对$r > 0$，命$f$在$|z| \leq r$中的零点为$a_\mu$（计重数）、极点为$b_\nu$（计重数）。**Poisson-Jensen公式**给出
+$$\log|f(z)| = \frac{1}{2\pi} \int_0^{2\pi} \log|f(re^{i\theta})| \frac{r^2 - |z|^2}{|re^{i\theta} - z|^2} d\theta - \sum_\mu \log\left|\frac{r(z - a_\mu)}{r^2 - \bar{a}_\mu z}\right| + \sum_\nu \log\left|\frac{r(z - b_\nu)}{r^2 - \bar{b}_\nu z}\right|$$
 
-$$\sum_{\nu=1}^{q} m(r, a_\nu, f) \leq 2T(r, f) - N_1(r) + S(r, f)$$
+取$z = 0$，可得**Jensen公式**：$\log|f(0)| = \frac{1}{2\pi}\int_0^{2\pi} \log|f(re^{i\theta})| d\theta - \sum_{|a_\mu| < r} \log\frac{r}{|a_\mu|} + \sum_{|b_\nu| < r} \log\frac{r}{|b_\nu|}$。
 
-其中 $N_1(r)$ 为分支点修正项，$S(r, f) = O(\log r T(r, f))$ 为误差项（在 $r \to \infty$ 除去一个有限测度集外成立）。作为直接推论，超越亚纯函数至多有两个 Picard 例外值（Picard 小定理），且其完全重数分支点至多可数。该理论深刻揭示了亚纯函数的"均值分布"本质——它不能同时极度靠近多个不同的值，这一现象与复平面的双曲几何结构紧密相关。
+定义**靠近函数**$m(r, f) = \frac{1}{2\pi} \int_0^{2\pi} \log^+ |f(re^{i\theta})| d\theta$（$\log^+ x = \max(\log x, 0)$），**计数函数**$N(r, f) = \int_0^r \frac{n(t, f) - n(0, f)}{t} dt + n(0, f) \log r$（$n(t, f)$为$f$在$|z| \leq t$中的极点数）。**Nevanlinna特征函数**定义为
+$$T(r, f) = m(r, f) + N(r, f)$$
+$T(r, f)$衡量$f$的整体增长率——有理函数时$T(r, f) = O(\log r)$，超越亚纯函数时$T(r, f)/\log r \to \infty$。
 
-**定义 57.1**（Nevanlinna 特征函数）：设 $f$ 为 $\mathbb{C}$ 上非常数的亚纯函数。对 $r > 0$，定义：靠近函数 $m(r, f) = \frac{1}{2\pi} \int_0^{2\pi} \log^+ |f(r e^{i\theta})| d\theta$（其中 $\log^+ x = \max(\log x, 0)$）；计数函数 $N(r, f) = \int_0^r \frac{n(t, f) - n(0, f)}{t} dt + n(0, f) \log r$（其中 $n(t, f)$ 为 $f$ 在 $|z| \leq t$ 中的极点数，计重数）。**Nevanlinna 特征函数**定义为 $T(r, f) = m(r, f) + N(r, f)$。$T(r, f)$ 衡量 $f$ 的增长速度——若 $f$ 为有理函数，则 $T(r, f) = O(\log r)$；若 $f$ 为超越整函数，则 $T(r, f) / \log r \to \infty$。
+**定理108.1**（Nevanlinna第一基本定理）：对任意$a \in \mathbb{C} \cup \{\infty\}$，
+$$T\left(r, \frac{1}{f-a}\right) = T(r, f) + O(1) \quad (r \to \infty)$$
+即$m(r, a, f) + N(r, a, f) = T(r, f) + O(1)$，表明特征函数在Möbius变换下几乎不变。
 
-**定理 57.1**（第一基本定理）：对任意 $a \in \mathbb{C} \cup \{\infty\}$，有 $m(r, \frac{1}{f-a}) + N(r, \frac{1}{f-a}) = T(r, f) + O(1)$（$r \to \infty$）。即：$T(r, \frac{1}{f-a}) = T(r, f) + O(1)$——特征函数在 Möbius 变换下几乎不变。
+**证明**：由Poisson-Jensen公式取$z = 0$，配合$\log^+$与$\log$的关系，将$\log|f(0) - a|$表为$m(r, 1/(f-a)) - N(r, 1/(f-a))$与有限的$f(0)$项之和。正负部分拆分即得$T(r, f - a) = T(r, f) + O(1)$，再由$T$的Möbius不变性完成。$\blacksquare$
 
-**定理 57.2**（第二基本定理 / Nevanlinna）：对互异的 $a_1, \ldots, a_q \in \mathbb{C} \cup \{\infty\}$，有 $(q-2) T(r, f) \leq \sum_{j=1}^q \overline{N}(r, \frac{1}{f-a_j}) + S(r, f)$，其中 $\overline{N}$ 是不计重数的计数函数，$S(r, f) = o(T(r, f))$ 对几乎所有 $r$ 成立。*证明思路*：利用对数导数的引理 $\int_0^{2\pi} \log^+ |f'/f| d\theta = o(T(r, f))$，结合对 $F = \prod_{j=1}^q (f - a_j)$ 应用第一基本定理和 Jensen 公式。
+**定理108.2**（Nevanlinna第二基本定理）：对互异的$a_1, \ldots, a_q \in \mathbb{C} \cup \{\infty\}$（$q \geq 2$），
+$$\sum_{j=1}^q m(r, a_j, f) \leq 2T(r, f) - N_1(r) + S(r, f)$$
+其中$N_1(r)$为$f$的分支点修正项（$f'$的零点计数，不计重数），$S(r, f) = O(\log r T(r, f))$为误差项（在$r \to \infty$除去一个有限线性测度集外成立）。等价形式：$(q-2) T(r, f) \leq \sum_{j=1}^q \overline{N}(r, a_j, f) + S(r, f)$（$\overline{N}$为不计重数的计数函数）。
 
-**推论 57.1**（Picard 小定理作为特例）：若整函数 $f$ 避开两个有穷值，则第二基本定理给出 $(2-2) T(r, f) \leq 0 + o(T(r, f))$，矛盾于 $\log r / T(r, f) \to 0$。因此 $f$ 必须是常数——Picard 小定理得证。
+**证明思路**：核心引理是对数导数的估计$\int_0^{2\pi} \log^+ |f'/f| d\theta = o(T(r, f))$。对$F = \prod_{j=1}^q (f - a_j)$应用第一基本定理与Jensen公式，利用$F'/F$与$f'/(f-a_j)$的线性组合关系，配合对数导数引理推导出不等式。$\blacksquare$
+
+**推论108.3**（Picard小定理作为推论）：若整函数$f$避开两个有穷值，则第二基本定理给出$(2-2)T(r, f) \leq 0 + S(r, f)$，与$f$为超越整函数时$T(r, f)/\log r \to \infty$矛盾。因此$f$必为常数——Picard小定理得证。
 
 ---
 
----
+## Ch 109 拟共形映射与Teichmüller空间
+### 拟共形映射
 
----
-
----
-
----
----
-
-## Ch 109 拟共形映射与 Teichmüller 空间
-### 58.1 拟共形映射
-
-拟共形映射是共形映射的自然推广，允许有界的角度畸变。其解析定义基于 **Beltrami 方程**：
-
+拟共形映射是共形映射的自然推广，允许有界的角度畸变。其解析定义基于**Beltrami方程**：
 $$f_{\bar{z}} = \mu(z) f_z$$
+其中$\mu(z)$为**Beltrami系数**（复值可测函数），满足$\|\mu\|_\infty = \operatorname{ess\,sup} |\mu(z)| < 1$。当$\mu \equiv 0$时方程退化为Cauchy-Riemann方程；$\mu \neq 0$时$f$将无穷小圆映为椭圆，偏心率由$|\mu|$决定。核心结果**可测Riemann映射定理**（Morrey, 1938; Ahlfors-Bers, 1960）断言：对$\mathbb{C}$上任意$\|\mu\|_\infty < 1$的可测Beltrami系数$\mu$，存在唯一的拟共形同胚$f^\mu : \hat{\mathbb{C}} \to \hat{\mathbb{C}}$满足Beltrami方程且固定$0, 1, \infty$。
 
-其中 $\mu(z)$ 为 **Beltrami 系数**（复值可测函数），满足 $\|\mu\|_\infty = \operatorname{ess\,sup} |\mu(z)| < 1$。当 $\mu \equiv 0$ 时方程退化为 Cauchy-Riemann 方程，$f$ 为全纯函数；一般 $\mu \neq 0$ 时 $f$ 将无穷小圆映为椭圆，其偏心率由 $|\mu|$ 决定。$\mu$ 的 $L^\infty$ 范数度量了映射偏离共形的程度。核心结果——**可测 Riemann 映射定理**（Morrey, 1938；Ahlfors-Bers, 1960）断言：对复平面上任意满足 $\|\mu\|_\infty < 1$ 的可测 Beltrami 系数 $\mu$，存在唯一的拟共形同胚 $f^\mu : \hat{\mathbb{C}} \to \hat{\mathbb{C}}$ 满足 Beltrami 方程且固定 $0, 1, \infty$。该定理是复分析中 Riemann 映射定理的深远推广，为 Teichmüller 理论、Klein 群形变空间和复动力系统提供了不可或缺的分析工具。
+### Teichmüller空间
 
-### 58.2 Teichmüller 空间简介
-
-**Teichmüller 空间** $\mathcal{T}_g$ 是亏格 $g$ 的紧 Riemann 面复结构的形变空间。对 $g \geq 2$，$\mathcal{T}_g$ 是 $3g-3$ 维复流形（实维数 $6g-6$）。其标准定义利用拟共形映射：取定参考曲面（标记 Riemann 面）$S_g$，令
-
+**Teichmüller空间**$\mathcal{T}_g$是亏格$g$的紧Riemann面复结构的形变空间。对$g \geq 2$，$\mathcal{T}_g$是$3g-3$维复流形（实维$6g-6$）。其标准定义利用拟共形映射：取定标记Riemann面$S_g$，令
 $$\mathcal{T}_g = \{(X, f) \mid f : S_g \to X \text{ 为拟共形同胚}\} / \sim$$
-
-其中 $(X, f) \sim (Y, g)$ 若 $g \circ f^{-1} : X \to Y$ 同伦于共形映射。等价地，$\mathcal{T}_g$ 可通过 **Bers 嵌入**实现为 $\mathbb{C}^{3g-3}$ 中的有界域——将曲面上的全纯二次微分对应于某个单值化群形变。Teichmüller 度量 $d_T$（基于极小拟共形映射的极大伸缩商的对数）将 $\mathcal{T}_g$ 变为完备度量空间。模空间 $\mathcal{M}_g = \mathcal{T}_g / \mathrm{MCG}(S_g)$ 则是 $\mathcal{T}_g$ 关于映射类群作用的商，为一个 $3g-3$ 维复轨道空间（orbifold），在双曲几何、弦论和代数几何的模空间理论中扮演核心角色。$\blacksquare$
-
----
+其中$(X, f) \sim (Y, g)$若$g \circ f^{-1} : X \to Y$同伦于共形映射。通过Bers嵌入可实现为$\mathbb{C}^{3g-3}$中的有界域，Teichmüller度量$d_T$将其变为完备度量空间。模空间$\mathcal{M}_g = \mathcal{T}_g / \mathrm{MCG}(S_g)$为$3g-3$维复轨道空间。
 
 ---
 
----
+## Ch 110：Siegel区域与对称域
+
+Siegel区域理论是经典多复变函数论的核心部分。**Siegel上半空间**$\mathcal{H}_n = \{ Z \in \mathbb{C}^{n \times n} : Z^{\mathsf{T}} = Z, \; \operatorname{Im}(Z) \succ 0 \}$是$\operatorname{Sp}(2n,\mathbb{R})$的作用空间。一般**Siegel区域**为$\{ (z,w) \in \mathbb{C}^{m} \times \mathbb{C}^{n} : \operatorname{Im}(z) - F(w,w) \in \Omega \}$，其中$F$为Hermite形式，$\Omega \subset \mathbb{R}^m$为自对偶锥。Elie Cartan (1935)将不可约有界对称域分为四大类经典域和两个例外域（16维和27维）。Siegel模形式（$\operatorname{Sp}(2n,\mathbb{Z})$作用下变换的全纯函数）推广了经典椭圆模形式，在志村簇和弦论中有深刻应用。
 
 ---
 
----
----
+## Ch 111：多复变函数论导引
 
-## Ch 110：Siegel 区域与对称域
-Siegel 区域理论是经典多复变函数论的核心部分。**定义**：$\mathbb{C}^n$ 中的 **Siegel 上半空间**（或 Siegel 广义上半平面）为 $\mathcal{H}_n = \{ Z \in \mathbb{C}^{n \times n} : Z^{\mathsf{T}} = Z, \; \operatorname{Im}(Z) \succ 0 \}$（即 $n \times n$ 对称复矩阵虚部正定的集合），它是 $\operatorname{Sp}(2n,\mathbb{R})$ 的作用空间，等价于 **Siegel 上半空间** $\operatorname{Sp}(2n,\mathbb{R}) / \operatorname{U}(n)$。更一般地，**Siegel 区域**是第二类域：$\{ (z,w) \in \mathbb{C}^{m} \times \mathbb{C}^{n} : \operatorname{Im}(z) - F(w,w) \in \Omega \}$，其中 $F$ 是 $\mathbb{C}^{n} \times \mathbb{C}^{n} \to \mathbb{C}^{m}$ 的 Hermite 形式，$\Omega \subset \mathbb{R}^{m}$ 是自对偶锥。Siegel 域给出了所有齐性有界域的典型表示。**Hermann 有界对称域分类**（E. Cartan, 1935）：不可约有界对称域分为四大类经典域（由 Siegel 上半空间、Grassmann 流形、正交 Lie 球的 Cayley 变换得到）和两个例外域（16维和27维）。Siegel 上半空间上的 **Siegel 模形式**（即 $\operatorname{Sp}(2n,\mathbb{Z})$ 作用下变换的全纯函数）推广了经典椭圆模形式，在数论（志村簇）和弦论紧化中有深刻应用。
+多复变函数论研究$\mathbb{C}^n$（$n \geq 2$）上的全纯函数，与单复变有本质区别：孤立奇点可去、单位球与多圆柱不全纯等价。
 
----
+### 全纯域与Hartogs延拓
 
----
+**定义111.1**（全纯域）：开集$\Omega \subset \mathbb{C}^n$称为**全纯域**（Domain of Holomorphy），若存在$\Omega$上的全纯函数$f$，使得$f$不能全纯延拓到$\Omega$外任何点。即对任意点$p \in \partial\Omega$和任意邻域$U \ni p$，不存在$F \in \mathcal{O}(\Omega \cup U)$使$F|_\Omega = f$。
 
----
+**定理111.1**（Hartogs延拓定理，1906）：设$n \geq 2$，$\Omega \subset \mathbb{C}^n$为开集，$K \subset \Omega$为紧子集使得$\Omega \setminus K$连通。则$\Omega \setminus K$上的任意全纯函数可唯一地全纯延拓到整个$\Omega$。特别地，$\mathbb{C}^n$的孤立奇点（$n \geq 2$）总是可去的。
 
----
+**证明**：利用Cauchy积分公式在"管状"区域上构造延拓。设$f \in \mathcal{O}(\Omega \setminus K)$。取充分大的开球$B$使$K \subset B \subset\subset \Omega$，定义
+$$\tilde{f}(z) = \frac{1}{2\pi i} \int_{|\zeta| = R} \frac{f(\zeta, z')}{\zeta - z_1} d\zeta$$
+其中$z = (z_1, z')$且积分路径在$K$之外。由于$n \geq 2$，在复余一维的子簇上可绕过$K$选择积分围道。$\tilde{f}$在$B$上定义且全纯，且在$B \setminus K$上与$f$一致。由唯一性定理，$\tilde{f}$即为所求延拓。$\blacksquare$
 
----
----
+**推论111.2**（孤立奇点可去）：对$n \geq 2$，若$f$在$B(0,R) \setminus \{0\}$上全纯，则$f$自动延拓为$B(0,R)$上的全纯函数。因此$\mathbb{C}^n$（$n \geq 2$）中不存在类似单变量的极点和本性奇点。
 
-## Ch 111：多复变函数论导引（Several Complex Variables）
-多复变函数论研究 $\mathbb{C}^n$（$n \geq 2$）上的全纯函数，与单复变有本质区别。**基本现象**：（1）**Hartogs 现象**——存在区域 $\Omega \subsetneq \mathbb{C}^n$ 使得 $\Omega$ 上的所有全纯函数均可全纯延拓到更大的固定区域上。例如，对 $n \geq 2$，每个在 $0 < \|z\| < 1$ 上全纯的函数自动全纯延拓到整个单位球 $\|z\| < 1$——即孤立奇点不能作为全纯函数的障碍。这直接导致 $\mathbb{C}^n$ 中不存在"一般区域"的 Riemann 映射定理的类比。（2）**域的等价分类**：单复变中 Riemann 映射定理宣告所有单连通真子域彼此双全纯等价。多复变中双全纯等价类极其丰富——单位球 $B_n = \{ \|z\| < 1 \}$ 和单位多圆柱 $D^n = \{ |z_j| < 1 \}$ 并**不**双全纯等价，尽管两者都是 $\mathbb{C}^n$ 中的自然域。
+**定理111.1'**（Hartogs基本定理 — 全纯性的变量分离判别）：函数$f : \Omega \subset \mathbb{C}^n \to \mathbb{C}$全纯当且仅当$f$对每个变量单独全纯（无需连续性假设）。
 
-**基本定义**：函数 $f: \Omega \to \mathbb{C}$ 称为**全纯**若 $f$ 在每点满足 Cauchy-Riemann 方程组 $\frac{\partial f}{\partial \bar{z}_j} = 0$（$j = 1,\ldots,n$）。等价地，$f$ 在每个变量单独全纯。**核心定理**：（1）**Cauchy 积分公式**（多复变版本）——$f(z) = \frac{1}{(2\pi i)^n} \int_{|w_1-z_1| = r_1} \cdots \int_{|w_n - z_n| = r_n} \frac{f(w)}{(w_1 - z_1)\cdots(w_n - z_n)} dw_1 \cdots dw_n$ （对于乘积圆盘）；（2）**Osgood 引理**——单独连续且对每个变量单独全纯的函数是全纯的；（3）**Hartogs 基本定理**——$f$ 全纯当且仅当 $f$ 对每个变量单独全纯（无需连续性假设）。
+**证明**：单独全纯推出局部有界性（Osgood引理配合Hartogs延拓），再由Cauchy积分公式对每个变量展开可得联合连续性，最终导出联合全纯性。$\blacksquare$
 
-**Levi 问题**（E. E. Levi, 1911）：$\mathbb{C}^n$ 中的哪些域是全纯域（即存在不能延拓到更大域的全纯函数）？**答案**（Oka, 1942; Bremermann, 1954; Norguet, 1954）：域是全纯域当且仅当它是 **伪凸** 的。伪凸性由 **Levi 形式**（边界上复 Hessian 矩阵）的正半定性刻画——类似于 $\mathbb{R}^n$ 中域的凸性，但由复结构的约束导致。多复变中的 **$\bar{\partial}$ 问题**（即 $\bar{\partial} u = f$）及其正则解（Hörmander 的 $L^2$ 方法）正是处理这些问题的基本技术工具。
-
----
-
----
-
----
-
----
-
----
 ---
 
 ## Ch 112：多复变核心定理
-### 61.1 Stein 流形与 Oka 原理
+### Stein流形与Cartan-Thullen定理
 
-**定义**（Stein 流形）：复流形 $X$ 为 **Stein 流形** 若（1）$X$ 是 Hausdorff 且第二可数；（2）全纯函数分离点：对 $x \neq y$，存在 $f \in \mathcal{O}(X)$（$X$ 上全纯函数空间）使 $f(x) \neq f(y)$；（3）全纯函数给出局部坐标：对每点 $x$，存在 $f_1, \ldots, f_{\dim X} \in \mathcal{O}(X)$ 在 $x$ 处构成坐标系。
+**定义112.1**（Stein流形）：复流形$X$为**Stein流形**若：(1) $X$为Hausdorff且第二可数；(2) 全纯函数分离点；(3) 全纯函数给出局部坐标；(4) $X$是全纯凸的——对任意紧集$K \subset X$，其全纯凸包$\hat{K} = \{x \in X : |f(x)| \leq \sup_K |f|, \forall f \in \mathcal{O}(X)\}$为紧。
 
-**定理 61.1**（Stein 基本定理）：$\mathbb{C}^n$ 中的域是 Stein 当且仅当它是全纯域。特别地，所有伪凸域是 Stein，所有 Stein 域是伪凸（对 $\mathbb{C}^n$ 中的域，两者等价——这是 Oka 对 Levi 问题的解答）。
+**定理112.1**（Cartan-Thullen定理，1932）：对$\mathbb{C}^n$中的域$\Omega$，以下等价：
+(i) $\Omega$是全纯域；
+(ii) $\Omega$是全纯凸域：对任意紧集$K \subset \Omega$，其全纯凸包$\hat{K}_\Omega = \{z \in \Omega : |f(z)| \leq \sup_K |f|, \forall f \in \mathcal{O}(\Omega)\}$为$\Omega$中紧集且$\operatorname{dist}(\hat{K}_\Omega, \partial\Omega) = \operatorname{dist}(K, \partial\Omega)$；
+(iii) $\Omega$是Stein流形；
+(iv) $-\log \operatorname{dist}(z, \partial\Omega)$为多次调和函数（即$\Omega$是伪凸的）。
 
-**定理 61.2**（Cousin 问题与 Oka-Weil 定理）：第一 Cousin 问题（寻找具有指定极点的亚纯函数）在 Stein 流形上恒有解；第二 Cousin 问题（寻找具有指定零点的全纯函数）在 $\operatorname{Pic}(X) = 0$（全纯线丛平凡）时恒有解。**Oka-Weil 逼近定理**：若 $X$ 为 Stein，$K \subset X$ 为全纯凸紧集，则 $K$ 上的任意全纯函数可由 $X$ 上的全纯函数一致逼近。
+**证明**：(i) $\Rightarrow$ (ii)：若$\Omega$为全纯域，设$f$不能延拓过$\partial\Omega$，其极点集迫使全纯凸包远离边界。(ii) $\Rightarrow$ (iii)：全纯凸性配合全纯函数分离点的性质（通过构造适当全纯函数证明）。(iii) $\Rightarrow$ (i)：Stein流形上存在不可延拓的全纯函数可由Cousin问题解的存在性保证。(iii) $\Leftrightarrow$ (iv)：这是Oka (1942) 对Levi问题的解答——伪凸性等价于全纯凸性等价于Stein性。$\blacksquare$
 
-### 61.2 dbar-Neumann 问题
+**定理112.2**（Oka-Weil逼近定理）：若$X$为Stein流形，$K \subset X$为全纯凸紧集，则$K$某邻域上的任意全纯函数可由$X$上全纯函数一致逼近。
 
-**定理 61.3**（Hörmander $L^2$ 估计）：设 $\Omega \subset \mathbb{C}^n$ 为伪凸域，$\varphi$ 为光滑强多次调和函数。则对任意满足 $\bar{\partial} f = 0$ 的 $(0,1)$-形式 $f$，方程 $\bar{\partial} u = f$ 存在光滑解 $u$ 满足 $\int_\Omega |u|^2 e^{-\varphi} dV \leq \int_\Omega |f|^2 e^{-\varphi} dV$。*证明思路*：加权 $L^2$ 空间中的闭稠定算子满足 Hörmander 关于无界算子的存在定理，核心是 $\bar{\partial}$-Neumann 算子的正则性由 $L^2$ Sobolev 嵌入保证。该定理是研究 dbar 方程和多复变正则性问题的核心技术。
+**证明**：利用Stein流形上的Cousin I问题解构造具指定极点的亚纯函数，再转化为全纯函数的逼近——核心是Runge型逼近在Stein流形上的推广。$\blacksquare$
+
+### $\bar{\partial}$-问题与$L^2$估计
+
+**定义112.2**（$\bar{\partial}$-问题）：设$\Omega \subset \mathbb{C}^n$为开集，$f$为$(0,1)$-形式（即$f = \sum_{j=1}^n f_j d\bar{z}_j$）满足可积条件$\bar{\partial} f = 0$（即$\partial f_j / \partial \bar{z}_k = \partial f_k / \partial \bar{z}_j$）。$\bar{\partial}$-问题是求函数$u$使
+$$\bar{\partial} u = f, \quad \text{即} \quad \frac{\partial u}{\partial \bar{z}_j} = f_j \quad (j = 1,\dots,n)$$
+这是多复变理论的核心技术问题——其可解性等价于域的伪凸性。
+
+**定理112.3**（Hörmander $L^2$估计，1965）：设$\Omega \subset \mathbb{C}^n$为伪凸域（即存在光滑严格多次调和穷竭函数），$\varphi \in C^2(\Omega)$为多次调和函数。则对任意满足$\bar{\partial}f = 0$的$(0,1)$-形式$f$，存在$u$满足$\bar{\partial} u = f$且
+$$\int_\Omega |u|^2 e^{-\varphi} dV \leq \int_\Omega \sum_{j,k} \varphi^{j\bar{k}} f_j \overline{f_k} e^{-\varphi} dV$$
+其中$\varphi^{j\bar{k}}$为复Hessian矩阵$(\partial^2\varphi/\partial z_j \partial \bar{z}_k)$的逆。特别地，取$\varphi = 0$在$\mathbb{C}^n$的有界伪凸域上，得$\|u\|_{L^2} \leq C(\Omega) \|f\|_{L^2}$。
+
+**证明**：核心为加权$L^2$空间上的$\bar{\partial}$-Neumann算子的Hörmander-Morrey估计。对于光滑$\varphi$，定义Hilbert空间$L^2(\Omega, e^{-\varphi})$中的闭稠定算子$\bar{\partial}$，形式伴随$T^*$，对任意$C_c^\infty$函数$u$成立Morrey-Kohn恒等式
+$$\|\bar{\partial}u\|^2 + \|\bar{\partial}^*_\varphi u\|^2 = \sum_{j,k} \int_\Omega \frac{\partial^2\varphi}{\partial z_j \partial \bar{z}_k} u_j \overline{u_k} e^{-\varphi} + \sum_{j,k} \int_\Omega \left|\frac{\partial u_j}{\partial \bar{z}_k}\right|^2 e^{-\varphi}$$
+其中$\bar{\partial}^*_\varphi$为加权的形式伴随。当$\varphi$为多次调和时漏掉部分非负，得$\|\bar{\partial}^*_\varphi u\|^2 \geq \sum\int \varphi_{j\bar{k}} u_j \overline{u_k} e^{-\varphi}$。通过Hahn-Banach与Riesz表示定理将不等式转化为满射性，即$\bar{\partial}$的像包含$\ker\bar{\partial}$的正交补，故对$\bar{\partial}$-闭形式$f$方程可解。$\blacksquare$
+
+**定理112.4**（$\bar{\partial}$-Neumann问题的正则性）：在伪凸域$\Omega$上，若$f$光滑且满足$\bar{\partial}f = 0$，则规范解$u = \bar{\partial}^* N f$（$N$为$\bar{\partial}$-Neumann算子）是光滑的，且与$\Omega$边界性质相容。特别地，在强伪凸域上，$\bar{\partial}$-Neumann算子为紧算子，$\bar{\partial}$-问题具有最优的正则性估计。
+
+**证明**：基于$\bar{\partial}$-Neumann算子的椭圆正则性理论（Kohn, 1963-1964）。在强伪凸边界条件下，$\Box = \bar{\partial}\bar{\partial}^* + \bar{\partial}^*\bar{\partial}$为次椭圆算子，满足$1/2$阶Garding型估计，其逆$N$将Sobolev空间$H^s$映射到$H^{s+1}$（在$\Omega$内部增益$2$阶，在边界处增益$1$阶）。$\blacksquare$
 
 ---
-
----
-
----
-
----
-
+*Nevanlinna理论以Poisson-Jensen公式为出发点，经特征函数与两个基本定理揭示了亚纯函数值分布的深层结构。多复变方面，Hartogs延拓定理彰显了$n \geq 2$时全纯函数的刚性——全纯域的概念由此自然引入。Cartan-Thullen定理建立了全纯域-全纯凸-Stein流形-伪凸域的四重等价。$\bar{\partial}$-问题及其$L^2$估计（Hörmander）则为多复变正则性理论提供了核心技术工具。*
 
 *卷十：复分析终。*
