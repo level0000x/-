@@ -39,12 +39,6 @@ $$\widehat{T_m f}(\xi) = m(\xi) \hat{f}(\xi)$$
 
 **定理 126.4**（Hörmander 乘子定理）：Mikhlin 条件的更精细版本，使用 Sobolev 空间代替逐点导数条件，允许乘子有更低的平滑性。
 
-**例 126.1**（Fourier 乘子的例子）：
-- Hilbert 变换：$m(\xi) = -i \operatorname{sgn}(\xi)$
-- Riesz 变换：$m_j(\xi) = -i \xi_j / |\xi|$
-- 分数次积分（Riesz 位势）：$m(\xi) = |\xi|^{-\alpha}$（$0 < \alpha < n$）
-- Bessel 位势：$m(\xi) = (1 + |\xi|^2)^{-\alpha/2}$
-
 ### 126.4 函数空间的 Littlewood-Paley 刻画
 
 **定理 126.4**（Besov 空间与 Triebel-Lizorkin 空间）：使用 Littlewood-Paley 分解可以定义一般的函数空间尺度：

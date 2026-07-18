@@ -240,32 +240,121 @@ $$f(p) \leq q \iff p \leq g(q) \quad (\forall p \in P, q \in Q)$$
 
 ## 泛代数基础
 
-> **前置知识**：第60-64章（群、环、模的基本概念）
+### 代数理论的形式定义
 
-泛代数（Universal Algebra）以统一的方式研究所有代数结构（群、环、模、格等）的共性。它不是关于"一个特定的代数"，而是关于"代数的类别"。
+**定义 1**（符号集）：一个**符号集**（signature）$\Sigma$ 是一族函数符号，每个符号 $f \in \Sigma$ 附有元数（arity）$\mathrm{ar}(f) \in \mathbb{N}$。零元符号（$\mathrm{ar}(f) = 0$）称为**常量符号**。
 
-### 代数理论
+**定义 2**（$\Sigma$-代数）：一个 $\Sigma$-**代数**是一个偶对 $\mathbf{A} = (A, (f^{\mathbf{A}})_{f \in \Sigma})$，其中 $A$ 是非空集合（承载集），每个 $f^{\mathbf{A}}: A^{\mathrm{ar}(f)} \to A$ 是 $A$ 上的 $\mathrm{ar}(f)$ 元运算。
 
-一个**代数理论**由以下数据定义：
-- 一个符号集合（运算符号，每个附有 arity）
-- 一组方程（恒等式）
+**定义 3**（项代数）：设 $X$ 是变元集合。$\Sigma$-**项**的集合 $T_\Sigma(X)$ 归纳定义为：
+1. 每个 $x \in X$ 是项。
+2. 每个常量符号 $c \in \Sigma$ 是项。
+3. 若 $f \in \Sigma$，$\mathrm{ar}(f) = n$，且 $t_1, \ldots, t_n$ 是项，则 $f(t_1, \ldots, t_n)$ 是项。
 
-例如，群理论由一个二元运算 $\cdot$、一个一元运算 ${}^{-1}$ 和一个零元运算 $e$，以及三条方程定义。
+$T_\Sigma(X)$ 本身以自然方式成为 $\Sigma$-代数：对 $f \in \Sigma$，定义 $f^{T_\Sigma(X)}(t_1, \ldots, t_n) = f(t_1, \ldots, t_n)$。$T_\Sigma(X)$ 是 $\Sigma$-代数范畴中的自由代数，满足以下普遍性质：对任意 $\Sigma$-代数 $\mathbf{A}$ 和任意映射 $\varphi: X \to A$，存在唯一的 $\Sigma$-同态 $\bar{\varphi}: T_\Sigma(X) \to \mathbf{A}$ 延拓 $\varphi$。
 
-### 代数簇与 Birkhoff 定理
+**定义 4**（等式）：一个 $\Sigma$-**等式**是形如 $s \approx t$ 的公式，其中 $s, t \in T_\Sigma(X)$。$\Sigma$-代数 $\mathbf{A}$ **满足** $s \approx t$，记作 $\mathbf{A} \models s \approx t$，若对每个赋值 $h: X \to A$，有 $\bar{h}(s) = \bar{h}(t)$。
 
-**G. Birkhoff 定理**（1935）：代数的一个类 $\mathcal{V}$ 是**簇**（即可以由恒等式定义的类）当且仅当 $\mathcal{V}$ 在子代数、同态像和直积下封闭。
+### 代数簇与Birkhoff定理
 
-这是泛代数的基本定理，确立了"等式可定义"与"HSP 封闭"的等价关系。
+**定义 5**（代数簇）：$\Sigma$-代数的类 $\mathcal{V}$ 称为一个**代数簇**（variety）或**等式类**，若存在等式集合 $E \subseteq T_\Sigma(X) \times T_\Sigma(X)$，使得 $\mathcal{V} = \{\mathbf{A} \mid \mathbf{A} \models e \text{ 对所有 } e \in E\}$。
 
-### 特殊课题
+**定理 1**（Birkhoff HSP定理，1935）：$\Sigma$-代数的一个非空类 $\mathcal{V}$ 是代数簇当且仅当 $\mathcal{V}$ 在以下三个运算下封闭：
+- $\mathbf{H}$：同态像（homomorphic images）
+- $\mathbf{S}$：子代数（subalgebras）
+- $\mathbf{P}$：直积（direct products）
 
-**Malcev 条件**：对于簇的某些性质（如同余交换性、同余模性），存在强 Malcev 条件（以特定恒等式的存在来判别的条件）。
+**证明**：（$\Rightarrow$）设 $\mathcal{V} = \mathrm{Mod}(E)$ 是等式定义的类。需证 $\mathcal{V}$ 在 $\mathbf{H}, \mathbf{S}, \mathbf{P}$ 下封闭。
 
-**自由代数**：给定代数簇 $\mathcal{V}$ 和集合 $X$，存在 $\mathcal{V}$ 中唯一的（在同构意义下）自由代数 $F_{\mathcal{V}}(X)$。自由代数的结构分析是泛代数的核心问题。
+$\mathbf{S}$-封闭：设 $\mathbf{B} \leq \mathbf{A} \in \mathcal{V}$。对任意等式 $s \approx t \in E$ 和赋值 $h: X \to B$，视为 $h: X \to A$，由 $\mathbf{A} \models s \approx t$ 知 $\bar{h}(s) = \bar{h}(t)$，而 $\bar{h}$ 的像在 $\mathbf{B}$ 的承载集中，故 $\mathbf{B} \models s \approx t$。因此 $\mathbf{B} \in \mathcal{V}$。
 
-### 与范畴论的联系
+$\mathbf{H}$-封闭：设 $\varphi: \mathbf{A} \to \mathbf{B}$ 是满 $\Sigma$-同态，$\mathbf{A} \in \mathcal{V}$。对任意赋值 $h: X \to B$，因 $\varphi$ 是满射，可选取 $\tilde{h}: X \to A$ 使得 $\varphi \circ \tilde{h} = h$。则 $\bar{h}(s) = \varphi(\bar{\tilde{h}}(s)) = \varphi(\bar{\tilde{h}}(t)) = \bar{h}(t)$，故 $\mathbf{B} \models s \approx t$，即 $\mathbf{B} \in \mathcal{V}$。
 
-Birkhoff 定理的范畴论推广：Lawvere 于1963年将所有代数理论等价地表征为某个笛卡尔范畴——**Lawvere 理论**。
+$\mathbf{P}$-封闭：设 $\mathbf{A}_i \in \mathcal{V}$（$i \in I$），$\mathbf{A} = \prod_{i \in I} \mathbf{A}_i$。对等式 $s \approx t \in E$ 和赋值 $h: X \to A$，由直积定义及每个 $\mathbf{A}_i \models s \approx t$，在每个分量上 $\pi_i(\bar{h}(s)) = \bar{\pi_i \circ h}(s) = \bar{\pi_i \circ h}(t) = \pi_i(\bar{h}(t))$，故 $\bar{h}(s) = \bar{h}(t)$。得 $\mathbf{A} \in \mathcal{V}$。
 
-Lawvere 理论 $\mathcal{T}$ 是一个以自然数为对象的范畴（其中对象 $n$ 对应一个"有 $n$ 个变量的自由代数"），在 $\mathcal{T}$ 上的一个模型就是一个积保持函子 $\mathcal{T} \to \mathbf{Set}$。
+（$\Leftarrow$）设 $\mathcal{V}$ 在 $\mathbf{H}, \mathbf{S}, \mathbf{P}$ 下封闭。令 $E = \{(s, t) \mid \mathcal{V} \models s \approx t\}$ 是 $\mathcal{V}$ 满足的所有等式。需证 $\mathcal{V} = \mathrm{Mod}(E)$。显然 $\mathcal{V} \subseteq \mathrm{Mod}(E)$。关键在反向包含。
+
+对任意 $\mathbf{A} \in \mathrm{Mod}(E)$，需证 $\mathbf{A} \in \mathcal{V}$。构造自由代数：对足够大的集合 $Y$（可取 $Y = A$），令 $\mathbf{F} = \mathbf{F}_{\mathcal{V}}(Y)$ 是 $\mathcal{V}$ 中的自由代数。由自由性，存在满同态 $\varphi: \mathbf{F} \to \mathbf{A}$。还需验证 $\mathbf{F} \in \mathcal{V}$：自由代数 $\mathbf{F}_{\mathcal{V}}(Y)$ 构造为 $T_\Sigma(Y)$ 商去由 $E$ 生成的同余 $\theta_{\mathcal{V}}(Y)$。由于 $\mathcal{V}$ 在 $\mathbf{P}$ 下封闭，$\mathbf{F}$ 可嵌入 $\prod_{\mathbf{B} \in \mathcal{V}, |B| \le |Y|} \mathbf{B}$ 的适当幂（因为 $\mathcal{V}$ 局部小），且因 $\mathcal{V}$ 在 $\mathbf{S}$ 和 $\mathbf{P}$ 下封闭，该直积在 $\mathcal{V}$ 中，其子代数 $\mathbf{F}$ 也在 $\mathcal{V}$ 中。最后由 $\mathbf{H}$-封闭，$\mathbf{A} = \varphi(\mathbf{F}) \in \mathcal{V}$。$\blacksquare$
+
+### 自由代数
+
+**定义 6**（簇中的自由代数）：设 $\mathcal{V}$ 是 $\Sigma$-代数簇，$X$ 是集合。$\mathcal{V}$ 在 $X$ 上的**自由代数** $\mathbf{F}_{\mathcal{V}}(X)$ 是 $\Sigma$-代数，配备映射 $\eta_X: X \to F_{\mathcal{V}}(X)$，满足普遍性质：对任意 $\mathbf{A} \in \mathcal{V}$ 和任意映射 $f: X \to A$，存在唯一的 $\Sigma$-同态 $\bar{f}: \mathbf{F}_{\mathcal{V}}(X) \to \mathbf{A}$ 使得 $\bar{f} \circ \eta_X = f$。
+
+**定理 2**（自由代数的构造）：对任意代数簇 $\mathcal{V} = \mathrm{Mod}(E)$ 和任意集合 $X$，自由代数 $\mathbf{F}_{\mathcal{V}}(X)$ 存在且在唯一同构意义下唯一。具体构造为：
+
+$$\mathbf{F}_{\mathcal{V}}(X) = T_\Sigma(X) / \theta_E$$
+
+其中 $\theta_E$ 是由等式 $E$ 诱导的最小同余关系：
+
+$$\theta_E = \bigcap \{\theta \in \mathrm{Con}(T_\Sigma(X)) \mid T_\Sigma(X)/\theta \in \mathcal{V}\}$$
+
+**证明**：首先构造项代数 $T_\Sigma(X)$。定义 $\theta_{\mathcal{V}}$ 为使得商代数属于 $\mathcal{V}$ 的所有同余的交。由于 $\mathcal{V}$ 中代数的直积仍在 $\mathcal{V}$ 中（Birkhoff定理），且商代数 $T_\Sigma(X)/\theta_{\mathcal{V}}$ 可嵌入所有这些直积，因此 $T_\Sigma(X)/\theta_{\mathcal{V}} \in \mathcal{V}$。设 $\mathbf{F}_{\mathcal{V}}(X) = T_\Sigma(X)/\theta_{\mathcal{V}}$，$\eta_X(x) = [x]_{\theta_{\mathcal{V}}}$。
+
+验证普遍性质：设 $\mathbf{A} \in \mathcal{V}$，$f: X \to A$。由 $T_\Sigma(X)$ 的自由性，$f$ 唯一延拓为 $\hat{f}: T_\Sigma(X) \to \mathbf{A}$。令 $\ker \hat{f}$ 为同余核，则 $T_\Sigma(X)/\ker \hat{f} \cong \mathrm{Im}(\hat{f}) \leq \mathbf{A}$，故在 $\mathcal{V}$ 中（$\mathbf{S}$-封闭）。因此 $\theta_{\mathcal{V}} \subseteq \ker \hat{f}$，$\hat{f}$ 通过商降为 $\bar{f}: \mathbf{F}_{\mathcal{V}}(X) \to \mathbf{A}$。唯一性由 $\eta_X(X)$ 生成 $\mathbf{F}_{\mathcal{V}}(X)$ 保证。$\blacksquare$
+
+### 同余格与置换性
+
+**定义 7**（同余格）：$\Sigma$-代数 $\mathbf{A}$ 的所有同余关系在包含序下构成完备格 $\mathrm{Con}(\mathbf{A})$，其交为集合论交，并为所有包含给合之同余的交。
+
+**定义 8**（代数簇）：设 $\mathcal{V}$ 是 $\Sigma$-代数簇。对任意 $\mathbf{A} \in \mathcal{V}$，$\mathrm{Con}(\mathbf{A})$ 是完备格。
+
+**定义 9**（同余交换性）：代数 $\mathbf{A}$ 称为**同余交换的**，若对任意 $\theta_1, \theta_2 \in \mathrm{Con}(\mathbf{A})$，有 $\theta_1 \circ \theta_2 = \theta_2 \circ \theta_1$。一个簇 $\mathcal{V}$ 称为同余交换的，若其中每个代数都是同余交换的。
+
+**定理 3**（同余交换性的等价格）：$\mathbf{A}$ 中 $\theta_1 \circ \theta_2 = \theta_2 \circ \theta_1$ 对所有 $\theta_1, \theta_2 \in \mathrm{Con}(\mathbf{A})$ 成立，当且仅当 $\mathrm{Con}(\mathbf{A})$ 中的并满足 $\theta_1 \vee \theta_2 = \theta_1 \circ \theta_2$。
+
+**证明**：一般地，$\theta_1 \vee \theta_2 = \bigcup_{n \ge 1} (\theta_1 \circ \theta_2)^n$（关系的复合迭代）。若 $\theta_1 \circ \theta_2 = \theta_2 \circ \theta_1$，则 $(\theta_1 \circ \theta_2)^2 = \theta_1 \circ (\theta_2 \circ \theta_1) \circ \theta_2 = \theta_1 \circ (\theta_1 \circ \theta_2) \circ \theta_2 = \theta_1 \circ \theta_2$（由传递性 $\theta_i \circ \theta_i \subseteq \theta_i$ 和交换性），故需递推到任意 $n$ 知 $(\theta_1 \circ \theta_2)^n = \theta_1 \circ \theta_2$，从而 $\theta_1 \vee \theta_2 = \theta_1 \circ \theta_2$。反之亦然。$\blacksquare$
+
+### Malcev条件
+
+**定义 10**（Malcev项与Malcev条件）：一个代数簇 $\mathcal{V}$ 具有**同余交换性**当且仅当存在三元项 $p(x, y, z)$（称为 **Malcev项**）满足：
+
+$$p(x, x, y) \approx y, \quad p(x, y, y) \approx x$$
+
+对所有 $\mathbf{A} \in \mathcal{V}$ 成立。具有 Malcev 项的簇称为 **Malcev簇**。
+
+**定理 4**（Malcev刻画定理）：$\Sigma$-代数簇 $\mathcal{V}$ 是同余交换的当且仅当 $\mathcal{V}$ 是 Malcev 簇。
+
+**证明**：（$\Leftarrow$）设 $\mathcal{V}$ 有 Malcev 项 $p$。对 $\mathbf{A} \in \mathcal{V}$ 和 $\theta_1, \theta_2 \in \mathrm{Con}(\mathbf{A})$，若 $(a, c) \in \theta_1 \circ \theta_2$，即存在 $b$ 使得 $a \equiv_{\theta_1} b \equiv_{\theta_2} c$。计算：
+
+$$a = p(a, b, b) \equiv_{\theta_1} p(a, a, b) = b \equiv_{\theta_2} p(b, c, c) = b = p(b, b, c) \equiv_{\theta_1} p(b, c, c) = p(a, b, b) = a$$
+
+更简洁地：$a = p(a, b, b) \equiv_{\theta_2} p(a, b, c) \equiv_{\theta_1} p(b, b, c) = c$，故 $(a, c) \in \theta_2 \circ \theta_1$。因此 $\theta_1 \circ \theta_2 \subseteq \theta_2 \circ \theta_1$。由对称性得相等。
+
+（$\Rightarrow$）设 $\mathcal{V}$ 同余交换。考虑自由代数 $\mathbf{F} = \mathbf{F}_{\mathcal{V}}(\{x, y, z\})$ 及其上的两个同余 $\theta_1 = \mathrm{Cg}(x, y)$ 和 $\theta_2 = \mathrm{Cg}(y, z)$（由生成对 $(x,y)$ 和 $(y,z)$ 生成的主同余）。则有 $(x, z) \in \theta_1 \circ \theta_2$（通过 $y$），故由交换性 $(x, z) \in \theta_1 \vee \theta_2 = \theta_2 \circ \theta_1$。存在 $t \in F$ 使得 $x \equiv_{\theta_2} t \equiv_{\theta_1} z$。$t$ 的自由变量的表达式即为所求的 Malcev 项 $p(x, y, z)$。由构造验证 $p(x,x,y) = y$ 和 $p(x,y,y) = x$。$\blacksquare$
+
+**例子**：群簇是 Malcev 簇，Malcev 项为 $p(x,y,z) = xy^{-1}z$。环簇也是 Malcev 簇，项为 $p(x,y,z) = x - y + z$。
+
+### Lawvere理论
+
+**定义 11**（Lawvere理论）：一个 **Lawvere理论** $\mathcal{T}$ 是一个小范畴，其对象恰为自然数 $0, 1, 2, \ldots$，使得每个对象 $n$ 是 $\mathbb{N}$ 中 $n$ 个对象 $1$ 的直积（即对 $n$ 有自然同构 $n \cong 1 \times 1 \times \cdots \times 1$（$n$次）的范畴论意义）。特别地，$\mathcal{T}$ 是有有限积的范畴，且每个对象是固定对象 $1$ 的某个幂。
+
+**定义 12**（Lawvere理论的模型）：Lawvere理论 $\mathcal{T}$ 的一个**模型**是积保持函子 $M: \mathcal{T} \to \mathbf{Set}$。模型之间的态射是自然变换。所有模型形成范畴 $\mathrm{Mod}(\mathcal{T}) = \mathbf{Prod}(\mathcal{T}, \mathbf{Set})$。
+
+**定理 5**（代数簇与Lawvere理论的等价）：存在范畴等价：
+
+$$\{\Sigma\text{-代数簇}\} \simeq \{\text{Lawvere理论}\}$$
+
+具体地：给定代数簇 $\mathcal{V}$，对应的 Lawvere 理论 $\mathcal{T}_{\mathcal{V}}$ 定义为：
+- $\mathcal{T}_{\mathcal{V}}(m, n) = \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(m), \mathbf{F}_{\mathcal{V}}(n))$，其中 $\mathbf{F}_{\mathcal{V}}(k)$ 是 $k$ 个生成元的自由代数。
+
+反过来，给定 Lawvere 理论 $\mathcal{T}$，其模型范畴 $\mathrm{Mod}(\mathcal{T})$ 是一个代数簇。
+
+**证明概要**：首先验证 $\mathcal{T}_{\mathcal{V}}$ 是 Lawvere 理论。对对象 $n$，自由代数 $\mathbf{F}_{\mathcal{V}}(n)$ 有 $n$ 个自由生成元 $x_1, \ldots, x_n$，由自由性，$\mathbf{F}_{\mathcal{V}}(n) \cong \mathbf{F}_{\mathcal{V}}(1)^n$ 的验证通过在 $\mathcal{V}$ 上计算 Hom 集得到。
+
+其次，需证 $\mathrm{Mod}(\mathcal{T}_{\mathcal{V}}) \simeq \mathcal{V}$。对每 $\mathbf{A} \in \mathcal{V}$，定义函子 $M_{\mathbf{A}}(n) = \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(n), \mathbf{A}) \cong A^n$，这是因为从 $n$ 个生成元的自由代数到 $\mathbf{A}$ 的同态与 $A^n$ 中的元一一对应。此对应是自然的，且 $M_{\mathbf{A}}$ 保积：$M_{\mathbf{A}}(n \times m) \cong A^{n+m} \cong A^n \times A^m \cong M_{\mathbf{A}}(n) \times M_{\mathbf{A}}(m)$。
+
+反之，给定模型 $M$，定义 $\Sigma$-代数结构在 $A = M(1)$ 上：对 $f \in \Sigma$（$\mathrm{ar}(f) = n$），$f$ 对应 $\mathcal{T}_{\mathcal{V}}(n, 1)$ 中的一个态射，通过 $M$ 作用给出 $A^n \to A$。这构成范畴等价。$\blacksquare$
+
+### 补充：代数的替换性质与子直积
+
+**定义 13**（子直积）：代数 $\mathbf{A}$ 称为一族代数 $\{\mathbf{A}_i\}_{i \in I}$ 的**子直积**，若存在单同态 $\mathbf{A} \hookrightarrow \prod_{i \in I} \mathbf{A}_i$，使得每个投射 $\pi_i|_{\mathbf{A}}: \mathbf{A} \to \mathbf{A}_i$ 是满射。
+
+**定理 6**（Birkhoff子直积定理）：代数簇 $\mathcal{V}$ 中的每个代数同构于 $\mathcal{V}$ 中**子直不可约**（subdirectly irreducible）代数的子直积。子直不可约代数恰是那些有最小非零同余的代数。
+
+**证明概要**：对任意 $\mathbf{A} \in \mathcal{V}$，考虑所有使得 $\bigwedge_{\theta \in S} \theta = 0_{\mathbf{A}}$ 的同余集族 $S$ 的全体。由选择引理（或格论中的完全分配性），存在 $S \subseteq \mathrm{Con}(\mathbf{A}) \setminus \{0_{\mathbf{A}}\}$ 使得所有非零同余中包含 $S$ 中某个元。对每个 $\theta \in S$，商代数 $\mathbf{A}/\theta$ 是子直不可约的（因 $\theta$ 是交不可约同余），且 $\mathbf{A} \hookrightarrow \prod_{\theta \in S} \mathbf{A}/\theta$ 是子直分解。$\blacksquare$
+
+**注记**：子直不可约性是代数结构论的基石：群簇中，子直不可约群含于有限群或特定单群的变体；环簇中，子直不可约环与McCoy-素环相关。在Lawvere理论的对偶视角下，代数簇的研究等价于有限积完备范畴上的模型理论研究，这给出了Birkhoff定理的深层范畴论基础。
+
+### 经典簇举例与拓展方向
+
+群簇、环簇、格簇和模簇均为泛代数的核心研究对象。群簇中，交换群簇由 $xy \approx yx$ 定义；幂零群簇由特定换位子恒等式定义。环簇的Malcev项 $x - y + z$ 提供了丰富的同余理论。泛代数与范畴论的交汇——Lawvere理论、代数理论和monad的等价性——构成现代数学基础的三角结构：代数簇 $\leftrightarrow$ Lawvere理论 $\leftrightarrow$ 集合范畴上的有限秩monad。这一对应将Birkhoff定理推广到更一般的范畴上下文中，是Stone对偶和Gabriel-Ulmer对偶的自然推广。

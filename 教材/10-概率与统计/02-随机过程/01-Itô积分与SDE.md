@@ -72,12 +72,6 @@ $$df(t, X_t) = \frac{\partial f}{\partial t} dt + \sum_{i=1}^d \frac{\partial f}
 
 其中 $d\langle X^i, X^j \rangle_t = \sum_{k=1}^m \sigma^{ik}_t \sigma^{jk}_t dt$。
 
-**例 135.1**（几何 Brown 运动）：对 $dS_t = \mu S_t dt + \sigma S_t dW_t$（$S_0 > 0$），取 $f(x) = \log x$，$f'(x) = 1/x$，$f''(x) = -1/x^2$。由 Itô 公式：
-
-$$d(\log S_t) = \frac{1}{S_t} dS_t - \frac{1}{2} \frac{1}{S_t^2} \sigma^2 S_t^2 dt = (\mu - \sigma^2/2) dt + \sigma dW_t$$
-
-积分得 $S_t = S_0 \exp((\mu - \sigma^2/2)t + \sigma W_t)$。
-
 ### 135.4 Girsanov 定理与测度变换
 
 **定理 135.8**（Girsanov 定理）：设 $\theta_t$ 是适应过程，满足 Novikov 条件 $E[\exp(\frac{1}{2} \int_0^T \theta_t^2 dt)] < \infty$。定义

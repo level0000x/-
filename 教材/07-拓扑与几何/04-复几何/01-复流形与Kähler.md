@@ -17,13 +17,6 @@
 
 **定义 177.1**（复流形）：$n$ 维**复流形** $M$ 是一个拓扑空间，带有复坐标卡 $\{(U_\alpha, \varphi_\alpha)\}$，其中 $\varphi_\alpha: U_\alpha \to \mathbb{C}^n$ 是同胚到 $\mathbb{C}^n$ 中开集，且转移函数 $\varphi_\alpha \circ \varphi_\beta^{-1}$ 在 $\varphi_\beta(U_\alpha \cap U_\beta)$ 上是全纯的。
 
-**例 177.1**（基本复流形）：
-- $\mathbb{C}^n$ 和 $\mathbb{C}^n$ 中的开集（平凡复流形）
-- **复射影空间** $\mathbb{CP}^n$：$\mathbb{C}^{n+1} \setminus \{0\}$ 模去 $\mathbb{C}^*$ 作用，维数为 $n$
-- **复环面** $\mathbb{C}^n / \Lambda$（$\Lambda$ 是秩 $2n$ 的格）
-- **Riemann 面**：1 维复流形（V9 Ch 77 共形映射理论）
-- **复 Grassmann 流形** $\operatorname{Gr}(k, n; \mathbb{C})$
-
 **定义 177.2**（全纯函数与全纯映射）：$f: M \to \mathbb{C}$ 是**全纯**的，如果 $f \circ \varphi_\alpha^{-1}$ 在每个坐标卡上是全纯的。$f: M \to N$（$N$ 是复流形）是全纯的，如果局部坐标表示是全纯的。
 
 **命题 177.1**（紧复流形上的全纯函数）：紧连通复流形上的全纯函数必为常数（极大值原理的推广）。这使复几何与实几何有本质区别。
@@ -56,8 +49,6 @@ $$H_{\bar{\partial}}^{p,q}(M) = \frac{\ker(\bar{\partial}: \Omega^{p,q} \to \Ome
 
 **定义 177.7**（Hodge 数）：$h^{p,q}(M) = \dim_{\mathbb{C}} H_{\bar{\partial}}^{p,q}(M)$。Hodge 数是复流形的基本数值不变量。
 
-**例 177.2**（射影空间的 Hodge 数）：对 $\mathbb{CP}^n$，$h^{p,p} = 1$（$0 \leq p \leq n$），其余 $h^{p,q} = 0$。
-
 ---
 
 ---
@@ -79,13 +70,6 @@ Kähler 流形是同时具有 Riemann 度量、复结构和辛结构且三者兼
 **定义 178.2**（Kähler 度量）：Hermite 度量 $h$ 称为 **Kähler 度量**，如果相应的 $(1,1)$-形式 $\omega$ 是闭的：$d\omega = 0$。此时 $(M, h)$ 称为 **Kähler 流形**。
 
 Kähler 条件等价于：复结构 $J$ 关于 $g$ 的 Levi-Civita 联络是平行的：$\nabla J = 0$。
-
-**例 178.1**（Kähler 流形）：
-- $\mathbb{C}^n$ 带标准欧氏度量（$\omega = \frac{i}{2} \sum dz_j \wedge d\bar{z}_j$）
-- $\mathbb{CP}^n$ 带 **Fubini-Study 度量**：$\omega_{\text{FS}} = \frac{i}{2\pi} \partial \bar{\partial} \log \|Z\|^2$（在齐次坐标中）
-- 复环面 $\mathbb{C}^n / \Lambda$（诱导度量是 Kähler 的）
-- Kähler 流形的复子流形（诱导度量是 Kähler 的）
-- 光滑复射影代数簇（嵌入 $\mathbb{CP}^n$ 后取诱导度量）
 
 **命题 178.1**（Kähler 势）：在局部坐标下，Kähler 形式 $\omega$ 可写为
 
@@ -118,16 +102,6 @@ $$H^k_{\text{dR}}(M, \mathbb{C}) \cong \bigoplus_{p+q=k} H_{\bar{\partial}}^{p,q
 **推论 178.3**（Hodge 数的对称性）：$h^{p,q} = h^{q,p} = h^{n-p,n-q} = h^{n-q,n-p}$。
 
 **推论 178.4**（Betti 数的奇偶性约束）：紧 Kähler 流形的奇数阶 Betti 数 $b_{2k+1}$ 为偶数。
-
-**例 178.2**（Hodge 菱形，K3 曲面）：K3 曲面的 Hodge 菱形（注意：此处展示的是 K3 曲面而非 $\mathbb{CP}^2$，其 $h^{1,1}=20$ 是 K3 曲面的特征）：
-
-```
-              1
-          0       0
-      1      20      1
-          0       0
-              1
-```
 
 ### 178.4 Chern 类与 Chern-Weil 理论
 

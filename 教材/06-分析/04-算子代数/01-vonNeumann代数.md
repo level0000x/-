@@ -49,12 +49,6 @@ $$\mathcal{L}(\Gamma) = \lambda(\Gamma)'' \subseteq B(\ell^2(\Gamma))$$
 
 **问题 214.1**（自由群因子同构问题）：$\mathcal{L}(\mathbb{F}_m) \cong \mathcal{L}(\mathbb{F}_n)$ 对 $m \neq n$ 是否成立？这是 von Neumann 代数理论中长期未解决的著名问题之一（与自由概率论和 Voiculescu 的微观状态方法相关）。
 
-**例 214.1**（超有限 II$_1$ 型因子）：$\mathcal{R}$ 是通过矩阵代数的归并极限获得的 II$_1$ 型因子：
-
-$$\mathcal{R} = \overline{\bigcup_{n} M_{2^n}(\mathbb{C})}^{\text{SOT}}$$
-
-Murray 和 von Neumann 证明 $\mathcal{R}$ 是唯一的超有限 II$_1$ 型因子（同构意义下）。
-
 **定义 214.5**（超有限因子 / Approximately Finite Dimensional, AFD）：因子 $\mathcal{M}$ 称为**超有限**的，如果 $\mathcal{M}$ 可由有限维子代数递增序列的并生成（在强算子拓扑下）。
 
 **定理 214.3**（Murray-von Neumann, 1943）：存在唯一（同构意义下）的超有限 II$_1$ 型因子，记作 $\mathcal{R}$。

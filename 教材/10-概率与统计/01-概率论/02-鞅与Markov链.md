@@ -31,11 +31,6 @@ $$\int_A Y d\mathbb{P} = \int_A X d\mathbb{P} \quad \text{对所有 } A \in \mat
 
 若 $\mathbb{E}[M_{n+1} \mid \mathcal{F}_n] \geq M_n$（下鞅，submartingale）或 $\leq M_n$（上鞅，supermartingale），则称为**下鞅**或**上鞅**。
 
-**例 106.1**（鞅的例子）：
-- 独立零均值随机变量的部分和：$S_n = \sum_{i=1}^n X_i$（$\mathbb{E}[X_i] = 0$）
-- 独立随机变量的乘积：$M_n = \prod_{i=1}^n X_i$（$\mathbb{E}[X_i] = 1$）
-- 条件期望过程：$M_n = \mathbb{E}[X \mid \mathcal{F}_n]$（对固定 $X$）
-
 ### 106.3 鞅收敛定理
 
 **定理 106.2**（Doob 上穿不等式）：设 $\{X_n\}$ 是下鞅。对 $a < b$，在 $n$ 步内 $X_n$ 从 $a$ 以下穿到 $b$ 以上的次数 $U_n(a, b)$ 满足
@@ -192,10 +187,6 @@ $$\int_0^t H_s dB_s = \lim_{\|\Pi\| \to 0} \sum_{i} H_{t_i} (B_{t_{i+1}} - B_{t_
 $$df(t, B_t) = \frac{\partial f}{\partial t}(t, B_t) dt + \frac{\partial f}{\partial x}(t, B_t) dB_t + \frac{1}{2} \frac{\partial^2 f}{\partial x^2}(t, B_t) dt$$
 
 最后一项是 Itô 修正项，来源于 Brown 运动的非零二次变差。
-
-**例 108.1**（Itô 公式的应用）：
-- $f(x) = x^2$：$d(B_t^2) = 2B_t dB_t + dt$（几何 Brown 运动的基础）
-- $f(x) = e^x$：$d(e^{B_t}) = e^{B_t} dB_t + \frac{1}{2} e^{B_t} dt$
 
 ---
 

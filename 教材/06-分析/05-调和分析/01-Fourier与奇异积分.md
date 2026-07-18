@@ -47,12 +47,6 @@ $$\sup_{x \in \mathbb{R}^n} |x^\alpha D^\beta \varphi(x)| < \infty$$
 
 $$\langle \hat{u}, \varphi \rangle = \langle u, \hat{\varphi} \rangle \quad (\varphi \in \mathcal{S})$$
 
-**例 123.1**（缓增分布的 Fourier 变换）：
-- $\hat{\delta}_0 = 1$（常数函数）
-- $\hat{1} = \delta_0$（Dirac $\delta$ 分布）
-- $\widehat{\operatorname{p.v.}(1/x)} = -\pi i \operatorname{sgn}(\xi)$（Hilbert 变换的 Fourier 乘子）
-- $\widehat{\operatorname{sgn}(x)} = \frac{1}{\pi i} \operatorname{p.v.}(1/\xi)$
-
 ### 123.4 Poisson 求和公式
 
 **定理 123.6**（Poisson 求和公式）：设 $f$ 是 Schwartz 函数。则
@@ -119,8 +113,6 @@ $$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
 *证明思路*：使用 Calderón-Zygmund 分解。对"好"部分 $g$ 用 $L^2$ 有界性，对"坏"部分 $b$ 用核的光滑性和消去条件。弱 $(1, 1)$ 有界性 + $L^2$ 有界性 + Marcinkiewicz 插值定理 ⇒ $L^p$ 有界性（$1 < p < 2$）。对偶性处理 $p > 2$。∎
 
 **定理 124.5**（Cotlar 引理，1955）：设 $\{T_j\}_{j \in \mathbb{Z}}$ 是 Hilbert 空间 $\mathcal{H}$ 上的一族有界算子。若存在 $\gamma: \mathbb{Z} \to \mathbb{R}_{\geq 0}$ 满足 $\sum_{k \in \mathbb{Z}} \sqrt{\gamma(k)} < \infty$，使得 $\|T_i^* T_j\| \leq \gamma(i-j)^2$ 和 $\|T_i T_j^*\| \leq \gamma(i-j)^2$ 对所有 $i, j$ 成立，则级数 $\sum_j T_j$ 在强算子拓扑下收敛，且 $\|\sum_j T_j\| \leq \sum_k \sqrt{\gamma(k)}$。Cotlar 引理是证明奇异积分算子 $L^2$ 有界性的核心工具：将核 $K$ 按频率二进分解为 $K = \sum_j K_j$，对每个分片算子 $T_j$ 验证几乎正交性条件 $\|T_i^* T_j\| \leq C 2^{-|i-j|\varepsilon}$，则级数在 $L^2$ 上收敛且有界。其应用场景包括：Hilbert 变换的 $L^2$ 有界性、Calderón 交换子、Fourier 乘子定理以及仿积算子的有界性。
-
-**例 124.1**（Riesz 变换）：$n$ 维 Riesz 变换 $R_j$（$j = 1, \ldots, n$）具有核 $K_j(x) = c_n \frac{x_j}{|x|^{n+1}}$。Fourier 乘子为 $\widehat{R_j f}(\xi) = -i \frac{\xi_j}{|\xi|} \hat{f}(\xi)$。Riesz 变换是 Calderón-Zygmund 定理的典型应用。
 
 ### 124.4 Marcinkiewicz 插值定理
 

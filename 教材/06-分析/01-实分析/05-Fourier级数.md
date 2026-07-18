@@ -7,14 +7,6 @@ $$
 \langle \varphi_i, \varphi_j \rangle = \int_{-\pi}^{\pi} \varphi_i(x) \overline{\varphi_j(x)} \, dx = \delta_{ij}
 $$
 
-**例 50.1.1**：三角函数系
-
-$$
-\frac{1}{\sqrt{2\pi}}, \frac{\cos x}{\sqrt{\pi}}, \frac{\sin x}{\sqrt{\pi}}, \frac{\cos 2x}{\sqrt{\pi}}, \frac{\sin 2x}{\sqrt{\pi}}, \ldots
-$$
-
-是 $L^2([-\pi, \pi])$ 中的规范正交系（实内积：$\overline{\varphi_j} = \varphi_j$）。
-
 **定理 50.1.1（Bessel 不等式）**：设 $\{\varphi_k\}$ 为 $L^2(E)$ 中的规范正交系，$f \in L^2(E)$。则
 
 $$

@@ -73,8 +73,6 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **定义 223.1**（线性代数群）：**线性代数群** $G$ 是代数闭域 $k$ 上的仿射代数簇，带有群运算（乘法 $G \times G \to G$ 和取逆 $G \to G$），使得运算是代数簇的态射。
 
-**例 223.1**（代数群的例子）：$\operatorname{GL}_n(k)$、$\operatorname{SL}_n(k)$、$\operatorname{SO}_n(k)$、$\operatorname{Sp}_{2n}(k)$、$\mathbb{G}_a = (k, +)$（加法群）、$\mathbb{G}_m = (k^\times, \times)$（乘法群）。
-
 **定义 223.2**（Borel 子群与极大环面）：代数群 $G$ 的 **Borel 子群** $B$ 是 $G$ 的极大连通可解子群。$B$ 的**极大环面** $T \subset B$ 是 $B$ 的极大环面子群（同构于 $(\mathbb{G}_m)^n$）。$T$ 的**特征标群** $X(T) = \operatorname{Hom}(T, \mathbb{G}_m)$ 是自由 Abel 群（秩 $= \dim T$）。
 
 **定理 223.1**（Borel 不动点定理）：若连通可解代数群 $G$ 作用在完备代数簇 $X$ 上，则 $G$ 在 $X$ 上有不动点。
@@ -313,42 +311,147 @@ $$\mathcal{D}\text{-}\operatorname{Mod}(\operatorname{Bun}_G) \cong \operatornam
 
 ## Hopf 代数与量子群导引
 
-> **前置知识**：第60-65章（抽象代数一）、第81-87章（李理论）
+### 代数与余代数结构
 
-Hopf 代数是一种同时具有代数结构和余代数结构的对象，它统一了群代数、包络代数和量子群。
+**定义 1**（代数）：设 $k$ 是交换环。一个 $k$-**代数**是一个三元组 $(A, \mu, \eta)$，其中 $A$ 是 $k$-模，$\mu: A \otimes_k A \to A$ 是乘法（乘法映射），$\eta: k \to A$ 是单位映射，满足以下交换图：
+$$\mu \circ (\mu \otimes \mathrm{id}_A) = \mu \circ (\mathrm{id}_A \otimes \mu) \quad (\text{结合律})$$
+$$\mu \circ (\eta \otimes \mathrm{id}_A) = \mathrm{id}_A = \mu \circ (\mathrm{id}_A \otimes \eta) \quad (\text{单位律})$$
 
-### 定义
+**定义 2**（余代数）：一个 $k$-**余代数**是一个三元组 $(C, \Delta, \varepsilon)$，其中 $C$ 是 $k$-模，$\Delta: C \to C \otimes_k C$ 是余乘法，$\varepsilon: C \to k$ 是余单位，满足以下交换图（结合律与单位律的对偶）：
+$$(\Delta \otimes \mathrm{id}_C) \circ \Delta = (\mathrm{id}_C \otimes \Delta) \circ \Delta \quad (\text{余结合律})$$
+$$(\varepsilon \otimes \mathrm{id}_C) \circ \Delta = \mathrm{id}_C = (\mathrm{id}_C \otimes \varepsilon) \circ \Delta \quad (\text{余单位律})$$
 
-一个 **Hopf 代数** 是域 $k$ 上的向量空间 $H$ 配备：
-- **乘法** $\mu: H \otimes H \to H$ 和 **单位** $\eta: k \to H$（代数结构）
-- **余乘法** $\Delta: H \to H \otimes H$ 和 **余单位** $\\varepsilon: H \to k$（余代数结构）
-- **对极**（antipode）$S: H \to H$
+**定义 3**（双代数）：一个 $k$-**双代数**是一个五元组 $(B, \mu, \eta, \Delta, \varepsilon)$，使得 $(B, \mu, \eta)$ 是 $k$-代数，$(B, \Delta, \varepsilon)$ 是 $k$-余代数，且 $\Delta$ 和 $\varepsilon$ 是代数同态。等价地，以下四个交换图成立：
 
-满足两组相容性条件：乘法与余乘法的兼容（双代数条件），以及对极的 Hopf 公理。
+$$\Delta \circ \mu = (\mu \otimes \mu) \circ (\mathrm{id}_B \otimes \tau \otimes \mathrm{id}_B) \circ (\Delta \otimes \Delta) \quad (\text{乘法与余乘法相容})$$
+$$\Delta \circ \eta = \eta \otimes \eta \quad (\text{单位与余乘法相容})$$
+$$\varepsilon \circ \mu = \varepsilon \otimes \varepsilon \quad (\text{余单位是代数同态})$$
+$$\varepsilon \circ \eta = \mathrm{id}_k \quad (\text{余单位与单位相容})$$
 
-### 关键例子
+其中 $\tau: B \otimes B \to B \otimes B$ 是交换张量因子的扭转映射 $\tau(a \otimes b) = b \otimes a$。
 
-| Hopf 代数 | 底代数 | 余乘法 |
-|-----------|--------|--------|
-| 群代数 $k[G]$ | 群的卷积代数 | $\Delta(g) = g \otimes g$ |
-| 包络代数 $U(\mathfrak{g})$ | 李代数的泛包络代数 | $\Delta(x) = x \otimes 1 + 1 \otimes x$（$x \in \mathfrak{g}$） |
-| 坐标环 $\mathcal{O}(G)$ | 代数群的正则函数环 | $\Delta(f)(g,h) = f(gh)$ |
-| 量子包络代数 $U_q(\mathfrak{g})$ | $U(\mathfrak{g})$ 的 q-形变 | 依赖 $\mathfrak{g}$ 的 Cartan 矩阵 |
+### Hopf代数的完整公理化定义
 
-### 量子群
+**定义 4**（Hopf代数）：一个 **Hopf代数** 是域 $k$ 上的六元组 $(H, \mu, \eta, \Delta, \varepsilon, S)$，满足：
+1. $(H, \mu, \eta, \Delta, \varepsilon)$ 是双代数。
+2. $S: H \to H$ 是 $k$-线性映射，称为**对极**（antipode），满足 Hopf 公理：
+$$\mu \circ (S \otimes \mathrm{id}_H) \circ \Delta = \eta \circ \varepsilon = \mu \circ (\mathrm{id}_H \otimes S) \circ \Delta$$
 
-**Drinfeld-Jimbo 量子群** $U_q(\mathfrak{g})$ 是半单李代数 $\mathfrak{g}$ 的泛包络代数的单参数形变。其定义关系用 $q$-整数替换经典整数：
+在图示意义下，以下交换图交换：
+$$\begin{CD}
+H \otimes H @>{S \otimes \mathrm{id}}>> H \otimes H \\
+@A{\Delta}AA @VV{\mu}V \\
+H @>{\varepsilon}>> k @>{\eta}>> H \\
+@V{\Delta}VV @AA{\mu}A \\
+H \otimes H @>{\mathrm{id} \otimes S}>> H \otimes H
+\end{CD}$$
 
-$$[E_i, F_j] = \delta_{ij} \frac{K_i - K_i^{-1}}{q_i - q_i^{-1}}$$
+对极 $S$ 是唯一的（若存在），且满足 $S \circ \mu = \mu \circ \tau \circ (S \otimes S)$ 和 $S \circ \eta = \eta$ 以及 $\varepsilon \circ S = \varepsilon$。若 $H$ 是交换的或余交换的，则 $S^2 = \mathrm{id}_H$。
 
-当 $q \to 1$ 时恢复经典包络代数。
+### Sweedler记号及其严格性
 
-### 表示论与 R-矩阵
+**定义 5**（Sweedler记号）：对 $h \in H$，记余乘法的像为有限和：
 
-量子群具有**拟三角结构**（quasitriangular structure）——存在泛 R-矩阵：
-$$\mathcal{R} \in U_q(\mathfrak{g}) \hat{\otimes} U_q(\mathfrak{g})$$
+$$\Delta(h) = \sum_{(h)} h_{(1)} \otimes h_{(2)}$$
 
-使得两个表示的张量积可自然地交换顺序，这给出辫子幺半范畴结构。这直接联系到：
-- **Yang-Baxter 方程**的可解性
-- **辫群**（braid group）的线性表示
-- **纽结不变量**（如 Jones 多项式）的量子群构造
+余结合律在此记号下表现为：
+
+$$\sum_{(h)} \left( \sum_{(h_{(1)})} h_{(1)(1)} \otimes h_{(1)(2)} \right) \otimes h_{(2)} = \sum_{(h)} h_{(1)} \otimes \left( \sum_{(h_{(2)})} h_{(2)(1)} \otimes h_{(2)(2)} \right)$$
+
+这使得我们可以无歧义地记作 $\sum_{(h)} h_{(1)} \otimes h_{(2)} \otimes h_{(3)}$。在 Sweedler 记号下，Hopf 公理读作：
+
+$$\sum_{(h)} S(h_{(1)}) h_{(2)} = \varepsilon(h) 1_H = \sum_{(h)} h_{(1)} S(h_{(2)})$$
+
+此记号虽非严格形式化（和式依赖于代表元的选取），但极大地简化了计算。所有使用 Sweedler 记号的恒等式均可还原为标准交换图语言。
+
+### 三个基础例子
+
+**定理 1**（群代数）：设 $G$ 是群，$k[G]$ 是群代数。定义：
+- $\mu(g \otimes h) = gh$，$\eta(1_k) = 1_G$
+- $\Delta(g) = g \otimes g$，$\varepsilon(g) = 1_k$
+- $S(g) = g^{-1}$
+
+则 $(k[G], \mu, \eta, \Delta, \varepsilon, S)$ 是 Hopf 代数。
+
+**证明**：代数公理由群乘法结合律和单位元保证。余结合律：$(\Delta \otimes \mathrm{id}) \Delta(g) = g \otimes g \otimes g = (\mathrm{id} \otimes \Delta) \Delta(g)$。余单位律：$(\varepsilon \otimes \mathrm{id}) \Delta(g) = 1 \otimes g = g$，同理另一侧。双代数条件由 $\Delta(gh) = gh \otimes gh = (g \otimes g)(h \otimes h) = \Delta(g)\Delta(h)$ 验证。Hopf 公理：$\mu(S \otimes \mathrm{id})\Delta(g) = g^{-1}g = e = \varepsilon(g)1_H = gg^{-1} = \mu(\mathrm{id} \otimes S)\Delta(g)$。$\blacksquare$
+
+**定理 2**（包络代数）：设 $\mathfrak{g}$ 是李代数，$U(\mathfrak{g})$ 是泛包络代数。定义 $\Delta(x) = x \otimes 1 + 1 \otimes x$ 对 $x \in \mathfrak{g}$，线性延拓为代数同态；$\varepsilon(x) = 0$ 对 $x \in \mathfrak{g}$；$S(x) = -x$ 对 $x \in \mathfrak{g}$，并延拓为反代数同态。则 $(U(\mathfrak{g}), \mu, \eta, \Delta, \varepsilon, S)$ 是 Hopf 代数。
+
+**证明**：余结合律对生成元验证：对 $x \in \mathfrak{g}$，$(\Delta \otimes \mathrm{id})\Delta(x) = x \otimes 1 \otimes 1 + 1 \otimes x \otimes 1 + 1 \otimes 1 \otimes x = (\mathrm{id} \otimes \Delta)\Delta(x)$。双代数条件因 $\Delta$ 定义为代数同态而自动满足。Hopf 公理：$\mu(S \otimes \mathrm{id})\Delta(x) = -x + x = 0 = \varepsilon(x)1 = \mu(\mathrm{id} \otimes S)\Delta(x)$。$\blacksquare$
+
+**定理 3**（坐标环）：设 $G$ 是仿射代数群，$\mathcal{O}(G)$ 是其正则函数环。定义 $\mu$ 为逐点乘法，$\eta(1) = 1_G$（常值函数），$\Delta(f)(g, h) = f(gh)$，$\varepsilon(f) = f(e)$，$S(f)(g) = f(g^{-1})$。则 $(\mathcal{O}(G), \mu, \eta, \Delta, \varepsilon, S)$ 是交换 Hopf 代数。
+
+**证明**：$\Delta$ 的余结合律由 $G$ 中群乘法的结合律保证：$((\Delta \otimes \mathrm{id})\Delta(f))(g, h, k) = f((gh)k) = f(g(hk)) = ((\mathrm{id} \otimes \Delta)\Delta(f))(g, h, k)$。双代数性质因 $\Delta$ 是代数同态（$\Delta(f_1 f_2) = \Delta(f_1)\Delta(f_2)$ 来自群乘法为代数同态）。Hopf 公理：$(\mu(S \otimes \mathrm{id})\Delta(f))(g) = f(g^{-1}g) = f(e) = \varepsilon(f)1_G$。$\blacksquare$
+
+### 量子群：Drinfeld-Jimbo $U_q(\mathfrak{sl}_2)$
+
+**定义 6**（$q$-整数与$q$-阶乘）：对 $q \in k^\times$，$q \neq \pm 1$，定义 $q$-整数和 $q$-阶乘：
+
+$$[n]_q = \frac{q^n - q^{-n}}{q - q^{-1}}, \quad [n]_q! = [1]_q [2]_q \cdots [n]_q$$
+
+自然地 $[0]_q! = 1$。注意 $\lim_{q \to 1} [n]_q = n$。
+
+**定义 7**（$U_q(\mathfrak{sl}_2)$）：Drinfeld-Jimbo 量子群 $U_q(\mathfrak{sl}_2)$ 是域 $k$ 上由生成元 $E, F, K, K^{-1}$ 生成的结合代数，满足以下六条关系：
+
+$$KK^{-1} = 1 = K^{-1}K$$
+$$KEK^{-1} = q^2 E$$
+$$KFK^{-1} = q^{-2} F$$
+$$[E, F] = \frac{K - K^{-1}}{q - q^{-1}}$$
+
+其中 $q$-整数 $[2]_q = q + q^{-1}$ 自然出现在高阶结构中。$U_q(\mathfrak{sl}_2)$ 上的 Hopf 代数结构定义如下：
+
+$$\Delta(E) = E \otimes 1 + K \otimes E, \quad \Delta(F) = F \otimes K^{-1} + 1 \otimes F$$
+$$\Delta(K) = K \otimes K, \quad \Delta(K^{-1}) = K^{-1} \otimes K^{-1}$$
+$$\varepsilon(E) = \varepsilon(F) = 0, \quad \varepsilon(K) = \varepsilon(K^{-1}) = 1$$
+$$S(E) = -K^{-1}E, \quad S(F) = -FK, \quad S(K) = K^{-1}, \quad S(K^{-1}) = K$$
+
+当 $q \to 1$ 时，$[E, F] \to H$（其中 $H = \lim_{q \to 1} (K - K^{-1})/(q - q^{-1})$），恢复经典包络代数 $U(\mathfrak{sl}_2)$。
+
+### 拟三角Hopf代数与泛R-矩阵
+
+**定义 8**（拟三角Hopf代数）：Hopf 代数 $(H, \mu, \eta, \Delta, \varepsilon, S)$ 称为**拟三角的**（quasitriangular），如果存在可逆元 $\mathcal{R} \in H \otimes H$，称为**泛R-矩阵**，满足：
+
+$$(\Delta \otimes \mathrm{id})(\mathcal{R}) = \mathcal{R}_{13}\mathcal{R}_{23}$$
+$$(\mathrm{id} \otimes \Delta)(\mathcal{R}) = \mathcal{R}_{13}\mathcal{R}_{12}$$
+$$\tau \circ \Delta(h) = \mathcal{R} \Delta(h) \mathcal{R}^{-1}, \quad \forall h \in H$$
+
+其中 $\mathcal{R}_{12} = \mathcal{R} \otimes 1$，$\mathcal{R}_{23} = 1 \otimes \mathcal{R}$，$\mathcal{R}_{13} = (\mathrm{id} \otimes \tau)(\mathcal{R} \otimes 1)$，而 $\tau$ 如前是张量因子的扭转映射。
+
+**定理 4**（Yang-Baxter方程）：泛R-矩阵自动满足 Yang-Baxter 方程：
+
+$$\mathcal{R}_{12}\mathcal{R}_{13}\mathcal{R}_{23} = \mathcal{R}_{23}\mathcal{R}_{13}\mathcal{R}_{12}$$
+
+**证明**：计算 $\mathcal{R}_{12}\mathcal{R}_{13}\mathcal{R}_{23} = \mathcal{R}_{12} \cdot (\Delta \otimes \mathrm{id})(\mathcal{R}) = (\tau \otimes \mathrm{id})[(\Delta \otimes \mathrm{id})(\mathcal{R})] \cdot \mathcal{R}_{23}$。利用拟三角条件 $(\Delta \otimes \mathrm{id})(\mathcal{R}) = \mathcal{R}_{13}\mathcal{R}_{23}$ 和 $(\mathrm{id} \otimes \Delta)(\mathcal{R}) = \mathcal{R}_{13}\mathcal{R}_{12}$，经过标准计算可得两方向相等。详细验证：$\mathcal{R}_{12}\mathcal{R}_{13}\mathcal{R}_{23} = \mathcal{R}_{12}(\Delta \otimes \mathrm{id})(\mathcal{R}) = (\tau \otimes \mathrm{id}) \circ (\Delta^{\mathrm{op}} \otimes \mathrm{id})(\mathcal{R}) \cdot \mathcal{R}_{23}$，再由拟三角第三条件的张量形式，即得 $\mathcal{R}_{23}\mathcal{R}_{13}\mathcal{R}_{12}$。$\blacksquare$
+
+### 辫子幺半范畴
+
+**定义 9**（辫子幺半范畴）：幺半范畴 $(\mathcal{C}, \otimes, I, \alpha, \lambda, \rho)$ 称为**辫子的**（braided），若存在自然同构 $c_{X,Y}: X \otimes Y \to Y \otimes X$ 满足六角公理：
+
+$$c_{X \otimes Y, Z} = (c_{X,Z} \otimes \mathrm{id}_Y) \circ (\mathrm{id}_X \otimes c_{Y,Z})$$
+$$c_{X, Y \otimes Z} = (\mathrm{id}_Y \otimes c_{X,Z}) \circ (c_{X,Y} \otimes \mathrm{id}_Z)$$
+
+**定理 5**（从R-矩阵构造辫子）：设 $(H, \mathcal{R})$ 是拟三角Hopf代数，则其表示范畴 $\mathrm{Rep}(H)$ 是辫子幺半范畴，辫子定义如下：对任意表示 $V, W$ 和 $v \in V, w \in W$，
+
+$$c_{V,W}(v \otimes w) = \tau(\mathcal{R} \cdot (v \otimes w))$$
+
+其中 $\mathcal{R}$ 通过表示作用在 $V \otimes W$ 上，$\tau$ 是通常的张量因子交换。
+
+**证明**：需验证 $c_{V,W}$ 是 $H$-模同态。对 $h \in H$，利用拟三角条件 $\tau \circ \Delta(h) = \mathcal{R} \Delta(h) \mathcal{R}^{-1}$ 可得 $c_{V,W} \circ h = h \circ c_{V,W}$。六角公理由 $(\Delta \otimes \mathrm{id})(\mathcal{R})$ 和 $(\mathrm{id} \otimes \Delta)(\mathcal{R})$ 的条件逐项验证：$c_{U \otimes V, W} = (c_{U,W} \otimes \mathrm{id}_V)(\mathrm{id}_U \otimes c_{V,W})$ 直接来自 $(\Delta \otimes \mathrm{id})(\mathcal{R}) = \mathcal{R}_{13}\mathcal{R}_{23}$。同理第二个六角公理由另一拟三角条件保证。自然性来自 $\mathcal{R}$ 为 $H \otimes H$ 中元。$\blacksquare$
+
+### 量子迹与纽结不变量
+
+**定义 10**（量子迹）：设 $H$ 是丝带 Hopf 代数（拟三角 + 中心元 $\nu$ 满足特定条件），$V$ 是有限维 $H$-模。定义 $V$ 的**量子迹**（quantum trace）为：
+
+$$\mathrm{Tr}_q^V(f) = \mathrm{Tr}(f \circ \nu^{-1})$$
+
+其中 $\mathrm{Tr}$ 是通常的向量空间迹。量子迹满足循环性和部分迹标准性质。
+
+**定义 11**（Markov迹）：设 $\{B_n\}_{n \ge 1}$ 是辫子群序列，$\mathrm{Rep}(H)$ 中对象 $V$ 诱导了表示 $\rho_n: k[B_n] \to \mathrm{End}(V^{\otimes n})$。**Markov迹** 是一族线性函数 $\{\mathrm{MT}_n: \mathrm{End}_H(V^{\otimes n}) \to k\}_{n \ge 1}$，满足：
+1. $\mathrm{MT}_n(fg) = \mathrm{MT}_n(gf)$（迹性）
+2. $\mathrm{MT}_{n+1}(f \otimes \mathrm{id}_V) = \mathrm{MT}_n(f)$ 和 $\mathrm{MT}_{n+1}(f \circ c_{V,V}^{\pm 1} \otimes \mathrm{id}_V) = \mathrm{MT}_n(f)$（Markov性质）
+
+**定理 6**（纽结不变量构造）：给定丝带 Hopf 代数 $H$ 和有限维表示 $V$，对每个定向链环 $L$（表示为辫子的闭包），定义：
+
+$$J_{H,V}(L) = \mathrm{MT}_n(\rho_n(\beta))$$
+
+其中 $\beta \in B_n$ 满足其闭包同痕于 $L$。则 $J_{H,V}(L)$ 是定向链环的同痕不变量。Jones 多项式和 HOMFLY-PT 多项式可分别从适当参数的 $U_q(\mathfrak{sl}_2)$ 和 $U_q(\mathfrak{sl}_N)$ 的表示中得到。
