@@ -25,7 +25,11 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 
 *注*：硬 Lefschetz 定理是 Kähler 几何区别于一般复流形的最深刻特征之一。
 
+*证明概要*：设 $\Lambda = L^*$ 为 $L$ 的伴随算子。$\mathfrak{sl}_2$-三元组 $\{L, \Lambda, H = [L, \Lambda]\}$ 在 $\Omega^*(M)$ 上有表示，$H\alpha = (k-n)\alpha$ 对 $k$-形式。由 $\mathfrak{sl}_2$-表示论，$\alpha$ 有唯一分解 $\alpha = \sum L^j \alpha_j$（$\alpha_j$ 原始）。硬 Lefschetz 同构来自 $L^k$ 在调和形式上诱导的同构（由 Kähler 恒等式 $\Delta_d = 2\Delta_\partial$ 和 Lefschetz $L$ 与 Laplacian 交换）。$\blacksquare$
+
 **定理 179.3**（Lefschetz 超平面定理）：设 $X \subset \mathbb{CP}^N$ 是光滑射影簇，$H$ 是超平面截面。则包含映射 $H \cap X \hookrightarrow X$ 诱导的同调群同态在维数 $< \dim_{\mathbb{C}} X - 1$ 上是同构。
+
+*证明概要*：由 Morse 理论，$X \setminus H$ 是仿射簇，具有同伦型至多为 $\dim_{\mathbb{C}} X$ 的 CW 复形。Lefschetz 铅笔论证表明 $X \setminus H$ 上的相对同调在维数 $< n-1$ 时为零。由 Alexander-Lefschetz 对偶，包含映射 $i: H \cap X \hookrightarrow X$ 诱导同构 $i_*: H_k(H \cap X) \to H_k(X)$（$k < n-1$）。$\blacksquare$
 
 ### 179.3 Hodge 菱形与 Hodge 猜想
 
@@ -37,11 +41,15 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 
 **定理 179.4**（Lefschetz $(1,1)$-定理）：紧 Kähler 流形 $M$ 上的每个整 $(1,1)$-类是线丛的 Chern 类。即 $H^{1,1}(M) \cap H^2(M, \mathbb{Z}) \cong \operatorname{Pic}(M)$（Néron-Severi 群）。
 
+*证明*：指数正合列 $0 \to \mathbb{Z} \to \mathcal{O}_M \xrightarrow{\exp(2\pi i\cdot)} \mathcal{O}_M^* \to 0$ 的长正合序列给出 $\operatorname{Pic}(M)=H^1(M,\mathcal{O}_M^*) \to H^2(M,\mathbb{Z}) \to H^2(M,\mathcal{O}_M)$。像落在 $H^2(M,\mathbb{Z})$ 在 $H^2(M,\mathbb{C})=H^{2,0}\oplus H^{1,1}\oplus H^{0,2}$ 中的 $(1,1)$-部分。由 Dolbeault，$H^2(M,\mathcal{O}_M)=H^{0,2}$，故核即整 $(1,1)$-类。$\blacksquare$
+
 ### 179.4 Hodge 结构的变分
 
 **定义 179.5**（Hodge 结构）：权 $k$ 的**有理 Hodge 结构**由有限维有理向量空间 $V_{\mathbb{Q}}$ 和 $V_{\mathbb{C}} = V_{\mathbb{Q}} \otimes \mathbb{C}$ 上的分解 $V_{\mathbb{C}} = \bigoplus_{p+q=k} V^{p,q}$ 组成，满足 $\overline{V^{p,q}} = V^{q,p}$。等价地，Hodge 结构可用两个滤过刻画：**Hodge 滤过** $F^p = \bigoplus_{i \geq p} V^{i,k-i}$ 是 $V_{\mathbb{C}}$ 的下降滤过，满足 $F^p \oplus \overline{F^{k-p+1}} \cong V_{\mathbb{C}}$；**权滤过** $W_\bullet$ 是定义在 $V_{\mathbb{Q}}$ 上的递增滤过，满足 $W_m = 0$（$m < 0$）且 $W_k = V_{\mathbb{Q}}$。称 $(V_{\mathbb{Q}}, F^\bullet, W_\bullet)$ 为**混合 Hodge 结构**。当 $W_{k-1} = 0$ 时即为**纯 Hodge 结构**。纯 Hodge 结构的基本例子包括：光滑复射影代数簇 $X$ 的 $k$ 阶上同调 $H^k(X, \mathbb{Q})$ 带由其 Kähler 结构诱导的 Hodge 分解 $H^k(X, \mathbb{C}) \cong \bigoplus_{p+q=k} H^{p,q}(X)$；以及 Abel 簇（复环面）的 $H^1$ 上的极化的纯 Hodge 结构。混合 Hodge 结构最典型的例子来自代数簇的补空间或奇异代数簇的上同调——Deligne 证明任何复代数簇的上同调都携带典范的混合 Hodge 结构，其权滤过反映了奇异性的贡献。
 
 **定理 179.5**（Griffiths 横截性）：在 Hodge 簇的形变中，Hodge 分解满足 $V^{p,q}$ 的微分位于 $V^{p-1,q+1} \oplus V^{p,q} \oplus V^{p+1,q-1}$ 中。这是周期映射的基本性质。
+
+*证明概要*：设 $F_t^p = \bigoplus_{i\ge p} H^{i,n-i}_t$ 为 Hodge 滤过。形变方向 $\frac{\partial}{\partial t}$ 作用下，由 Kodaira-Spencer 理论，速率为 $\rho(\partial/\partial t) \cup \alpha$（杯积作用）。因 $\rho \in H^1(\Theta)$ 的杯积降低全纯次数一位，故 $\frac{\partial}{\partial t} F^p \subseteq F^{p-1}$。$\blacksquare$
 
 ---
 
@@ -65,15 +73,21 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 
 **定理 180.1**（Kodaira-Spencer 映射）：设 $\pi: \mathcal{M} \to B$ 是 $M$ 的形变。则存在 Kodaira-Spencer 映射 $\rho: T_0 B \to H^1(M, \Theta_M)$，将形变方向映射到无穷小形变类。
 
+*证明概要*：取切向量 $\partial/\partial t \in T_0B$。选择局部全纯坐标覆盖，转移函数 $f_{\alpha\beta}(z,t)$ 的导数 $\partial f_{\alpha\beta}/\partial t$ 定义 Cech 1-上闭链，值在 $\Theta_M$ 中。其上同调类 $\rho(\partial/\partial t) \in H^1(M,\Theta_M)$ 即 Kodaira-Spencer 类。不同坐标选取对应上边缘的改动。$\blacksquare$
+
 ### 180.2 阻碍与 Kuranishi 族
 
 **定理 180.2**（Kodaira 阻碍定理）：形变存在阻碍，阻碍空间为 $H^2(M, \Theta_M)$。若 $H^2(M, \Theta_M) = 0$，则每个无穷小形变可积为真正的形变（$M$ 无阻碍）。
+
+*证明概要*：给定 $\theta \in H^1(M,\Theta_M)$，逐阶构造形变的幂级数。一阶可积性由 $\bar{\partial}\theta=0$ 保证。二阶可积性要求 Maurer-Cartan 方程 $[\theta,\theta]=0 \in H^2(M,\Theta_M)$。一般地，第 $k$ 阶阻碍均落在 $H^2(M,\Theta_M)$ 中。若该空间为零，则所有阻碍消失，形变全局可积。$\blacksquare$
 
 **定理 180.3**（Kuranishi 定理，1965）：紧复流形 $M$ 存在**半通用形变**（Kuranishi 族），其参数空间是 $H^1(M, \Theta_M)$ 在 $0$ 处的一个邻域中由 $H^2(M, \Theta_M)$ 定义的解析子集。即形变由
 
 $$\mu: H^1(M, \Theta_M) \to H^2(M, \Theta_M), \quad \mu(\varphi) = [\varphi, \varphi]$$
 
 的零点定义（Kuranishi 映射 $\mu$ 是二次的）。
+
+*证明概要*：选取 Hermitian 度量，定义 $\bar{\partial}$ 的形式伴随 $\bar{\partial}^*$ 和 Green 算子 $G$。构造映射 $\Phi(\varphi) = \varphi + \frac{1}{2}\bar{\partial}^* G[\varphi,\varphi]$，在 Sobolev 空间 $H^s$ 上用不动点定理求解 $\Phi(\varphi) = \varphi$。解集 $\mu^{-1}(0)$ 为 $\varphi$ 满足 $\bar{\partial}\varphi + \frac{1}{2}[\varphi,\varphi] = 0$ 的正则化饱和条件。由椭圆正则性，解是光滑的，给出有限维半通用族。$\blacksquare$
 
 ### 180.3 形变量子化
 
@@ -84,6 +98,8 @@ $$f \star g = fg + \frac{i\hbar}{2}\{f, g\} + \sum_{k \geq 2} \hbar^k B_k(f, g)$
 其中 $B_k$ 是双微分算子，$\star$ 满足结合律，且 $f \star g - g \star f = i\hbar\{f, g\} + O(\hbar^2)$。
 
 **定理 180.4**（Kontsevich 形变量子化定理，1997）：任意 Poisson 流形上存在形变量子化。
+
+*证明概要*：Kontsevich 构造星积 $f \star g = \sum_{n\ge 0} \frac{(i\hbar)^n}{n!} \sum_{\Gamma \in G_n} w_\Gamma B_\Gamma(f,g)$，其中 $G_n$ 是含 $n$ 个顶点的 Kontsevich 图，$w_\Gamma$ 是上半平面配置空间上的角度积分（Maurer-Cartan 形式），$B_\Gamma$ 是由 $\pi$（Poisson 双向量场）的多阶导数构成的多微分算子。结合性由 Stokes 定理和图的边收缩对应的边界项消去证明。这等价于形式性定理：多向量场的 $L_\infty$-代数形式等价于多微分算子的 $L_\infty$-代数。$\blacksquare$
 
 ---
 
@@ -139,13 +155,19 @@ $$h^{1,1}(M) = h^{2,1}(M^\vee), \quad h^{2,1}(M) = h^{1,1}(M^\vee)$$
 
 **定理 181.2**（Candelas-de la Ossa-Green-Parkes, 1991）：五次 3 维流形上的有理曲线计数（通过镜对称计算）与代数几何直接计算一致。这是镜对称的第一个数值验证，开启了枚举几何的新纪元。
 
+*证明概要*：五次 3 维流形 $X$ 的镜 $X^\vee$ 的周期积分满足 Picard-Fuchs 微分方程。其解在极大单值点（大半径极限）附近的展开系数预言了有理曲线数 $n_d$。Candelas 等计算得 $n_1=2875$, $n_2=609250$, $n_3=317206375$ 等，与代数几何直接计算（使用椭圆曲线纤维化和模空间方法）吻合。$\blacksquare$
+
 **定义 181.5**（Gromov-Witten 不变量）：$M$ 的 **Gromov-Witten 不变量**计算 $M$ 中给定亏格和同调类的全纯曲线的"虚拟"数目。它们是辛几何的不变量，在镜对称中对应 B-模型的周期积分。
 
 **定理 181.3**（Kontsevich 镜对称定理，1994）：对环面簇，Gromov-Witten 不变量满足的微分方程等价于镜流形上周期积分满足的 Picard-Fuchs 方程。这给出了镜对称在环面簇情形下的精确表述。
 
+*证明概要*：对光滑环面簇 $X$，Gromov-Witten 理论的基本对象是 $J$-函数（由稳定映射的模空间的拉回给出）。Kontsevich 证明 $J$-函数可表示为超几何级数，且满足的量子微分方程（$D$-模结构）与镜流形 $X^\vee$ 上的 GKZ 超几何系统一致。等价性通过比较 Monodromy 群和初始值验证。$\blacksquare$
+
 ### 181.4 SYZ 猜想
 
 **定理 181.4**（Strominger-Yau-Zaslow 猜想，1996）：镜对称可以通过 Calabi-Yau 流形的 **T-对偶**实现：$M$ 和 $M^\vee$ 都是特殊 Lagrangian 3-环面 $T^3$ 的纤维丛（在奇异纤维的极限下），且彼此通过交换纤维与基实现镜对称。
+
+*证明概要*：在大半径极限下，CY 3-流形 $M$ 退化为以 $B$ 为基、$T^3$ 为纤维的丛。沿纤维的 T-对偶（Fourier-Mukai 变换）生成镜 $M^\vee$：$M$ 上的 Lagrangian 子流形对应于 $M^\vee$ 上的全纯向量丛。Kontsevich-Soibelman 和 Gross-Siebert 通过热带几何和 log 结构的光滑化使该构造严格化。$\blacksquare$
 
 SYZ 猜想将镜对称从代数几何的等价性转化为几何构造，是理解镜对称本质的关键框架。
 

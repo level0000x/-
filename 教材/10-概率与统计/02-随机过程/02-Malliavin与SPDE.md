@@ -29,6 +29,8 @@ $$u(t,x) = E\left[e^{-r(T-t)} f(X_T) \mid X_t = x\right]$$
 
 其中 $X_t$ 是 SDE $dX_s = b(X_s) ds + \sigma(X_s) dW_s$ 的解。
 
+**证明**：对 $v(t,x) = e^{-rt} u(t,x)$ 应用 Itô 公式。$dv = e^{-rt}(u_t + \mathcal{L}u - ru)dt + e^{-rt} u_x \sigma dW_t$。由 PDE，漂移项为 0，故 $v(s, X_s)$ 是局部鞅。若适当增长率条件成立，$v(s, X_s) = \mathbb{E}[v(T, X_T) \mid \mathcal{F}_s]$。代入 $v(T, X_T) = e^{-rT} f(X_T)$，得 $u(t,x) = e^{rt} v(t,x) = \mathbb{E}[e^{-r(T-t)} f(X_T) \mid X_t = x]$。$\blacksquare$
+
 *应用*：Feynman-Kac 公式将 PDE 的求解转化为随机过程的期望计算，是金融衍生品定价（Black-Scholes PDE）的数学基础。
 
 ### 136.3 Markov 性与强 Markov 性
@@ -39,11 +41,15 @@ $$E[f(X_t) \mid \mathcal{F}_s] = E[f(X_t) \mid X_s] \quad (s < t)$$
 
 且具有 Feller 性质：转移半群 $P_t f(x) = E[f(X_t) \mid X_0 = x]$ 将连续有界函数映为连续有界函数。
 
+**证明**：由解的流性质，对固定初始条件 $x$，$X_t^{s,x}$ 仅依赖于 $x$ 和 $W_r$（$r \geq s$）。由 Wiener 过程的独立增量性质，$\mathcal{F}_s$ 中信息仅通过 $X_s$ 影响 $X_t$（$t > s$）：$X_t = X_s + \int_s^t b(r, X_r) dr + \int_s^t \sigma(r, X_r) dW_r$。被积函数从 $X_s$ 迭代确定，故 $\mathbb{E}[f(X_t) \mid \mathcal{F}_s] = \mathbb{E}[f(X_t^{s,X_s})]$，即 $X$ 为 Markov 过程。Feller 性质由解对初始条件的 Lipschitz 连续依赖性及控制收敛定理得到。$\blacksquare$
+
 **定理 136.4**（Dynkin 公式）：设 $\mathcal{L}$ 是扩散过程 $X_t$ 的生成元，$\tau$ 是停时且 $E[\tau] < \infty$，则
 
 $$E[f(X_\tau)] = f(x) + E\left[\int_0^\tau \mathcal{L}f(X_s) ds\right]$$
 
 这是 Itô 公式的直接推论，用于研究扩散过程的平均首达时间等问题。
+
+**证明**：对 $f(X_t)$ 应用 Itô 公式：$df(X_t) = \mathcal{L}f(X_t) dt + f'(X_t) \sigma(X_t) dW_t$。设 $\tau_n = \tau \wedge n$ 有界停时。积分并取期望，$\mathbb{E}[f(X_{\tau_n})] = f(x) + \mathbb{E}[\int_0^{\tau_n} \mathcal{L}f(X_s) ds]$（鞅部分期望为 0）。令 $n \to \infty$，由 $\mathbb{E}[\tau] < \infty$ 和控制收敛定理即得。$\blacksquare$
 
 ### 136.4 扩散过程的构造与 Kolmogorov 方程
 
@@ -52,6 +58,8 @@ $$E[f(X_\tau)] = f(x) + E\left[\int_0^\tau \mathcal{L}f(X_s) ds\right]$$
 $$\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}(b p) + \frac{1}{2} \frac{\partial^2}{\partial x^2}(\sigma^2 p) = \mathcal{L}^* p$$
 
 其中 $\mathcal{L}^*$ 是生成元 $\mathcal{L}$ 的伴随。
+
+**证明**：对任意测试函数 $\varphi$，计算 $\frac{d}{dt} \mathbb{E}[\varphi(X_t)]$。由 Itô 公式，$d\varphi(X_t) = \mathcal{L}\varphi(X_t) dt + (\cdots) dW_t$。取期望消去鞅部分：$\frac{d}{dt} \int \varphi(x) p(t,x) dx = \int \mathcal{L}\varphi(x) p(t,x) dx = \int \varphi(x) \mathcal{L}^* p(t,x) dx$（由分部积分和伴随算子定义）。由于 $\varphi$ 任意，$p$ 满足 $\partial_t p = \mathcal{L}^* p$。$\mathcal{L}^* p = -\partial_x(b p) + \frac{1}{2}\partial_{xx}(\sigma^2 p)$ 由 $\mathcal{L} = b\partial_x + \frac{\sigma^2}{2}\partial_{xx}$ 的伴随公式得出。$\blacksquare$
 
 ---
 
@@ -74,6 +82,8 @@ Malliavin 分析（Malliavin 计算）是无穷维空间上的微分分析，由
 $$F = \sum_{n=0}^{\infty} I_n(f_n)$$
 
 其中 $I_n$ 是 $n$ 重 Itô-Wiener 积分（关于 Brown 运动），$f_n \in L^2([0,T]^n)$ 是对称函数。
+
+**证明**：设 $\mathcal{H}_n$ 为 $n$ 阶 Wiener 混沌（由 $n$ 次 Hermite 多项式生成的闭子空间）。Hermite 多项式 $\{H_n(\int_0^T h(s) dW_s)\}$（$\|h\|_{L^2}=1$）是正交的。由 Itô 积分的迭代性质，$\mathcal{H}_n$ 与 $n$ 重 Wiener-Itô 积分 $\{I_n(f) : f \in L^2([0,T]^n), f \text{ 对称}\}$ 等距同构（Itô 等距推广为多重版本：$\|I_n(f)\|^2 = n! \|f\|_{L^2([0,T]^n)}^2$）。$L^2(\Omega)$ 分解为 $\bigoplus_{n=0}^\infty \mathcal{H}_n$ 的正交直和。$\blacksquare$
 
 ### 137.2 Malliavin 导数
 

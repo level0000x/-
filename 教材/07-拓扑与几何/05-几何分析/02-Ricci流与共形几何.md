@@ -51,11 +51,17 @@ $\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathca
 
 *意义*：Perelman 因证明 Poincaré 猜想获 2006 年 Fields 奖（但拒绝领奖），是 21 世纪数学第一个重大突破。
 
+*证明概要*：运行带手术的 Ricci 流。Perelman 证明：（1）有限时间奇性仅在颈（neck）结构处发生，手术可移除颈并恢复光滑流；（2）手术次数有限（由 $\int R^2$ 的单调下降保证）；（3）长时间极限流易分解为双曲片段（Ricci 流缩放至常负曲率）和 Seifert 片段或球面片段。结合 JSJ 分解的拓扑刚性和 Mostow 刚性完成。$\blacksquare$
+
 ### 184.4 Ricci 流在复几何中的应用
 
 **定理 184.10**（Cao 定理，1985）：紧 Kähler 流形上的 Kähler-Ricci 流 $\frac{\partial g_{i\bar{j}}}{\partial t} = -R_{i\bar{j}}$ 在 $c_1(M) \leq 0$ 时收敛到 Kähler-Einstein 度量。
 
+*证明概要*：Kähler-Ricci 流在 Kähler 类内演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t)$。若 $c_1(M)=0$，此为 Yau 的定理（Ricci 平坦度量）。若 $c_1(M)<0$，演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t) - \omega_t$，通过 Aubin-Yau 连续性方法的抛物化得到指数收敛到唯一的 Kähler-Einstein 度量（$\operatorname{Ric} = -\omega$）。$\blacksquare$
+
 **定理 184.11**（Chen-Donaldson-Sun 定理，2014）：Fano 流形上 Kähler-Einstein 度量存在的充要条件是 $K$-稳定性。这是 Yau-Tian-Donaldson 猜想的证明，使用 Kähler-Ricci 流方法。
+
+*证明概要*：必要性由 Tian 和 Donaldson 证明（若 KE 度量存在则 $K$-稳定）。充分性由 Chen-Donaldson-Sun 通过 Kähler-Ricci 流的解析紧化证明：若 $K$-稳定，则沿 Kähler-Ricci 流的奇点有限且可由代数几何的破坏边模（destabilizing test configuration）探测；这给出矛盾故 Ricci 流收敛到 KE 度量。$\blacksquare$
 
 ### 184.5 Cheeger-Gromoll 分裂定理
 

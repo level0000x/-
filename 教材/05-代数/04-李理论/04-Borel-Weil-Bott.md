@@ -25,6 +25,8 @@ $$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$$
 **定理 87.2**（Borel-Weil 与 Weyl 特征公式）：作为 Euler-Poincaré 特征，
 $$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)}}{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho)}} = \operatorname{ch} V_\lambda$$
 
+**证明**：由 Borel-Weil 定理，$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$（$\lambda$ 支配时）且 $H^{>0} = 0$（Kempf 消没定理），故 $\chi(G/B, \mathcal{L}_\lambda) = \operatorname{ch} H^0 = \operatorname{ch} V_\lambda$。另一方面，Atiyah-Bott 不动点公式应用于 $T$（极大环面）在 $G/B$ 上的作用给出上述分数形式：分子为 Lefschetz 迹公式在和 $W$ 上求和，分母为 Weyl 分母恒等式。因此两者相等即得 Weyl 特征公式。$\blacksquare$
+
 ### 87.3 Bott-Borel-Weil 定理
 
 **定义 87.4**（Weyl 群的点作用）：对 $w \in W$ 和 $\lambda \in \Lambda$，定义平移 Weyl 群作用（点作用）
@@ -60,6 +62,8 @@ $$\chi(G/B, \mathcal{L}_\lambda) = \sum_{i \geq 0} (-1)^i \operatorname{ch} H^i(
 $$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)}}{\prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2})}$$
 其中分母 $\prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2}) = e^{-\rho} \prod_{\alpha \in \Phi^+} (e^\alpha - 1) = \sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho) - \rho}$ 为 Weyl 分母恒等式。分子分母化简即得标准 Weyl 特征公式。
 
+**证明**：由定理 87.3（Bott-Borel-Weil），上同调群 $H^i(G/B, \mathcal{L}_\lambda)$ 要么全为零，要么恰在一个 $i$ 处非零（$i = \ell(w)$ 时 $H^{\ell(w)} \cong V_{w \bullet \lambda}$）。因此 Euler-Poincaré 特征 $\chi = \sum (-1)^i \operatorname{ch} H^i = (-1)^{\ell(w)} \operatorname{ch} V_{w \bullet \lambda}$。Atiyah-Bott 不动点公式将 $\chi$ 计算为 $T$-等变 $K$-理论中的迹，给出所述分数形式。结合 Weyl 分母恒等式 $\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho)} = e^\rho \prod_{\alpha > 0} (1 - e^{-\alpha})$ 即得标准 Weyl 特征公式。$\blacksquare$
+
 ### 87.4 与几何量子化的联系
 
 **注记 87.1**（几何量子化，Kostant-Souriau 1960年代）：Borel-Weil-Bott 定理是几何量子化最经典的范例。在几何量子化框架中：
@@ -93,8 +97,12 @@ $$D_\alpha(e^\mu) = \frac{e^\mu - e^{s_\alpha(\mu) - \alpha}}{1 - e^{-\alpha}}$$
 $$\mathcal{M}(\mathfrak{g}, \lambda) \cong \operatorname{QCoh}(G/B, \mathcal{D}_\lambda)$$
 其中左端为具有平凡广义中心特征的 $\mathfrak{g}$-模（Harish-Chandra 双模范畴），右端为 $G/B$ 上扭折微分算符层 $\mathcal{D}_\lambda$ 的拟凝聚层范畴。该等价将 Verma 模映为标准 $\mathcal{D}$-模，将单最高权模映为连接 $\mathcal{D}$-模（即全纯线丛的 $\mathcal{D}$-模推送）。
 
+**证明**（框架）：关键步骤三步。(1) 构造「局部化」函子：给定 $\mathfrak{g}$-模 $M$（满足 Harish-Chandra 条件），在旗簇上定义 $\mathcal{D}_\lambda$-模 $\Delta(M) = \mathcal{D}_\lambda \otimes_{U(\mathfrak{g})_\lambda} M$（$\otimes$ 在适当完备化下）。(2) 构造「整体截面」函子 $\Gamma(G/B, -)$ 作为拟逆。核心是证明 $\Gamma \circ \Delta \cong \operatorname{id}$（由 $\mathcal{D}_\lambda$ 的整体截面环同构于 $U(\mathfrak{g})_\lambda$）和 $\Delta \circ \Gamma \cong \operatorname{id}$（由 $\mathcal{D}_\lambda$ 作为 $\mathcal{O}$-模的忠实平坦性）。(3) $\lambda$ 的正则性条件保证 $\mathcal{D}_\lambda$ 的「扭折」是平凡的——此时 $\mathcal{D}_\lambda$ 和 $\mathcal{D}_0$（通常 $\mathcal{D}$-模层）Morita 等价。$\blacksquare$
+
 **定理 87.7**（局部化与 Borel-Weil-Bott 的联系）：对支配正则权 $\lambda$，整体截面函子 $\Gamma(G/B, -)$ 在扭折 $\mathcal{D}$-模上正合，且
 $$\Gamma(G/B, \mathcal{D}_\lambda \otimes_{\mathcal{O}} \mathcal{L}_\mu) \cong M(\mu)^* \quad (\text{$\mu$ 与 $\lambda$ 全整链接})$$
 其中 $M(\mu)$ 为权 $\mu$ 的 Verma 模。对反支配权（antidominant），$\Gamma$ 函子非正合而需考察高次上同调，这正好对应于 Bott-Borel-Weil 定理中的上同调转移现象。对奇异权（$\lambda+\rho$ 落在 Weyl 腔壁上），通过平移函子将问题归约至正则情形，给出全部 $H^i(G/B, \mathcal{L}_\mu)$ 的代数刻画。
+
+**证明**（框架）：由 Beilinson-Bernstein 局部化，$\mathcal{D}_\lambda$-模范畴等价于 $\mathfrak{g}$-模范畴。$\mathcal{D}_\lambda \otimes \mathcal{L}_\mu$ 是 $\mathcal{D}_\lambda$-模（通过 $\mathcal{D}_\lambda$ 在第一个因子上的作用），其整体截面为 $\mathfrak{g}$-模。直接计算该模的特征标：$\operatorname{ch} \Gamma(G/B, \mathcal{D}_\lambda \otimes \mathcal{L}_\mu) = e^\mu / \prod_{\alpha > 0} (1 - e^{-\alpha})$（由最高权向量生成），这正是 Verma 模 $M(\mu)$ 的特征标。对非支配权，$\Gamma$ 非正合导致高次上同调的非消没；由定理 87.3，这些高次上同调群恰好实现为相同 LKT 等价类中的不可约表示。$\blacksquare$
 
 **注记 87.2**：Beilinson-Bernstein 局部化定理是几何表示论的基石，将代数 $\mathcal{D}$-模理论与李代数表示论统一。该定理为 Kazhdan-Lusztig 猜想（由 Brylinski-Kashiwara 与 Beilinson-Bernstein 于 1981 年独立证明）提供了几何框架，将 Borel-Weil-Bott 嵌入为宏观对应体系的特例：旗簇上的 $\mathcal{D}$-模、反常层和反常复形精确分类了李代数的全体表示。

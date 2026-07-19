@@ -31,6 +31,8 @@ $$\widehat{D \cdot E} = D_{\text{fin}} \cdot E_{\text{fin}} + \text{（无穷远
 
 **定理 88.1**（算术 Hodge 指标定理，Faltings 1984 年）：在算术曲面上，相交配对 $\widehat{\cdot}$ 满足与 Hodge 指标定理类似的符号性质。
 
+**证明**（框架）：Faltings 将经典的 Hodge 指标定理（曲面上两个除子相交的符号由其中一个的符号决定）推广到算术情形。在算术曲面 $\mathcal{X}$ 上，取 $D$ 为水平（算术）除子，其 $\mathbb{Q}$-纤维是通常曲线上的除子。考虑交集矩阵 $(D_i \cdot D_j)$ 在垂直除子空间的限制。由纤维上的经典 Hodge 指标定理，该矩阵的符号为 $(1, n-1)$（一个正方向）。无穷远处的 Green 函数贡献调整后，断言在 $\widehat{\operatorname{CH}}^1(\mathcal{X})_{\mathbb{R}}$ 上的相交配对满足同样的符号性质。核心工具是 Faltings 的高度不等式和 Arakelov 的邻接矩阵分析。$\blacksquare$
+
 ### 88.3 算术 Riemann-Roch 定理
 
 **定理 88.2**（算术 Riemann-Roch 定理，Gillet-Soulé 1992 年）：设 $\pi: \mathcal{X} \to \operatorname{Spec} \mathbb{Z}$ 是算术曲面，$\overline{E}$ 是 $\mathcal{X}$ 上的 Hermite 向量丛。则算术 Euler 示性数
@@ -113,6 +115,8 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 
 **定理**（Giraud刻画定理）：一个范畴等价于 Grothendieck 拓扑斯当且仅当它满足：具有所有小 colimit、具有一组生成元、小余积是分离的（disjoint）、等价关系是有效的（effective）。
 
+**证明**（框架）：必要性（每个 Grothendieck 拓扑斯满足这些条件）：$\operatorname{Sh}(\mathcal{C}, J)$ 是预层范畴 $\operatorname{PSh}(\mathcal{C})$ 的反射子范畴，故余完备；可表预层 $\{h_U = \operatorname{Hom}(-, U) : U \in \mathcal{C}\}$ 是生成元族；余积的分离性和等价关系的有效性由层的粘合性质保证。充分性：给定满足四条件的范畴 $\mathcal{E}$，取生成元全子范畴 $\mathcal{C}$ 并赋予典范拓扑（最细的使所有可表态射为覆盖的拓扑），证明 $\mathcal{E} \cong \operatorname{Sh}(\mathcal{C}, J_{\text{can}})$：Yoneda 嵌入 $\mathcal{E} \to \operatorname{PSh}(\mathcal{C})$ 通过有效等价关系将每个对象表示为关系商，从而嵌入像在层范畴中且本质满。$\blacksquare$
+
 ### 分类拓扑斯与Lawvere-Tierney拓扑
 
 **定义**（分类拓扑斯）：若几何理论 $\mathbb{T}$ 的所有模型（在所有 Grothendieck 拓扑斯中）同构于拓扑斯 $\mathcal{E}_{\mathbb{T}}$ 中一个"万有模型"的拉回，则 $\mathcal{E}_{\mathbb{T}}$ 是 $\mathbb{T}$ 的**分类拓扑斯**。例如：
@@ -124,6 +128,8 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 *意义*：Lawvere-Tierney 拓扑是 Grothendieck 拓扑在初等拓扑斯中的内在形式——无需引用外部集合论即可定义拓扑斯中的局部化和层概念。
 
 **定理**（Deligne完备性定理）：每个凝聚 Grothendieck 拓扑斯（coherent topos）具有足够的点——即存在一族拓扑斯态射 $x_i: \mathbf{Set} \to \mathcal{E}$（点）使得逆像函子的族 $\{x_i^*\}$ 是保守的（conservative）。因此，Grothendieck 拓扑斯中的层可由其在"点"上的茎（stalk）完全确定——这推广了拓扑空间中层的茎检验原理。
+
+**证明**（框架）：凝聚拓扑斯 $\mathcal{E}$ 由有限表示对象生成的景上的层范畴给出。Deligne 的证明利用逻辑紧致性定理：取 $\mathcal{E}$ 中对象的有限可满足的层的逆系统，利用紧致性定理（布尔预层的滤过余极限保持层性质）证明存在足够的层态射到 $\mathbf{Set}$。关键引理：对凝聚景，覆盖的有限生成性保证每个层的"可满足理论"是有限一致的，由紧致性定理得一致满足性，进而构造出点族使其茎函子保守。$\blacksquare$
 
 ### 拓扑斯理论的数学影响
 

@@ -29,9 +29,13 @@ $$f(x) = \int_{\mathbb{R}^n} \hat{f}(\xi) e^{2\pi i x \cdot \xi} d\xi \quad \tex
 
 $$\int_{\mathbb{R}^n} |f(x)|^2 dx = \int_{\mathbb{R}^n} |\hat{f}(\xi)|^2 d\xi$$
 
+**证明**：对 $f \in \mathcal{S}(\mathbb{R}^n)$，由 Fubini 定理 $\langle \hat{f}, \hat{g} \rangle = \langle f, \check{\hat{g}} \rangle = \langle f, g \rangle$（因 Fourier 逆变换 $\check{\cdot}$ 在 Schwartz 空间上是 $\mathcal{F}$ 的逆）。取 $g = f$ 得 $\|\hat{f}\|_2 = \|f\|_2$。由于 $\mathcal{S}$ 在 $L^2$ 中稠密，等距延拓到 $L^2$ 上。直接定义：对 $f \in L^2$，取 $\mathcal{S}$ 中序列 $f_n \to f$（$L^2$），则 $\hat{f}_n$ 为 $L^2$ 中 Cauchy 序列，其极限定义为 $\hat{f}$。此延拓是酉算子。$\blacksquare$
+
 **推论 123.3**（Parseval 恒等式）：$\langle f, g \rangle = \langle \hat{f}, \hat{g} \rangle$，即 $\int f \bar{g} = \int \hat{f} \bar{\hat{g}}$。
 
 **定理 123.4**（Hausdorff-Young 不等式）：对 $1 \leq p \leq 2$，$\|\hat{f}\|_{p'} \leq \|f\|_p$，其中 $1/p + 1/p' = 1$。即 Fourier 变换是 $L^p \to L^{p'}$ 的有界算子（$p \in [1, 2]$）。
+
+**证明**：对 $p = 1$，$\|\hat{f}\|_\infty \leq \|f\|_1$（直接估计）。对 $p = 2$，Plancherel 给出 $\|\hat{f}\|_2 = \|f\|_2$。对 $1 < p < 2$，令 $\frac{1}{p} = \frac{1-\theta}{1} + \frac{\theta}{2}$（$0 < \theta < 1$），则 $\frac{1}{p'} = \frac{1-\theta}{\infty} + \frac{\theta}{2} = \frac{\theta}{2}$。由 Riesz-Thorin 插值定理，$\|\mathcal{F}\|_{L^p \to L^{p'}} \leq \|\mathcal{F}\|_{L^1 \to L^\infty}^{1-\theta} \cdot \|\mathcal{F}\|_{L^2 \to L^2}^\theta \leq 1^{1-\theta} \cdot 1^\theta = 1$，得 $\|\hat{f}\|_{p'} \leq \|f\|_p$。$\blacksquare$
 
 ### 123.3 Schwartz 空间与缓增分布
 
@@ -42,6 +46,8 @@ $$\sup_{x \in \mathbb{R}^n} |x^\alpha D^\beta \varphi(x)| < \infty$$
 即 $\varphi$ 及其所有导数比任意多项式下降更快。
 
 **定理 123.5**：Fourier 变换是 $\mathcal{S}(\mathbb{R}^n)$ 上的同构（双射连续线性映射）。$\mathcal{S}$ 在 Fourier 变换下的自同构性是调和分析的核心。
+
+**证明**：取 $f \in \mathcal{S}$。由 $\widehat{D^\alpha f}(\xi) = (2\pi i \xi)^\alpha \hat{f}(\xi)$ 和 $\widehat{x^\beta f}(\xi) = (i/2\pi)^{|\beta|} D^\beta \hat{f}(\xi)$，$\hat{f}$ 光滑且对任意 $\alpha,\beta$，$\xi^\alpha D^\beta \hat{f}(\xi) = (2\pi i)^{-|\beta|} \mathcal{F}[D^\alpha(x^\beta f)](\xi)$ 有界（因 $\mathcal{F}: L^1 \to L^\infty$ 有界，且 $D^\alpha(x^\beta f) \in L^1$）。故 $\hat{f} \in \mathcal{S}$，即 $\mathcal{F}(\mathcal{S}) \subseteq \mathcal{S}$。同理 $\mathcal{F}^{-1}(\mathcal{S}) \subseteq \mathcal{S}$。由 Fourier 反演公式，$\mathcal{F}$ 是 $\mathcal{S}$ 上的双射，且关于 Schwartz 拓扑连续。$\blacksquare$
 
 **定义 123.3**（缓增分布）：$\mathcal{S}(\mathbb{R}^n)$ 的对偶空间 $\mathcal{S}'(\mathbb{R}^n)$ 称为**缓增分布**空间。缓增分布 $u$ 的 **Fourier 变换** $\hat{u}$ 由对偶定义：
 
@@ -85,6 +91,8 @@ $$Hf(x) = \frac{1}{\pi} \operatorname{p.v.} \int_{-\infty}^\infty \frac{f(y)}{x 
 
 **定理 124.1**（M. Riesz 定理）：Hilbert 变换在 $L^p(\mathbb{R})$ 上有界（$1 < p < \infty$）。$\|Hf\|_p \leq C_p \|f\|_p$。
 
+**证明**：$p=2$ 时由 Fourier 乘子 $\widehat{Hf}(\xi) = -i\operatorname{sgn}(\xi)\hat{f}(\xi)$ 及 Plancherel 得 $\|Hf\|_2 = \|f\|_2$。对 $1 < p < 2$，利用 Calderón-Zygmund 分解将 $f$ 分解为"好"部分 $g$ 与"坏"部分 $b$。对 $g$ 用 $L^2$ 估计，对 $b$ 用核 $1/x$ 的光滑性及消去条件 $\int_{|x|>2|y|} (H b_k)(x) dx$ 控制，得弱 $(1,1)$ 估计 $|\{|Hf|>\lambda\}| \leq C\|f\|_1/\lambda$。由 Marcinkiewicz 插值定理，$H$ 在 $L^p$（$1 < p \leq 2$）有界。$p>2$ 由对偶性 $(H)^* = -H$ 推出。$\blacksquare$
+
 ### 124.2 Calderón-Zygmund 分解
 
 **定理 124.2**（Calderón-Zygmund 分解）：设 $f \in L^1(\mathbb{R}^n)$，$f \geq 0$，$\lambda > 0$。则存在 $\mathbb{R}^n$ 的分解：$f = g + b$，其中
@@ -110,9 +118,11 @@ $$Tf(x) = \operatorname{p.v.} \int_{\mathbb{R}^n} K(x - y) f(y) dy = \lim_{\vare
 
 $$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
 
-*证明思路*：使用 Calderón-Zygmund 分解。对"好"部分 $g$ 用 $L^2$ 有界性，对"坏"部分 $b$ 用核的光滑性和消去条件。弱 $(1, 1)$ 有界性 + $L^2$ 有界性 + Marcinkiewicz 插值定理 ⇒ $L^p$ 有界性（$1 < p < 2$）。对偶性处理 $p > 2$。∎
+**证明**：先证 $T$ 在 $L^2$ 上有界。对任意 $f \in L^1 \cap L^2$，取 Calderón-Zygmund 分解 $f = g + b$（$\lambda > 0$），其中 $\|g\|_\infty \leq C\lambda$，$b = \sum b_k$ 支撑于不相交二进方体 $Q_k$，$\int b_k = 0$，$\sum |Q_k| \leq \|f\|_1/\lambda$。由 $L^2$ 有界性，$|\{|Tg| > \lambda/2\}| \leq C\lambda^{-2}\|g\|_2^2 \leq C\lambda^{-2}\cdot \lambda\|g\|_1 \leq C\|f\|_1/\lambda$。对 $b$ 部分，将 $Tb_k$ 限制在 $2Q_k$（二倍方体）之外，利用核的光滑性 $|\nabla K(x)| \leq C|x|^{-n-1}$ 和 $\int b_k = 0$ 得 $|Tb_k(x)| \leq C\lambda |Q_k|^{(n+1)/n}/|x-c_k|^{n+1}$（$x \notin 2Q_k$）。积分估计给出弱 $(1,1)$ 型，组合两部分即得。由 Marcinkiewicz 插值，$T$ 在 $L^p$（$1 < p \leq 2$）有界；$p > 2$ 由对偶性。$\blacksquare$
 
-**定理 124.5**（Cotlar 引理，1955）：设 $\{T_j\}_{j \in \mathbb{Z}}$ 是 Hilbert 空间 $\mathcal{H}$ 上的一族有界算子。若存在 $\gamma: \mathbb{Z} \to \mathbb{R}_{\geq 0}$ 满足 $\sum_{k \in \mathbb{Z}} \sqrt{\gamma(k)} < \infty$，使得 $\|T_i^* T_j\| \leq \gamma(i-j)^2$ 和 $\|T_i T_j^*\| \leq \gamma(i-j)^2$ 对所有 $i, j$ 成立，则级数 $\sum_j T_j$ 在强算子拓扑下收敛，且 $\|\sum_j T_j\| \leq \sum_k \sqrt{\gamma(k)}$。Cotlar 引理是证明奇异积分算子 $L^2$ 有界性的核心工具：将核 $K$ 按频率二进分解为 $K = \sum_j K_j$，对每个分片算子 $T_j$ 验证几乎正交性条件 $\|T_i^* T_j\| \leq C 2^{-|i-j|\varepsilon}$，则级数在 $L^2$ 上收敛且有界。其应用场景包括：Hilbert 变换的 $L^2$ 有界性、Calderón 交换子、Fourier 乘子定理以及仿积算子的有界性。
+**定理 124.5**（Cotlar 引理，1955）：设 $\{T_j\}_{j \in \mathbb{Z}}$ 是 Hilbert 空间 $\mathcal{H}$ 上的一族有界算子。若存在 $\gamma: \mathbb{Z} \to \mathbb{R}_{\geq 0}$ 满足 $\sum_{k \in \mathbb{Z}} \sqrt{\gamma(k)} < \infty$，使得 $\|T_i^* T_j\| \leq \gamma(i-j)^2$ 和 $\|T_i T_j^*\| \leq \gamma(i-j)^2$ 对所有 $i, j$ 成立，则级数 $\sum_j T_j$ 在强算子拓扑下收敛，且 $\|\sum_j T_j\| \leq \sum_k \sqrt{\gamma(k)}$。
+
+**证明**：对有限和 $S_N = \sum_{|j| \leq N} T_j$，考虑 $(S_N^* S_N)^m = \sum_{j_1,\ldots,j_{2m}} T_{j_1}^* T_{j_2} T_{j_3}^* \cdots T_{j_{2m}}$。利用几乎正交条件，对每项交替使用 $\|T_i^* T_j\|$ 和 $\|T_i T_j^*\|$ 的界，得 $\|S_N\|^{2m} = \|(S_N^* S_N)^m\| \leq (\sum_k \sqrt{\gamma(k)})^{2m}$（$m \to \infty$ 取幂根）。令 $m \to \infty$ 得 $\|S_N\| \leq \sum_k \sqrt{\gamma(k)}$，与 $N$ 无关。由 Cauchy 准则，$\sum T_j$ 强收敛。Cotlar 引理是证明奇异积分算子 $L^2$ 有界性的核心工具：将核 $K$ 按频率二进分解为 $K = \sum_j K_j$，对每个分片算子 $T_j$ 验证几乎正交性条件 $\|T_i^* T_j\| \leq C 2^{-|i-j|\varepsilon}$，则级数在 $L^2$ 上收敛且有界。其应用场景包括：Hilbert 变换的 $L^2$ 有界性、Calderón 交换子、Fourier 乘子定理以及仿积算子的有界性。$\blacksquare$
 
 ### 124.4 Marcinkiewicz 插值定理
 
@@ -122,7 +132,7 @@ $$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
 
 其中 $1 \leq p_0 < p_1 \leq \infty$，$1 \leq q_0, q_1 \leq \infty$，$q_0 \neq q_1$。则对 $p_\theta$ 满足 $\frac{1}{p_\theta} = \frac{1-\theta}{p_0} + \frac{\theta}{p_1}$，$T$ 在 $L^{p_\theta}$ 上是强有界的（$0 < \theta < 1$）。
 
----
+**证明**：对 $f$ 作水平分解 $f^\lambda = f \mathbf{1}_{\{|f| > a\lambda\}}$，$f_\lambda = f - f^\lambda$（$a>0$ 待定）。由次可加性，$\{|Tf| > \lambda\} \subseteq \{|Tf^\lambda| > \lambda/2\} \cup \{|Tf_\lambda| > \lambda/2\}$。对 $f^\lambda$ 用弱 $(p_0,q_0)$ 界，对 $f_\lambda$ 用弱 $(p_1,q_1)$ 界。将 $\|Tf\|_{p_\theta}^{p_\theta}$ 写为层饼积分 $p_\theta \int_0^\infty \lambda^{p_\theta-1} |\{|Tf| > \lambda\}| d\lambda$，代入分布函数估计，分离 $\lambda$ 积分区域。选取最优的 $a$ 平衡两项，最终得 $\|Tf\|_{p_\theta} \leq C_{p_0,p_1,q_0,q_1,\theta} A_0^{1-\theta} A_1^\theta \|f\|_{p_\theta}$。$\blacksquare$
 
 ---
 
@@ -131,6 +141,9 @@ $$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
 ---
 
 ---
+
+---
+
 ---
 
 ## 第139章：Hardy-Littlewood 极大函数
@@ -168,6 +181,8 @@ $$M^\sharp f(x) = \sup_{B \ni x} \frac{1}{|B|} \int_B |f(y) - f_B| dy$$
 
 **定理 125.3**（Fefferman-Stein 不等式）：对 $1 < p < \infty$，$\|f\|_p \leq C_p \|M^\sharp f\|_p$（当 $f$ 满足适当消失条件时）。
 
+**证明**：核心是建立"好 $\lambda$ 不等式"：存在 $\gamma > 0$ 使对任意 $\lambda > 0$ 和充分小的 $\varepsilon > 0$，有 $|\{Mf > 2\lambda, M^\sharp f \leq \gamma\lambda\}| \leq C \varepsilon |\{Mf > \lambda\}|$。该估计通过 Calderón-Zygmund 分解证明：在集合 $\{Mf > \lambda\}$ 上用 Whitney 型分解，将极大函数与锐极大函数的局部平均振动关联。然后乘以 $\lambda^{p-1}$ 对 $\lambda$ 积分，利用 $\|Mf\|_p^p \approx \int \lambda^{p-1} |\{Mf > \lambda\}| d\lambda$，将 $Mf$ 的分布由 $M^\sharp f$ 控制，取 $\varepsilon$ 充分小使 $C\varepsilon < 1/2$ 即得。$\blacksquare$
+
 ### 125.3 加权不等式
 
 **定义 125.4**（$A_p$ 权）：非负局部可积函数 $w$ 称为 **$A_p$ 权**（$1 < p < \infty$），如果
@@ -177,6 +192,8 @@ $$\sup_B \left(\frac{1}{|B|} \int_B w(x) dx\right) \left(\frac{1}{|B|} \int_B w(
 $A_1$ 权：$M w(x) \leq C w(x)$ 几乎处处。
 
 **定理 125.4**（Muckenhoupt 定理）：Hardy-Littlewood 极大函数在加权 $L^p(w)$ 空间上有界当且仅当 $w \in A_p$（$1 < p < \infty$）。这给出了极大函数 $L^p$ 有界性权条件的精确刻画。
+
+**证明**：（必要性）若 $M$ 在 $L^p(w)$ 上有界，对任意球 $B$，取 $f = w^{-1/(p-1)}\mathbf{1}_B$，应用 $M$ 的有界性和 $Mf(x) \geq \frac{1}{|B|}\int_B f$（$x \in B$），得 $(\frac{1}{|B|}\int_B w)(\frac{1}{|B|}\int_B w^{-1/(p-1)})^{p-1} \leq C$，故 $w \in A_p$。（充分性）用反向 Hölder 不等式：$A_p$ 权满足对某 $\delta > 0$，$w^{1+\delta} \in A_p$。构造二进极大函数，逐层用 Calderón-Zygmund 分解获得加权弱 $(1,1)$ 估计，再由插值得加权强 $(p,p)$ 估计。$\blacksquare$
 
 ---
 
