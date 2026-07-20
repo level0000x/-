@@ -34,13 +34,13 @@ $$\int_0^{2\pi} \log^+ \left|\frac{f'(re^{i\theta})}{f(re^{i\theta})}\right| d\t
 
 拟共形映射是共形映射的自然推广，允许有界的角度畸变。其解析定义基于**Beltrami方程**：
 $$f_{\bar{z}} = \mu(z) f_z$$
-其中$\mu(z)$为**Beltrami系数**（复值可测函数），满足$\|\mu\|_\infty = \operatorname{ess\,sup} |\mu(z)| < 1$。当$\mu \equiv 0$时方程退化为Cauchy-Riemann方程；$\mu \neq 0$时$f$将无穷小圆映为椭圆，偏心率由$|\mu|$决定。核心结果**可测Riemann映射定理**（Morrey, 1938; Ahlfors-Bers, 1960）断言：对$\mathbb{C}$上任意$\|\mu\|_\infty < 1$的可测Beltrami系数$\mu$，存在唯一的拟共形同胚$f^\mu : \hat{\mathbb{C}} \to \hat{\mathbb{C}}$满足Beltrami方程且固定$0, 1, \infty$。
+其中$\mu(z)$为**Beltrami系数**（复值可测函数），满足$\|\mu\|_\infty = \operatorname{ess\,sup} |\mu(z)| < 1$。当$\mu \equiv 0$时方程退化为Cauchy-Riemann方程；$\mu \neq 0$时$f$将无穷小圆映为椭圆，偏心率由$|\mu|$决定。拟共形映射的几何定义更为直观：一个同胚 $f$ 是 $K$-拟共形的（$K \geq 1$），如果它将无穷小圆映为偏心率不超过 $K$ 的椭圆。具体地，$f$ 在点 $z$ 处的**伸缩商**（dilatation）为 $D_f(z) = \frac{|f_z| + |f_{\bar{z}}|}{|f_z| - |f_{\bar{z}}|} = \frac{1 + |\mu(z)|}{1 - |\mu(z)|}$，而 $K = \|D_f\|_\infty$。$K = 1$ 时恢复共形映射。拟共形映射的基本性质包括：它们是几乎处处可微的、绝对连续的（在 ACL 意义下）、且满足 Beltrami 方程几乎处处。在几何上，拟共形映射将测度零集映为测度零集（Lusin 性质），且是 Hölder 连续的（指数为 $1/K$）。这一正则性理论是 Morrey（1938）和 Ahlfors（1954）发展的，其核心是 Calderón-Zygmund 型奇异积分估计在 Beltrami 方程中的应用。拟共形映射的复合和逆仍为拟共形映射，且在相差一个共形映射的意义下，拟共形映射由 Beltrami 系数唯一确定。核心结果**可测Riemann映射定理**（Morrey, 1938; Ahlfors-Bers, 1960）断言：对$\mathbb{C}$上任意$\|\mu\|_\infty < 1$的可测Beltrami系数$\mu$，存在唯一的拟共形同胚$f^\mu : \hat{\mathbb{C}} \to \hat{\mathbb{C}}$满足Beltrami方程且固定$0, 1, \infty$。该定理将经典 Riemann 映射定理推广到可测情形，是 Teichmüller 空间理论和复动力系统（如 Sullivan 的"无游荡域定理"）的基础。拟共形映射在偏微分方程中也有重要应用：平面椭圆型方程组的解可通过 Beltrami 方程转化为拟共形映射，从而利用拟共形映射的几何性质研究 PDE 的正则性。
 
 ### Teichmüller空间
 
 **Teichmüller空间**$\mathcal{T}_g$是亏格$g$的紧Riemann面复结构的形变空间。对$g \geq 2$，$\mathcal{T}_g$是$3g-3$维复流形（实维$6g-6$）。其标准定义利用拟共形映射：取定标记Riemann面$S_g$，令
 $$\mathcal{T}_g = \{(X, f) \mid f : S_g \to X \text{ 为拟共形同胚}\} / \sim$$
-其中$(X, f) \sim (Y, g)$若$g \circ f^{-1} : X \to Y$同伦于共形映射。通过Bers嵌入可实现为$\mathbb{C}^{3g-3}$中的有界域，Teichmüller度量$d_T$将其变为完备度量空间。模空间$\mathcal{M}_g = \mathcal{T}_g / \mathrm{MCG}(S_g)$为$3g-3$维复轨道空间。
+其中$(X, f) \sim (Y, g)$若$g \circ f^{-1} : X \to Y$同伦于共形映射。Teichmüller 空间的维数 $3g-3$ 源于 Riemann-Roch 定理：亏格 $g$ 的 Riemann 面上全纯二次微分的空间维数为 $3g-3$，而全纯二次微分恰为余切空间 $T_{[X]}^* \mathcal{T}_g$ 的元素。Teichmüller 度量（Teichmüller 距离）$d_T([X], [Y]) = \frac{1}{2} \inf \log K(f)$（$f$ 取遍 $X$ 到 $Y$ 的拟共形同胚，$K(f)$ 为 $f$ 的最大伸缩商）赋予 $\mathcal{T}_g$ 完备的 Finsler 度量结构。这一度量是 Kobayashi 度量的特例，反映了 $\mathcal{T}_g$ 作为复流形的内在双曲性。Bers 嵌入定理（1960）将 $\mathcal{T}_g$ 实现为 $\mathbb{C}^{3g-3}$ 中的有界域：通过将每个 Riemann 面 $X$ 的万有覆叠（即上半平面 $\mathbb{H}$）上的 Fuchs 群 $\Gamma_X$ 的 Bers 拟共形形变，可以将 $\mathcal{T}_g$ 单射入全纯二次微分的空间 $\mathcal{Q}(\Gamma_X) \cong \mathbb{C}^{3g-3}$。这一嵌入不仅是拓扑的，而且是全纯的，使得 $\mathcal{T}_g$ 上的复结构变得清晰可见。模空间$\mathcal{M}_g = \mathcal{T}_g / \mathrm{MCG}(S_g)$为$3g-3$维复轨道空间，其中 $\mathrm{MCG}(S_g)$ 是 $S_g$ 的映射类群（mapping class group）。$\mathcal{M}_g$ 不是紧致的，但其 Deligne-Mumford 紧化 $\overline{\mathcal{M}}_g$ 是一个射影代数簇，是现代代数几何中模空间理论的核心对象。Teichmüller 空间与 Thurston 的几何化猜想、复动力系统（如 Mandelbrot 集与 Teichmüller 空间的类比）、以及弦论中的模空间紧化问题有深刻联系。
 
 ---
 
