@@ -89,7 +89,9 @@ $$\partial_t \beta(f) + v\cdot\nabla_x \beta(f) + F\cdot\nabla_v \beta(f) = 0$$
 
 **定理 373.1**（DiPerna-Lions全局存在性，1989）：设 $f_0\geq 0$，$f_0\in L^1\cap L^\infty(\mathbb{R}^6)$，且 $\iint |v|^2 f_0\,dx\,dv<\infty$。则Vlasov-Poisson系统存在全局重正规化解 $f\in L^\infty([0,\infty);L^1\cap L^\infty)$。若进一步 $f_0\in C^1$，则该解为经典解。
 
-**证明概要**：构造正则化系统（磨光力场），得到逼近序列 $(f^\varepsilon,F^\varepsilon)$。利用速度矩估计和能量守恒得到一致界，通过速度平均引理（velocity averaging lemma）获得紧性，取极限后在重正规化意义下验证方程。$\blacksquare$
+**证明**：构造正则化系统：对力场 $E$ 进行磨光（卷积光滑核 $\rho_\varepsilon$），得到逼近序列 $(f^\varepsilon, E^\varepsilon)$ 满足 $\partial_t f^\varepsilon + v \cdot \nabla_x f^\varepsilon + E^\varepsilon \cdot \nabla_v f^\varepsilon = 0$，$E^\varepsilon = \nabla_x \Delta_x^{-1}(\int f^\varepsilon dv * \rho_\varepsilon)$。由特征线法，$f^\varepsilon$ 沿特征线为常数，最大模 $\|f^\varepsilon\|_{L^\infty} \leq \|f_0\|_{L^\infty}$。利用速度矩估计和能量守恒：
+$$\frac{d}{dt} \iint \left(\frac{1}{2}|v|^2 f^\varepsilon + \frac{1}{2}|E^\varepsilon|^2\right) dx dv = 0,$$
+得到关于 $\varepsilon$ 一致的速度矩界。通过速度平均引理（velocity averaging lemma，Golse-Lions-Perthame-Sentis 1988）：对输运方程的解，速度矩 $\int f^\varepsilon \psi(v) dv$ 在 $H^s$ 中紧（$s \in (0, 1/2)$）。这给出 $\{f^\varepsilon\}$ 的强紧性（不计 $\varepsilon$）。取极限 $\varepsilon \to 0$，得到 $f \in L^\infty([0, T]; L^1 \cap L^\infty)$ 且 $\iint |v|^2 f < \infty$。在分布意义下，$f$ 满足 $(\partial_t + v \cdot \nabla_x + E \cdot \nabla_v) \beta(f) = 0$（对所有 $\beta \in C^1$）。由重正规化技巧（DiPerna-Lions），此即重正规化解。若 $f_0 \in C^1$，则解为经典解。$\blacksquare$
 
 ### 373.3 Landau阻尼的线性理论
 

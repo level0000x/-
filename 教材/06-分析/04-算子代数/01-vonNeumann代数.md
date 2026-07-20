@@ -106,6 +106,8 @@ Tomita-Takesaki 模理论（1967-1970）是 von Neumann 代数理论中最重要
 
 **定理 215.2**（GNS 构造 / Gelfand-Naimark-Segal, 1943）：设 $\varphi$ 是 $\mathcal{M}$ 上的忠实正规半有限权。则存在 Hilbert 空间 $L^2(\mathcal{M}, \varphi)$ 和忠实正规 \* -表示 $\pi_\varphi: \mathcal{M} \to B(L^2(\mathcal{M}, \varphi))$，使得 $\pi_\varphi(\mathcal{M})$ 是 von Neumann 代数，且有循环和分离向量。
 
+**证明**：在左理想 $\mathfrak{n}_\varphi = \{x \in \mathcal{M} : \varphi(x^* x) < \infty\}$ 上定义内积 $\langle x, y \rangle_\varphi = \varphi(y^* x)$。由 $\varphi$ 的正规性，$\mathfrak{n}_\varphi$ 在 $\sigma$-弱拓扑下稠密。令 $H = L^2(\mathcal{M}, \varphi)$ 为 $\mathfrak{n}_\varphi$ 在该内积下的完备化。定义表示 $\pi_\varphi(x)(y) = xy$（$x \in \mathcal{M}$，$y \in \mathfrak{n}_\varphi$）。由 Cauchy-Schwarz 不等式，$\pi_\varphi(x)$ 延拓为 $H$ 上的有界算子。$\pi_\varphi$ 的忠实性由 $\varphi$ 的忠实性保证：若 $\pi_\varphi(x) = 0$，则 $\varphi(x^* x) = 0$，故 $x = 0$。正规性由 $\varphi$ 的正规性通过 $\sigma$-弱拓扑的连续性传递。由 von Neumann 二次换位定理，$\pi_\varphi(\mathcal{M})'' = \pi_\varphi(\mathcal{M})$。循环向量取为单位元 $1 \in \mathfrak{n}_\varphi$ 的像。$\blacksquare$
+
 **定义 215.3**（Tomita 算子）：给定 von Neumann 代数 $\mathcal{M}$ 和循环分离向量 $\Omega$，定义 **Tomita 算子** $S$：
 
 $$S_0(x\Omega) = x^*\Omega, \quad x \in \mathcal{M}$$
@@ -206,6 +208,8 @@ $$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^n a_i$$
 
 **推论 216.2**：半圆律在自由概率论中的地位类似于高斯分布（正态分布）在经典概率论中的地位。
 
+**证明**：在经典概率论中，中心极限定理确立了正态分布 $\mathcal{N}(0,1)$ 作为独立同分布随机变量标准化和的极限分布。在自由概率论中，定理 216.1 确立了半圆律作为自由独立同分布随机变量标准化和的极限分布。两者的矩结构均为 Catalan 数：正态分布的矩为 $(2k-1)!!$（仅偶次矩非零），半圆律的矩为 Catalan 数 $C_k$。进一步，自由概率论中的半圆元与经典概率论中的 Gauss 随机变量在各自独立性的框架下均满足类似的累积量消没性质（非交叉累积量）。$\blacksquare$
+
 ### 216.3 自由概率论的算子代数应用
 
 **定理 216.3**（Voiculescu, 1990-1995）：自由群因子 $\mathcal{L}(\mathbb{F}_n)$ 的微观状态方法：
@@ -214,6 +218,8 @@ $$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^n a_i$$
 - 自由群因子同构问题可通过自由熵 $\chi^*(X_1, \ldots, X_n)$ 研究
 
 进一步：Dykema（1994）和 Radulescu（1994）独立证明了压缩自由群因子 $L(\mathbb{F}_n)_t$（$t > 0$ 连续参数）的理论，将其推广为连续参数的族。更一般地，Voiculescu 的自由维数（自由熵）发展为 $L^2$-Betti 数和 Atiyah 问题的关键工具。
+
+**证明**：Voiculescu 构造了微观状态空间 $\Gamma_R(X_1, \ldots, X_n; m, k, \varepsilon)$，其中 $R > 0$ 控制算子范数，$m$ 为矩的阶数，$k$ 为有限维矩阵的维数，$\varepsilon > 0$ 为逼近精度。该空间由 $n$ 元组 $(A_1, \ldots, A_n)$ 组成，$A_i$ 为 $k \times k$ 自伴矩阵，满足 $\|A_i\| \leq R$ 且所有不超过 $m$ 阶的矩与目标迹 $\tau$ 的矩之差不超过 $\varepsilon$。对自由群因子 $\mathcal{L}(\mathbb{F}_n)$ 的生成元 $X_1, \ldots, X_n$（$X_i = X_i^*$），取 $k \times k$ 随机矩阵逼近：当 $k \to \infty$ 时，独立 GUE 矩阵的矩收敛到半圆律，自由独立的 GUE 矩阵的联合矩收敛到自由半圆族的联合矩。通过 Dykema 的插值自由随机变量构造，可获得具有任意自由维数的生成元。微观状态空间非空的证明基于：对任意 $\varepsilon > 0$ 和 $m$，存在 $k$ 及矩阵 $(A_1^{(k)}, \ldots, A_n^{(k)})$ 使矩差距小于 $\varepsilon$。自由熵 $\chi^*(X_1, \ldots, X_n)$ 定义为微观状态空间体积的渐近增长率：$\chi^* = \limsup_{m \to \infty, \varepsilon \to 0} \limsup_{k \to \infty} \frac{1}{k^2} \log \operatorname{vol}(\Gamma_R(\cdots))$。$\blacksquare$
 
 **定义 216.4**（自由熵 / Free Entropy）：Voiculescu 引入了微状态自由熵 $\chi(X_1, \ldots, X_n)$，度量 von Neumann 代数生成元集的"自由度"。自由熵与 $L^2$-Betti 数有深刻的联系，并在自由群因子同构问题的研究中起关键作用。
 
@@ -263,6 +269,8 @@ $$(Ku)(x) = \int_a^b K(x,y) u(y) dy$$
 
 这是紧算子理论中谱的基本性质：紧算子的非零谱点必为特征值，且 $\lambda^{-1}$ 是 $K$ 的特征值当且仅当 $\lambda$ 是 $(I - \lambda K)^{-1}$ 的奇点。
 
+**证明**：$K$ 是紧算子。由紧算子的 Riesz-Schauder 理论，$I - \lambda K$ 是 Fredholm 算子（指标为 $0$）。若 $\ker(I - \lambda K) = \{0\}$，则 $I - \lambda K$ 是单射，由 Fredholm 择一性它也是满射，故对任意 $f$ 有唯一解。若 $\ker(I - \lambda K) \neq \{0\}$，则 $\dim \ker(I - \lambda K) = \dim \ker(I - \lambda K^*) < \infty$，且 $f \in \operatorname{im}(I - \lambda K) \iff f \perp \ker(I - \lambda K^*)$。Riesz-Schauder 定理还保证 $I - \lambda K$ 的谱仅由特征值 $\lambda^{-1}$ 和可能的聚点 $0$ 组成。$\blacksquare$
+
 ### 217.2 Fredholm 行列式
 
 **定义 217.2**（Fredholm 行列式）：对核为 $K(x,y)$ 的 Fredholm 积分方程，Fredholm 行列式定义为
@@ -275,6 +283,8 @@ $$R(x,y;\lambda) = \frac{D(x,y;\lambda)}{D(\lambda)}$$
 
 其中 $D(x,y;\lambda)$ 是 Fredholm 一阶子式行列式。
 
+**证明**：$D(\lambda)$ 是 $\lambda$ 的整函数，由 Hadamard 不等式 $|\det(K(x_i,x_j))| \leq n^{n/2} \|K\|_\infty^n$ 保证级数对任意 $\lambda$ 收敛。若 $\lambda = 1/\mu$（$\mu$ 为 $K$ 的特征值），则齐次方程 $(I - \lambda K)u = 0$ 有非零解。由 Fredholm 理论，此时 $D(\lambda) = 0$。特征值的重数等于 $D(\lambda)$ 的零点重数。预解核 $R(x,y;\lambda) = D(x,y;\lambda)/D(\lambda)$ 的极点恰为 $D(\lambda)$ 的零点，即 $K$ 的特征值倒数。$\blacksquare$
+
 ### 217.3 对称核与 Hilbert-Schmidt 定理
 
 **定理 217.3**（Hilbert-Schmidt 展开定理）：若 $K(x,y)$ 是实对称且平方可积的核（$K(x,y) = K(y,x)$，$\iint |K|^2 < \infty$），则
@@ -283,11 +293,15 @@ $$K(x,y) = \sum_{n=1}^{\infty} \mu_n u_n(x) u_n(y)$$
 
 其中 $\{\mu_n\}$ 是 $K$ 的非零特征值（每个按重数列出），$\{u_n\}$ 是对应的标准正交特征函数。级数在 $L^2$ 意义下收敛；若 $K$ 连续且正定，则收敛是绝对且一致的（Mercer 定理）。
 
+**证明**：$K$ 作为对称 Hilbert-Schmidt 算子，其非零特征值 $\{\mu_n\}$ 为实数且 $\sum \mu_n^2 < \infty$（由 Hilbert-Schmidt 范数 $\|K\|_{HS}^2 = \sum \mu_n^2$）。对应特征函数 $\{u_n\}$ 可选取为标准正交系。对任意固定 $x$，将 $K(x,\cdot)$ 按 $\{u_n\}$ 展开：$K(x,\cdot) = \sum \langle K(x,\cdot), u_n \rangle u_n = \sum \mu_n u_n(x) u_n(\cdot)$。$L^2$ 收敛性由 Bessel 不等式和 $\sum \mu_n^2 < \infty$ 保证。$\blacksquare$
+
 **定理 217.4**（Mercer 定理）：若 $K$ 是连续对称正定核（即对任意 $f$，$\iint K(x,y)f(x)f(y)dx dy \geq 0$），则特征值 $\mu_n \geq 0$，且
 
 $$K(x,y) = \sum_{n=1}^{\infty} \mu_n u_n(x) u_n(y)$$
 
 收敛是绝对且一致的。特别地，迹公式 $\sum \mu_n = \int K(x,x) dx$ 成立。
+
+**证明**：由正定性，对任意 $x$，$K(x,x) \geq 0$。由 Hilbert-Schmidt 展开 $K(x,y) = \sum \mu_n u_n(x) u_n(y)$，其中 $\mu_n \geq 0$（正定性保证）。对任意 $N$，$\sum_{n=1}^N \mu_n |u_n(x)|^2 \leq K(x,x)$（由正定性，截断核 $\sum_{n=1}^N \mu_n u_n(x) u_n(y)$ 仍正定，且 $K(x,x) - \sum_{n=1}^N \mu_n |u_n(x)|^2 \geq 0$）。由 Dini 定理，级数 $\sum \mu_n |u_n(x)|^2$ 在 $[a,b]$ 上一致收敛。由于 $\sum \mu_n u_n(x) u_n(y)$ 中各项由 Cauchy-Schwarz 受控于 $\sum \mu_n |u_n(x)|^2$ 和 $\sum \mu_n |u_n(y)|^2$，故原级数绝对且一致收敛。取 $x=y$ 并积分得 $\sum \mu_n = \int K(x,x) dx$。$\blacksquare$
 
 **应用**：Mercer 定理是核方法（kernel methods）——包括支持向量机（SVM）和高斯过程回归——的数学基础，将正定核表征为特征映射的内积。
 
@@ -296,6 +310,8 @@ $$K(x,y) = \sum_{n=1}^{\infty} \mu_n u_n(x) u_n(y)$$
 **定义 217.3**（弱奇异核）：形如 $K(x,y) = H(x,y) / |x-y|^\alpha$ 的核（$\alpha < d$，其中 $d$ 是空间维数）虽然在对角线上奇异，但在 $L^2$ 中仍定义紧算子——奇异性由 Hardy-Littlewood-Sobolev 不等式控制。
 
 **定理 217.5**：若 $K(x,y)$ 满足 $\int |K(x,y)|^2 dy < \infty$ a.e. 且 $\int |K(x,y)|^2 dx < \infty$ a.e.，则 $K$ 在 $L^2$ 上是紧算子。Fredholm 择一定理和 Hilbert-Schmidt 定理均成立，且迭代预解核给出级数解。
+
+**证明**：由假设，$K$ 定义了一个 $L^2$ 上的有界积分算子。由 Schur 检验，$\|K\|_{L^2 \to L^2} \leq (\sup_x \int |K(x,y)|^2 dy)^{1/2} (\sup_y \int |K(x,y)|^2 dx)^{1/2}$。紧性：取 $K$ 的逼近序列 $K_n(x,y)$（连续且紧支撑），则 $K_n$ 为 Hilbert-Schmidt 故紧，且 $\|K - K_n\| \to 0$。紧算子的极限为紧算子，故 $K$ 为紧算子。Fredholm 择一定理和 Hilbert-Schmidt 定理对紧算子自然成立，迭代预解核由 Neumann 级数 $\sum_{n=0}^\infty \lambda^n K^{n+1}$ 给出（$|\lambda| < \|K\|^{-1}$ 时收敛）。$\blacksquare$
 
 ---
 

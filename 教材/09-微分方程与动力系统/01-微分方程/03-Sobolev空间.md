@@ -59,7 +59,7 @@ $$H^s(\mathbb{R}^n) = \left\{ u \in \mathcal{S}'(\mathbb{R}^n) : (1 + |\xi|^2)^{
 
 $$\|u\|_{L^{p^*}} \leq C \|u\|_{W^{k,p}}$$
 
-**证明**（$k=1$ 情形）：对 $u \in C_c^\infty(\mathbb{R}^n)$，利用每个坐标方向的积分表示 $|u(x)| \leq \frac{1}{2} \int_{\mathbb{R}} |\partial_i u(x_1,\ldots,t,\ldots,x_n)| dt$（共 $n$ 个因子）。乘积累次应用 Gagliardo-Nirenberg 不等式得 $\|u\|_{L^{n/(n-1)}} \leq \frac{1}{2} \prod_{i=1}^n \|\partial_i u\|_{L^1}^{1/n}$。对一般 $p \in [1,n)$，取 $\gamma = p(n-1)/(n-p)$，将不等式应用于 $|u|^\gamma$ 并利用 Holder 不等式：$\|u\|_{L^{p^*}} \leq C \|\nabla u\|_{L^p}$，其中 $p^* = np/(n-p)$。由 $C_c^\infty$ 在 $W^{1,p}$ 中的稠密性，该不等式延拓到整个 $W^{1,p}(\mathbb{R}^n)$。对 $k>1$ 情形，递推应用 $k=1$ 的结果：$\|u\|_{W^{k-1,p^*}} \leq C \|u\|_{W^{k,p}}$，结合 Sobolev 共轭指数的迭代关系 $p_k^* = np/(n-kp)$ 即得。$\blacksquare$
+**证明**（归纳法，$k=1$ 情形）：设 $u \in C_c^\infty(\mathbb{R}^n)$，需证 $\|u\|_{L^{p^*}} \leq C \|\nabla u\|_{L^p}$。由 Gagliardo-Nirenberg 不等式，对 $n \geq 2$，$\|u\|_{L^{n/(n-1)}} \leq \frac{1}{2\sqrt{n}} \prod_{i=1}^n \|\partial_i u\|_{L^1}^{1/n}$。对 $p > 1$，取 $v = |u|^\alpha$（$\alpha > 1$ 待定），应用 $L^1$ 嵌入得 $\|u\|_{L^{\alpha n/(n-1)}}^\alpha \leq C \alpha \|u^{\alpha-1} \nabla u\|_{L^1}$。由 Hölder 不等式，$\|u^{\alpha-1} \nabla u\|_{L^1} \leq \|u\|_{L^{(\alpha-1)p'}}^{\alpha-1} \|\nabla u\|_{L^p}$。取 $\alpha = \frac{n(p-1)}{n-p}$ 使 $\alpha n/(n-1) = (\alpha-1)p' = p^*$，得 $\|u\|_{L^{p^*}} \leq C \|\nabla u\|_{L^p}$。$k > 1$ 情形对 $k$ 归纳，每次降低一阶导数。$\blacksquare$
 
 **定理 251.5**（Morrey 不等式 —— $k p > n$ 情形）：设 $p > n$。则 $W^{1,p}(\mathbb{R}^n) \hookrightarrow C^{0, \gamma}(\mathbb{R}^n)$ 连续，其中 $\gamma = 1 - n/p$。即存在 $C$ 使得
 

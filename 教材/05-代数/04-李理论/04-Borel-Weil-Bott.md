@@ -20,12 +20,12 @@ $$\mathcal{L}_\lambda = G \times_B \mathbb{C}_\lambda \longrightarrow G/B,\quad 
 $$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$$
 若 $\lambda \notin \Lambda^+$（非支配权），则 $H^0(G/B, \mathcal{L}_\lambda) = 0$。
 
-**证明**（框架）：利用 $G$ 的 Bruhat 分解 $G = \bigsqcup_{w \in W} BwB$（$W = N_G(T)/T$ 为 Weyl 群）。$G/B$ 分解为 $B$-轨道的并 $\mathcal{B} = \bigsqcup_{w \in W} \mathcal{O}_w$（Schubert 胞腔），每个 $\mathcal{O}_w = BwB/B \cong \mathbb{C}^{\ell(w)}$ 为仿射空间。截面 $s \in H^0(G/B, \mathcal{L}_\lambda)$ 对应于全纯函数 $\varphi : G \to \mathbb{C}$ 满足 $\varphi(gb) = \lambda(b) \varphi(g)$。由最高权理论，此类函数生成的 $G$-模恰为对偶表示 $V_\lambda^*$ 的最高权向量轨道的线性张成。故 $H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$。$\blacksquare$
+**证明**：利用 $G$ 的 Bruhat 分解 $G = \bigsqcup_{w \in W} BwB$，其中 $W = N_G(T)/T$ 为 Weyl 群。$G/B$ 分解为 $B$-轨道的并（Schubert 胞腔），每个 $\mathcal{O}_w = BwB/B \cong \mathbb{C}^{\ell(w)}$ 为仿射空间。截面 $s \in H^0(G/B, \mathcal{L}_\lambda)$ 对应于全纯函数 $\varphi: G \to \mathbb{C}$ 满足 $\varphi(gb) = \lambda(b)^{-1} \varphi(g)$（对 $b \in B$）。由 Borel 不动点定理，$G$ 在 $H^0$ 上的作用诱导 $G$-模结构。设 $\lambda \in \Lambda^+$ 为支配整权，则存在最高权向量 $v_\lambda \in V_\lambda$。由 Peter-Weyl 定理，$H^0(G/B, \mathcal{L}_\lambda)$ 分解为 $G$-不可约模的直和。由 Bruhat 分解，$H^0$ 中最高权向量在 $G$ 作用下生成的子模恰为 $V_\lambda$。若 $\lambda \notin \Lambda^+$，则 $\mathcal{L}_\lambda$ 无整体截面（因 $B$ 在纤维上的作用非支配），故 $H^0 = 0$。$\blacksquare$
 
 **定理 87.2**（Borel-Weil 与 Weyl 特征公式）：作为 Euler-Poincaré 特征，
 $$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)}}{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho)}} = \operatorname{ch} V_\lambda$$
 
-**证明**：由 Borel-Weil 定理，$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$（$\lambda$ 支配时）且 $H^{>0} = 0$（Kempf 消没定理），故 $\chi(G/B, \mathcal{L}_\lambda) = \operatorname{ch} H^0 = \operatorname{ch} V_\lambda$。另一方面，Atiyah-Bott 不动点公式应用于 $T$（极大环面）在 $G/B$ 上的作用给出上述分数形式：分子为 Lefschetz 迹公式在和 $W$ 上求和，分母为 Weyl 分母恒等式。因此两者相等即得 Weyl 特征公式。$\blacksquare$
+**证明**：由 Borel-Weil 定理，$H^0(G/B, \mathcal{L}_\lambda) \cong V_\lambda$（$\lambda \in \Lambda^+$）且由 Kempf 消没定理，$H^{>0}(G/B, \mathcal{L}_\lambda) = 0$。故对支配权 $\lambda$，Euler-Poincare 特征 $\chi(G/B, \mathcal{L}_\lambda) = \operatorname{ch} H^0 = \operatorname{ch} V_\lambda$。另一方面，由 Atiyah-Bott 不动点公式应用于极大环面 $T$ 在 $G/B$ 上的作用，$T$-等变 $K$-理论给出 $\chi(G/B, \mathcal{L}_\lambda) = \sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda+\rho)} / \prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2})$。分母由 Weyl 分母公式 $\prod_{\alpha \in \Phi^+} (e^{\alpha/2} - e^{-\alpha/2}) = e^{-\rho} \sum_{w \in W} (-1)^{\ell(w)} e^{w(\rho)}$ 化简，即得 Weyl 特征公式。$\blacksquare$
 
 ### 87.3 Bott-Borel-Weil 定理
 
@@ -43,15 +43,13 @@ V_{w \bullet \lambda} & \text{若 } i = \ell(w) \\
 
 2. 若 $\lambda + \rho$ 为奇异的，则对所有 $i \geq 0$，$H^i(G/B, \mathcal{L}_\lambda) = 0$。
 
-**证明**（框架）：证明基于三个关键技术。
+**证明**：证明基于三个关键技术。
 
-（i）**Schubert 胞腔的层上同调**：将 $G/B$ 按 Schubert 胞腔 $\mathcal{O}_w$ 分层，使用关于闭嵌入和开嵌入的上同调长正合列。对每个 Schubert 簇 $X_w = \overline{\mathcal{O}_w}$，$\mathcal{L}_\lambda|_{X_w}$ 的上同调可通过归纳计算。
+（i）Schubert 胞腔的层上同调：将 $G/B$ 按 Schubert 胞腔 $\mathcal{O}_w$ 分层。对每个 Schubert 簇 $X_w = \overline{\mathcal{O}_w}$，考虑闭嵌入 $i_w: X_w \hookrightarrow G/B$ 和开嵌入 $j_w: \mathcal{O}_w \hookrightarrow X_w$。由局部上同调长正合列，$H^i(X_w, \mathcal{L}_\lambda|_{X_w})$ 可通过 $H^i(\mathcal{O}_w, \mathcal{L}_\lambda|_{\mathcal{O}_w})$ 和 $H^i(X_{v < w}, \mathcal{L}_\lambda|_{X_{v < w}})$ 归约计算。$\mathcal{O}_w \cong \mathbb{C}^{\ell(w)}$ 为仿射空间，其上的线丛上同调由 Borel-Weil-Bott 的局部版本计算。
 
-（ii）**Demazure 算符**：对每个单根 $\alpha \in \Delta$，定义 Demazure 算符 $D_\alpha$ 作用于权的形式特征标上：
-$$D_\alpha(e^\lambda) = \frac{e^\lambda - e^{s_\alpha(\lambda) - \alpha}}{1 - e^{-\alpha}}$$
-其几何意义为 $\pi_\alpha : G/B \to G/P_\alpha$（$\mathbb{P}^1$-纤维化）诱导的上同调推移。
+（ii）Demazure 算符：对每个单根 $\alpha \in \Delta$，定义 Demazure 算符 $D_\alpha(e^\mu) = \frac{e^\mu - e^{s_\alpha(\mu)-\alpha}}{1 - e^{-\alpha}}$。其几何意义：$\pi_\alpha: G/B \to G/P_\alpha$ 为 $\mathbb{P}^1$-纤维化。$\mathcal{L}_\lambda$ 限制在每条纤维 $\mathbb{P}^1$ 上对应于 $\mathcal{O}(-n)$（$n = \langle \lambda+\rho, \alpha^\vee \rangle - 1$）。$H^0(\mathbb{P}^1, \mathcal{O}(-n))$ 非零仅当 $n \leq 0$，此时 $H^0$ 为 $n+1$ 维，特征标为 $e^\lambda + e^{\lambda-\alpha} + \cdots + e^{\lambda-n\alpha}$ 与 $D_\alpha(e^\lambda)$ 一致；$H^1$ 仅在 $n \geq 2$ 时非零，特征标为 $e^{s_\alpha(\lambda+\rho)-\rho}$。
 
-（iii）**归纳论证**：设 $\lambda + \rho$ 为正则且 $\langle \lambda + \rho, \alpha^\vee \rangle < 0$，则 $\mathcal{L}_\lambda$ 在 $\mathbb{P}^1$-纤维上没有截面，上同调集中于 $H^1$。每一次穿越单根 $\alpha$ 的壁，上同调群移动一个指标并相应改变权。通过对 $\ell(w)$ 归纳，归约到 $w = \operatorname{id}$（Borel-Weil 定理的情形）。$\blacksquare$
+（iii）归纳论证：设 $\lambda+\rho$ 为正则且 $\langle \lambda+\rho, \alpha^\vee \rangle < 0$，则 $\mathcal{L}_\lambda$ 在 $\mathbb{P}^1$-纤维上没有截面，上同调集中于 $H^1$。每一次穿越单根 $\alpha$ 的壁，上同调群移动一个指标：$H^i(G/B, \mathcal{L}_\lambda) \cong H^{i-1}(G/B, \mathcal{L}_{s_\alpha \bullet \lambda})$（含 $\ell(s_\alpha)=1$ 的情形的 Serre 对偶变体）。对一般 $w \in W$，将 $w$ 写为单反射的约化乘积，逐次应用上述步骤归纳。基情形 $w = \operatorname{id}$（$\lambda$ 支配）即 Borel-Weil 定理。$\blacksquare$
 
 **定理 87.4**（Weyl 特征公式作为推论）：对任意 $\lambda \in \Lambda$，由 Euler-Poincaré 特征
 $$\chi(G/B, \mathcal{L}_\lambda) = \sum_{i \geq 0} (-1)^i \operatorname{ch} H^i(G/B, \mathcal{L}_\lambda)$$
@@ -89,7 +87,7 @@ $$H^0(X_w, \mathcal{L}_\lambda|_{X_w}) \cong V_\lambda(w)^*$$
 $$D_\alpha(e^\mu) = \frac{e^\mu - e^{s_\alpha(\mu) - \alpha}}{1 - e^{-\alpha}}$$
 取 $w = w_0$（最长元）时 $V_\lambda(w_0) = V_\lambda$，即回到 Borel-Weil 定理。
 
-**证明**（框架）：对 $\ell(w)$ 归纳。单反射 $s_\alpha$ 情形利用 $\mathbb{P}^1$-纤维化 $\pi_\alpha : G/B \to G/P_\alpha$ 的 Leray 谱序列计算 $H^0$。一般 $w$ 写为约化乘积，每一步施行 Demazure 算符并通过归纳构造截面空间。几何上，$X_w$ 上的截面由 $w$ 决定的极值向量生成的 $U(\mathfrak{b})$ 张成空间所刻画。$\blacksquare$
+**证明**：对 $\ell(w)$ 归纳。基情形 $\ell(w) = 0$（$w = \operatorname{id}$）：$X_{\operatorname{id}} = \{\text{pt}\}$（单点），$H^0 = \mathbb{C}$ 为一维，$V_\lambda(\operatorname{id})$ 为极值权空间 $V_\lambda(\lambda)$，两者对偶。单反射 $s_\alpha$ 情形：$X_{s_\alpha} \cong \mathbb{P}^1$，$\mathcal{L}_\lambda|_{\mathbb{P}^1}$ 为上同调已知的线丛。利用 $\mathbb{P}^1$-纤维化 $\pi_\alpha: G/B \to G/P_\alpha$ 的 Leray 谱序列，$\pi_{\alpha *} \mathcal{L}_\lambda \cong \mathcal{L}_\lambda'$（$G/P_\alpha$ 上的线丛），$H^0(X_{s_\alpha}, \mathcal{L}_\lambda) \cong H^0(G/P_\alpha, \pi_{\alpha *} \mathcal{L}_\lambda)$。由 Borel-Weil 定理在 $G/P_\alpha$ 上的应用，$H^0$ 给出 $V_\lambda(s_\alpha)^*$。一般 $w$：取约化分解 $w = s_{\alpha_1} \cdots s_{\alpha_\ell}$。由归纳假设，$H^0(X_{ws_\alpha}, \mathcal{L}_\lambda) \cong V_\lambda(ws_\alpha)^*$。利用 Demazure 算符的函子性质，$D_{ws_\alpha} = D_w \circ D_{s_\alpha}$，且 $D_{s_\alpha}(e^\mu) = \operatorname{ch} V_\mu(s_\alpha)$。故 $\operatorname{ch} V_\lambda(w) = D_w(e^\lambda)$。取 $w = w_0$（最长元）时 $V_\lambda(w_0) = V_\lambda$，回到 Borel-Weil 定理。$\blacksquare$
 
 ### 87.6 Beilinson-Bernstein 局部化
 
@@ -97,12 +95,12 @@ $$D_\alpha(e^\mu) = \frac{e^\mu - e^{s_\alpha(\mu) - \alpha}}{1 - e^{-\alpha}}$$
 $$\mathcal{M}(\mathfrak{g}, \lambda) \cong \operatorname{QCoh}(G/B, \mathcal{D}_\lambda)$$
 其中左端为具有平凡广义中心特征的 $\mathfrak{g}$-模（Harish-Chandra 双模范畴），右端为 $G/B$ 上扭折微分算符层 $\mathcal{D}_\lambda$ 的拟凝聚层范畴。该等价将 Verma 模映为标准 $\mathcal{D}$-模，将单最高权模映为连接 $\mathcal{D}$-模（即全纯线丛的 $\mathcal{D}$-模推送）。
 
-**证明**（框架）：关键步骤三步。(1) 构造「局部化」函子：给定 $\mathfrak{g}$-模 $M$（满足 Harish-Chandra 条件），在旗簇上定义 $\mathcal{D}_\lambda$-模 $\Delta(M) = \mathcal{D}_\lambda \otimes_{U(\mathfrak{g})_\lambda} M$（$\otimes$ 在适当完备化下）。(2) 构造「整体截面」函子 $\Gamma(G/B, -)$ 作为拟逆。核心是证明 $\Gamma \circ \Delta \cong \operatorname{id}$（由 $\mathcal{D}_\lambda$ 的整体截面环同构于 $U(\mathfrak{g})_\lambda$）和 $\Delta \circ \Gamma \cong \operatorname{id}$（由 $\mathcal{D}_\lambda$ 作为 $\mathcal{O}$-模的忠实平坦性）。(3) $\lambda$ 的正则性条件保证 $\mathcal{D}_\lambda$ 的「扭折」是平凡的——此时 $\mathcal{D}_\lambda$ 和 $\mathcal{D}_0$（通常 $\mathcal{D}$-模层）Morita 等价。$\blacksquare$
+**证明**：关键步骤三步。(1) 构造「局部化」函子：给定 $\mathfrak{g}$-模 $M$（满足 Harish-Chandra 条件，即 $\mathcal{Z}(\mathfrak{g})$ 通过中心特征 $\chi_\lambda$ 作用），在旗簇上定义 $\mathcal{D}_\lambda$-模 $\Delta(M) = \mathcal{D}_\lambda \otimes_{U(\mathfrak{g})_\lambda} M$，其中 $U(\mathfrak{g})_\lambda = U(\mathfrak{g}) / \ker(\chi_\lambda)$ 为广义中心特征商。$\Delta(M)$ 是拟凝聚 $\mathcal{D}_\lambda$-模，函子 $\Delta$ 正合。(2) 构造「整体截面」函子 $\Gamma(G/B, -)$ 作为拟逆。核心是证明 $\Gamma \circ \Delta \cong \operatorname{id}$：由 $\mathcal{D}_\lambda$ 的整体截面环 $\Gamma(G/B, \mathcal{D}_\lambda) \cong U(\mathfrak{g})_\lambda$（扭折 $\mathcal{D}$-模的整体截面同构于约化包络代数），故 $\Gamma(\Delta(M)) \cong U(\mathfrak{g})_\lambda \otimes_{U(\mathfrak{g})_\lambda} M \cong M$。同时证明 $\Delta \circ \Gamma \cong \operatorname{id}$：由 $\mathcal{D}_\lambda$ 作为 $\mathcal{O}$-模的忠实平坦性，$\Delta$ 和 $\Gamma$ 互为拟逆。(3) $\lambda$ 的正则性条件保证 $\mathcal{D}_\lambda$ 的「扭折」是平凡的：此时 $\mathcal{D}_\lambda$ 和 $\mathcal{D}_0$（通常 $\mathcal{D}$-模层）Morita 等价，因此 $\mathcal{D}_\lambda$-模范畴与 $\mathcal{D}_0$-模范畴等价。$\blacksquare$
 
 **定理 87.7**（局部化与 Borel-Weil-Bott 的联系）：对支配正则权 $\lambda$，整体截面函子 $\Gamma(G/B, -)$ 在扭折 $\mathcal{D}$-模上正合，且
 $$\Gamma(G/B, \mathcal{D}_\lambda \otimes_{\mathcal{O}} \mathcal{L}_\mu) \cong M(\mu)^* \quad (\text{$\mu$ 与 $\lambda$ 全整链接})$$
 其中 $M(\mu)$ 为权 $\mu$ 的 Verma 模。对反支配权（antidominant），$\Gamma$ 函子非正合而需考察高次上同调，这正好对应于 Bott-Borel-Weil 定理中的上同调转移现象。对奇异权（$\lambda+\rho$ 落在 Weyl 腔壁上），通过平移函子将问题归约至正则情形，给出全部 $H^i(G/B, \mathcal{L}_\mu)$ 的代数刻画。
 
-**证明**（框架）：由 Beilinson-Bernstein 局部化，$\mathcal{D}_\lambda$-模范畴等价于 $\mathfrak{g}$-模范畴。$\mathcal{D}_\lambda \otimes \mathcal{L}_\mu$ 是 $\mathcal{D}_\lambda$-模（通过 $\mathcal{D}_\lambda$ 在第一个因子上的作用），其整体截面为 $\mathfrak{g}$-模。直接计算该模的特征标：$\operatorname{ch} \Gamma(G/B, \mathcal{D}_\lambda \otimes \mathcal{L}_\mu) = e^\mu / \prod_{\alpha > 0} (1 - e^{-\alpha})$（由最高权向量生成），这正是 Verma 模 $M(\mu)$ 的特征标。对非支配权，$\Gamma$ 非正合导致高次上同调的非消没；由定理 87.3，这些高次上同调群恰好实现为相同 LKT 等价类中的不可约表示。$\blacksquare$
+**证明**：由 Beilinson-Bernstein 局部化，$\mathcal{D}_\lambda$-模范畴等价于 $\mathfrak{g}$-模范畴（具有中心特征 $\chi_\lambda$）。$\mathcal{D}_\lambda \otimes_{\mathcal{O}} \mathcal{L}_\mu$ 是 $\mathcal{D}_\lambda$-模（$\mathcal{D}_\lambda$ 作用于第一个因子），其整体截面 $\Gamma(G/B, \mathcal{D}_\lambda \otimes \mathcal{L}_\mu)$ 为 $\mathfrak{g}$-模。直接计算该模的特征标：由 $\mathcal{D}_\lambda$ 的局部结构，$\Gamma(G/B, \mathcal{D}_\lambda \otimes \mathcal{L}_\mu)$ 包含最高权为 $\mu$ 的向量（由 $\mathcal{L}_\mu$ 的常截面经 $\mathcal{D}_\lambda$ 作用生成），其权空间分解为 $\mu - \sum n_i \alpha_i$（$n_i \in \mathbb{N}$）。因此特征标为 $e^\mu / \prod_{\alpha > 0} (1 - e^{-\alpha})$，这正是 Verma 模 $M(\mu)$ 的特征标。由 Harish-Chandra 定理，$M(\mu)$ 由该特征标唯一确定，故 $\Gamma(G/B, \mathcal{D}_\lambda \otimes \mathcal{L}_\mu) \cong M(\mu)^*$。对非支配权，$\Gamma$ 非正合导致高次上同调的非消没；由定理 87.3，这些高次上同调群恰好实现为相同 LKT 等价类中的不可约表示。$\blacksquare$
 
 **注记 87.2**：Beilinson-Bernstein 局部化定理是几何表示论的基石，将代数 $\mathcal{D}$-模理论与李代数表示论统一。该定理为 Kazhdan-Lusztig 猜想（由 Brylinski-Kashiwara 与 Beilinson-Bernstein 于 1981 年独立证明）提供了几何框架，将 Borel-Weil-Bott 嵌入为宏观对应体系的特例：旗簇上的 $\mathcal{D}$-模、反常层和反常复形精确分类了李代数的全体表示。

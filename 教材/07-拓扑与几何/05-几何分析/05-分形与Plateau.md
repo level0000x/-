@@ -9,6 +9,8 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 **定理 250.1**（Douglas-Radó 解法，1931/1930）：任何 $\mathbb{R}^3$ 中的可整流 Jordan 曲线都张成某个极小面积曲面（参数化圆盘映射）。Douglas 因此获得首届 Fields 奖（1936）。
 
+**证明**（Douglas 的能量极小化方法）：设 $\Gamma$ 为 $\mathbb{R}^3$ 中的 Jordan 曲线。考虑所有从单位圆盘 $D$ 到 $\mathbb{R}^3$ 的 Sobolev 映射 $u \in W^{1,2}(D, \mathbb{R}^3)$，满足 $u|_{\partial D}$ 为 $\partial D$ 到 $\Gamma$ 的单调参数化。定义 Dirichlet 能量 $E(u) = \frac{1}{2} \int_D |\nabla u|^2$。由面积-能量不等式，$A(u) \leq E(u)$，等号当且仅当 $u$ 为共形映射。取能量极小化序列 $\{u_n\}$，由 Courant-Lebesgue 引理，$u_n$ 在 $\partial D$ 上等度连续。由 Banach-Alaoglu 定理和 Rellich-Kondrachov 紧嵌入，存在子列弱收敛到 $u \in W^{1,2}(D, \mathbb{R}^3)$，且 $u|_{\partial D}$ 为 $\Gamma$ 的连续参数化。由 Dirichlet 能量的弱下半连续性，$E(u) \leq \liminf E(u_n)$，故 $u$ 为能量极小元。由 Courant 的边界条件稳定性，$u$ 的参数化是单调的。最后，由共形不变性，可调整 $u$ 使其为共形映射，此时 $A(u) = E(u)$ 且 $u$ 为极小曲面。$\blacksquare$
+
 **定理 250.2**（Federer-Fleming 解法 / 几何测度论中的 Plateau 问题解，1960）：对任何一维整系数整流链 $\Gamma$ 满足 $\partial \Gamma = 0$ 且紧支撑，存在二维整系数整流链 $T$ 实现极小质量。
 
 **证明**：取质量最小化序列 $\{T_i\}$。用等周不等式控制边界，用紧致性定理（Federer-Fleming 紧致性定理）提取子列收敛到整系数平坦链。由下半连续性（质量在平坦范数下是下半连续的），极限链是最小的。用正则性理论证明极限是整系数整流链。∎

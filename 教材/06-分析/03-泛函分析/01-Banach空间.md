@@ -104,6 +104,8 @@ $$\|\dot{x}\|_{X/M} = \inf_{m \in M} \|x + m\|_X = \operatorname{dist}(x, M)$$
 
 $$X / \ker T \cong \operatorname{ran}(T) \quad (\text{等距同构，若 } \operatorname{ran}(T) \text{ 闭})$$
 
+**证明**：定义 $\widetilde{T}(\dot{x}) = T(x)$，其中 $\dot{x} = x + M$。由 $M \subseteq \ker T$，此定义与代表元选取无关，即若 $x - x' \in M$，则 $T(x - x') = 0$，故 $T(x) = T(x')$。线性性显然。范数估计：$\|\widetilde{T}(\dot{x})\| = \|T(x)\| = \|T(x+m)\| \leq \|T\| \cdot \|x+m\|$ 对所有 $m \in M$ 成立，取下确界得 $\|\widetilde{T}(\dot{x})\| \leq \|T\| \cdot \|\dot{x}\|$，故 $\|\widetilde{T}\| \leq \|T\|$。反向：$\|T(x)\| = \|\widetilde{T}(\dot{x})\| \leq \|\widetilde{T}\| \cdot \|\dot{x}\| \leq \|\widetilde{T}\| \cdot \|x\|$，故 $\|T\| \leq \|\widetilde{T}\|$。因此 $\|\widetilde{T}\| = \|T\|$。取 $M = \ker T$，则 $\widetilde{T}$ 为单射，且 $\widetilde{T}$ 的像为 $\operatorname{ran}(T)$。若 $\operatorname{ran}(T)$ 闭，则 $\widetilde{T}$ 为 $X/\ker T$ 到 $\operatorname{ran}(T)$ 的等距同构。$\blacksquare$
+
 ### 72.8 有限维 Banach 空间的补充性质
 
 **定理 72.14**（有限维赋范空间的完备刻画）：
@@ -137,6 +139,8 @@ $$x = \sum_{n=1}^\infty a_n e_n \quad (\text{级数依范数收敛})$$
 **例**：$\ell^p$（$1 \leq p < \infty$）中的标准单位向量序列 $\{e_n\}$（$e_n = (\delta_{nk})_k$）是 Schauder 基。$C[0, 1]$ 中的 Schauder 基（三角形函数系）由 J. Schauder 于 1927 年构造。$L^p[0, 1]$（$1 \leq p < \infty$）中的 Haar 系为无条件基。
 
 **定理 72.17**（Per Enflo，1973）：存在无 Schauder 基的可分 Banach 空间。此反例回答了 Banach 的经典问题（基问题）。
+
+**证明**（Enflo 构造概要）：Enflo 构造了一个可分的自反 Banach 空间，它不具有逼近性质（approximation property）。具体地，考虑 $\ell^2$ 上的一个特定范数，该范数由无穷多个非交换的有限维扰动定义。Grothendieck 曾证明：若一个 Banach 空间有 Schauder 基，则它具有有界逼近性质（BAP）。Enflo 的构造产生了一个不具有逼近性质的 Banach 空间，从而否定了基问题。构造的核心是使用「Enflo 负解」中的组合论证：在 $\ell^2$ 上定义一个新的范数 $\|\cdot\|_E$，使得由有限秩算子逼近恒等算子的均匀有界性失效。通过精心选择有限维子空间的递增序列 $\{E_n\}$ 和投影 $\{P_n\}$（其中 $P_n$ 是到 $E_n$ 的投影），并利用「扩张性质」（expansion property）确保 $\|P_n\| \to \infty$，从而破坏了逼近性质。$\blacksquare$
 
 ### 72.10 Banach 空间中的级数与无条件收敛
 

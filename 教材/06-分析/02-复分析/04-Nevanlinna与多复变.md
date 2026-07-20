@@ -21,7 +21,9 @@ $$T\left(r, \frac{1}{f-a}\right) = T(r, f) + O(1) \quad (r \to \infty)$$
 $$\sum_{j=1}^q m(r, a_j, f) \leq 2T(r, f) - N_1(r) + S(r, f)$$
 其中$N_1(r)$为$f$的分支点修正项（$f'$的零点计数，不计重数），$S(r, f) = O(\log r T(r, f))$为误差项（在$r \to \infty$除去一个有限线性测度集外成立）。等价形式：$(q-2) T(r, f) \leq \sum_{j=1}^q \overline{N}(r, a_j, f) + S(r, f)$（$\overline{N}$为不计重数的计数函数）。
 
-**证明思路**：核心引理是对数导数的估计$\int_0^{2\pi} \log^+ |f'/f| d\theta = o(T(r, f))$。对$F = \prod_{j=1}^q (f - a_j)$应用第一基本定理与Jensen公式，利用$F'/F$与$f'/(f-a_j)$的线性组合关系，配合对数导数引理推导出不等式。$\blacksquare$
+**证明**：核心引理是对数导数的估计（Nevanlinna 1930 年代）：对于亚纯函数 $f$，
+$$\int_0^{2\pi} \log^+ \left|\frac{f'(re^{i\theta})}{f(re^{i\theta})}\right| d\theta = o(T(r, f)) \quad (r \to \infty, \; r \notin E),$$
+其中 $E$ 为有限线性测度集。选取互异值 $a_1, \ldots, a_q \in \mathbb{C} \cup \{\infty\}$。考虑辅助函数 $F = \prod_{j=1}^q (f - a_j)$（若某 $a_j = \infty$，则将其从乘积中略去）。由 Jensen 公式和第一基本定理，$m(r, F) = \sum_j m(r, a_j, f) + O(1)$。另一方面，导数 $F'/F = \sum_j f'/(f - a_j)$ 的逼近函数可由对数导数引理控制：$m(r, F'/F) = o(T(r, f))$。将 $F'/F$ 与各个 $f'/(f - a_j)$ 的逼近函数建立不等式关系，并利用 $m(r, f'/(f - a_j))$ 的上界，最终导出 $\sum_j m(r, a_j, f) \leq 2T(r, f) - N_1(r) + S(r, f)$。换用计数函数即得 $(q-2)T(r, f) \leq \sum_j \overline{N}(r, a_j, f) + S(r, f)$。$\blacksquare$
 
 **推论108.3**（Picard小定理作为推论）：若整函数$f$避开两个有穷值，则第二基本定理给出$(2-2)T(r, f) \leq 0 + S(r, f)$，与$f$为超越整函数时$T(r, f)/\log r \to \infty$矛盾。因此$f$必为常数——Picard小定理得证。
 

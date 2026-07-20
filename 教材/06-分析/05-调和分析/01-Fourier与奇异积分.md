@@ -61,7 +61,7 @@ $$\sum_{n \in \mathbb{Z}^n} f(n) = \sum_{m \in \mathbb{Z}^n} \hat{f}(m)$$
 
 更一般地，$\sum_{n \in \mathbb{Z}^n} f(x + n) = \sum_{m \in \mathbb{Z}^n} \hat{f}(m) e^{2\pi i m \cdot x}$（分布意义下）。
 
-*证明*：定义 $F(x) = \sum_{n \in \mathbb{Z}^n} f(x + n)$（$\mathbb{Z}^n$-周期函数）。$F$ 的 Fourier 系数为 $\hat{f}(m)$，由 Fourier 级数理论即得。∎
+**证明**：定义 $F(x) = \sum_{n \in \mathbb{Z}^n} f(x + n)$（$\mathbb{Z}^n$-周期函数）。$F$ 的 Fourier 系数为 $\hat{f}(m)$，由 Fourier 级数理论即得。$\blacksquare$
 
 ---
 
@@ -99,9 +99,7 @@ $$Hf(x) = \frac{1}{\pi} \operatorname{p.v.} \int_{-\infty}^\infty \frac{f(y)}{x 
 - $g$（"好"部分）：$|g(x)| \leq 2^n \lambda$ 几乎处处，$\|g\|_1 \leq \|f\|_1$
 - $b = \sum_k b_k$（"坏"部分）：$b_k$ 支撑在不相交的二进方体 $Q_k$ 上，$\int_{Q_k} b_k = 0$，$\|b_k\|_1 \leq 2^{n+1} \lambda |Q_k|$，且 $\sum_k |Q_k| \leq \lambda^{-1} \|f\|_1$
 
-*构造与证明概要*：将 $\mathbb{R}^n$ 划分为二进方体（dyadic cubes）。对每个二进方体 $Q$，若 $\frac{1}{|Q|}\int_Q f > \lambda$，则将其二等分为子方体并递归检查。最终选出的"坏"方体族 $\{Q_k\}$ 满足：$\frac{1}{|Q_k|}\int_{Q_k} f > \lambda$，但每个 $Q_k$ 的父方体均值 $\leq \lambda$。定义 $g(x) = f(x)$（$x \notin \bigcup Q_k$）和 $g(x) = \frac{1}{|Q_k|}\int_{Q_k} f$（$x \in Q_k$），以及 $b_k(x) = (f(x) - \frac{1}{|Q_k|}\int_{Q_k} f) \mathbf{1}_{Q_k}(x)$。于是 $|g| \leq 2^n \lambda$ 由均值有界性保证，$\sum|Q_k| \leq \lambda^{-1}\|f\|_1$ 由 Chebyshev 型估计得到。此分解是 Calderón-Zygmund 理论的基石，关键之处在于将函数分解为 $L^\infty$ 控制的好部分和均值为零且支撑在不相交二进方体上的坏部分。∎
-
-*构造*：用二进方体分割 $\mathbb{R}^n$。对每个二进方体，若其均值 $> \lambda$，则从中提取"坏"部分。这是 Calderón-Zygmund 理论的基石。
+**证明**：将 $\mathbb{R}^n$ 划分为二进方体网格 $\mathcal{D} = \bigcup_{k \in \mathbb{Z}} \mathcal{D}_k$，其中 $\mathcal{D}_k$ 为边长 $2^{-k}$ 的二进方体。对每个二进方体 $Q$，计算均值 $\frac{1}{|Q|}\int_Q f$。若 $\frac{1}{|Q|}\int_Q f > \lambda$，则选取 $Q$ 为"坏"方体。将未被选中的方体递归二分，直至所有子方体的均值 $\leq \lambda$。最终选出的极大"坏"方体族 $\{Q_k\}$ 满足：$\lambda < \frac{1}{|Q_k|}\int_{Q_k} f \leq 2^n \lambda$（由父方体的均值 $\leq \lambda$ 保证）。定义 $g(x) = f(x)$（$x \notin \bigcup Q_k$）和 $g(x) = \frac{1}{|Q_k|}\int_{Q_k} f$（$x \in Q_k$），则 $|g| \leq 2^n \lambda$ 且 $\|g\|_1 \leq \|f\|_1$。定义 $b_k = (f - \frac{1}{|Q_k|}\int_{Q_k} f)\mathbf{1}_{Q_k}$，则 $b = \sum b_k$，$\int b_k = 0$，$\|b_k\|_1 \leq 2^{n+1}\lambda|Q_k|$。由 $\sum|Q_k| \leq \lambda^{-1}\sum \int_{Q_k} f \leq \lambda^{-1}\|f\|_1$ 得所需估计。$\blacksquare$
 
 ### 124.3 奇异积分算子
 
