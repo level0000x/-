@@ -70,9 +70,8 @@ $$df(X_t) = f'(X_t) dX_t + \frac{1}{2} f''(X_t) \sigma_t^2 dt$$
 
 $$f(X_t) - f(X_0) = \int_0^t f'(X_s) dX_s + \frac{1}{2} \int_0^t f''(X_s) \sigma_s^2 ds$$
 
-*证明概要*：对 $f(X_{t_{i+1}}) - f(X_{t_i})$ 做 Taylor 展开至二阶：
-$$f(X_{t_{i+1}}) - f(X_{t_i}) = f'(X_{t_i}) \Delta X_i + \frac{1}{2} f''(X_{t_i}) (\Delta X_i)^2 + o((\Delta X_i)^2)$$
-求和取极限。关键点是 $(\Delta X_i)^2 \approx \sigma_{t_i}^2 \Delta t_i$（因为 $(dW_t)^2 = dt$），而 $(\Delta t_i)^2$ 和 $(\Delta t_i)(\Delta W_i)$ 在极限下消失。∎
+**证明**：Itô公式的证明基于Taylor展开：对$C^2$函数$f$，$df(X_t)=f'(X_t)dX_t+\frac{1}{2}f''(X_t)(dX_t)^2$。关键点是$(dW_t)^2=dt$（二次变差性质）。形式地：$\Delta f=f'(X_t)\Delta X_t+\frac{1}{2}f''(X_t)(\Delta X_t)^2+o((\Delta X_t)^2)$。由于$(\Delta W_t)^2\approx\Delta t$（布朗运动的二次变差），二阶项不能忽略。取极限$\Delta t\to 0$，$\sum f''(X_t)(\Delta W_t)^2\to\int f''(X_t)dt$（$L^2$收敛），得到Itô积分形式。$\blacksquare$
+
 
 **定理 135.7**（Itô 公式，多维）：设 $f(t, x_1, \ldots, x_d) \in C^{1,2}$，$X^i_t$ 是 Itô 过程，$dX^i_t = \mu^i_t dt + \sum_{j=1}^m \sigma^{ij}_t dW^j_t$。则
 
