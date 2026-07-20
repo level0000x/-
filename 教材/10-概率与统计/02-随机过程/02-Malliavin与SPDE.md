@@ -83,6 +83,8 @@ $$F = \sum_{n=0}^{\infty} I_n(f_n)$$
 
 其中 $I_n$ 是 $n$ 重 Itô-Wiener 积分（关于 Brown 运动），$f_n \in L^2([0,T]^n)$ 是对称函数。
 
+Wiener 混沌分解是 Malliavin 分析的基石，其思想可追溯到 Cameron-Martin (1947) 和 Itô (1951)。该分解将 $L^2(\Omega)$ 中的泛函按"复杂度"（即所涉及的 Wiener 积分的重数）分层，$n$ 阶 Wiener 混沌 $\mathcal{H}_n$ 中的元素恰为 $n$ 重 Wiener-Itô 积分的全体。$\mathcal{H}_n$ 与对称 $L^2([0,T]^n)$ 函数空间的等距同构是多重 Itô 等距的推论：$\mathbb{E}[I_n(f) I_m(g)] = \delta_{nm} n! \langle f, g \rangle_{L^2([0,T]^n)}$。一阶混沌 $\mathcal{H}_1$ 由 Wiener 积分的闭包构成，即 Gauss 随机变量的线性空间；二阶混沌 $\mathcal{H}_2$ 包含二次 Wiener 泛函（如 $\int_0^T W_t^2 dt$ 的 $L^2$ 正交投影）。从表示论的角度看，Wiener 混沌分解是 Fock 空间的对称张量代数分解在概率空间上的实现——$L^2(\Omega) \cong \bigoplus_{n=0}^\infty \operatorname{Sym}(L^2([0,T])^{\otimes n})$，其中 $\operatorname{Sym}$ 表示对称化。这种分解使得 Malliavin 导数 $D$ 在混沌分解下表现为"降阶"算子：$D I_n(f_n) = n I_{n-1}(f_n(\cdot, t))$（将 $n$ 阶混沌元素映射到 $n-1$ 阶），而 Skorohod 积分 $\delta$ 则表现为"升阶"算子。
+
 **证明**：设 $\mathcal{H}_n$ 为 $n$ 阶 Wiener 混沌（由 $n$ 次 Hermite 多项式生成的闭子空间）。Hermite 多项式 $\{H_n(\int_0^T h(s) dW_s)\}$（$\|h\|_{L^2}=1$）是正交的。由 Itô 积分的迭代性质，$\mathcal{H}_n$ 与 $n$ 重 Wiener-Itô 积分 $\{I_n(f) : f \in L^2([0,T]^n), f \text{ 对称}\}$ 等距同构（Itô 等距推广为多重版本：$\|I_n(f)\|^2 = n! \|f\|_{L^2([0,T]^n)}^2$）。$L^2(\Omega)$ 分解为 $\bigoplus_{n=0}^\infty \mathcal{H}_n$ 的正交直和。$\blacksquare$
 
 ### 137.2 Malliavin 导数
@@ -111,6 +113,8 @@ $$\|F\|_{\mathbb{D}^{1,2}}^2 = E[|F|^2] + E\left[\int_0^T |D_t F|^2 dt\right]$$
 $$E[\langle D F, u \rangle_{L^2([0,T])}] = E[F \delta(u)]$$
 
 Skorohod 积分是 Itô 积分的推广：当 $u$ 是适应过程时，$\delta(u) = \int_0^T u_t dW_t$（Itô 积分）；当 $u$ 不是适应过程（例如可预期/anticipating 积分）时，Skorohod 积分给出有意义的推广。
+
+Skorohod 积分的定义域 $\operatorname{Dom}(\delta)$ 是 Malliavin Sobolev 空间 $\mathbb{D}^{1,2}(L^2([0,T]))$ 中满足可积性条件的过程全体。它不是 $L^2([0,T] \times \Omega)$ 的全部，因为并非所有平方可积过程都允许 Skorohod 积分——可积性要求过程的 Malliavin 导数满足一定的正则性。在 Wiener 混沌分解下，若 $u_t = \sum_{n=0}^\infty I_n(f_n(\cdot, t))$，则 $\delta(u) = \sum_{n=0}^\infty I_{n+1}(\tilde{f}_n)$，其中 $\tilde{f}_n$ 是 $f_n$ 的对称化。这揭示了 Skorohod 积分是"升阶"算子：它将 $n$ 阶混沌提升为 $n+1$ 阶。Skorohod 积分与 Malliavin 导数之间的伴随关系 $E[F \delta(u)] = E[\int_0^T D_t F \cdot u_t dt]$ 是 Malliavin 分析中分部积分公式的核心，它推广了 Itô 积分中的 $E[\int_0^T \varphi_t dW_t] = 0$（对适应过程 $\varphi$）。Skorohod 积分在非适应随机微分方程（如倒向随机微分方程 BSDE）、金融数学中的内幕交易模型和随机控制理论中有重要应用。
 
 ### 137.4 Malliavin 亚椭圆性定理
 

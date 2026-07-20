@@ -45,6 +45,8 @@ $$\widehat{\chi}(\overline{E}) = \int_{\mathcal{X}} \widehat{\operatorname{ch}}(
 
 **证明**：将 Grothendieck-Riemann-Roch 定理提升到算术曲面 $\pi: \mathcal{X} \to \operatorname{Spec} \mathbb{Z}$。设 $\overline{E}$ 为 $\mathcal{X}$ 上的 Hermite 向量丛。有限素理想处的 Euler 示性数由经典 GRR 给出：$\chi_{\text{fin}}(\overline{E}) = \int_{\mathcal{X}} \operatorname{ch}(E) \cdot \operatorname{Td}(T_{\mathcal{X}/\mathbb{Z}})$。无穷远处的贡献来自解析挠率（Ray-Singer）：$T(\overline{E}) = \frac{1}{2} \sum_{q} (-1)^q q \log \det' \Delta_q$（$\Delta_q$ 为 $\overline{E}$ 值 $q$-形式的 Laplace 算子）。Gillet-Soulé 的关键构造是算术 Chern 特征标 $\widehat{\operatorname{ch}}: \widehat{K}_0(\mathcal{X}) \to \widehat{\operatorname{CH}}^*(\mathcal{X})_{\mathbb{R}}$，使得在算术 Chow 环中的积分同时捕获有限部分的交数和无穷远处的 Green 流积分：$\widehat{\chi}(\overline{E}) = \chi_{\text{fin}}(\overline{E}) + T(\overline{E}) = \int_{\mathcal{X}} \widehat{\operatorname{ch}}(\overline{E}) \cdot \widehat{\operatorname{Td}}(T_{\mathcal{X}/\mathbb{Z}})$。这一定理是 Arakelov 几何的基石。$\blacksquare$
 
+算术 Riemann-Roch 定理是 Arakelov 几何中最为深刻和重要的定理之一。它统一了三个看似不相干的领域：有限素理想处的代数交数（经典代数几何），无穷远处的解析不变量（Ray-Singer 解析挠率），以及算术 Chow 环中的形式计算。定理中的解析挠率 $T(\overline{E})$ 是谱几何中的不变量，由 Ray 和 Singer 于 1971 年引入，其定义为 Laplace 算子 $\Delta_q$ 的正则化行列式。Bismut 和 Vasserot 后来给出了解析挠率的局部指标定理证明，将 $T(\overline{E})$ 与局部 Riemann-Roch 定理联系起来。算术 Riemann-Roch 定理的一个关键推论是算术 Hilbert-Samuel 定理（定理 88.3），它给出了截面空间维数的渐近估计。此外，算术 Riemann-Roch 定理在 Faltings 对 Mordell 猜想的证明中发挥了核心作用：Faltings 通过比较算术曲面上的 Arakelov 高度与 Néron-Tate 高度，利用算术 Riemann-Roch 定理推导出高度不等式，进而证明了 Mordell 猜想。在更一般的设定下，Gillet-Soulé 将算术 Riemann-Roch 定理推广到了高维算术簇，建立了算术 $K$-理论与算术 Chow 群之间的函子性对应（算术 Riemann-Roch 定理的协变形式）。
+
 ### 88.4 算术 Hilbert-Samuel 定理
 
 **定理 88.3**（算术 Hilbert-Samuel 定理，Zhang 1995 年，Abbes-Bouche 1995 年）：设 $\mathcal{X}$ 是算术曲面，$\overline{L}$ 是 $\mathcal{X}$ 上的 Hermite 线丛（丰沛线丛配以正曲率度量）。则
@@ -54,6 +56,8 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 其中 $\widehat{\deg}(\overline{L})$ 是 $\overline{L}$ 的算术次数。这与通常的 Hilbert-Samuel 定理（$P(n) = \frac{L^n}{n!} n^n + \cdots$）在形式上是平行的。
 
 **证明**：设 $\overline{L}$ 为 $\mathcal{X}$ 上的 Hermite 丰沛线丛。对 $m \gg 0$，由 Serre 消没定理知 $H^i(\mathcal{X}, \overline{L}^{\otimes m}) = 0$（$i > 0$），故 $\widehat{\chi}(\overline{L}^{\otimes m}) = \widehat{\deg}(\det H^0(\mathcal{X}, \overline{L}^{\otimes m}))$。由算术 Riemann-Roch 定理展开：$\widehat{\chi}(\overline{L}^{\otimes m}) = \int_{\mathcal{X}} (1 + m \widehat{c}_1(\overline{L}) + \frac{m^2}{2} \widehat{c}_1(\overline{L})^2) \cdot (1 + \frac{1}{2} \widehat{c}_1(T) + \cdots)$。在 $\dim \mathcal{X} = 2$ 的情形截断，主导项为 $\frac{m^2}{2} \widehat{c}_1(\overline{L})^2 = \frac{m^2}{2} \widehat{\deg}(\overline{L})$。误差项由 Todd 类的低次分量和 Laplace 算子谱的 Weyl 渐近 $\#\{\lambda_i \leq t\} \sim \frac{\operatorname{vol}}{4\pi} t$ 控制，贡献为 $O(m \log m)$。$\blacksquare$
+
+算术 Hilbert-Samuel 定理是算术几何中截面空间渐近理论的基石。在经典代数几何中，Hilbert-Samuel 定理断言：对射影簇 $X$ 上的丰沛线丛 $L$，Hilbert 函数 $h^0(X, L^{\otimes n}) = \dim H^0(X, L^{\otimes n})$ 对充分大的 $n$ 是一个次数为 $\dim X$ 的多项式（Hilbert 多项式）。在算术几何中，$\widehat{\chi}(\overline{L}^{\otimes n})$ 取代了 $h^0$，它不仅包含了经典截面的维数信息，还编码了无穷远处 Hermite 度量的贡献。主导系数 $\widehat{\deg}(\overline{L})$ 是 $\overline{L}$ 的算术次数，它由有限部分的交数 $\deg(L_{\mathbb{Q}})$ 和无穷远处的 Green 函数积分共同决定。定理中的误差项 $O(n \log n)$ 比经典情形中的 $O(n)$（对 $\dim X = 2$）更弱，这是因为无穷远处的 Laplace 算子谱分布引入了对数因子。Zhang 在 1995 年的论文中利用这一定理建立了算术 Hilbert-Samuel 函数与可计算 Arakelov 高度之间的直接联系，证明了算术 Bogomolov 猜想所需的关键不等式。算术 Hilbert-Samuel 定理的证明依赖于算术 Riemann-Roch 定理和 Ray-Singer 解析挠率在张量幂下的渐近展开，后者由 Bismut-Vasserot 的局部指标定理精确控制。
 
 ### 88.5 应用：Mordell 猜想与算术 Bogomolov 猜想
 
