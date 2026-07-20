@@ -49,7 +49,7 @@ $$
 \frac{1}{\pi} \int_{-\pi}^{\pi} |f(x)|^2 \, dx = \frac{a_0^2}{2} + \sum_{n=1}^{\infty} (a_n^2 + b_n^2)
 $$
 
-**证明概要**：三角函数系在 $L^2([-\pi, \pi])$ 中是完备的规范正交系（这是 Weierstrass 逼近定理的推论——三角多项式在 $L^2$ 中稠密）。由 Hilbert 空间理论，规范正交系完备当且仅当 Parseval 恒等式成立。$\blacksquare$
+**证明**：三角函数系 $\{\frac{1}{\sqrt{2\pi}}, \frac{\cos nx}{\sqrt{\pi}}, \frac{\sin nx}{\sqrt{\pi}}\}_{n=1}^\infty$ 在 $L^2([-\pi, \pi])$ 中是规范正交系。由 Weierstrass 第二逼近定理（推论 50.4.2），三角多项式在 $L^2$ 中稠密，故此规范正交系是完备的。由 Hilbert 空间理论，完备规范正交系中任意元素的 Fourier 展开在 $L^2$ 范数下收敛到该元素，且 Parseval 恒等式 $\|f\|_2^2 = \sum |\langle f, \varphi_k \rangle|^2$ 成立。将 $\langle f, \varphi_k \rangle$ 具体化为 Fourier 系数即得结论。$\blacksquare$
 
 ---
 
@@ -98,7 +98,9 @@ $$
 
 **定理 50.5.2（Dirichlet-Jordan 判别法）**：若 $f$ 在 $x$ 的某个邻域内有界变差，则 $f$ 的 Fourier 级数在 $x$ 处收敛到 $\frac{f(x^+) + f(x^-)}{2}$。
 
-**证明概要**（Dini 判别法）：Fourier 部分和可写为 $S_N f(x) - f(x) = \frac{1}{\pi} \int_0^{\pi} \frac{f(x+t) + f(x-t) - 2f(x)}{2\sin(t/2)} \sin((N+\frac{1}{2})t) dt$。令 $\varphi(t) = \frac{f(x+t) + f(x-t) - 2f(x)}{2\sin(t/2)}$。由 Dini 条件，$\varphi \in L^1([0, \pi])$。由 Riemann-Lebesgue 引理，$\int_0^{\pi} \varphi(t) \sin((N+\frac{1}{2})t) dt \to 0$（$N \to \infty$）。$\blacksquare$
+**证明**：设 $f$ 在 $[x-\delta, x+\delta]$ 上有界变差。将 $f$ 分解为两个单调函数之差：$f = g - h$，其中 $g, h$ 单调。对单调函数 $g$，$S_N g(x) - g(x) = \frac{1}{\pi} \int_0^\pi (g(x+t) + g(x-t) - 2g(x)) \frac{\sin((N+1/2)t)}{2\sin(t/2)} dt$。利用 Dirichlet 核的积分表示和 Jordan 分解，将积分分为两部分：$\int_0^\delta$ 和 $\int_\delta^\pi$。第一部分由单调性和三角函数积分的平均值性质（第二中值定理）控制，当 $N \to \infty$ 时趋于 $0$。第二部分由 Riemann-Lebesgue 引理趋于 $0$。综合得 $S_N f(x) \to \frac{f(x^+) + f(x^-)}{2}$。$\blacksquare$
+
+**证明**（Dini 判别法）：Fourier 部分和可写为 $S_N f(x) - f(x) = \frac{1}{\pi} \int_0^{\pi} \frac{f(x+t) + f(x-t) - 2f(x)}{2\sin(t/2)} \sin((N+\frac{1}{2})t) dt$。令 $\varphi(t) = \frac{f(x+t) + f(x-t) - 2f(x)}{2\sin(t/2)}$。由 Dini 条件，$\frac{|f(x+t) + f(x-t) - 2f(x)|}{t}$ 在 $t \in (0,\delta)$ 可积。由于 $\sin(t/2) \sim t/2$（$t \to 0$），$\varphi(t)$ 在 $[0,\pi]$ 上 $L^1$ 可积。由 Riemann-Lebesgue 引理，$\int_0^{\pi} \varphi(t) \sin((N+\frac{1}{2})t) dt \to 0$（$N \to \infty$），故 $S_N f(x) \to f(x)$。$\blacksquare$
 
 **定理 50.5.3（Riemann-Lebesgue 引理）**：设 $f \in L^1([-\pi, \pi])$。则
 

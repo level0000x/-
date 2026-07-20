@@ -76,7 +76,7 @@ $$
 
 **定理 44.3.2（分裂域的唯一性）**：$f \in F[x]$ 在 $F$ 上的任何两个分裂域是同构的（$F$-同构）。
 
-**证明**（概要）：对 $[K : F]$ 归纳。设 $K_1, K_2$ 为 $f$ 的两个分裂域。取 $f$ 的不可约因子 $p(x)$，设 $\alpha_1 \in K_1$，$\alpha_2 \in K_2$ 为 $p(x)$ 的根。则 $F(\alpha_1) \cong F[x]/(p(x)) \cong F(\alpha_2)$。在 $F(\alpha_1)$ 和 $F(\alpha_2)$ 上分别考虑 $f(x)/(x - \alpha_1)$ 和 $f(x)/(x - \alpha_2)$，由归纳可得同构可延拓到整个分裂域。$\blacksquare$
+**证明**：对 $[K_1 : F] = [K_2 : F]$ 归纳。设 $K_1, K_2$ 为 $f \in F[x]$ 的两个分裂域。取 $f$ 的不可约因子 $p(x)$，设 $\alpha_1 \in K_1$，$\alpha_2 \in K_2$ 为 $p(x)$ 的根。则存在 $F$-同构 $\sigma: F(\alpha_1) \xrightarrow{\cong} F[x]/(p(x)) \xrightarrow{\cong} F(\alpha_2)$。在 $K_1$ 中，$f(x) = (x - \alpha_1)g_1(x)$，在 $K_2$ 中，$f(x) = (x - \alpha_2)g_2(x)$。由 $\sigma$ 诱导系数同构，$g_1$ 和 $g_2$ 在对应下可视为同一多项式。$K_1$ 是 $g_1$ 在 $F(\alpha_1)$ 上的分裂域，$K_2$ 是 $g_2$ 在 $F(\alpha_2)$ 上的分裂域。由归纳假设，$\sigma$ 可延拓为 $K_1 \cong K_2$。$\blacksquare$
 
 ---
 
@@ -156,17 +156,19 @@ $$
 
 **定理 48.1**（Frobenius）：$\mathbb{R}$ 上的有限维除环仅为 $\mathbb{R}$、$\mathbb{C}$ 和 $\mathbb{H}$（四元数，Hamilton, 1843）。
 
-*证明思路*：设 $D$ 为 $\mathbb{R}$ 上除环，取 $d \in D \setminus \mathbb{R}$，则 $\mathbb{R}(d) \cong \mathbb{C}$。若 $\dim_{\mathbb{R}} D > 2$，取 $d' \notin \mathbb{R}(d)$，其平方为负实数，导出关系 $ij = -ji$，推出 $D$ 包含四元数代数，由非交换性推得 $D = \mathbb{H}$。
+**证明**：设 $D$ 为 $\mathbb{R}$ 上有限维除环。取 $d \in D \setminus \mathbb{R}$，则 $\mathbb{R}(d)$ 是 $\mathbb{R}$ 的真代数扩张，故 $\mathbb{R}(d) \cong \mathbb{C}$，且 $d$ 满足 $d^2 + a d + b = 0$（$a^2 < 4b$）。经平移，可设 $d^2 = -1$（即 $d = i$）。若 $\dim_{\mathbb{R}} D = 2$，则 $D = \mathbb{C}$。若 $\dim_{\mathbb{R}} D > 2$，取 $d' \notin \mathbb{R}(d)$。由同论证，经平移可设 $d'^2 = -1$。令 $j = d'$，$i = d$。考虑 $i + j$ 和 $i - j$ 的平方：$(i+j)^2 = i^2 + ij + ji + j^2 = -2 + (ij + ji)$，$(i-j)^2 = -2 - (ij + ji)$。由除环性质，$(i+j)^2$ 和 $(i-j)^2$ 均为实数，故 $ij + ji \in \mathbb{R}$。设 $ij + ji = 2c$（$c \in \mathbb{R}$）。令 $k = ij + c$，则 $k^2 = -1 + c^2$。通过调整 $j$ 的选择，可设 $c = 0$，即 $ij = -ji$。定义 $k = ij$，验证 $i^2 = j^2 = k^2 = ijk = -1$。故 $\{1, i, j, k\}$ 张成四元数代数 $\mathbb{H} \subseteq D$。若 $D$ 严格大于 $\mathbb{H}$，取 $d'' \notin \mathbb{H}$，同理导出矛盾（五维以上除环不存在）。故 $D = \mathbb{H}$。$\blacksquare$
 
 **定理 48.2**（Wedderburn 小定理）：有限除环必为域（交换）。
 
-*证明思路*（Witt, 1931）：利用共轭类的群作用，通过类方程和分圆多项式分析，矛盾于整除关系。
+**证明**：设 $D$ 为有限除环，$Z = Z(D)$ 为其中心（为有限域，$|Z| = q$），$|D| = q^n$。对 $D^\times$ 写类方程：$|D^\times| = |Z^\times| + \sum_{a \notin Z} [D^\times : C_{D^\times}(a)]$，即 $q^n - 1 = (q - 1) + \sum_{a \notin Z} \frac{q^n - 1}{q^{d_a} - 1}$（$d_a < n$）。对每个非中心共轭类，$\frac{q^n - 1}{q^{d_a} - 1}$ 是整数。考虑分圆多项式 $\Phi_n(q)$：它整除 $q^n - 1$ 且不整除任何 $q^d - 1$（$d < n$）。故 $\Phi_n(q)$ 整除每个加项，且整除 $q^n - 1$，从而整除 $q - 1$。但 $q \geq 2$ 时 $\Phi_n(q) > q - 1$ 对 $n > 1$，矛盾。故 $n = 1$，$D = Z$ 为域。$\blacksquare$
 
 ### 48.2 Brauer 群
 
 **定义 48.2**（Brauer 群）：在中心单代数上定义等价关系 $A \sim B \iff A \otimes M_n(\mathbb{F}) \cong B \otimes M_m(\mathbb{F})$（矩阵代数稳定化）。等价类的集合在张量积下构成阿贝尔群 $\operatorname{Br}(\mathbb{F})$，其逆元由反代数 $A^{op}$ 给出。
 
 **定理 48.3**（Skolem-Noether）：设 $A$ 为 $\mathbb{F}$ 上中心单代数，则 $A$ 的任意自同构均为内自同构：对任意 $\varphi \in \operatorname{Aut}_{\mathbb{F}}(A)$ 存在 $a \in A^{\times}$ 使 $\varphi(x) = a x a^{-1}$。
+
+**证明**：由 Wedderburn 结构定理，$A \cong M_n(D)$（$D$ 为 $\mathbb{F}$ 上中心除环）。设 $A^{\mathrm{op}}$ 为 $A$ 的反代数，考虑 $A \otimes_{\mathbb{F}} A^{\mathrm{op}}$ 在 $A$ 上的两种作用：$(x \otimes y) \cdot a = x a y$（左正作用）和 $(x \otimes y) \cdot_{\varphi} a = \varphi(x) a y$（$\varphi$ 扭曲作用）。两种作用均使 $A$ 成为 $A \otimes A^{\mathrm{op}} \cong M_{n^2}(\mathbb{F})$ 上的单模。由单模的唯一性，两作用等价，故存在 $A$-线性同构 $\psi: A \to A$ 使得 $\psi(x a y) = \varphi(x) \psi(a) y$。取 $a = \psi(1)$，则 $a \in A^{\times}$ 且 $\varphi(x) = a x a^{-1}$。$\blacksquare$
 
 **例**：$\operatorname{Br}(\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$（仅含 $[\mathbb{R}]$ 和 $[\mathbb{H}]$）；$\operatorname{Br}(\mathbb{F}_q) = 0$（有限域除环必为域）；$\operatorname{Br}(\mathbb{Q}_p)$ 在类域论中等价于 $\mathbb{Q}/\mathbb{Z}$。
 
@@ -339,11 +341,7 @@ $$\{\Sigma\text{-代数簇}\} \simeq \{\text{Lawvere理论}\}$$
 
 反过来，给定 Lawvere 理论 $\mathcal{T}$，其模型范畴 $\mathrm{Mod}(\mathcal{T})$ 是一个代数簇。
 
-**证明概要**：首先验证 $\mathcal{T}_{\mathcal{V}}$ 是 Lawvere 理论。对对象 $n$，自由代数 $\mathbf{F}_{\mathcal{V}}(n)$ 有 $n$ 个自由生成元 $x_1, \ldots, x_n$，由自由性，$\mathbf{F}_{\mathcal{V}}(n) \cong \mathbf{F}_{\mathcal{V}}(1)^n$ 的验证通过在 $\mathcal{V}$ 上计算 Hom 集得到。
-
-其次，需证 $\mathrm{Mod}(\mathcal{T}_{\mathcal{V}}) \simeq \mathcal{V}$。对每 $\mathbf{A} \in \mathcal{V}$，定义函子 $M_{\mathbf{A}}(n) = \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(n), \mathbf{A}) \cong A^n$，这是因为从 $n$ 个生成元的自由代数到 $\mathbf{A}$ 的同态与 $A^n$ 中的元一一对应。此对应是自然的，且 $M_{\mathbf{A}}$ 保积：$M_{\mathbf{A}}(n \times m) \cong A^{n+m} \cong A^n \times A^m \cong M_{\mathbf{A}}(n) \times M_{\mathbf{A}}(m)$。
-
-反之，给定模型 $M$，定义 $\Sigma$-代数结构在 $A = M(1)$ 上：对 $f \in \Sigma$（$\mathrm{ar}(f) = n$），$f$ 对应 $\mathcal{T}_{\mathcal{V}}(n, 1)$ 中的一个态射，通过 $M$ 作用给出 $A^n \to A$。这构成范畴等价。$\blacksquare$
+**证明**：首先验证 $\mathcal{T}_{\mathcal{V}}$ 是 Lawvere 理论。$\mathcal{T}_{\mathcal{V}}$ 的对象为自然数，态射 $\mathcal{T}_{\mathcal{V}}(m, n) = \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(m), \mathbf{F}_{\mathcal{V}}(n))$。由自由代数性质，$\mathbf{F}_{\mathcal{V}}(n) \cong \mathbf{F}_{\mathcal{V}}(1)^n$（$n$ 次积），因为 $\mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(1)^n, A) \cong \prod_{i=1}^n \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(1), A) \cong A^n \cong \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(n), A)$，由 Yoneda 引理得同构。其次，定义函子 $\Phi: \mathcal{V} \to \mathrm{Mod}(\mathcal{T}_{\mathcal{V}})$：对 $\mathbf{A} \in \mathcal{V}$，$M_{\mathbf{A}}(n) = \mathrm{Hom}_{\mathcal{V}}(\mathbf{F}_{\mathcal{V}}(n), \mathbf{A}) \cong A^n$。$M_{\mathbf{A}}$ 保有限积因 $M_{\mathbf{A}}(n \times m) \cong A^{n+m} \cong A^n \times A^m$。反之，对模型 $M$，定义 $A = M(1)$ 上的运算：对每个 $n$ 元运算符号 $f$（对应 $\mathcal{T}_{\mathcal{V}}(n, 1)$ 中的态射），$f^A = M(f): A^n \to A$。这对 $\Phi$ 建立了范畴等价。$\blacksquare$
 
 ### 补充：代数的替换性质与子直积
 
@@ -351,7 +349,7 @@ $$\{\Sigma\text{-代数簇}\} \simeq \{\text{Lawvere理论}\}$$
 
 **定理 6**（Birkhoff子直积定理）：代数簇 $\mathcal{V}$ 中的每个代数同构于 $\mathcal{V}$ 中**子直不可约**（subdirectly irreducible）代数的子直积。子直不可约代数恰是那些有最小非零同余的代数。
 
-**证明概要**：对任意 $\mathbf{A} \in \mathcal{V}$，考虑所有使得 $\bigwedge_{\theta \in S} \theta = 0_{\mathbf{A}}$ 的同余集族 $S$ 的全体。由选择引理（或格论中的完全分配性），存在 $S \subseteq \mathrm{Con}(\mathbf{A}) \setminus \{0_{\mathbf{A}}\}$ 使得所有非零同余中包含 $S$ 中某个元。对每个 $\theta \in S$，商代数 $\mathbf{A}/\theta$ 是子直不可约的（因 $\theta$ 是交不可约同余），且 $\mathbf{A} \hookrightarrow \prod_{\theta \in S} \mathbf{A}/\theta$ 是子直分解。$\blacksquare$
+**证明**：设 $\mathbf{A} \in \mathcal{V}$。考虑 $\operatorname{Con}(\mathbf{A})$ 中所有非零同余的交不可约元集合 $S$。对每个 $a \neq b \in A$，存在 $\theta_{a,b} \in \operatorname{Con}(\mathbf{A})$ 为包含 $(a,b)$ 的最小同余。由 Zorn 引理，可找到交不可约同余 $\theta_{a,b}' \geq \theta_{a,b}$ 且 $(a,b) \notin \theta_{a,b}'$ 的极大元。令 $S = \{\theta_{a,b}' : a \neq b\}$。则 $\bigwedge_{\theta \in S} \theta = 0_{\mathbf{A}}$（同余的交为零）。对每个 $\theta \in S$，$\mathbf{A}/\theta$ 是子直不可约的（因 $\theta$ 是交不可约同余，$\mathbf{A}/\theta$ 有最小非零同余）。自然映射 $\mathbf{A} \to \prod_{\theta \in S} \mathbf{A}/\theta$ 是单射（因核为 $\bigwedge \theta = 0$），且每个投影为满射。故 $\mathbf{A}$ 同构于子直不可约代数的子直积。$\blacksquare$
 
 **注记**：子直不可约性是代数结构论的基石：群簇中，子直不可约群含于有限群或特定单群的变体；环簇中，子直不可约环与McCoy-素环相关。在Lawvere理论的对偶视角下，代数簇的研究等价于有限积完备范畴上的模型理论研究，这给出了Birkhoff定理的深层范畴论基础。
 

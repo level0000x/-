@@ -13,9 +13,9 @@ $$|b(t,x) - b(t,y)| + |\sigma(t,x) - \sigma(t,y)| \leq K |x-y|$$
 
 $$X_t = X_0 + \int_0^t b(s, X_s) ds + \int_0^t \sigma(s, X_s) dW_s$$
 
-存在唯一的连续适应解且 $\sup_t E[|X_t|^2] < \infty$。
+存在唯一的连续适应解且 $\sup_t \mathbb{E}[|X_t|^2] < \infty$。
 
-*证明思路*：使用 Picard 迭代 $X^{(0)}_t = X_0$，$X^{(n+1)}_t = X_0 + \int_0^t b(s, X^{(n)}_s) ds + \int_0^t \sigma(s, X^{(n)}_s) dW_s$。利用 Itô 等距和 Lipschitz 条件证明 $E[\sup_s |X^{(n+1)}_s - X^{(n)}_s|^2] \leq C T^n/n!$，由 Banach 不动点定理得证。∎
+**证明**：使用 Picard 迭代。定义 $X_t^{(0)} = X_0$，$X_t^{(n+1)} = X_0 + \int_0^t b(s, X_s^{(n)}) ds + \int_0^t \sigma(s, X_s^{(n)}) dW_s$。由 Itô 等距和 Lipschitz 条件，$\mathbb{E}[\sup_{0 \leq s \leq t} |X_s^{(n+1)} - X_s^{(n)}|^2] \leq 2K^2(T+4) \int_0^t \mathbb{E}[|X_s^{(n)} - X_s^{(n-1)}|^2] ds$。递推得 $\mathbb{E}[\sup_{0 \leq s \leq T} |X_s^{(n+1)} - X_s^{(n)}|^2] \leq C \frac{(C'T)^n}{n!}$，其中 $C, C'$ 为常数。由 Borel-Cantelli 引理，$\sum_n \mathbb{P}(\sup_{s \leq T} |X_s^{(n+1)} - X_s^{(n)}| > 2^{-n}) < \infty$，故 $X^{(n)}$ 在 $C[0,T]$ 中 a.s. 一致收敛到连续过程 $X$。由线性增长条件，$\mathbb{E}[\sup_t |X_t^{(n)}|^2] \leq C(1 + \mathbb{E}[|X_0|^2])$ 一致有界，控制收敛定理给出 $X$ 满足 SDE 且 $\sup_t \mathbb{E}[|X_t|^2] < \infty$。唯一性：若 $X, Y$ 为两解，则 $\mathbb{E}[|X_t - Y_t|^2] \leq 2K^2(T+4) \int_0^t \mathbb{E}[|X_s - Y_s|^2] ds$。由 Grönwall 不等式，$\mathbb{E}[|X_t - Y_t|^2] = 0$，故 $X_t = Y_t$ a.s.。$\blacksquare$
 
 ### 136.2 Feynman-Kac 公式
 
@@ -116,7 +116,7 @@ Skorohod 积分是 Itô 积分的推广：当 $u$ 是适应过程时，$\delta(u
 
 **定理 137.3**（Hörmander 条件）：对 SDE $dX_t = V_0(X_t) dt + \sum_{i=1}^m V_i(X_t) \circ dW^i_t$（Stratonovich 形式），若向量场族 $\{V_1, \ldots, V_m\}$ 及其所有 Lie 括号在每点 span 整个切空间（Hörmander 条件），则 $X_t$ 有光滑密度。
 
-*Malliavin 证明的思路*：将密度的光滑性归结为 Malliavin 协方差矩阵 $\gamma_{ij} = \langle D X_t^{(i)}, D X_t^{(j)} \rangle_{L^2([0,T])}$ 的矩的衰减，进而通过分部积分公式建立密度的正则性。
+**证明**：定义 Malliavin 协方差矩阵 $\gamma_{ij} = \langle D X_t^{(i)}, D X_t^{(j)} \rangle_{L^2([0,T])}$。由 SDE 的变分方程，$D_s X_t$ 满足线性 SDE：$d(D_s X_t) = \sum_{\alpha=0}^m \partial V_\alpha(X_t) (D_s X_t) \circ dW_t^\alpha$（$t \geq s$），初值 $D_s X_s = \sigma(X_s)$。若 Hörmander 条件成立，则 $\gamma$ 几乎必然可逆，且对所有 $p \geq 1$，$\mathbb{E}[(\det \gamma)^{-p}] < \infty$。由 Malliavin 分部积分公式，对任意多重指标 $\alpha$，存在 $H_\alpha \in \mathbb{D}^\infty$ 使得 $\mathbb{E}[\partial^\alpha \varphi(X_t)] = \mathbb{E}[\varphi(X_t) H_\alpha]$ 对所有 $\varphi \in C_b^\infty$ 成立。密度 $p_t(x)$ 存在且 $p_t \in C^\infty$，其各阶导数为 $p_t^{(\alpha)}(x) = \mathbb{E}[\mathbf{1}_{X_t > x} H_\alpha]$。$\blacksquare$
 
 ---
 

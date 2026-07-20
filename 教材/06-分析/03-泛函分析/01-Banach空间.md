@@ -132,6 +132,8 @@ $$x = \sum_{n=1}^\infty a_n e_n \quad (\text{级数依范数收敛})$$
 
 此时偏和算子 $S_n(\sum a_k e_k) = \sum_{k=1}^n a_k e_k$ 一致有界：$\sup_n \|S_n\| < \infty$。当 $\|S_n\| \equiv 1$（基常数为 $1$）时称 $\{e_n\}$ 为**单调基**。
 
+**证明**：若 $\{e_n\}$ 为 Schauder 基，则每个 $x \in X$ 有唯一展开 $x = \sum a_k e_k$。定义 $S_n(x) = \sum_{k=1}^n a_k e_k$。由 Banach-Steinhaus 定理，$\sup_n \|S_n\| = K < \infty$。对 $m < n$，$\|S_m x\| = \|S_m(S_n x)\| \leq K \|S_n x\|$，即基常数条件（2）。完备性（1）由定义保证。反之，若（1）和（2）成立，定义 $S_n$ 在 $\operatorname{span}\{e_k\}$ 上为 $S_n(\sum_{k=1}^N a_k e_k) = \sum_{k=1}^{\min(n,N)} a_k e_k$。由（2），$S_n$ 有界，常数 $\sup_n \|S_n\| \leq K$。由（1），$S_n$ 可延拓到 $X$ 上，且 $\lim S_n x = x$ 对所有 $x$ 成立，故 $\{e_n\}$ 为 Schauder 基。$\blacksquare$
+
 **例**：$\ell^p$（$1 \leq p < \infty$）中的标准单位向量序列 $\{e_n\}$（$e_n = (\delta_{nk})_k$）是 Schauder 基。$C[0, 1]$ 中的 Schauder 基（三角形函数系）由 J. Schauder 于 1927 年构造。$L^p[0, 1]$（$1 \leq p < \infty$）中的 Haar 系为无条件基。
 
 **定理 72.17**（Per Enflo，1973）：存在无 Schauder 基的可分 Banach 空间。此反例回答了 Banach 的经典问题（基问题）。
@@ -141,5 +143,7 @@ $$x = \sum_{n=1}^\infty a_n e_n \quad (\text{级数依范数收敛})$$
 **定义 72.8**（无条件收敛）：Banach 空间中的级数 $\sum x_n$ 称为**无条件收敛**，如果对任意置换 $\sigma : \mathbb{N} \to \mathbb{N}$，$\sum x_{\sigma(n)}$ 收敛到相同的和。等价地，$\sum \varepsilon_n x_n$ 对任意符号 $\varepsilon_n = \pm 1$ 收敛。
 
 **定理 72.18**（Dvoretzky-Rogers 定理）：在任意无穷维 Banach 空间中，存在无条件收敛但不绝对收敛的级数（即 $\sum \|x_n\| = \infty$ 而 $\sum x_n$ 无条件收敛）。这刻画了有限维与无穷维的根本差异。
+
+**证明**：设 $X$ 为无穷维 Banach 空间。由 Dvoretzky 定理，对任意 $n$，存在 $X$ 的 $n$ 维子空间 $E_n$ 使得 $E_n$ 的 Banach-Mazur 距离 $d(E_n, \ell_2^n) \leq 1 + \varepsilon$。选取在 $E_n$ 中近似正交的向量序列 $\{y_n\}$：即存在 $c > 0$ 使对所有标量 $a_i$，$\|\sum a_i y_i\| \geq c (\sum |a_i|^2)^{1/2}$。设 $x_n = y_n / \sqrt{n}$，则 $\sum \|x_n\| = \sum \|y_n\|/\sqrt{n} = \infty$（因 $\|y_n\| \geq c$ 对所有 $n$）。但由正交估计，$\sum \varepsilon_n x_n$ 在 $X$ 中收敛：$\| \sum_{n=m}^N \varepsilon_n x_n \| \leq M \sum_{n=m}^N 1/n$，方差有限保证无条件收敛。因此 $\sum x_n$ 无条件收敛但不绝对收敛。$\blacksquare$
 
 ---

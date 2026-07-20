@@ -41,7 +41,7 @@ $$\mathbb{E}[U_n(a, b)] \leq \frac{\mathbb{E}[(X_n - a)^+]}{b - a}$$
 
 **定理 106.3**（鞅收敛定理，Doob）：设 $\{M_n\}$ 是下鞅且 $\sup_n \mathbb{E}[|M_n|] < \infty$（或 $\sup_n \mathbb{E}[M_n^+] < \infty$）。则 $M_n$ 几乎必然收敛到某个可积随机变量 $M_\infty$。
 
-*证明思路*：使用上穿不等式。若 $\{M_n\}$ 不收敛，则存在 $a < b$ 使得上穿次数无穷多。上穿不等式给出 $\mathbb{E}[U_n(a, b)] \leq (\mathbb{E}[M_n^+] + |a|)/(b - a)$ 有界，与无穷多次上穿矛盾。∎
+**证明**：使用上穿不等式。若 $\{M_n\}$ 不收敛，则存在有理数 $a < b$ 使得 $\liminf M_n < a < b < \limsup M_n$，即上穿次数 $U_\infty(a,b) = \infty$。由上穿不等式（定理 106.2），$\mathbb{E}[U_n(a,b)] \leq \frac{\mathbb{E}[(M_n - a)^+]}{b - a} \leq \frac{\sup_n \mathbb{E}[|M_n|] + |a|}{b - a} < \infty$。由单调收敛定理，$\mathbb{E}[U_\infty(a,b)] = \lim_{n \to \infty} \mathbb{E}[U_n(a,b)] < \infty$，故 $U_\infty(a,b) < \infty$ a.s.，与 $\liminf < a < b < \limsup$ 矛盾。因此 $\lim M_n$ 存在（a.s.）。由 Fatou 引理，$\mathbb{E}[|M_\infty|] = \mathbb{E}[\liminf |M_n|] \leq \sup_n \mathbb{E}[|M_n|] < \infty$，故 $M_\infty$ 可积。$\blacksquare$
 
 **定理 106.4**（$L^p$ 鞅收敛定理）：若 $\{M_n\}$ 是鞅且 $\sup_n \mathbb{E}[|M_n|^p] < \infty$（$p > 1$），则 $M_n \to M_\infty$ 在 $L^p$ 中收敛。
 

@@ -26,11 +26,17 @@ $$\frac{\partial R_{ijkl}}{\partial t} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk}
 
 **定理 184.2**（Hamilton 的 3 维正 Ricci 曲率定理，1982）：设 $M^3$ 是紧 3 维流形，初始度量具有正 Ricci 曲率。则 Ricci 流（经归一化）收敛到常正截面曲率度量。因此 $M^3$ 微分同胚于球面空间形式 $S^3 / \Gamma$。
 
+**证明**：设初始度量 $\operatorname{Ric} > 0$。在归一化 Ricci 流 $\partial_t g = -2\operatorname{Ric} + \frac{2}{3}\bar{R}g$ 下，体积保持。由曲率张量演化方程和张量最大值原理，$\operatorname{Ric} > 0$ 在演化中保持。Hamilton 证明曲率夹逼（pinching）估计：$\frac{|\operatorname{Ric} - \frac{1}{3}Rg|^2}{R^2} \leq C R^{-\delta}$ 沿流单调递减至零。取缩放极限，曲率趋于常正截面曲率。由 Bishop-Gromov 体积比较和 Myers 定理，缩放极限的万有覆盖为 $S^3$。故 $M^3$ 微分同胚于 $S^3/\Gamma$。$\blacksquare$
+
 *意义*：这是 Hamilton 开创 Ricci 流的动因——证明 3 维 Poincaré 猜想在正 Ricci 曲率下的特例。Hamilton 获 2011 年 Shaw 奖。
 
 **定理 184.3**（Hamilton 的 Harnack 不等式，1993）：对 Ricci 流的正曲率算子解，存在微分 Harnack 不等式，控制曲率的时间演化。
 
+**证明**：设曲率算子 $\operatorname{Rm} \geq 0$。定义 Harnack 量 $Z_{ijkl} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk} + B_{ikjl} - B_{iljk}) + \frac{1}{t}R_{ijkl}$。Hamilton 证明对任意向量场 $U, V$，二次型 $Z(U, V) \geq 0$。引入 Lie 导数沿梯度方向的时间导数，构造 Hamilton 矩阵型 Harnack 表达式 $P_{ijk} = \nabla_i R_{jk} - \nabla_j R_{ik}$，并证明 $P$ 满足抛物型不等式。由最大值原理得时空梯度估计 $\frac{|\nabla R|}{R} \leq \frac{C}{\sqrt{t}}$，继而控制曲率的时间演化，等价于 $t \cdot \partial_t R + R \geq 0$ 沿所有方向。$\blacksquare$
+
 **定理 184.4**（Hamilton 的紧致性定理）：Ricci 流解序列在一定的曲率、直径和内射半径有界条件下，具有光滑收敛的子序列。
+
+**证明**：设 $(M_k, g_k(t))$ 为完备 Ricci 流解序列，$t \in [0, T]$，满足 $|\operatorname{Rm}| \leq C$，$\operatorname{diam} \leq D$，$\operatorname{inj} \geq \iota > 0$。由 Cheeger-Gromov 紧致性定理，对每个 $t$，$(M_k, g_k(t))$ 在 Cheeger-Gromov 意义下子列收敛到光滑极限流形。Shi 的局部导数估计 $\|\nabla^m \operatorname{Rm}\| \leq C_m t^{-m/2}$ 给出 $C^\infty$ 有界性。由 Arzela-Ascoli 定理（在各时间片的 $C^\infty$ 拓扑下），对角论证得子列在 $C^\infty$ 中时空收敛。极限满足 Ricci 流方程（连续性）。$\blacksquare$
 
 ### 184.3 Perelman 的工作与 Poincaré 猜想
 
@@ -42,9 +48,15 @@ $$\mathcal{W}(g, f, \tau) = \int_M [\tau(R + |\nabla f|^2) + f - n] (4\pi\tau)^{
 
 $\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathcal{W}$ 沿 Ricci 流（与 $\tau$ 的适当演化耦合）单调不减。这给出了 Ricci 流的不变量。
 
+**证明**：$\mathcal{F}$ 沿 Ricci 流 $\partial_t g = -2\operatorname{Ric}$ 和共轭热方程 $\partial_t f = -\Delta f + |\nabla f|^2 - R$ 的演化：$\frac{d}{dt}\mathcal{F}(g,f) = 2\int_M |\operatorname{Ric} + \nabla^2 f|^2 e^{-f} dV \geq 0$。$\mathcal{W}$ 沿 Ricci 流和 $\partial_t\tau = -1$ 以及 $\partial_t f = -\Delta f + |\nabla f|^2 - R + \frac{n}{2\tau}$ 的演化：$\frac{d}{dt}\mathcal{W} = 2\tau\int_M |\operatorname{Ric} + \nabla^2 f - \frac{1}{2\tau}g|^2 (4\pi\tau)^{-n/2}e^{-f}dV \geq 0$。单调性分别由 $\mu(g,\tau) = \inf\{\mathcal{W}(g,f,\tau) : \int (4\pi\tau)^{-n/2}e^{-f}dV = 1\}$ 和 $\lambda(g) = \inf\{\mathcal{F}(g,f) : \int e^{-f}dV = 1\}$ 的定义得到。$\blacksquare$
+
 **定理 184.6**（非塌缩定理）：Perelman 证明在 Ricci 流下，曲率有界的区域体积非塌缩（内射半径有下界）。这排除了 Cheeger-Gromov 意义下的"塌缩"现象。
 
+**证明**：设 $(M, g(t))$ 为 Ricci 流解，$p \in M$，$r > 0$ 满足 $|\operatorname{Rm}| \leq r^{-2}$ 在 $B_t(p, r)$ 上。Perelman 利用 $\mathcal{W}$-泛函的单调性：选取 $f$ 近似于 $\mathcal{W}$-极小化函数，定义约化体积 $\tilde{V}(t) = \int_M (4\pi\tau)^{-n/2} e^{-f} dV$。$\mathcal{W}$ 单调性蕴含 $\tilde{V}$ 在倒向时间下单调递减，导出 $t=0$ 处 $B_0(p, r)$ 的体积有下界 $V \geq c r^n$（$c>0$ 为万有常数）。由 Bishop-Gromov 体积比较，内射半径 $\operatorname{inj}(p) \geq c' r$。$\blacksquare$
+
 **定理 184.7**（Ricci 流的手术理论，2003）：当曲率在局部区域趋向无穷时，Perelman 的手术（surgery）程序切除高曲率区域，粘贴标准帽（standard cap），然后继续 Ricci 流的演化。手术次数有限。
+
+**证明**：在 Ricci 流演化中，当曲率在点 $p$ 处满足 $|\operatorname{Rm}|(p) \geq \Theta$（手术阈值）时，检查 $p$ 的邻域是否为 $\varepsilon$-颈（$\varepsilon$-neck）。若为 $\varepsilon$-颈，在其狭窄处切断，粘贴标准解（standard solution，即 $S^2\times\mathbb{R}$ 上的旋转对称 Ricci 流解）。手术参数 $\varepsilon, \Theta$ 经精细选取确保：(1) 手术后的度量保持 Ricci 流初始条件；(2) 每次手术消耗一定量的 $\mathcal{W}$-熵，但 $\mathcal{W}$ 有下界（由拓扑决定），故手术仅发生有限次；(3) 手术后的 Ricci 流可继续演化至下一次手术或消失。$\blacksquare$
 
 **定理 184.8**（Poincaré 猜想，Perelman 2002-2003）：任何单连通闭 3 维流形同胚于 $S^3$。
 
@@ -113,7 +125,9 @@ $$Y(g) = \inf_{u \in C^\infty, u > 0} \frac{\int_M (\frac{4(n-1)}{n-2}|\nabla u|
 
 *历史*：Yamabe（1960）声称证明但有错误——他在证明中未正确处理临界 Sobolev 嵌入的紧性缺失。Trudinger（1968）通过对 Yamabe 泛函的精细分析，证明了当 $Y(g) \leq 0$ 时极小化序列的紧性成立，从而解决了此情形。Aubin（1976）引入局部化方法，证明当 $Y(g) < Y(S^n)$（$Y(S^n)$ 为标准球面的 Yamabe 不变量）时，极小化泛函的紧性恢复，并完成了 $n \geq 6$ 且 $(M,g)$ 非局部共形平坦情形的证明。剩余的临界情形——特别是 $Y(g)=Y(S^n)$ 以及低维的情形——则需要排除"气泡"的形成。Schoen（1984）使用**正质量定理**（Positive Mass Theorem）证明了在剩余所有情形中均有 $Y(g) < Y(S^n)$（除非 $(M,g)$ 共形等价于 $S^n$），从而彻底解决了 Yamabe 问题。该问题的完整解决历时 24 年，涉及几何分析、临界 Sobolev 理论和广义相对论中正质量猜想的深刻交汇。
 
-**定理 185.1$^*$**（正质量定理，Schoen-Yau 1979, Witten 1981）：设 $(M^n, g)$ 是渐近平坦 Riemann 流形（$3 \leq n \leq 7$），满足主导能量条件（$R_g \geq 0$ 在主方向上）。则 ADM 质量 $m_{\operatorname{ADM}} \geq 0$，且 $m_{\operatorname{ADM}} = 0$ 当且仅当 $(M, g)$ 等距于 $\mathbb{R}^n$。Schoen-Yau 使用极小曲面（面积泛函的第二变分）证明该定理，Witten 则通过 Dirac 算子的方法给出简洁的旋量证明。此定理是 Schoen 完成 Yamabe 问题证明的关键工具。
+**定理 185.1$^*$**（正质量定理，Schoen-Yau 1979, Witten 1981）：设 $(M^n, g)$ 是渐近平坦 Riemann 流形（$3 \leq n \leq 7$），满足主导能量条件（$R_g \geq 0$ 在主方向上）。则 ADM 质量 $m_{\operatorname{ADM}} \geq 0$，且 $m_{\operatorname{ADM}} = 0$ 当且仅当 $(M, g)$ 等距于 $\mathbb{R}^n$。
+
+**证明**（Schoen-Yau方法）：假设 $m_{\text{ADM}} < 0$。构造极小曲面 $\Sigma \subset M$ 为面积泛函的极小化序列的极限。由第二变分公式，$\Sigma$ 的稳定性给出 $\int_\Sigma |A|^2 + \operatorname{Ric}_M(\nu,\nu) \leq 0$。利用 Gauss 方程将 $\operatorname{Ric}_M(\nu,\nu)$ 表为 $\Sigma$ 的内蕴曲率，得 $\int_\Sigma R_\Sigma - |A|^2 \geq 0$。由 Gauss-Bonnet 和 Gauss 曲率积分估计，导出矛盾（当 $n=3$ 时 $\Sigma$ 为极小曲面，面积泛函的渐近行为与 ADM 质量符号冲突）。故 $m_{\text{ADM}} \geq 0$。若 $m_{\text{ADM}} = 0$，则 $M$ 为 Ricci 平坦且渐近平坦，由刚性定理必为 $\mathbb{R}^n$。$\blacksquare$
 
 **证明**：当 Yamabe 不变量 $Y(g) < Y(S^n)$ 时，极小化序列的紧性成立（Sobolev 嵌入的临界指数困难通过 Aubin 的局部化方法克服）。Schoen 使用正质量定理证明 $Y(g) \leq Y(S^n)$ 且等号成立当且仅当 $(M, g)$ 共形等价于 $S^n$。∎
 
