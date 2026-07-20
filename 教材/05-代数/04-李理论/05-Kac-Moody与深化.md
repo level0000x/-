@@ -1,15 +1,12 @@
 ## 第88章（补充）
 > 表示论是研究代数结构（群、代数、李代数等）通过线性作用的具体实现的理论。V12 第 69 章已介绍了有限群表示论的基础，V23 涵盖了李群与李代数的表示论。本卷在此基础上深化表示论：有限群模表示论研究特征为素数的域上的表示结构；代数群表示论将群表示论推广到代数几何框架；几何表示论通过层论和相交上同调为表示论提供几何构造；仿射李代数与量子群表示论连接无限维李代数和可积系统；Langlands 纲领深化则从表示论角度揭示数论与调和分析之间的深刻联系。
 
----
+## 表示论深化的整体图景
+
+表示论是现代数学中最具统一性的理论之一，它的核心思想——将抽象的代数结构具体化为线性变换——贯穿了从有限群到量子群的整个数学体系。本卷介绍的五个深化方向分别对应表示论在不同历史阶段和不同数学分支中的发展。**有限群模表示论**（Brauer 1930s-1940s）起源于 Frobenius 对群行列式的研究，在特征整除群阶的域上，Maschke 定理不再成立——群代数不再是半单的，表示论出现了全新的现象：不可约表示数目少于共轭类数，块分解（block decomposition）将群代数分解为不可分解双理想的直和。Brauer 的块论通过亏群（defect group）和 Brauer 对应将群的整体表示论与其 $p$-局部子群联系起来，与有限单群分类（CFSG）中的局部-整体原则有深刻共鸣。**代数群表示论**（Chevalley 1950s, Borel-Weil-Bott 1950s-1960s）将有限群的经典结果推广到代数闭域上的线性代数群，最高权理论（Cartan-Weyl）和 Weyl 特征标公式是这一理论的皇冠。**几何表示论**（Springer 1970s, Lusztig 1980s, Beilinson-Bernstein 1981）则是 20 世纪末的一场革命——它通过旗簇、仿射 Grassmann 流形和箭图簇的拓扑和层论来构造表示，将表示论从代数领域拓展到几何领域。**仿射 Lie 代数与量子群表示论**（Kac 1960s, Drinfeld-Jimbo 1985）连接了无限维李代数和可积系统，而顶点算子代数（Borcherds, Frenkel-Lepowsky-Meurman 1980s）则为共形场论和月光猜想（Moonshine）提供了严格数学框架。**Langlands 纲领深化**则将上述所有理论统一于一个宏大的猜想体系——从局部 Langlands 对应到几何 Langlands 纲领，表示论与数论、几何和物理的边界被彻底打破。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第89章：有限群表示深化
@@ -69,15 +66,12 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **证明**：Alperin 权重定义为 $N_G(Q)/Q$ 的亏零块中不可约射影模的数目（$Q$ 遍历所有 $p$-子群）。Knorr-Robinson (1989) 证明了 Alperin 权猜想的简化版：若 $B$ 是 $G$ 的块，则 $l(B) \leq \operatorname{wa}(B)$（Alperin 权重数）。Cabanes (1988) 证明了 $l(B) = \operatorname{wa}(B)$ 对可解群成立。一般群的情形由 Navarro-Tiep 于 2011 年简化为单广义 Fitting 子群的情形，至今对一般有限群仍在研究中。 $\blacksquare$
 
----
+## 有限群表示论的现代发展
+
+有限群表示论在 Brauer 和 Green 的奠基工作之后，在 20 世纪下半叶继续向纵深发展。**McKay 猜想**（1972）是有限群表示论中最著名的未解决问题之一：若 $G$ 是有限群，$p$ 是素数，则 $|\operatorname{Irr}_{p'}(G)| = |\operatorname{Irr}_{p'}(N_G(P))|$，其中 $\operatorname{Irr}_{p'}(G)$ 表示维数不被 $p$ 整除的不可约复特征标的集合，$P$ 是 $G$ 的 Sylow $p$-子群。McKay 猜想在 2024 年由 Malle-Späth 完成证明（对 $p=2$ 情形由 Isaacs-Malle-Navarro 于 2007 年证明），其证明依赖于约化到有限单群并通过 CFSG 分类验证。**Alperin-McKay 猜想**（1976）是 McKay 猜想的块论版本：若 $B$ 是 $G$ 的 $p$-块，$b$ 是 $N_G(P)$ 中与其 Brauer 对应的块，则 $|\operatorname{Irr}_0(B)| = |\operatorname{Irr}_0(b)|$（$\operatorname{Irr}_0$ 表示高为零的不可约特征标）。**Broue 猜想**（1990）进一步断言：若 $B$ 的亏群 $D$ 是 Abel 群，则 $B$ 与 $N_G(D)$ 中对应的块 $b$ 之间的导出范畴等价（splendid Rickard 等价），这是一类高度非平凡的范畴等价，已在可解群和对称群等情形下得到验证。**Gabriel 定理**和**箭图表示论**（Auslander-Reiten 1970s）为有限维代数的表示论提供了 Auslander-Reiten 箭图和几乎分裂序列（almost split sequences）的组合工具，将有限群表示论中的模结构翻译为箭图的组合数据。**Dade 猜想**（1990s）则通过投射模的链复形给出了有限群表示论与同伦论之间的深刻联系，Dade 群的构造是有限群论中最重要的不变量之一。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第90章：代数群表示
@@ -147,15 +141,12 @@ $$L(\lambda) = L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes L(\lambda_2)^{(2)
 
 **证明**：Andersen-Jantzen-Soergel 通过 Soergel 双模和量子群在 $\ell$-次本原单位根处的限制对偶建立正特征表示论到特征 $0$ Kazhdan-Lusztig 理论的传递。核心为 Soergel 的 Struktursatz：射影-入射包络的自同态环同构于 coinvariant 代数 $C_W$ 的特定商。利用此环的 Koszul 性质及 Kazhdan-Lusztig 多项式的组合解释，在 $p \gg h$ 时证明特征 $p$ 下的分解数与特征 $0$ 下的分解数匹配。Williamson 后来的反例表明对某些类型的李代数 $p$ 需要远大于 Coxeter 数。 $\blacksquare$
 
----
+## 代数群表示论的现代前沿
+
+代数群表示论在最高权理论的基础上，20 世纪下半叶发展出了多个与代数几何和数论交叉的前沿方向。**Deligne-Lusztig 理论**（1976）是有限约化群表示论的一场革命：对有限域 $\mathbb{F}_q$ 上的约化群 $G(\mathbb{F}_q)$，Deligne 和 Lusztig 通过 $\ell$-进上同调构造了虚拟表示 $R_T^\theta$（$T$ 为极大环面，$\theta$ 为 $T(\mathbb{F}_q)$ 的特征标），其不可约分量构成了 $G(\mathbb{F}_q)$ 的几乎所有不可约表示。这一理论将有限群表示论与代数几何的深层结构联系起来，Lusztig 的分类定理（1984）最终完成了 $G(\mathbb{F}_q)$ 所有不可约特征标的分类——这被公认为 20 世纪最伟大的数学成就之一。**Kazhdan-Lusztig 多项式**（1979）不仅解决了 Verma 模的合成因子问题，还通过 Hecke 代数的基的构造（Kazhdan-Lusztig 基）为 Coxeter 群的表示论提供了全新的组合工具。**Soergel 双模**（1990s）是范畴化（categorification）表示论的关键工具，它将 Hecke 代数范畴化为 $\mathbb{Z}$-分次双模范畴，从而将 Kazhdan-Lusztig 多项式提升为分次维数（graded dimension）。**几何表示论**中的**仿射 Hecke 代数**和**分次仿射 Hecke 代数**（Lusztig 1980s-1990s）将代数群表示论与 Springer 对应和仿射 Weyl 群的表示论联系起来，为 Langlands 纲领中的局部 Langlands 对应提供了代数模型。**正特征表示论**的最新进展（Williamson 2010s）揭示了 Lusztig 猜想在 "小 $p$" 情形下的反例，修正了我们对模表示论中分解数的理解，并催生了**双 Sobolev 模**（Tilting 模）和**p-正则表示论**的新理论。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第91章：几何表示论
@@ -207,15 +198,12 @@ $$\operatorname{Perv}_{G(k[[t]])}(\operatorname{Gr}_G) \cong \operatorname{Rep}(
 
 **定义 224.9**（箭图簇与几何表示论的联系）：箭图簇为仿射量子群、杨振宁代数和 $\mathcal{W}$-代数的表示提供了统一的几何框架。Nakajima 的箭图簇理论是几何表示论的基础工具。
 
----
+## 几何表示论的前沿扩展
+
+几何表示论在 21 世纪继续向多个方向扩展，成为连接代数、几何和物理的核心桥梁。**范畴化**（categorification）是几何表示论中最深刻的思想之一：将数（如维数、重数、特征标值）提升为向量空间或范畴，将代数等式（如 $U_q(\mathfrak{g})$ 的 Serre 关系）提升为函子之间的自然同构。Khovanov 和 Lauda（2006-2009）通过 **Khovanov-Lauda-Rouquier 代数**（KLR 代数或箭图 Hecke 代数）范畴化了量子群 $U_q(\mathfrak{g})$ 及其可积表示，将量子群提升为分次代数的表示范畴。**仿射 Springer 纤维**（Goresky-Kottwitz-MacPherson 2006）是 Springer 理论在仿射 Weyl 群情形的推广，其 $\ell$-进上同调实现了仿射 Hecke 代数的表示，与局部 Langlands 对应中的深度零（depth zero）表示密切相关。**Bezrukavnikov 的仿射 Springer 对应**（2006）建立了仿射 Springer 纤维的等变 K-理论到仿射 Hecke 代数表示的范畴等价，为几何 Langlands 纲领中的局部部分提供了关键构造。**Coulomb 分支**（Braverman-Finkelberg-Nakajima 2016）将箭图簇的 Borel-Moore 同调与 Coulomb 分支的相交上同调联系起来，建立了 3d $\mathcal{N}=4$ 超对称规范理论中 Higgs 分支和 Coulomb 分支的数学对偶，这是 Symplectic 对偶（symplectic duality）——一种新的数学对偶原理——的核心实例。**BPS 代数**（Davison 2016）通过箭图簇的 Borel-Moore 同调上的 Hall 代数结构构造了 Kac-Moody 代数的量子包络代数的范畴化，将箭图簇的计数不变量（如 Donaldson-Thomas 不变量）与量子群表示论联系起来。这些发展表明，几何表示论已经成为现代数学中一个高度统一的领域，融合了代数几何、辛几何、表示论和数学物理的方法。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第92章：仿射与量子群表示
@@ -270,15 +258,12 @@ $$\operatorname{ch} L(\lambda) = \frac{\sum_{w \in \hat{W}} (-1)^{\ell(w)} e^{w(
 
 **定义 225.8**（Frenkel-Reshetikhin 的 $q$-特征标，1999）：量子仿射代数的有限维表示的 $q$-特征标是经典特征标的 $q$-形变，满足与 Baxter 的 T-Q 关系类似的性质。
 
----
+## 仿射李代数与量子群的前沿应用
+
+仿射 Kac-Moody 代数和量子群的表示论在 20 世纪末和 21 世纪初与多个数学物理分支产生了深刻交叉。**月光猜想**（Monstrous Moonshine, Conway-Norton 1979）揭示了 Monster 单群与模函数 $j(\tau)$ 之间的神秘联系，Borcherds（1992 年 Fields 奖）通过顶点算子代数（VOA）——特别是以仿射 Kac-Moody 代数的可积表示构造的 **Monster VOA** $V^\natural$——严格证明了这一猜想，将群论、数论和共形场论联系起来。**几何 Langlands 纲领**中，仿射 Kac-Moody 代数的表示论通过**共形块**（conformal blocks）和 **Hitchin 系统**的量子化与 Langlands 对偶群的表示范畴产生联系。Beilinson-Drinfeld 的 opers 理论（1990s）将仿射 Lie 代数的 Verma 模与代数曲线上的 $G^\vee$-oper 联系起来，建立了局部几何 Langlands 对应。**可观测量代数**（$\mathcal{W}$-代数）是仿射 Kac-Moody 代数的量子 Hamiltonian 约化（Drinfeld-Sokolov 约化，1984），其表示论通过二维共形场论中的 $\mathcal{W}$-对称性在弦论和可积系统中扮演关键角色。**AGT 对应**（Alday-Gaiotto-Tachikawa 2009）将 $\mathcal{N}=2$ 超对称规范理论中的 Nekrasov 配分函数与二维共形场论中 Liouville 理论（和 $\mathcal{W}$-代数）的共形块联系起来，建立了四维规范理论和二维共形场论之间的深刻对偶。**量子仿射代数**的 **Kirillov-Reshetikhin 模**（1988）和它们的 $q$-特征标通过 Frenkel-Mukhin 算法（2001）与 Bethe 拟设方程的解建立了精确对应，构成量子可积系统中表示论方法的核心。**Brauer 代数**、**Temperley-Lieb 代数**和**结合代数**（fusion algebra）的范畴化通过 Jones 的纽结不变量将量子群表示论与低维拓扑联系起来，为拓扑量子计算提供了数学基础。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第93章：Langlands 纲领深化

@@ -144,12 +144,34 @@ $$
 
 **例**：Dirichlet 函数 $\chi_{\mathbb{Q} \cap [0, 1]}$ 在 $[0, 1]$ 上 Lebesgue 可积（值为 $0$，因为 $\mathbb{Q} \cap [0, 1]$ 可数故零测），但 Riemann 不可积。
 
----
+### 47.7 有界变差函数与 Lebesgue-Stieltjes 积分
 
----
+**定义 47.7.1（有界变差函数）**：函数 $f: [a, b] \to \mathbb{R}$ 称为**有界变差**的，若其全变差 $V_a^b(f) = \sup \sum_{i=1}^n |f(x_i) - f(x_{i-1})| < \infty$，其中上确界取遍 $[a, b]$ 的所有分割。有界变差函数必可表示为两个单调函数之差（Jordan 分解定理）：$f = g - h$，其中 $g, h$ 单调递增。
 
----
+**定理 47.7.1（Lebesgue-Stieltjes 积分）**：设 $\alpha: [a, b] \to \mathbb{R}$ 为有界变差函数。由 $\alpha$ 诱导的 Lebesgue-Stieltjes 测度 $\mu_\alpha$ 满足 $\mu_\alpha((c, d]) = \alpha(d) - \alpha(c)$。Lebesgue-Stieltjes 积分 $\int_a^b f \, d\alpha = \int_{[a,b]} f \, d\mu_\alpha$ 统一了 Riemann-Stieltjes 积分和 Lebesgue 积分：当 $\alpha(x) = x$ 时退化为通常的 Lebesgue 积分；当 $\alpha$ 为阶梯函数时退化为离散求和。
 
----
+**证明**：由 Riesz 表示定理，$C[a,b]$ 上的正线性泛函一一对应于有限 Borel 测度。有界变差函数 $\alpha$ 通过 Riemann-Stieltjes 积分定义了 $C[a,b]$ 上的线性泛函，由其 Jordan 分解可分解为正泛函之差，从而对应一个符号 Borel 测度 $\mu_\alpha$。$\blacksquare$
 
----
+### 47.8 微分与积分的互逆
+
+**定理 47.8.1（Lebesgue 微分定理）**：设 $f \in L^1_{\text{loc}}(\mathbb{R}^n)$。则对 a.e. $x \in \mathbb{R}^n$，
+
+$$\lim_{r \to 0} \frac{1}{m(B(x, r))} \int_{B(x, r)} f(y) \, dm(y) = f(x)$$
+
+**证明**：利用 Hardy-Littlewood 极大函数 $Mf(x) = \sup_{r>0} \frac{1}{|B(x,r)|} \int_{B(x,r)} |f(y)| dy$。由极大函数的弱 $(1,1)$ 型估计（$m(\{Mf > \lambda\}) \leq \frac{C_n}{\lambda}\|f\|_1$）和连续函数在 $L^1$ 中的稠密性，标准论证即得逐点收敛。$\blacksquare$
+
+**定理 47.8.2（Newton-Leibniz 公式的 Lebesgue 版本）**：设 $f$ 在 $[a, b]$ 上 Lebesgue 可积。定义 $F(x) = \int_a^x f(t) \, dm(t)$。则 $F$ 在 $[a, b]$ 上绝对连续，且 $F'(x) = f(x)$ a.e.。反之，若 $F$ 在 $[a, b]$ 上绝对连续，则 $F'$ 存在 a.e.，$F' \in L^1([a, b])$，且 $F(x) - F(a) = \int_a^x F'(t) \, dm(t)$。
+
+**证明**：由积分的绝对连续性，$F$ 是绝对连续的。$F'$ 的 a.e. 存在性来自 Lebesgue 微分定理。反向：绝对连续函数有界变差，故 $F'$ 存在 a.e. 且可积。由 $F$ 的绝对连续性，两个函数 $F(x)$ 和 $\int_a^x F'(t) dt$ 有相同的导数 a.e. 且都绝对连续，故差为常数（由 Lebesgue 微分定理的推论）。$\blacksquare$
+
+### 47.9 乘积测度与 Fubini 定理
+
+**定理 47.9.1（Fubini-Tonelli 定理）**：设 $(X, \mathcal{A}, \mu)$ 和 $(Y, \mathcal{B}, \nu)$ 为 $\sigma$-有限的测度空间。
+
+(i) **Tonelli 定理**：若 $f: X \times Y \to [0, \infty]$ 为 $\mathcal{A} \otimes \mathcal{B}$-可测函数，则 $\int_X \int_Y f \, d\nu \, d\mu = \int_Y \int_X f \, d\mu \, d\nu = \int_{X \times Y} f \, d(\mu \times \nu)$。
+
+(ii) **Fubini 定理**：若 $f \in L^1(\mu \times \nu)$，则 $f(x, \cdot) \in L^1(\nu)$ 对 $\mu$-a.e. $x$ 成立，$f(\cdot, y) \in L^1(\mu)$ 对 $\nu$-a.e. $y$ 成立，且上述积分等式成立。
+
+**证明**：先对 $f$ 为特征函数验证（由测度构造），然后线性性和单调收敛定理推广到非负简单函数和非负可测函数（Tonelli 定理）。Fubini 定理将 $f$ 分解为正负部后应用 Tonelli 定理。$\blacksquare$
+
+Fubini 定理是 Lebesgue 积分理论超越 Riemann 积分的最重要优势之一。在 Riemann 积分框架下，重积分交换次序需要函数满足一致连续性等苛刻条件；而在 Lebesgue 框架下，仅需可测性和绝对可积性（或非负性），使用极为方便。这在概率论中尤为重要——联合分布与边缘分布的关系本质上是 Fubini 定理的推论。$\blacksquare$

@@ -116,12 +116,24 @@ $$
 
 **注记 50.5.1**：关于 Fourier 级数的进一步深入内容（包括分布理论、Sobolev 空间、小波分析等）将在卷十四（泛函分析）和卷二十五（调和分析）中详细展开。$\blacksquare$
 
----
+### 50.6 Gibbs 现象与收敛性补充
 
----
+**定理 50.6.1（Gibbs 现象）**：设 $f$ 在 $x_0$ 处有跳跃间断：$f(x_0^+) \neq f(x_0^-)$。则 $f$ 的 Fourier 级数的部分和 $S_N f$ 在 $x_0$ 附近会产生过冲（overshoot）——最大过冲量约为跳跃幅度的 $9\%$，即
 
----
+$$\lim_{N \to \infty} \max_{x \in (x_0, x_0+\delta)} S_N f(x) - f(x_0^+) \approx 0.08949 \cdot |f(x_0^+) - f(x_0^-)|$$
 
----
+且该过冲不随 $N$ 增大而消失（仅位置向 $x_0$ 收缩）。Gibbs 现象是 Fourier 级数在跳跃间断处非一致收敛的必然结果，其本质是 Dirichlet 核的振荡积分在间断处的极限行为。
 
----
+**证明**：不妨设 $f$ 为符号函数 $\operatorname{sgn}$ 在 $[-\pi, \pi]$ 上的周期延拓。$S_N f(x) = \frac{2}{\pi} \int_0^x \frac{\sin((N+1/2)t)}{2\sin(t/2)} dt$。当 $N \to \infty$ 时，$S_N f(x) \to \frac{2}{\pi} \operatorname{Si}((N+1/2)x)$，其中 $\operatorname{Si}(u) = \int_0^u \frac{\sin t}{t} dt$ 为正弦积分。$\operatorname{Si}$ 在 $u = \pi$ 处取最大值 $\approx 1.8519$，故过冲为 $\frac{2}{\pi} \cdot 1.8519 - 1 \approx 0.17898 / 2$（符号函数跳跃为 $2$），相对过冲约 $8.95\%$。$\blacksquare$
+
+### 50.7 Fourier 变换与 Fourier 级数的统一
+
+**定理 50.7.1（Poisson 求和公式）**：设 $f \in \mathcal{S}(\mathbb{R})$（Schwartz 空间）。则
+
+$$\sum_{n \in \mathbb{Z}} f(n) = \sum_{k \in \mathbb{Z}} \hat{f}(2\pi k)$$
+
+其中 $\hat{f}(\xi) = \int_{-\infty}^\infty f(x) e^{-i x \xi} dx$ 是 Fourier 变换。Poisson 求和公式是连接 Fourier 级数（离散/周期）与 Fourier 变换（连续/非周期）的桥梁。
+
+**证明**：定义 $F(x) = \sum_{n \in \mathbb{Z}} f(x + 2\pi n)$，则 $F$ 为 $2\pi$-周期的光滑函数。$F$ 的 Fourier 系数为 $\hat{f}(k)$（由定义直接计算）。$F$ 的 Fourier 级数在 $x=0$ 处取值得 $\sum_{n \in \mathbb{Z}} f(2\pi n) = \sum_{k \in \mathbb{Z}} \hat{f}(k)$，作变量替换 $x \mapsto 2\pi x$ 即得标准形式。$\blacksquare$
+
+Poisson 求和公式在数论中有深远应用——它是 Riemann $\zeta$ 函数的函数方程、$\theta$ 函数的模变换性质（$\theta(-1/z) = \sqrt{z/i} \, \theta(z)$）以及 Hecke 的 Voronoi 求和公式的基础。在调和分析中，它统一了 Fourier 级数和 Fourier 变换，是局部紧 Abel 群上调和分析中 Pontryagin 对偶的离散-紧致对偶特例。$\blacksquare$

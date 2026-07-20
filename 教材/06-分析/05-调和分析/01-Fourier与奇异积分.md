@@ -132,13 +132,9 @@ $$|\{x : |Tf(x)| > \lambda\}| \leq \frac{C}{\lambda} \|f\|_1$$
 
 **证明**：对 $f$ 作水平分解 $f^\lambda = f \mathbf{1}_{\{|f| > a\lambda\}}$，$f_\lambda = f - f^\lambda$（$a>0$ 待定）。由次可加性，$\{|Tf| > \lambda\} \subseteq \{|Tf^\lambda| > \lambda/2\} \cup \{|Tf_\lambda| > \lambda/2\}$。对 $f^\lambda$ 用弱 $(p_0,q_0)$ 界，对 $f_\lambda$ 用弱 $(p_1,q_1)$ 界。将 $\|Tf\|_{p_\theta}^{p_\theta}$ 写为层饼积分 $p_\theta \int_0^\infty \lambda^{p_\theta-1} |\{|Tf| > \lambda\}| d\lambda$，代入分布函数估计，分离 $\lambda$ 积分区域。选取最优的 $a$ 平衡两项，最终得 $\|Tf\|_{p_\theta} \leq C_{p_0,p_1,q_0,q_1,\theta} A_0^{1-\theta} A_1^\theta \|f\|_{p_\theta}$。$\blacksquare$
 
----
+## Calderón-Zygmund 理论的现代发展
 
----
-
----
-
----
+Calderón-Zygmund 理论自 1950 年代创立以来，已发展成为调和分析中最核心的理论框架，其影响远超奇异积分本身。**$T(1)$ 定理**（David-Journe 1984）是 Calderón-Zygmund 理论中最重要的后续发展：一个与 Calderón-Zygmund 核关联的算子 $T$ 在 $L^2$ 上有界当且仅当 $T(1)$ 和 $T^*(1)$ 属于 BMO（有界平均振荡函数空间）。该定理将 $L^2$ 有界性的判定归结为对两个特定函数（常函数 1）的检验，极大简化了奇异积分算子有界性的证明，并推广了此前 Cotlar 引理和几乎正交分解方法。**$T(b)$ 定理**（David-Journe-Semmes 1985）进一步将 $T(1)$ 定理推广到非双倍测度情形，允许用"适应性"函数 $b$（满足某种增生条件）代替常函数 1，这为 Lipschitz 曲线上 Cauchy 积分的有界性证明提供了关键工具。**Calderón 交换子**（1965）是 Calderón-Zygmund 理论的经典应用：交换子 $[A, T]f = A(Tf) - T(Af)$ 在 $L^p$ 上的有界性反映了算子 $T$ 与乘子 $A$ 的非交换性，构成了 Coifman-Rochberg-Weiss 交换子理论（1976）的基础。**Muckenhoupt 权理论**（1972）将 Calderón-Zygmund 算子的有界性推广到加权 $L^p$ 空间：$T$ 在 $L^p(w)$ 上有界当且仅当 $w \in A_p$，这为加权不等式提供了一个统一的特征刻画。**向量值奇异积分理论**（Burkholder 1980s）将奇异积分算子作用于 Banach 空间值函数，$T$ 在 $L^p(\mathbb{R}^n; X)$ 上有界当且仅当 $X$ 是 UMD 空间（无条件鞅差空间），这揭示了调和分析中奇异积分有界性与 Banach 空间几何之间的深刻联系。
 
 ---
 
@@ -193,12 +189,6 @@ $A_1$ 权：$M w(x) \leq C w(x)$ 几乎处处。
 
 **证明**：（必要性）若 $M$ 在 $L^p(w)$ 上有界，对任意球 $B$，取 $f = w^{-1/(p-1)}\mathbf{1}_B$，应用 $M$ 的有界性和 $Mf(x) \geq \frac{1}{|B|}\int_B f$（$x \in B$），得 $(\frac{1}{|B|}\int_B w)(\frac{1}{|B|}\int_B w^{-1/(p-1)})^{p-1} \leq C$，故 $w \in A_p$。（充分性）用反向 Hölder 不等式：$A_p$ 权满足对某 $\delta > 0$，$w^{1+\delta} \in A_p$。构造二进极大函数，逐层用 Calderón-Zygmund 分解获得加权弱 $(1,1)$ 估计，再由插值得加权强 $(p,p)$ 估计。$\blacksquare$
 
----
+## 极大函数与调和分析的统一方法
 
----
-
----
-
----
-
----
+Hardy-Littlewood 极大函数是调和分析中控制论的核心工具，其思想可以追溯到 Hardy 和 Littlewood 对 Fourier 级数求和的研究（1930）。极大函数方法的基本范式是：将复杂算子 $T$ 的逐点行为用极大函数 $Mf$ 控制，然后利用 $M$ 的 $L^p$ 有界性推导 $T$ 的 $L^p$ 有界性。**Fefferman-Stein 锐极大函数**（1972）$M^\sharp f$ 通过衡量 $f$ 的局部平均振荡，揭示了 $L^p$ 范数与 BMO 半范数之间的对偶关系：$\|f\|_p \leq C_p \|M^\sharp f\|_p$ 对于具有消失平均的 $f$ 成立。这一不等式是 Fefferman-Stein 证明 $L^p$ 中 Calderón-Zygmund 算子有界性的核心工具，避免了逐点估计的困难。**好 $\lambda$ 不等式**（good-$\lambda$ inequality, Burkholder-Gundy 1970）是极大函数方法中最重要的技术工具：$|\{Mf > 2\lambda, M^\sharp f \leq \gamma\lambda\}| \leq C\varepsilon|\{Mf > \lambda\}|$ 允许将 $Mf$ 的分布函数由 $M^\sharp f$ 控制，从而将奇异积分算子的有界性归结为极大函数的控制。**$A_\infty$ 权**是所有 $A_p$ 权的并集，由反向 Hölder 不等式刻画：$w \in A_\infty$ 当且仅当存在 $\delta > 0$ 和 $C$ 使得 $\frac{1}{|B|}\int_B w^{1+\delta} \leq C(\frac{1}{|B|}\int_B w)^{1+\delta}$。$A_\infty$ 权具有性质：若 $w \in A_\infty$，则 $w$ 赋给球 $B$ 的测度 $w(B)$ 与 $|B|$ 的关系满足 $w(E)/w(B) \leq C(|E|/|B|)^\delta$。**Rp 权**（reverse Hölder class）是 $A_\infty$ 权理论的自然延伸，在非线性调和分析（如 $p$-Laplacian 方程的梯度估计）中扮演关键角色。极大函数理论还与**非线性位势理论**（Wolff 位势）、**面积积分**（Lusin 面积积分）和**非切向极大函数**（nontangential maximal function）等构成 Hardy 空间理论的完整框架，为调和分析、偏微分方程和复分析中的边界值问题提供了统一的分析工具。

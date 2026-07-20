@@ -136,15 +136,12 @@ $$
 
 **注记 44.5.1**：Galois 理论的完整展开（包括方程可解性、$n$ 次一般方程不可根式解等）将在卷十三（抽象代数 II）中详细讨论。本章仅建立域扩张的基本理论，为 Galois 理论做好准备。$\blacksquare$
 
----
+## 域扩张的补充主题
+
+域扩张理论在 Galois 理论之外还有多个重要的发展方向，它们在现代代数几何和数论中扮演着核心角色。**可分扩张与纯不可分扩张**的二分是域扩张理论的基本结构定理：设 $K/F$ 为代数扩张，则存在唯一的中间域 $F \subseteq F_s \subseteq K$，使得 $F_s/F$ 是 Galois 扩张（极大可分扩张）且 $K/F_s$ 是纯不可分扩张。这一分解将任意代数扩张拆分为两个具有截然不同性质的组分——可分部分由 Galois 群控制，纯不可分部分由 Frobenius 态射（正特征情形）或平凡（特征零）控制。**超越次数**（transcendence degree）是有理函数域 $F(t_1, \ldots, t_n)$ 中代数无关的变元的最大个数，它是代数几何中代数簇的维数（Krull 维数）的域论对应：对仿射整环 $R$ 的分式域 $K = \operatorname{Frac}(R)$，$\dim R = \operatorname{tr.deg}_F K$。**正则扩张**（regular extension）是域扩张中一种特殊类型：$K/F$ 是正则扩张若 $F$ 在 $K$ 中代数闭且 $K$ 与 $F$ 的代数闭包线性不交，这在代数群的 Weil 限制和代数几何的基变换理论中至关重要。**完备域**（perfect field）是每个代数扩张都可分的域——特征零域和有限域是完备的，而 $\mathbb{F}_p(t)$ 则不是（因为 $t^{1/p}$ 是纯不可分元）。完备域上的代数簇避免了正特征下的许多病理现象，如 Frobenius 态射的非光滑性。在算术代数几何中，**p-进域**（$\mathbb{Q}_p$ 的有限扩张）的扩张理论导出局部类域论——通过 Lubin-Tate 形式群将 Abel 扩张与乘法群联系起来，这是高维局部类域论的起点。域扩张理论还与**模型论**（model theory）交汇：代数闭域理论具有量词消去性质，差分域（装备自同构的域）的模型论性质催生了 Hrushovski 的几何 Mordell-Lang 猜想的证明。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第66章：除环与 Brauer 群
@@ -172,15 +169,12 @@ $$
 
 **例**：$\operatorname{Br}(\mathbb{R}) \cong \mathbb{Z}/2\mathbb{Z}$（仅含 $[\mathbb{R}]$ 和 $[\mathbb{H}]$）；$\operatorname{Br}(\mathbb{F}_q) = 0$（有限域除环必为域）；$\operatorname{Br}(\mathbb{Q}_p)$ 在类域论中等价于 $\mathbb{Q}/\mathbb{Z}$。
 
----
+## Brauer 群的深层理论与应用
+
+Brauer 群 $\operatorname{Br}(F)$ 通过 Hasse 原理与局部-整体原则紧密关联。**Albert-Brauer-Hasse-Noether 定理**（1932）断言，数域 $F$ 的中心单代数 $A$ 是分裂的（即 $A \cong M_n(F)$）当且仅当 $A$ 在 $F$ 的每个完备化 $F_v$ 处分裂（$v$ 遍历所有位）。这给出了 Brauer 群的 Hasse 原理：$\operatorname{Br}(F) \hookrightarrow \bigoplus_v \operatorname{Br}(F_v)$ 是单射，且余核由局部不变量之和为零的条件刻画，即短正合列 $0 \to \operatorname{Br}(F) \to \bigoplus_v \operatorname{Br}(F_v) \xrightarrow{\sum \operatorname{inv}_v} \mathbb{Q}/\mathbb{Z} \to 0$。**Merkurjev-Suslin 定理**（1982）是 K-理论中的里程碑：若 $F$ 包含 $n$ 次本原单位根，则 $K_2(F)/nK_2(F) \cong {}_n\operatorname{Br}(F)$（$n$-挠 Brauer 群），且每个 $n$-挠类由循环代数 $(a, b)_{\zeta}$ 表示。这解决了关于 Brauer 群生成元的长期猜想。**Brauer 群与上同调**：$\operatorname{Br}(F) \cong H^2(\operatorname{Gal}(F^s/F), (F^s)^\times)$（Galois 上同调的第二个群），这为 Brauer 群提供了上同调解释，并将其嵌入 Galois 上同调的长期框架。在**算术代数几何**中，Brauer 群是 Brauer-Manin 阻碍的核心——若簇 $X$ 的 Brauer-Manin 集 $X(\mathbb{A}_F)^{\operatorname{Br}} = \varnothing$ 但 $X(\mathbb{A}_F) \neq \varnothing$，则 $X$ 违反 Hasse 原理（无有理点但有局部点），这是解释有理点失败现象的主要工具。在**非交换代数几何**中，Brauer 群分类了域上的非交换射影空间（Severi-Brauer 簇），而 Amitsur 定理将 $\operatorname{Br}(F(x_1, \ldots, x_n))$ 与 $\operatorname{Br}(F)$ 和除环的泛有理性联系起来。Brauer 群还与**拓扑学**中的扭 K-理论有关：$X$ 上的 Azumaya 代数等价于 $X$ 的扭 K-理论中的扭类，这是 Donovan-Karoubi 定理（1970）的核心内容。
 
 ---
 
----
-
----
-
----
 ---
 
 ## 第67章（补充）
