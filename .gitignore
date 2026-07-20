@@ -1,33 +1,8 @@
-# Generated/built files
-*.pdf
-*.tex
-!header.tex
-
-# Build outputs
-build/
-
 # Archive (old framework, audit reports, reference docs)
 archive/
 
 # Backup files
 *.bak
-
-# LaTeX auxiliary files
-*.aux
-*.log
-*.toc
-*.out
-*.synctex.gz
-*.fdb_latexmk
-*.fls
-*.bbl
-*.blg
-*.dvi
-*.lot
-*.lof
-*.idx
-*.ilg
-*.ind
 
 # Temp/workspace
 .trae-cn/

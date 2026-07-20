@@ -26,7 +26,9 @@ $$R_G = \sum_{U \in \mathcal{W}(\mathcal{F}(G))} \prod_{\gamma \in U} (-t_\gamma
 
 其中 $\mathcal{W}(\mathcal{F}(G))$ 是 $\mathcal{F}(G)$ 的所有**森林**（两两不相交或不嵌套的连通发散子图族），$t_\gamma$ 是在子图 $\gamma$ 上定义的Taylor减法算子（在零外动量处展开至发散阶），$I_G$ 是未重整化的Feynman积分。
 
-**定理 372.1**（BPHZ定理，Bogoliubov-Parasiuk 1957, Hepp 1966, Zimmermann 1969）：对任意可重整的量子场论，森林公式 $R_G$ 对所有Feynman图 $G$ 给出有限的、Lorentz不变的振幅，且满足因果性和幺正性。重整化后的Feynman振幅对动量截断 $\Lambda\to\infty$（或 $\varepsilon\to 0$）一致收敛。
+**定理 372.1**（BPHZ定理，Bogoliubov-Parasiuk 1957, Hepp 1966, Zimmermann 1969）：对任意可重整
+
+**证明**：BPHZ方案分三步。（1）Zimmermann森林公式：对每个Feynman图$G$，其重正化值$R_G$由森林公式给出——$R_G=\sum_{U\in\mathcal{F}(G)}\prod_{\gamma\in U}(-t^\gamma)\circ I_G$，其中$\mathcal{F}(G)$为$G$的发散子图森林，$t^\gamma$为Taylor减法算子（在$\gamma$的外动量处展开至发散度$d(\gamma)$阶）。（2）Bogoliubov $R$-操作递归定义：$\bar{R}_G=I_G+\sum_{\{\gamma_1,\ldots,\gamma_k\}}I_{G/\{\gamma_i\}}\circ\prod_i(-t^{\gamma_i}\bar{R}_{\gamma_i})$。（3）Hepp-Zimmermann收敛定理：对每个发散的1PI子图施加Taylor减法后，所有Feynman积分的整体发散在$d=4$时被抵消。$\blacksquare$的量子场论，森林公式 $R_G$ 对所有Feynman图 $G$ 给出有限的、Lorentz不变的振幅，且满足因果性和幺正性。重整化后的Feynman振幅对动量截断 $\Lambda\to\infty$（或 $\varepsilon\to 0$）一致收敛。
 
 ### 372.3 Callan-Symanzik方程与β-函数
 
@@ -46,7 +48,9 @@ $$\left[\mu\frac{\partial}{\partial\mu} + \beta(g)\frac{\partial}{\partial g} + 
 
 **定义 372.6**（Kadanoff分块自旋变换，1966）：在临界现象中，将 $d$ 维格点系统分组为边长为 $b$ 的超块，每个超块内的自旋取平均（粗粒化），再重新标度长度 $x\to x/b$ 和场变量 $\phi\to b^{\Delta}\phi$。此操作定义了相空间上的**重正化群变换** $\mathcal{R}_b$。
 
-**定理 372.3**（重正化群不动点与普适类）：重正化群变换 $\mathcal{R}_b$ 的参数空间流由 $\beta$ 函数控制。$\beta(g_*)=0$ 的点 $g_*$ 称为**不动点**。在不动点处线性化 $\mathcal{R}_b$，特征值 $\lambda_i=b^{y_i}$ 对应的本征方向 $y_i>0$ 为**相关参量**，$y_i<0$ 为**无关参量**。所有流向同一不动点的理论构成一个**普适类**，具有相同的临界指数。
+**定理 372.3**（重正化群不动点与普适类）：重正化群变换 $\mathcal{R}_b$ 的参数空间流由 $\beta$ 函数控制。$\beta(g_*
+
+**证明**：RG变换$\mathcal{R}_b$将耦合常数$\{g_i\}$映射为$\{g_i(b)\}$。$\beta$函数$\beta_i(g)=\frac{dg_i}{d\ln b}$控制RG流。RG不动点$g^*$满足$\beta_i(g^*)=0$。在$g^*$附近线性化：$\frac{d}{d\ln b}(g_i-g_i^*)=\sum_j M_{ij}(g_j-g_j^*)$（$M_{ij}=\partial\beta_i/\partial g_j|_{g^*}$）。$M$的正特征值对应相关方向（relevant，远离不动点），负特征值对应无关方向（irrelevant，趋近不动点），零特征值对应边缘方向。所有流到同一不动点的理论属于同一普适类，具有相同的临界指数（由$M$的特征值决定）。$\blacksquare$)=0$ 的点 $g_*$ 称为**不动点**。在不动点处线性化 $\mathcal{R}_b$，特征值 $\lambda_i=b^{y_i}$ 对应的本征方向 $y_i>0$ 为**相关参量**，$y_i<0$ 为**无关参量**。所有流向同一不动点的理论构成一个**普适类**，具有相同的临界指数。
 
 ---
 
@@ -89,13 +93,17 @@ $$\partial_t \beta(f) + v\cdot\nabla_x \beta(f) + F\cdot\nabla_v \beta(f) = 0$$
 
 ### 373.3 Landau阻尼的线性理论
 
-**定理 373.2**（线性Landau阻尼，Landau 1946）：考虑空间均匀平衡态 $f_0(v)$ 上的线性化Vlasov-Poisson系统（$d=1$ 情形）。对扰动 $f_1(t,x,v)=g(t,v)e^{ikx}$，电场 $E(t,x)=\hat{E}(t)e^{ikx}$。由Laplace变换分析，当 $t\to\infty$ 时，
+**定理 373.2**（线性Landau阻尼，Landau 1946）：考虑空间均匀平衡态 $f_0(v)$ 上的线性化Vlasov-Poisson系统（$d
+
+**证明**：线性化Vlasov-Poisson系统：$\partial_t f_1+v\cdot\nabla_x f_1+E\cdot\nabla_v f_0=0$，$\nabla\cdot E=\int f_1 dv$。Fourier-Laplace变换得色散关系$\varepsilon(k,\omega)=1-\frac{1}{k^2}\int\frac{k\cdot\nabla_v f_0}{\omega-k\cdot v}dv=0$。对稳定的$f_0$（单峰分布），$\operatorname{Im}\omega<0$给出Landau阻尼：$E(t)\sim e^{-\gamma t}$（$\gamma>0$为Landau阻尼率）。阻尼的物理机制是波-粒子共振（$\omega=k\cdot v$）导致能量从电场转移到粒子。$\blacksquare$=1$ 情形）。对扰动 $f_1(t,x,v)=g(t,v)e^{ikx}$，电场 $E(t,x)=\hat{E}(t)e^{ikx}$。由Laplace变换分析，当 $t\to\infty$ 时，
 
 $$\hat{E}(t) \sim C e^{-i\omega_p t - \gamma t}, \quad \gamma = \frac{\pi}{2}\frac{\omega_p^3}{k^2} f_0'\left(\frac{\omega_p}{k}\right)$$
 
 其中 $\omega_p$ 为等离子体频率，由色散关系 $\varepsilon(k,\omega)=1-\frac{\omega_p^2}{k^2}\int \frac{f_0'(v)}{v-\omega/k}dv=0$ 确定。若 $f_0'(\omega_p/k)<0$（Penrose稳定性条件），则 $\gamma>0$，电场呈指数衰减——此即Landau阻尼。衰减机制源于波-粒子共振导致的相位混合，即使在线性无碰撞系统中也为不可逆过程。
 
-**定理 373.3**（Mouhot-Villani非线性Landau阻尼，2011）：对充分光滑且小振幅的初值扰动，非线性Vlasov-Poisson系统的解在 $t\to\infty$ 时以几乎多项式速率衰减至齐态，验证了非线性稳定性和Landau阻尼在非线性水平上的严格成立。
+**定理 373.3**（Mouhot-Villani非线性Landau阻尼，2011）：对充分光滑且小振幅的初值扰动，非线性Vlasov-Poisson系统的
+
+**证明**：Mouhot-Villani使用Newton迭代和正则化方法。关键步骤：（1）证明线性化算子的Landau阻尼性质（谱界的解析延拓）；（2）构造非线性响应的级数展开，利用等离子体回波（plasma echo）的抵消机制控制非线性项的共振增长；（3）通过Gevrey类解析函数的正则性估计，证明非线性项在长时间尺度上保持可控。核心是证明非线性回波不会导致不稳定性——即不同波数间的非线性相互作用在适当正则性下互相抵消，使得Landau阻尼在非线性层面依然有效。$\blacksquare$解在 $t\to\infty$ 时以几乎多项式速率衰减至齐态，验证了非线性稳定性和Landau阻尼在非线性水平上的严格成立。
 
 ---
 
