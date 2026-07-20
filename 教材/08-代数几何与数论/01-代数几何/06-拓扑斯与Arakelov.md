@@ -43,7 +43,7 @@ $$\widehat{\chi}(\overline{E}) = \sum_{i=0}^2 (-1)^i \widehat{\deg}(\det R^i \pi
 
 $$\widehat{\chi}(\overline{E}) = \int_{\mathcal{X}} \widehat{\operatorname{ch}}(\overline{E}) \cdot \widehat{\operatorname{Td}}(T_{\mathcal{X}/\mathbb{Z}})$$
 
-*证明思路*：这一定理将 Grothendieck-Riemann-Roch 定理推广到算术情形，其证明的关键是处理**解析挠率**（analytic torsion, Ray-Singer 挠率）的贡献。算术 Riemann-Roch 的核心新特征在于：等式中的**解析挠率项** $T(\overline{E})$ 由 $\det \Delta$（Laplacian 的行列式）决定，体现了算术曲面在无穷远处的度量信息。Gillet 和 Soulé 构造了算术 K-理论和算术 Chow 环之间的 Chern 特征标，建立了层上同调与微分几何之间的桥梁。∎
+**证明**：将 Grothendieck-Riemann-Roch 定理提升到算术曲面 $\pi: \mathcal{X} \to \operatorname{Spec} \mathbb{Z}$。设 $\overline{E}$ 为 $\mathcal{X}$ 上的 Hermite 向量丛。有限素理想处的 Euler 示性数由经典 GRR 给出：$\chi_{\text{fin}}(\overline{E}) = \int_{\mathcal{X}} \operatorname{ch}(E) \cdot \operatorname{Td}(T_{\mathcal{X}/\mathbb{Z}})$。无穷远处的贡献来自解析挠率（Ray-Singer）：$T(\overline{E}) = \frac{1}{2} \sum_{q} (-1)^q q \log \det' \Delta_q$（$\Delta_q$ 为 $\overline{E}$ 值 $q$-形式的 Laplace 算子）。Gillet-Soulé 的关键构造是算术 Chern 特征标 $\widehat{\operatorname{ch}}: \widehat{K}_0(\mathcal{X}) \to \widehat{\operatorname{CH}}^*(\mathcal{X})_{\mathbb{R}}$，使得在算术 Chow 环中的积分同时捕获有限部分的交数和无穷远处的 Green 流积分：$\widehat{\chi}(\overline{E}) = \chi_{\text{fin}}(\overline{E}) + T(\overline{E}) = \int_{\mathcal{X}} \widehat{\operatorname{ch}}(\overline{E}) \cdot \widehat{\operatorname{Td}}(T_{\mathcal{X}/\mathbb{Z}})$。这一定理是 Arakelov 几何的基石。$\blacksquare$
 
 ### 88.4 算术 Hilbert-Samuel 定理
 
@@ -53,7 +53,7 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 
 其中 $\widehat{\deg}(\overline{L})$ 是 $\overline{L}$ 的算术次数。这与通常的 Hilbert-Samuel 定理（$P(n) = \frac{L^n}{n!} n^n + \cdots$）在形式上是平行的。
 
-*证明思路*：算术 Hilbert-Samuel 的核心是控制 $\mathcal{X}$ 上全局截面空间的范数——这是算术曲面上度量信息的直接体现。利用算术 Riemann-Roch 定理和 Laplace 算子的谱渐近性质（Weyl 律在紧 Riemann 面上的应用），可以提取出主导项和误差项。∎
+**证明**：设 $\overline{L}$ 为 $\mathcal{X}$ 上的 Hermite 丰沛线丛。对 $m \gg 0$，由 Serre 消没定理知 $H^i(\mathcal{X}, \overline{L}^{\otimes m}) = 0$（$i > 0$），故 $\widehat{\chi}(\overline{L}^{\otimes m}) = \widehat{\deg}(\det H^0(\mathcal{X}, \overline{L}^{\otimes m}))$。由算术 Riemann-Roch 定理展开：$\widehat{\chi}(\overline{L}^{\otimes m}) = \int_{\mathcal{X}} (1 + m \widehat{c}_1(\overline{L}) + \frac{m^2}{2} \widehat{c}_1(\overline{L})^2) \cdot (1 + \frac{1}{2} \widehat{c}_1(T) + \cdots)$。在 $\dim \mathcal{X} = 2$ 的情形截断，主导项为 $\frac{m^2}{2} \widehat{c}_1(\overline{L})^2 = \frac{m^2}{2} \widehat{\deg}(\overline{L})$。误差项由 Todd 类的低次分量和 Laplace 算子谱的 Weyl 渐近 $\#\{\lambda_i \leq t\} \sim \frac{\operatorname{vol}}{4\pi} t$ 控制，贡献为 $O(m \log m)$。$\blacksquare$
 
 ### 88.5 应用：Mordell 猜想与算术 Bogomolov 猜想
 

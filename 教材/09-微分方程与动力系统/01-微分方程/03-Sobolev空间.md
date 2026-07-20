@@ -51,7 +51,7 @@ $$H^s(\mathbb{R}^n) = \left\{ u \in \mathcal{S}'(\mathbb{R}^n) : (1 + |\xi|^2)^{
 
 **定理 251.3**（Meyers-Serrin 定理，$H = W$）：设 $\Omega \subset \mathbb{R}^n$ 为开集，$1 \leq p < \infty$。则 $C^\infty(\Omega) \cap W^{k,p}(\Omega)$ 在 $W^{k,p}(\Omega)$ 中稠密。
 
-**证明框架**：取 $\Omega$ 的穷竭开覆盖 $\{\Omega_j\}$，满足 $\Omega_j \subset\subset \Omega_{j+1}$，令 $\{\psi_j\}$ 为从属于 $\{\Omega_{j+1} \setminus \overline{\Omega}_{j-1}\}$ 的单位分解。对 $u \in W^{k,p}$，考虑截断和磨光：$u_\epsilon = \sum_j \eta_{\epsilon_j} * (\psi_j u)$，其中 $\eta_\epsilon$ 为标准磨光核，$\epsilon_j$ 取得充分小。则 $u_\epsilon \in C^\infty$ 且 $u_\epsilon \to u$ 在 $W^{k,p}$ 中。$\blacksquare$
+**证明**：取 $\Omega$ 的穷竭序列 $\{\Omega_j\}_{j=1}^\infty$ 满足 $\Omega_j \subset\subset \Omega_{j+1}$ 且 $\bigcup_j \Omega_j = \Omega$。令 $\{\psi_j\}$ 为从属于开覆盖 $\{\Omega_{j+1} \setminus \overline{\Omega}_{j-1}\}$ 的光滑单位分解（$\sum_j \psi_j = 1$ 在 $\Omega$ 上，$\psi_j \in C_c^\infty(\Omega_{j+1} \setminus \overline{\Omega}_{j-1})$）。对 $u \in W^{k,p}(\Omega)$，考虑截断和磨光：$u_\varepsilon = \sum_{j=1}^\infty \eta_{\varepsilon_j} * (\psi_j u)$，其中 $\eta_\varepsilon(x) = \varepsilon^{-n}\eta(x/\varepsilon)$ 为标准磨光核，$\varepsilon_j$ 充分小以确保 $\operatorname{supp}(\eta_{\varepsilon_j} * (\psi_j u)) \subset \Omega$。由磨光核的性质，$u_\varepsilon \in C^\infty(\Omega)$。对于 $|\alpha| \leq k$，$D^\alpha u_\varepsilon = \sum_j \eta_{\varepsilon_j} * D^\alpha(\psi_j u)$（利用磨光与弱导数的交换性）。由 $L^p$ 中磨光逼近的收敛性，$\|D^\alpha u_\varepsilon - D^\alpha u\|_{L^p} \to 0$（$\varepsilon \to 0$）。故 $u_\varepsilon \to u$ 在 $W^{k,p}(\Omega)$ 中，即 $C^\infty(\Omega) \cap W^{k,p}(\Omega)$ 在 $W^{k,p}(\Omega)$ 中稠密。$\blacksquare$
 
 ### Sobolev 嵌入定理
 
@@ -59,11 +59,7 @@ $$H^s(\mathbb{R}^n) = \left\{ u \in \mathcal{S}'(\mathbb{R}^n) : (1 + |\xi|^2)^{
 
 $$\|u\|_{L^{p^*}} \leq C \|u\|_{W^{k,p}}$$
 
-**证明要点**（$k=1$ 情形）：对 $u \in C_c^\infty(\mathbb{R}^n)$，利用每个单变量方向的积分表示
-
-$$|u(x)| \leq \frac{1}{2} \prod_{i=1}^n \left( \int_{\mathbb{R}} |\partial_i u| \,dx_i \right)^{1/n}$$
-
-累次应用 Gagliardo-Nirenberg 插值得 $\|u\|_{L^{n/(n-1)}} \leq \frac{1}{2} \prod \|\partial_i u\|_{L^1}^{1/n}$。对一般 $p$，将 $|u|^{\gamma}$（$\gamma = p(n-1)/(n-p)$）代入 $p=1$ 情形即得。对 $k>1$ 递推。$\blacksquare$
+**证明**（$k=1$ 情形）：对 $u \in C_c^\infty(\mathbb{R}^n)$，利用每个坐标方向的积分表示 $|u(x)| \leq \frac{1}{2} \int_{\mathbb{R}} |\partial_i u(x_1,\ldots,t,\ldots,x_n)| dt$（共 $n$ 个因子）。乘积累次应用 Gagliardo-Nirenberg 不等式得 $\|u\|_{L^{n/(n-1)}} \leq \frac{1}{2} \prod_{i=1}^n \|\partial_i u\|_{L^1}^{1/n}$。对一般 $p \in [1,n)$，取 $\gamma = p(n-1)/(n-p)$，将不等式应用于 $|u|^\gamma$ 并利用 Holder 不等式：$\|u\|_{L^{p^*}} \leq C \|\nabla u\|_{L^p}$，其中 $p^* = np/(n-p)$。由 $C_c^\infty$ 在 $W^{1,p}$ 中的稠密性，该不等式延拓到整个 $W^{1,p}(\mathbb{R}^n)$。对 $k>1$ 情形，递推应用 $k=1$ 的结果：$\|u\|_{W^{k-1,p^*}} \leq C \|u\|_{W^{k,p}}$，结合 Sobolev 共轭指数的迭代关系 $p_k^* = np/(n-kp)$ 即得。$\blacksquare$
 
 **定理 251.5**（Morrey 不等式 —— $k p > n$ 情形）：设 $p > n$。则 $W^{1,p}(\mathbb{R}^n) \hookrightarrow C^{0, \gamma}(\mathbb{R}^n)$ 连续，其中 $\gamma = 1 - n/p$。即存在 $C$ 使得
 
@@ -71,9 +67,11 @@ $$|u(x) - u(y)| \leq C \|Du\|_{L^p} \, |x - y|^{1 - n/p}$$
 
 对所有 $u \in W^{1,p}$ 以及几乎所有 $x, y$ 成立。
 
-**证明要点**：对 $u \in C_c^\infty$，利用球体积分表示：$|u(x) - u(y)| \leq C \int_{B(x,r)} \frac{|Du(z)|}{|x-z|^{n-1}} dz + (\text{对称项})$，由 Hölder 不等式并取 $r = |x-y|$ 即得 Hölder 估计。对 $W^{1,p}$ 中一般函数用逼近。$\blacksquare$
+**证明**：对 $u \in C_c^\infty(\mathbb{R}^n)$，固定 $x,y \in \mathbb{R}^n$，令 $r = |x-y|$。由球体积分表示，$|u(x) - u(y)| \leq \int_0^1 |\nabla u(x + t(y-x))| \cdot |y-x| dt$。取 $B = B(x,r)$，利用平均积分技巧：$|u(x) - u_{B}| \leq \frac{C}{r^{n-1}} \int_B \frac{|\nabla u(z)|}{|x-z|^{n-1}} dz$，其中 $u_B = \frac{1}{|B|}\int_B u$。由 Hölder 不等式，$\int_B \frac{|\nabla u(z)|}{|x-z|^{n-1}} dz \leq \|\nabla u\|_{L^p(B)} \| |x-z|^{-(n-1)}\|_{L^{p'}(B)}$（$p' = p/(p-1)$）。因 $p > n$，$p'(n-1) < n$，后一积分有限且 $\sim r^{1-n/p}$。故 $|u(x) - u_B| \leq C r^{1-n/p} \|\nabla u\|_{L^p}$。对 $y$ 同理，三角不等式得 $|u(x) - u(y)| \leq C |x-y|^{1-n/p} \|\nabla u\|_{L^p}$。由 $C_c^\infty$ 的稠密性延拓至 $W^{1,p}$。$\blacksquare$
 
 **定理 251.6**（$k p = n$ 极限情形）：设 $p = n$。则 $W^{1,n}(\mathbb{R}^n) \hookrightarrow L^q(\mathbb{R}^n)$ 对一切 $n \leq q < \infty$ 连续，但一般不嵌入 $L^\infty$。更精细的极限情形由 Trudinger-Moser 指数可积性刻画。
+
+**证明**：由 Sobolev 嵌入定理的极限情形，$p=n$ 时共轭指数 $p^* = np/(n-p)$ 趋于无穷，故不能直接嵌入 $L^\infty$。对任意 $q \in [n, \infty)$，由 Gagliardo-Nirenberg 插值不等式：$\|u\|_{L^q} \leq C \|u\|_{L^n}^{n/q} \|\nabla u\|_{L^n}^{1-n/q}$。因 $W^{1,n} \hookrightarrow L^n$ 连续，得 $\|u\|_{L^q} \leq C \|u\|_{W^{1,n}}$。但对 $q=\infty$ 插值失效，确实存在 $W^{1,n}$ 函数无界（例如 $u(x) = \log\log(1/|x|)$ 在 $B(0,1/e)$ 中）。Trudinger-Moser 不等式给出 $\int_\Omega \exp(\alpha |u|^{n/(n-1)}) < \infty$（对适当 $\alpha$），这是 $L^\infty$ 缺失的补偿。$\blacksquare$
 
 ### 紧嵌入与 Rellich-Kondrachov 定理
 
@@ -85,6 +83,8 @@ $$|u(x) - u(y)| \leq C \|Du\|_{L^p} \, |x - y|^{1 - n/p}$$
 
 其中 $\hookrightarrow\hookrightarrow$ 表示紧嵌入（将单位球中的有界序列映为预紧序列）。
 
+**证明**：仅证情形1（$kp < n$），其余情形类似。设 $\{u_m\} \subset W^{k,p}(\Omega)$ 为有界序列，$\|u_m\|_{W^{k,p}} \leq M$。由 Sobolev 嵌入 $W^{k,p} \hookrightarrow L^{p^*}$ 连续，$\{u_m\}$ 在 $L^{p^*}$ 中有界。对 $q < p^*$，由 Holder 不等式 $\|u_m\|_{L^q} \leq |\Omega|^{1/q-1/p^*}\|u_m\|_{L^{p^*}} \leq C$。关键步骤：利用磨光核 $\eta_\varepsilon$ 构造 $u_m^\varepsilon = \eta_\varepsilon * u_m$（延拓到 $\mathbb{R}^n$ 外为零）。由 Friedrichs 不等式，$\|u_m^\varepsilon - u_m\|_{L^q} \leq C\varepsilon^\alpha$（$\alpha = k - n(1/p-1/q) > 0$），且 $\|u_m^\varepsilon\|_{C^1}$ 被 $\varepsilon^{-k-n/p}M$ 控制。由 Arzela-Ascoli 定理，对固定 $\varepsilon$，$\{u_m^\varepsilon\}_m$ 在 $L^q$ 中预紧。取对角线子列 $\{u_{m_j}\}$ 及 $\varepsilon \to 0$，利用 $\varepsilon$-逼近论证即得 $\{u_{m_j}\}$ 在 $L^q(\Omega)$ 中收敛。$\blacksquare$
+
 ### 迹定理
 
 **定理 251.8**（迹定理）：设 $\Omega \subset \mathbb{R}^n$ 为有界 $C^1$（或 Lipschitz）开集，$1 \leq p < \infty$。存在唯一的有界线性算子
@@ -95,7 +95,7 @@ $$\gamma : W^{1,p}(\Omega) \to L^p(\partial \Omega)$$
 
 $$\|\gamma u\|_{L^p(\partial\Omega)} \leq C \|u\|_{W^{1,p}(\Omega)}$$
 
-**证明要点**：先对半空间 $\mathbb{R}^n_+$ 证明 $\|u(\cdot, 0)\|_{L^p(\mathbb{R}^{n-1})} \leq C \|u\|_{W^{1,p}(\mathbb{R}^n_+)}$（对 $u \in C_c^\infty(\overline{\mathbb{R}^n_+})$ 用基本定理和 Hölder 不等式）。再用局部坐标展平边界推广到一般区域。$\blacksquare$
+**证明**：先对半空间 $\mathbb{R}^n_+ = \{(x', x_n): x' \in \mathbb{R}^{n-1}, x_n > 0\}$ 证明迹估计。对 $u \in C_c^\infty(\overline{\mathbb{R}^n_+})$，由微积分基本定理：$|u(x',0)|^p = -\int_0^\infty \frac{\partial}{\partial x_n}|u(x',x_n)|^p dx_n = -p\int_0^\infty |u|^{p-1}\operatorname{sgn}(u)\frac{\partial u}{\partial x_n}dx_n$。由 Young 不等式，$|u(x',0)|^p \leq C\int_0^\infty (|u|^p + |\partial_n u|^p)dx_n$。对 $x'$ 积分得 $\|u(\cdot,0)\|_{L^p(\mathbb{R}^{n-1})} \leq C\|u\|_{W^{1,p}(\mathbb{R}^n_+)}$。对于一般 $C^1$（或 Lipschitz）区域 $\Omega$，利用局部坐标将边界展平：取有限开覆盖 $\{U_i\}$ 及 $C^1$ 微分同胚 $\Phi_i: U_i \cap \Omega \to \mathbb{R}^n_+$，将 $u$ 拉回为半空间上的函数，应用上述估计后再用单位分解求和。迹算子的唯一性由 $C^\infty(\overline{\Omega})$ 在 $W^{1,p}(\Omega)$ 中的稠密性保证。$\blacksquare$
 
 **定义 251.5**（迹零空间）：$W^{1,p}_0(\Omega)$ 恰为 $\gamma^{-1}(\{0\})$，即
 

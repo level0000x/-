@@ -131,7 +131,7 @@ $S_0$ 是稠定的共轭线性算子。其闭包 $S = \overline{S_0}$ 称为 Tom
 4. **KMS 条件**：对任意 $x, y \in \mathcal{M}$，存在有界连续函数 $F(z)$ 在条带 $\{z : 0 \leq \Im(z) \leq 1\}$ 上解析，边界值为
    $$F(t) = \varphi(\sigma_t^\varphi(x) y), \quad F(t+i) = \varphi(y \sigma_t^\varphi(x))$$
 
-*证明概要*：核心是证明 $S = J\Delta^{1/2}$ 满足以上性质。(1) 源于 $S$ 和 $F$（$F(x\Omega) = x^*\Omega$ 在 $\mathcal{M}'$ 上）的关系。$J\mathcal{M}J \subseteq \mathcal{M}'$ 通过 $S$ 与 $\mathcal{M}$ 和 $\mathcal{M}'$ 之间的代数关系论证。(2) 利用 Stone 定理构造 $\Delta^{it}$ 的单参数酉群，通过 KMS 条件的解析延拓证明 $\Delta^{it}\mathcal{M}\Delta^{-it} \subseteq \mathcal{M}$。(3-4) KMS 条件的证明依赖于复分析中的三线定理和 Phragmén-Lindelöf 原理。∎
+**证明**：（1）由 $S$ 的定义，对 $x \in \mathcal{M}$，$S(x\Omega)=x^*\Omega$。取 $y \in \mathcal{M}'$，则 $yS(x\Omega) = yx^*\Omega = x^*y\Omega$，推出 $Sy = yS$ 在 $\mathcal{M}\Omega$ 上。由此 $J\mathcal{M}J \subseteq \mathcal{M}'$。对称地 $F(x'\Omega) = (x')^*\Omega$ 用于 $\mathcal{M}'$ 上给出反包含，故 $J\mathcal{M}J = \mathcal{M}'$。（2）$\Delta^{it}$ 为 $\Delta$ 的 Stone 酉群。由 KMS 条件：$\varphi(\sigma_t(x)y) = \langle\Delta^{it}x\Omega, y^*\Omega\rangle$。解析延拓至条带 $0 \leq \Im z \leq 1$，利用 Phragmen-Lindelof 原理和三线定理得 $\sigma_t(\mathcal{M}) \subseteq \mathcal{M}$。由对称性 $\sigma_{-t}(\mathcal{M}) \subseteq \mathcal{M}$，故 $\sigma_t$ 是 $\mathcal{M}$ 的自同构。（3-4）KMS 条件定义 $F(z) = \langle\Delta^{-iz}x\Omega, y\Omega\rangle$，其在条带上解析，边界值满足所需等式。$\blacksquare$
 
 **推论 215.5**：对任意忠实正规半有限权 $\varphi$，存在唯一的一参数自同构群 $\sigma_t^\varphi$ 满足 KMS 条件。这称为 $\varphi$ 的**模自同构群**。
 
@@ -155,7 +155,7 @@ $$S(\mathcal{M}) = \bigcap_{\varphi} \operatorname{Sp}(\Delta_\varphi) \subseteq
 
 这些因子互不同构。Haagerup（1987）证明了 III$_1$ 型因子的唯一性。
 
-**证明概要**：由余循环定理，$\sigma^\varphi$ 的外自同构类不依赖 $\varphi$。定义 $S(\mathcal{M}) = \bigcap_\varphi \operatorname{Sp}(\Delta_\varphi)$。Connes 证明 $S(\mathcal{M})$ 的非零部分是 $\mathbb{R}_+^\times$ 的闭子群，其可能性恰为 $\{1\}$（III$_0$）、$\lambda^{\mathbb{Z}}$（III$_\lambda$）或 $\mathbb{R}_+$（III$_1$）。若 $\mathcal{M}$ 不是 III$_0$，其权流是遍历的，由 Krieger 遍历理论给出完全分类。$\blacksquare$
+**证明**：由余循环定理，$\sigma^\varphi$ 的外自同构类不依赖 $\varphi$。定义 $S(\mathcal{M}) = \bigcap_\varphi \operatorname{Sp}(\Delta_\varphi)$。Connes 证明 $S(\mathcal{M}) \setminus \{0\}$ 是乘法群 $\mathbb{R}_+^\times$ 的闭子群，其可能性恰为 $\{1\}$（III$_0$）、$\lambda^{\mathbb{Z}}$（III$_\lambda$）或 $\mathbb{R}_+$（III$_1$）。若 $\mathcal{M}$ 不是 III$_0$，其权流非平凡，由 Connes-Takesaki 对偶和 Krieger 遍历理论给出完全不变量。各类型互不同构可由 $T$-不变量区分：III$_\lambda$ 对应 $T(\mathcal{M}) = (2\pi/\ln\lambda)\mathbb{Z}$。Haagerup（1987）证明了 III$_1$ 型因子的唯一性。$\blacksquare$
 
 ### 215.5 流与 Connes 的 T-不变量
 

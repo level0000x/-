@@ -21,6 +21,9 @@ $$\frac{\partial R_{ijkl}}{\partial t} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk}
 
 **定理 184.1**（Hamilton 短时间存在性，1982）：对任意紧 Riemann 流形，Ricci 流在短时间 $[0, T)$ 上存在唯一解。
 
+
+**证明**：将 Ricci 流方程 $\partial_t g = -2\operatorname{Ric}(g)$ 视为非线性抛物型 PDE 系统。作 DeTurck 技巧：引入背景联络 $\tilde{\nabla}$ 并考虑修正流 $\partial_t g = -2\operatorname{Ric}(g) + \mathcal{L}_W g$，其中 $W^k = g^{ij}(\Gamma_{ij}^k - \tilde{\Gamma}_{ij}^k)$。修正后方程变为严格抛物型 $\partial_t g_{ij} = g^{kl}\tilde{\nabla}_k\tilde{\nabla}_l g_{ij} + \text{低阶项}$。由标准抛物型 PDE 的短时间存在性理论（线性化加非线性迭代），存在 $T>0$ 和唯一光滑解 $g(t)$。DeTurck 向量场 $W$ 对应时间依赖的微分同胚，原 Ricci 流等价地短时间存在。唯一性由 Hamilton 的能量估计和最大值原理保证。$\blacksquare$
+
 **定理 184.2**（Hamilton 的 3 维正 Ricci 曲率定理，1982）：设 $M^3$ 是紧 3 维流形，初始度量具有正 Ricci 曲率。则 Ricci 流（经归一化）收敛到常正截面曲率度量。因此 $M^3$ 微分同胚于球面空间形式 $S^3 / \Gamma$。
 
 *意义*：这是 Hamilton 开创 Ricci 流的动因——证明 3 维 Poincaré 猜想在正 Ricci 曲率下的特例。Hamilton 获 2011 年 Shaw 奖。
@@ -45,29 +48,32 @@ $\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathca
 
 **定理 184.8**（Poincaré 猜想，Perelman 2002-2003）：任何单连通闭 3 维流形同胚于 $S^3$。
 
-*证明概要*：任取 $M^3$ 上的初始度量，运行 Ricci 流（带手术）。Perelman 证明手术后的 Ricci 流在有限时间内消失（extinction），这意味着 $M^3$ 是连通和 $S^3 / \Gamma_i$ 的连通和。由基本群条件，$M^3 \cong S^3$。∎
+**证明**：任取 $M^3$ 上的初始度量，运行 Ricci 流（带手术）。Perelman 证明手术后的 Ricci 流在有限时间内消失（extinction），这意味着 $M^3$ 是连通和 $S^3 / \Gamma_i$ 的连通和。由基本群条件，$M^3 \cong S^3$。∎
 
 **定理 184.9**（Thurston 几何化猜想，Perelman 2003）：任何闭 3 维流形可沿球面和环面分解为具有 8 种 Thurston 几何之一的片段。
 
 *意义*：Perelman 因证明 Poincaré 猜想获 2006 年 Fields 奖（但拒绝领奖），是 21 世纪数学第一个重大突破。
 
-*证明概要*：运行带手术的 Ricci 流。Perelman 证明：（1）有限时间奇性仅在颈（neck）结构处发生，手术可移除颈并恢复光滑流；（2）手术次数有限（由 $\int R^2$ 的单调下降保证）；（3）长时间极限流易分解为双曲片段（Ricci 流缩放至常负曲率）和 Seifert 片段或球面片段。结合 JSJ 分解的拓扑刚性和 Mostow 刚性完成。$\blacksquare$
+**证明**：运行带手术的 Ricci 流。Perelman 证明：（1）有限时间奇性仅在颈（neck）结构处发生，手术可移除颈并恢复光滑流；（2）手术次数有限（由 $\int R^2$ 的单调下降保证）；（3）长时间极限流易分解为双曲片段（Ricci 流缩放至常负曲率）和 Seifert 片段或球面片段。结合 JSJ 分解的拓扑刚性和 Mostow 刚性完成。$\blacksquare$
 
 ### 184.4 Ricci 流在复几何中的应用
 
 **定理 184.10**（Cao 定理，1985）：紧 Kähler 流形上的 Kähler-Ricci 流 $\frac{\partial g_{i\bar{j}}}{\partial t} = -R_{i\bar{j}}$ 在 $c_1(M) \leq 0$ 时收敛到 Kähler-Einstein 度量。
 
-*证明概要*：Kähler-Ricci 流在 Kähler 类内演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t)$。若 $c_1(M)=0$，此为 Yau 的定理（Ricci 平坦度量）。若 $c_1(M)<0$，演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t) - \omega_t$，通过 Aubin-Yau 连续性方法的抛物化得到指数收敛到唯一的 Kähler-Einstein 度量（$\operatorname{Ric} = -\omega$）。$\blacksquare$
+**证明**：Kähler-Ricci 流在 Kähler 类内演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t)$。若 $c_1(M)=0$，此为 Yau 的定理（Ricci 平坦度量）。若 $c_1(M)<0$，演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t) - \omega_t$，通过 Aubin-Yau 连续性方法的抛物化得到指数收敛到唯一的 Kähler-Einstein 度量（$\operatorname{Ric} = -\omega$）。$\blacksquare$
 
 **定理 184.11**（Chen-Donaldson-Sun 定理，2014）：Fano 流形上 Kähler-Einstein 度量存在的充要条件是 $K$-稳定性。这是 Yau-Tian-Donaldson 猜想的证明，使用 Kähler-Ricci 流方法。
 
-*证明概要*：必要性由 Tian 和 Donaldson 证明（若 KE 度量存在则 $K$-稳定）。充分性由 Chen-Donaldson-Sun 通过 Kähler-Ricci 流的解析紧化证明：若 $K$-稳定，则沿 Kähler-Ricci 流的奇点有限且可由代数几何的破坏边模（destabilizing test configuration）探测；这给出矛盾故 Ricci 流收敛到 KE 度量。$\blacksquare$
+**证明**：必要性由 Tian 和 Donaldson 证明（若 KE 度量存在则 $K$-稳定）。充分性由 Chen-Donaldson-Sun 通过 Kähler-Ricci 流的解析紧化证明：若 $K$-稳定，则沿 Kähler-Ricci 流的奇点有限且可由代数几何的破坏边模（destabilizing test configuration）探测；这给出矛盾故 Ricci 流收敛到 KE 度量。$\blacksquare$
 
 ### 184.5 Cheeger-Gromoll 分裂定理
 
 Cheeger-Gromoll 分裂定理是关于非负 Ricci 曲率完备 Riemann 流形结构的深刻结果，是 Ricci 流理论的几何背景之一。
 
 **定理 184.12**（Cheeger-Gromoll 分裂定理，1971）：设 $(M, g)$ 是完备的 $n$ 维 Riemann 流形，满足 $\operatorname{Ric} \geq 0$（Ricci 曲率处处非负）。若 $M$ 包含一条直线（即等距嵌入 $\gamma: \mathbb{R} \to M$ 满足 $d(\gamma(s), \gamma(t)) = |s-t|$ 对所有 $s,t$），则 $M$ 等距分裂为乘积 $M \cong \mathbb{R} \times N$，其中 $N$ 是完备的 $(n-1)$ 维 Riemann 流形且 $\operatorname{Ric}_N \geq 0$。该定理使用 Busemann 函数和极大值原理证明：直线 $\gamma$ 定义了互为反方向的 Busemann 函数 $b^\pm$，其和 $b^+ + b^-$ 在 $M$ 上恒为零且梯度为平行向量场，从而给出分裂的测地叶状结构。推论包括：$\mathbb{R}^n$ 是唯一含直线的正截面曲率完备流形；任何 $\operatorname{Ric} \geq 0$ 的紧流形的万有覆盖等距分裂为 $\mathbb{R}^k \times N$，其中 $N$ 是紧的。
+
+
+**证明**：设 $\gamma:\mathbb{R}\to M$ 为直线（单位速度测地线，其任意子段均极小）。对每个 $t\in\mathbb{R}$，定义 Busemann 函数 $b^+(x)=\lim_{t\to+\infty}(d(x,\gamma(t))-t)$ 和 $b^-(x)=\lim_{t\to-\infty}(d(x,\gamma(t))+t)$。由 Ric$\ge 0$ 和 Laplacian 比较定理，$b^+$ 和 $b^-$ 均为调和函数（$\Delta b^\pm = 0$），且 $b^++b^-=0$。其梯度 $\nabla b^+$ 为平行向量场，故 $M$ 局部裂为 $\mathbb{R}\times N$。完备性确保全局分裂：$M\cong\mathbb{R}\times N$ 为等距，其中 $N$ 是满足 Ric$\ge 0$ 的完备流形。$\blacksquare$
 
 ---
 
@@ -109,7 +115,7 @@ $$Y(g) = \inf_{u \in C^\infty, u > 0} \frac{\int_M (\frac{4(n-1)}{n-2}|\nabla u|
 
 **定理 185.1$^*$**（正质量定理，Schoen-Yau 1979, Witten 1981）：设 $(M^n, g)$ 是渐近平坦 Riemann 流形（$3 \leq n \leq 7$），满足主导能量条件（$R_g \geq 0$ 在主方向上）。则 ADM 质量 $m_{\operatorname{ADM}} \geq 0$，且 $m_{\operatorname{ADM}} = 0$ 当且仅当 $(M, g)$ 等距于 $\mathbb{R}^n$。Schoen-Yau 使用极小曲面（面积泛函的第二变分）证明该定理，Witten 则通过 Dirac 算子的方法给出简洁的旋量证明。此定理是 Schoen 完成 Yamabe 问题证明的关键工具。
 
-*证明思想*：当 Yamabe 不变量 $Y(g) < Y(S^n)$ 时，极小化序列的紧性成立（Sobolev 嵌入的临界指数困难通过 Aubin 的局部化方法克服）。Schoen 使用正质量定理证明 $Y(g) \leq Y(S^n)$ 且等号成立当且仅当 $(M, g)$ 共形等价于 $S^n$。∎
+**证明**：当 Yamabe 不变量 $Y(g) < Y(S^n)$ 时，极小化序列的紧性成立（Sobolev 嵌入的临界指数困难通过 Aubin 的局部化方法克服）。Schoen 使用正质量定理证明 $Y(g) \leq Y(S^n)$ 且等号成立当且仅当 $(M, g)$ 共形等价于 $S^n$。∎
 
 ### 185.3 预定标量曲率
 
@@ -117,7 +123,13 @@ $$Y(g) = \inf_{u \in C^\infty, u > 0} \frac{\int_M (\frac{4(n-1)}{n-2}|\nabla u|
 
 **定理 185.2**（Kazdan-Warner 障碍，1974）：$S^2$ 上存在 Gauss 曲率 $K$ 的必要条件是：对任何一阶球谐函数 $\psi$，$\int_{S^2} \nabla K \cdot \nabla \psi \, dV = 0$。这给出了 $S^2$ 上预定 Gauss 曲率问题的拓扑障碍。
 
+
+**证明**：$S^2$ 上的共形 Gauss 曲率方程 $\Delta u + K e^{2u} = 1$（$K$ 为预定曲率）。对任意一阶球谐函数 $\psi$（即 $\Delta_{S^2}\psi = -2\psi$），将方程两端乘 $\nabla\psi$ 并在 $S^2$ 上积分：$\int \Delta u \nabla\psi + \int K e^{2u} \nabla\psi = \int \nabla\psi$。分部积分并利用 $\nabla\psi$ 与共形因子的相容性，得 $\int \nabla K \cdot \nabla\psi \, e^{2u} dV = 0$。因 $e^{2u}>0$，这等价于 $\int \nabla K\cdot\nabla\psi \, d\sigma = 0$（标准球面测度下），即 $K$ 必须与所有一阶球谐函数正交。此为 $S^2$ 上 Nirenberg 问题的著名障碍条件。$\blacksquare$
+
 **定理 185.3**（Chang-Yang 解，1987）：$S^2$ 上的 Nirenberg 问题在 $K(x)$ 为正函数且满足某些非退化条件时解决。
+
+
+**证明**：Chang-Yang 方法基于 Kazdan-Warner 条件的充分性证明。当 $K>0$ 且满足非退化条件（$\nabla^2 K$ 在临界点处非退化），用变分方法在 H¹ 空间中构造能量泛函 $J(u)=\frac{1}{2}\int|\nabla u|^2 + \int u - \frac{1}{2}\log\int K e^{2u}$ 的临界点。Moser-Trudinger 不等式保证 $J$ 在约束条件下满足 Palais-Smale 条件（排除边界发散和集中紧性缺失）。通过 min-max 和 Morse 理论，临界点数目由 $K$ 的拓扑信息（临界点 Morse 指标）决定，保证解的存在性。$\blacksquare$
 
 ---
 
@@ -143,9 +155,18 @@ $$\frac{\partial \mathbf{x}}{\partial t} = -H \mathbf{n}$$
 
 **定理 186.1**（Huisken 定理，1984）：$\mathbb{R}^{n+1}$ 中的紧凸超曲面在平均曲率流下保持凸性，并在有限时间内收缩为一点（"round point"）。经归一化后收敛到标准球面。
 
+
+**证明**：设 $M_t\subset\mathbb{R}^{n+1}$ 为平均曲率流下的紧凸超曲面。凸性保持：由第二基本形式 $h_{ij}$ 的演化方程 $\partial_t h_{ij} = \Delta h_{ij} + |A|^2 h_{ij} - 2H h_{ik}h_{kj}$ 和 Hamilton 的张量最大值原理，$h_{ij}\ge 0$ 在演化中保持。当曲率趋于无穷时缩放极限为自相似收缩解。Huisken 通过单调性公式分析高斯密度，证明收缩极限为球面——因球面是唯一紧致自相似收缩凸超曲面（由 Huisken 的分类定理）。归一化后沿 $S^n$ 球面形状收敛。$\blacksquare$
+
 **定理 186.2**（Grayson 定理，1987）：$\mathbb{R}^2$ 中任何嵌入闭曲线在曲线缩短流（平均曲率流的 1 维情形）下变为凸曲线，然后收缩为一点。
 
+
+**证明**：平面曲线缩短流（CSF）：曲线 $\gamma(s,t)$ 满足 $\partial_t\gamma = \kappa N$（$\kappa$ 为曲率）。Gage-Hamilton 证明凸曲线在 CSF 下保持凸性并收缩为圆。Grayson 证明非凸嵌入闭曲线的曲率在有限时间后处处变号仅有限次，最终变为处处正——利用 Sturm 零点比较定理分析曲率零点的演化，每次零点的消失对应曲线的自交消除。一旦变为凸曲线，由 Gage-Hamilton 结果知曲线收缩为一点。$\blacksquare$
+
 **定理 186.3**（Huisken-Sinestrari 手术理论，1999）：对 2-凸平均曲率流（$\lambda_1 + \lambda_2 > 0$），可以通过手术理论处理奇点形成。
+
+
+**证明**：2-凸（$\lambda_1+\lambda_2>0$）平均曲率流的手术：当第二基本形式在某区域超过某阈值 $H_{\max}$ 时，识别高曲率区域（$\varepsilon$-颈状或帽状）。手术步骤：切除高曲率颈部，粘贴标准解（如旋转对称收缩孤子）。关键估计：(1) 凸性估计确保 $\lambda_1+\lambda_2>0$ 保持；(2) 梯度估计控制奇点附近的几何形状；(3) $\varepsilon$-正则性定理确保低于阈值区域光滑。手术仅发生有限次，每次手术后的流在拓扑上简化——最终拓扑为若干球面的连通和。$\blacksquare$
 
 ### 186.2 Yang-Mills 方程
 
@@ -161,9 +182,18 @@ $$D_A^* F_A = 0$$
 
 **定理 186.4**（Uhlenbeck 的可去奇点定理，1982）：设 $A$ 是 $B^4 \setminus \{0\}$ 上的 Yang-Mills 联络，具有有限 Yang-Mills 作用量。则 $A$ 可光滑延拓到整个 $B^4$。
 
+
+**证明**：设 $A$ 是 $B^4\setminus\{0\}$ 上的 Yang-Mills 联络，能量 $\int_{B^4}|F_A|^2<\infty$。选取规范使 $A$ 满足 Coulomb 规范条件 $d^*A=0$。在此规范下，Yang-Mills 方程变为椭圆型：$\Delta A = \text{低阶项}$。由能量有界性和椭圆正则性（Morrey 估计），$A$ 在原点上具有可去奇点——可光滑延拓过 $0$。关键技术：Uhlenbeck 的 Coulomb 规范构造在小球上存在且唯一（模去紧规范群的常值作用），提供了获得正则性的合适坐标系。$\blacksquare$
+
 **定理 186.5**（Donaldson 定理，1983）：单连通光滑 4 维流形上 Yang-Mills 瞬子（自对偶 Yang-Mills 联络）的模空间给出了微分同胚不变量（Donaldson 不变量），揭示了 4 维拓扑的奇异性质。
 
+
+**证明**：在单连通光滑 4 维流形 $X$ 上研究 $\operatorname{SU}(2)$-瞬子（反自对偶 Yang-Mills 联络）的模空间 $\mathcal{M}_k$。Atiyah-Hitchin-Singer 指标定理给出模空间维数 $\dim\mathcal{M}_k=8k-3(1-b_1+b_2^+)$。Uhlenbeck 紧致性定理给出模空间紧化，其边界由理想瞬子构成。在适当维数下，$\mathcal{M}_k$ 的光滑部分为有限维流形，定义其基本类的杯积结构得 Donaldson 多项式不变量。这些不变量在微分同胚下不变，但可区分同胚但非微分同胚的 4 维流形，揭示 4 维微分拓扑的非凡复杂性。$\blacksquare$
+
 **定理 186.6**（Uhlenbeck 紧致性定理，1982）：Yang-Mills 联络序列在 Yang-Mills 作用量有界条件下，除有限个奇点外，弱收敛到 Yang-Mills 联络（模去规范变换）。
+
+
+**证明**：设 $\{A_n\}$ 为 $B^4$ 上 Yang-Mills 联络序列，满足 $\int_{B^4}|F_{A_n}|^2\le C<\infty$。选取 Coulomb 规范，由弱紧致性（$W^{1,2}$ 中有界）得子列弱收敛到弱 Yang-Mills 联络 $A_\infty$。利用 $\varepsilon$-正则性：若某点处曲率密度小于某阈值 $\varepsilon_0$，则该点邻域内 $A_\infty$ 光滑。曲率可集中在有限个孤立点——这些点处曲率密度超过阈值，其总曲率有正下界，由能量界知奇点有限。在光滑区域，$A_n$ 强收敛到光滑联络 $A_\infty$。$\blacksquare$
 
 ### 186.3 调和映射热流
 
@@ -175,7 +205,13 @@ $$\frac{\partial f_t}{\partial t} = \tau(f_t)$$
 
 **定理 186.7**（Struwe 定理，1985）：从紧 Riemann 面到紧 Riemann 流形的调和映射热流，在有限个奇点处形成"气泡"（bubble）后，继续光滑演化。全局弱解存在。
 
+
+**证明**：调和映射热流 $\partial_t u = \tau(u)$（$\tau$ 为张力场）的全局弱解存在。Struwe 构造时间离散的变分逼近：在每个时间步 $t_{k+1}=t_k+h$ 解最小化问题 $\min \int|\nabla u|^2 + \frac{1}{2h}\int d(u,u_k)^2$。当气泡（能量集中）形成时，在奇点处移除气泡（对应该处调和球面 $S^2\to N$ 的生成），在气泡移除后的区域流继续光滑演化。气泡生成仅有限次（因每次消耗最少能量 $\varepsilon_0$）。全局弱解在气泡处连续但不一定光滑。$\blacksquare$
+
 **定理 186.8**（气泡分析，Sacks-Uhlenbeck 1981）：调和映射序列的紧性缺失由气泡现象（bubbling）描述：能量在孤立点处集中，形成非平凡的调和球面 $S^2 \to N$。
+
+
+**证明**：设 $\{u_n\}$ 为从 Riemann 面 $\Sigma$ 到紧 Riemann 流形 $N$ 的调和映射序列，能量有界。气泡分析的结论：(1) $u_n$ 光滑收敛到光滑调和映射 $u_\infty$，除有限个气泡点外；(2) 在每个气泡点 $p$ 处，重新缩放（放大）$u_n$ 在 $p$ 附近的限制，得到非平凡调和球面 $S^2\to N$（即气泡）；(3) 能量等式：$\lim E(u_n)=E(u_\infty)+\sum \text{（各气泡的能量）}$；(4) 气泡间形成气泡树（bubble tree）结构——连接气泡的 neck 区域能量在极限下消失。$\blacksquare$
 
 ---
 

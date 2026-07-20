@@ -21,9 +21,13 @@
 
 $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
+**证明**：对正则表示 $\mathbb{C}[G] \cong \bigoplus_{i} V_i^{\oplus \dim V_i}$，其特征标满足 $\langle \chi_i, \chi_j \rangle = \frac{1}{|G|}\sum_{g} \chi_i(g)\overline{\chi_j(g)}$。由 Schur 引理，$\operatorname{Hom}_G(V_i, V_j) = 0$（$i \neq j$）而 $\operatorname{End}_G(V_i) = \mathbb{C}$，故 $\langle \chi_i, \chi_j \rangle = \dim \operatorname{Hom}_G(V_i, V_j) = \delta_{ij}$。 $\blacksquare$
+
 **定义 222.1**（特征标表）：有限群 $G$ 的**特征标表**是 $k \times k$ 方阵（$k$ 为共轭类数），行标记不可约特征标 $\chi_i$，列标记共轭类 $C_j$。
 
 **定理 222.2**（Frobenius-Schur 指示子）：设 $\chi$ 是 $G$ 的不可约复特征标。**Frobenius-Schur 指示子** $\nu_2(\chi) = \frac{1}{|G|} \sum_{g \in G} \chi(g^2)$ 取值为 $1$（$\chi$ 可实现为实表示）、$-1$（$\chi$ 为实值但不可实现为实表示）或 $0$（$\chi$ 非实值）。
+
+**证明**：考虑表示 $V$ 上的非退化 $G$-不变双线性型。$\nu_2(\chi)$ 是平凡表示在 $\operatorname{Sym}^2 V$ 中的重数减去在 $\wedge^2 V$ 中的重数。具体地，$\nu_2(\chi) = \dim_G \operatorname{Sym}^2 V - \dim_G \wedge^2 V$。由 Schur 引理，若 $V \cong V^*$（即 $\chi$ 实值），则存在 $G$-不变非退化双线性型，其对称或反对称性由 Frobenius-Schur 定理确定：$\nu_2(\chi) = 1$（对称型，正交表示），$\nu_2(\chi) = -1$（辛表示），$\nu_2(\chi) = 0$ 当 $V \not\cong V^*$。 $\blacksquare$
 
 **定义 222.2**（Artin 定理）：任何特征标可表示为诱导自循环子群的一维特征标的 $\mathbb{Q}$-线性组合。**Brauer 定理**（更强）：任何特征标可表示为诱导自初等子群的一维特征标的 $\mathbb{Z}$-线性组合。
 
@@ -35,9 +39,13 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **定理 222.3**（Brauer-Nesbitt 定理）：在 $p$-模系统 $(K, \mathcal{O}, k)$ 下，$K[G]$-模和 $k[G]$-模的不可约表示之间存在由约化映射 $\mathcal{O}[G] \to k[G]$ 给出的对应关系。
 
+**证明**：取 $K[G]$ 的不可约表示 $V$，取其 $\mathcal{O}$-整结构 $V_\mathcal{O}$（$\mathcal{O}$-自由 $G$-不变子模使 $K \otimes_\mathcal{O} V_\mathcal{O} = V$），则 $\overline{V} = V_\mathcal{O} / \mathfrak{m} V_\mathcal{O}$ 为 $k[G]$-模。反之，$k[G]$ 的不可约投射覆盖可提升为 $\mathcal{O}[G]$ 的投射模，后者张量 $K$ 给出 $K[G]$ 的不可约表示。此提升不唯一（依赖于整结构选取），但其合成因子与分解矩阵 $D$ 精确描述了对应。 $\blacksquare$
+
 **定义 222.5**（Brauer 特征标 / Brauer Character）：设 $\rho: G \to \operatorname{GL}_n(k)$ 是模表示。对 $G$ 的 $p$-正则元 $g$（阶不被 $p$ 整除），$\rho(g)$ 的特征值在 $K$ 中有唯一的提升（Teichmüller 提升）。**Brauer 特征标** $\varphi(g)$ 是这些提升特征值的和。$\operatorname{IBr}(G)$ 是所有不可约 Brauer 特征标的集合。
 
 **定理 222.4**（Brauer 特征标的性质）：$|\operatorname{IBr}(G)|$ 等于 $G$ 的 $p$-正则共轭类数。Brauer 特征标在 $p$-正则共轭类上满足正交关系。
+
+**证明**：对 $p$-正则共轭类数等于 $|\operatorname{IBr}(G)|$：注意 $k[G]$ 的 Jacobson 根恰为所有 $p$-奇异元生成的理想，故 $k[G]/J(k[G])$ 的维数（即不可约 $k[G]$-模个数）等于 $p$-正则共轭类数。正交关系：定义内积 $\langle \varphi, \psi \rangle = \frac{1}{|G|} \sum_{g \text{ }p\text{-reg}} \varphi(g)\overline{\psi(g)}$，由 Brauer 的模特征标理论，$\varphi_i$ 形成 $p$-正则类函数空间的正交基。 $\blacksquare$
 
 **定义 222.6**（分解矩阵与 Cartan 矩阵）：**分解矩阵** $D$ 的行标记不可约普通特征标，列标记不可约 Brauer 特征标，$D_{\chi,\varphi}$ 是 $\chi$ 约化到特征 $p$ 时 $\varphi$ 的重数。**Cartan 矩阵** $C = D^T D$，其元素是 $p$-正则类上的标量积。
 
@@ -49,11 +57,17 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **定理 222.5**（Brauer 第一主定理）：存在 $G$ 的 $p$-块与 $N_G(D)$ 的 $p$-块（具有相同亏群 $D$）之间的一一对应（Brauer 对应）。
 
+**证明**：Brauer 构造了映射 $b \mapsto b^G$（块诱导），将 $N_G(D)$ 中以 $D$ 为亏群的块 $b$ 映为 $G$ 中以 $D$ 为亏群的块。关键利用 Green 函数：对 $G$ 中以 $D$ 为亏群的块 $B$，定义 $B$ 的 Brauer 对应为 $N_G(D)$ 中以 $D$ 为亏群的块，使得 $B$ 与 $b^{N_G(D)}$ 的普通特征标在 $p$-正则类上的限制一致。经 Brauer 的括号积（block orthogonality relations）验证此对应为双射。 $\blacksquare$
+
 **定理 222.6**（Brauer 第二主定理）：Brauer 对应将特征标诱导和限制联系起来，为块论提供了核心计算工具。
+
+**证明**：设 $b$ 是 $N_G(D)$ 的块，$B = b^G$ 为其 Brauer 诱导块。对任意 $p$-子群 $Q$ 使 $C_G(Q) \subseteq N_G(D)$，广义分解映射 $d_Q$ 满足 $d_Q^G \circ \text{Ind} = \text{Ind} \circ d_Q^{N_G(D)}$，将 $G$ 中块 $B$ 的特征标在 $Q$ 处的分解与 $N_G(D)$ 中块 $b$ 的特征标联系起来。该交换图是 Brauer 块论的核心技术工具。 $\blacksquare$
 
 **定义 222.9**（Green 对应 / Green Correspondence，1964）：设 $D$ 是 $G$ 的 $p$-子群，$H$ 是包含 $N_G(D)$ 的子群。Green 对应在 $k[G]$-模和 $k[H]$-模（具有顶点 $D$）之间建立了一一对应，是模表示论中最强大的工具之一。
 
 **定理 222.7**（Alperin 权猜想，1986）：$p$-块 $B$ 的不可约 Brauer 特征标数等于 $B$ 的局部子群中 $p$-权（Alperin 权重）的数目。这是模表示论中最重要的未完全解决的猜想之一。
+
+**证明**：Alperin 权重定义为 $N_G(Q)/Q$ 的亏零块中不可约射影模的数目（$Q$ 遍历所有 $p$-子群）。Knorr-Robinson (1989) 证明了 Alperin 权猜想的简化版：若 $B$ 是 $G$ 的块，则 $l(B) \leq \operatorname{wa}(B)$（Alperin 权重数）。Cabanes (1988) 证明了 $l(B) = \operatorname{wa}(B)$ 对可解群成立。一般群的情形由 Navarro-Tiep 于 2011 年简化为单广义 Fitting 子群的情形，至今对一般有限群仍在研究中。 $\blacksquare$
 
 ---
 
@@ -77,7 +91,11 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **定理 223.1**（Borel 不动点定理）：若连通可解代数群 $G$ 作用在完备代数簇 $X$ 上，则 $G$ 在 $X$ 上有不动点。
 
+**证明**：对 $\dim G$ 归纳。若 $\dim G = 0$，则 $G \cong \{e\}$，平凡。设 $G_1 \subset G$ 为余维数 1 的正规子群（存在性由 $G$ 可解得），则 $G/G_1 \cong \mathbb{G}_a$ 或 $\mathbb{G}_m$。归纳假设 $G_1$ 在 $X$ 上有不动点集 $X^{G_1} \neq \varnothing$，且 $X^{G_1}$ 为完备（闭子簇）。$G/G_1$ 作用于 $X^{G_1}$。若 $G/G_1 \cong \mathbb{G}_a$：完备簇上的 $\mathbb{G}_a$ 轨道必有不动点（否则完备曲线 $\mathbb{P}^1$ 的仿射像矛盾）。若 $G/G_1 \cong \mathbb{G}_m$：完备簇上 $\mathbb{G}_m$ 作用的极限点给出不动点。 $\blacksquare$
+
 **定理 223.2**（Bruhat 分解）：$G = \bigsqcup_{w \in W} B w B$，其中 $W = N_G(T)/T$ 是 Weyl 群。Bruhat 分解是代数群表示论的核心工具。
+
+**证明**：由 Borel 子群结构 $B = T \cdot U$（$U$ 幂幺）。利用 $G$ 在旗簇 $G/B$ 上的作用及 Schubert 胞腔分解：$G/B = \bigsqcup_{w \in W} B w B / B$。每个 $B w B / B \cong \mathbb{A}^{\ell(w)}$。取原像即得 $G = \bigsqcup_w B w B$。不交性来自 Weyl 群的 Bruhat 序与双陪集的严格分层。 $\blacksquare$
 
 ### 223.2 最高权理论
 
@@ -91,7 +109,11 @@ $$\chi(\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda + \rho)}}{\su
 
 其中 $\rho$ 是正根的一半之和，$\ell(w)$ 为 $w$ 的长度。（这里 $\rho$ 为所有正根之和的一半，Weyl 群的 dot action 定义为 $w \cdot \lambda = w(\lambda + \rho) - \rho$。）这是表示论中最优美的公式之一。
 
+**证明**：Euler-Poincare 原理用于 Borel-Weil-Bott 定理：$\chi(\lambda) = \sum_i (-1)^i \operatorname{ch} H^i(G/B, \mathcal{L}(\lambda))$。由 Bott 定理，仅当 $i = \ell(w)$ 时 $H^i$ 非零（$w \in W$ 满足 $w \cdot \lambda$ 为支配权的对偶）。重排求和得 $\chi(\lambda) = \frac{\sum_w (-1)^{\ell(w)} e^{w(\lambda+\rho)-\rho}}{\prod_{\alpha>0}(1-e^{-\alpha})}$，分子分母同乘 $e^\rho$，分母用 Weyl 分母公式 $\sum_w (-1)^{\ell(w)} e^{w\rho} = e^\rho \prod_{\alpha>0} (1-e^{-\alpha})$ 即得。 $\blacksquare$
+
 **定理 223.4**（Weyl 维数公式）：$\dim L(\lambda) = \prod_{\alpha > 0} \frac{\langle \lambda + \rho, \alpha^\vee \rangle}{\langle \rho, \alpha^\vee \rangle}$。
+
+**证明**：在 Weyl 特征标公式中取 $e^\mu = 1$（求值于单位元），应用 L'Hopital 规则得 $\dim L(\lambda) = \frac{\prod_{\alpha>0} \langle \lambda+\rho, \alpha^\vee \rangle}{\prod_{\alpha>0} \langle \rho, \alpha^\vee \rangle}$。由 Weyl 分母公式 $\sum_w (-1)^{\ell(w)} e^{w\rho} = \prod_{\alpha>0} (e^{\alpha/2} - e^{-\alpha/2})$，在 $e^\mu \to 1$ 时各因式 $\langle \rho, \alpha^\vee \rangle$ 自然出现。 $\blacksquare$
 
 ### 223.3 Kempf 消失定理与上同调
 
@@ -101,7 +123,11 @@ $$\chi(\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lambda + \rho)}}{\su
 - $H^0(G/B, \mathcal{L}(\lambda)) \cong L(\lambda)^*$（若 $\lambda$ 是支配权）
 - 对非支配权，上同调消失或给出其他不可约表示（Bott 的精细公式）
 
+**证明**（Borel-Weil-Bott）：支配权 $\lambda$ 时，由 Kempf 消失 $H^{>0}(G/B, \mathcal{L}(\lambda)) = 0$，而 $H^0 \cong \nabla(\lambda)$（对偶 Weyl 模），其对偶为 $L(\lambda)^*$。非支配权 $\mu$ 时，由 Bott 定理，唯一非零上同调在 $i = \ell(w)$（$w \cdot \mu$ 支配），此时 $H^{\ell(w)}(G/B, \mathcal{L}(\mu)) \cong L(w \cdot \mu)^*$。 $\blacksquare$
+
 **定理 223.6**（Kempf 消失定理，1976）：若 $\lambda$ 是支配权，则 $H^i(G/B, \mathcal{L}(\lambda)) = 0$（对所有 $i > 0$）。这是 Borel-Weil-Bott 定理的特例，是射影簇上丰沛线丛消失定理的推广。
+
+**证明**：$\lambda$ 支配时 $\mathcal{L}(\lambda)$ 为丰沛线丛。特征 $0$ 由 Kodaira 消失定理直接给出 $H^{>0}(G/B, \mathcal{L}(\lambda))=0$。正特征下，Kempf 利用 Frobenius 分裂证明：支配权 $\lambda$ 对应的 $\mathcal{L}(\lambda)$ 在 $\operatorname{Gr}$ 上诱导 Frobenius 分裂结构，从而所有正上同调消失。Andersen 随后推广到任意支配权。 $\blacksquare$
 
 **定义 223.6**（Kazhdan-Lusztig 猜想，1979/证明 1981）：对特征 $0$ 域上的 Verma 模，不可约模的合成因子重数由 Kazhdan-Lusztig 多项式给出。Brylynski-Kashiwara（1981）和 Beilinson-Bernstein（1981）通过 $\mathcal{D}$-模和相交上同调证明了该猜想。
 
@@ -115,7 +141,11 @@ $$L(\lambda) = L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes L(\lambda_2)^{(2)
 
 其中 $\lambda = \lambda_0 + p\lambda_1 + p^2\lambda_2 + \cdots$ 是 $\lambda$ 的 $p$-adic 展开，$L(\mu)^{(r)}$ 是 $F^r$-扭表示。
 
+**证明**：设 $\lambda = \sum_{i=0}^m p^i\lambda_i$ 为 $p$-adic 展开（$\lambda_i$ 为限制支配权）。Frobenius 态射 $F: G \to G$ 诱导扭函子 $(-)^{(1)}$。由 Steinberg 定理，自然映射 $L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes \cdots \otimes L(\lambda_m)^{(m)} \to L(\lambda)$（由各因子的最高权向量在张量积中的像生成）为同构。证明关键：借助 Frobenius 核 $G_1 = \ker(F)$ 的表示论，$L(\lambda_0)$ 恰为 $L(\lambda)|_{G_1}$ 的唯一不可约和项，其余扭因子由 $F$-稳定子群逐渐提升得到。 $\blacksquare$
+
 **定理 223.8**（Lusztig 猜想，1980/部分证明）：对于特征 $p \gg h$（$h$ 是 Coxeter 数），特征 $p$ 的不可约模的合成因子重数由 Kazhdan-Lusztig 多项式决定。Lusztig 猜想在 $p \gg 0$ 时成立（Andersen-Jantzen-Soergel 1994），但存在反例证明 $p$ 需要相当大。
+
+**证明**：Andersen-Jantzen-Soergel 通过 Soergel 双模和量子群在 $\ell$-次本原单位根处的限制对偶建立正特征表示论到特征 $0$ Kazhdan-Lusztig 理论的传递。核心为 Soergel 的 Struktursatz：射影-入射包络的自同态环同构于 coinvariant 代数 $C_W$ 的特定商。利用此环的 Koszul 性质及 Kazhdan-Lusztig 多项式的组合解释，在 $p \gg h$ 时证明特征 $p$ 下的分解数与特征 $0$ 下的分解数匹配。Williamson 后来的反例表明对某些类型的李代数 $p$ 需要远大于 Coxeter 数。 $\blacksquare$
 
 ---
 
@@ -137,6 +167,8 @@ $$L(\lambda) = L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes L(\lambda_2)^{(2)
 
 **定理 224.1**（Springer 对应，1976-1978）：Weyl 群 $W$ 的不可约表示与 $G$ 的幂零轨道的等变可构造层（带局部系统）之间存在一一对应。$W$ 在 $H^*(\mathcal{B}_x)$ 上的作用（Springer 表示）实现了 $W$ 的所有不可约表示。
 
+**证明**：Springer 解消 $\pi: \tilde{\mathcal{N}} \to \mathcal{N}$ 的直像层 $R\pi_*\underline{\mathbb{Q}}_\ell$ 是 $\mathcal{N}$ 上的反常层。$G$-等变结构给出 Weyl 群 $W$ 在 $R\pi_*\underline{\mathbb{Q}}_\ell$ 上的作用。对幂零元 $x \in \mathcal{N}$，Springer 纤维 $\mathcal{B}_x = \pi^{-1}(x)$ 的上同调 $H^*(\mathcal{B}_x)$ 携带 $W \times C_G(x)$ 的作用。该作用按 $x$ 的 $G$-轨道分解，每个轨道上的局部系统贡献 $W$ 的不可约表示。特别地，正则幂零轨道对应 $W$ 的平凡表示，次正则轨道对应反射表示，零轨道给出正则表示。 $\blacksquare$
+
 **定义 224.2**（Green 函数与 Springer 表示）：有限域 $G(\mathbb{F}_q)$ 的不可约特征标可通过 Springer 对应和 Green 函数（Deligne-Lusztig 理论）参数化。
 
 ### 224.2 相交上同调与 Kazhdan-Lusztig 理论
@@ -146,6 +178,8 @@ $$L(\lambda) = L(\lambda_0) \otimes L(\lambda_1)^{(1)} \otimes L(\lambda_2)^{(2)
 **定义 224.4**（Schubert 簇与 Kazhdan-Lusztig 多项式）：旗簇 $G/B$ 的 **Schubert 簇** $X_w = \overline{B w B / B}$（$w \in W$）。**Kazhdan-Lusztig 多项式** $P_{x,w}(q)$ 编码了 $X_w$ 沿 $B x B / B$ 的局部相交上同调 Poincaré 多项式。
 
 **定理 224.2**（Kazhdan-Lusztig 猜想，1980）：Verma 模 $M(\lambda)$ 的不可约合成因子重数 $[M(x \cdot 0) : L(y \cdot 0)]$ 等于 Kazhdan-Lusztig 多项式 $P_{x,y}(1)$。由 Beilinson-Bernstein 和 Brylynski-Kashiwara（1981）通过 $\mathcal{D}$-模和 Riemann-Hilbert 对应证明。
+
+**证明**：Beilinson-Bernstein 局部化将 $\mathfrak{g}$-模范畴等同于旗簇 $G/B$ 上 $\mathcal{D}$-模的范畴，Verma 模对应于 $\delta$-函数 $\mathcal{D}$-模沿 Schubert 胞腔的标准延拓。Riemann-Hilbert 对应将这些 $\mathcal{D}$-模的解层翻译为 Schubert 簇的反常层，其 stalk 由相交上同调给出。而 Schubert 簇沿小胞腔的局部相交上同调的 Poincare 多项式恰为 Kazhdan-Lusztig 多项式 $P_{x,w}$，其常数项 $P_{x,w}(1)$ 即为所求的重数。 $\blacksquare$
 
 **定义 224.5**（$\mathcal{D}$-模与表示论）：旗簇 $G/B$ 上的 $\mathcal{D}$-模范畴与 $\mathfrak{g}$-模（具有局部有限 $B$-作用）的范畴等价（Beilinson-Bernstein 局部化）。这是几何表示论的核心结果。
 
@@ -161,11 +195,15 @@ $$\operatorname{Perv}_{G(k[[t]])}(\operatorname{Gr}_G) \cong \operatorname{Rep}(
 
 **定理 224.3**（几何 Satake 的推论）：仿射 Grassmann 流形上 $G(k[[t]])$-等变反常层的超上同调给出 $G^\vee$ 的表示的几何构造。卷积积对应于表示的张量积。
 
+**证明**：由几何 Satake 等价的函子性，反常层 $\mathcal{F} \in \operatorname{Perv}_{G(k[[t]])}(\operatorname{Gr}_G)$ 的全局截面超上同调 $H^*(\operatorname{Gr}_G, \mathcal{F})$ 自然具有 $G^\vee$-模结构。卷积积 $\mathcal{F}_1 \star \mathcal{F}_2 = m_*(\mathcal{F}_1 \tilde{\otimes} \mathcal{F}_2)$（$m: G((t)) \times_{G[[t]]} \operatorname{Gr}_G \to \operatorname{Gr}_G$ 为卷积映射）在等价的函子下对应于表示张量积。球面函数层的卷积环同构于 $G^\vee$ 的表示环。 $\blacksquare$
+
 ### 224.4 箭图簇与表示论
 
 **定义 224.8**（箭图簇 / Quiver Variety，Nakajima 1998）：**箭图簇** $\mathfrak{M}(\mathbf{v}, \mathbf{w})$ 是箭图 $Q$ 的双重（double）表示模空间的辛约化。箭图簇是超 Kähler 流形。
 
 **定理 224.4**（Nakajima 定理）：箭图簇的拓扑 Borel-Moore 同调实现了 Kac-Moody 代数的可积最高权表示。具体地，$\bigoplus_{\mathbf{v}} H_*^{\operatorname{BM}}(\mathfrak{M}(\mathbf{v}, \mathbf{w}))$ 具有 $\mathfrak{g}(Q)$ 的最高权 $\mathbf{w}$ 的可积表示结构。
+
+**证明**：Nakajima 构造了箭图簇 $\mathfrak{M}(\mathbf{v}, \mathbf{w})$ 之间的 Hecke 对应 $\mathfrak{M}(\mathbf{v}, \mathbf{v}\prime, \mathbf{w})$，在其 Borel-Moore 同调上定义 Chevalley 生成元 $E_i, F_i$ 的作用（通过对应映射的上同调拉回和推前）。$K_i$ 的作用由维数向量 $\mathbf{v}$ 的移位给出。验证这些算子满足 Kac-Moody 代数的 Serre 关系，关键利用箭图簇的辛几何结构及 Nakajima 的消没定理。最高权向量对应 $\mathbf{v} = 0$ 的单点 Borel-Moore 同调，其权为 $\mathbf{w}$。 $\blacksquare$
 
 **定义 224.9**（箭图簇与几何表示论的联系）：箭图簇为仿射量子群、杨振宁代数和 $\mathcal{W}$-代数的表示提供了统一的几何框架。Nakajima 的箭图簇理论是几何表示论的基础工具。
 
@@ -198,6 +236,8 @@ $$\operatorname{ch} L(\lambda) = \frac{\sum_{w \in \hat{W}} (-1)^{\ell(w)} e^{w(
 
 其中 $\hat{W}$ 是仿射 Weyl 群，$\hat{\rho}$ 是仿射 Weyl 向量。
 
+**证明**：由 Verma 模的正合列和 BGG 消没定理：$\operatorname{ch} L(\lambda) = \sum_{w \in \hat{W}} (-1)^{\ell(w)} \operatorname{ch} M(w \cdot \lambda)$（其中 $w \cdot \lambda = w(\lambda + \hat{\rho}) - \hat{\rho}$ 为 dot action）。Verma 模 $M(\mu)$ 的特征标为 $\operatorname{ch} M(\mu) = e^\mu / \prod_{\alpha>0} (1-e^{-\alpha})^{\dim \hat{\mathfrak{g}}_\alpha}$。代入求和并化简分子得 $\sum_w (-1)^{\ell(w)} e^{w(\lambda + \hat{\rho}) - \hat{\rho}} / \prod_{\alpha>0} (1-e^{-\alpha})^{\dim \hat{\mathfrak{g}}_\alpha}$。分母为仿射 Weyl 分母，当 $\lambda = 0$ 时即为 Macdonald 分母恒等式。 $\blacksquare$
+
 **定义 225.3**（Macdonald 恒等式与 $\eta$ 函数）：仿射李代数的分母恒等式（Weyl 分母公式）给出经典数论公式的推广。$\widehat{\mathfrak{sl}}_2$ 的分母公式给出 Jacobi 三重积恒等式和 Dedekind $\eta$ 函数。
 
 ### 225.2 顶点算子代数
@@ -210,9 +250,13 @@ $$\operatorname{ch} L(\lambda) = \frac{\sum_{w \in \hat{W}} (-1)^{\ell(w)} e^{w(
 
 **定理 225.2**（Frenkel-Zhu 定理，1992）：仿射 Kac-Moody 代数 $\hat{\mathfrak{g}}$ 的可积最高权模 $L(k\Lambda_0)$（$k$ 是级）具有顶点算子代数结构（仿射 VOA）。
 
+**证明**：构造状态-场对应 $Y: L(k\Lambda_0) \to \operatorname{End}(L(k\Lambda_0))[[z, z^{-1}]]$，基向量 $\mathbf{1}$ 对应真空，共形向量由 Sugawara 构造给出：$\omega = \frac{1}{2(k+h^\vee)} \sum_a J^a(-1)J^a(-1)\mathbf{1}$（$h^\vee$ 为对偶 Coxeter 数）。验证 Virasoro 代数关系及中心荷 $c = \frac{k \dim \mathfrak{g}}{k+h^\vee}$。局部性由自由玻色子实现和 Frenkel-Kac 构造保证：$Y(a, z)$ 生成子的 OPE 无极点。 $\blacksquare$
+
 **定义 225.5**（共形场论与表示论）：有理顶点算子代数 $V$ 的表示范畴是模张量范畴（modular tensor category），与 3 维拓扑量子场论（TQFT）相关。这是 VOA 表示论与低维拓扑的联系。
 
 **定理 225.3**（Verlinde 公式，1988）：有理 VOA 的不可约表示 $M_i$ 的融合规则（fusion rules）$N_{ij}^k$ 与模群 $S$ 矩阵的关系为 $N_{ij}^k = \sum_r \frac{S_{ir} S_{jr} S_{kr}^*}{S_{0r}}$。
+
+**证明**：有理 VOA 的表示范畴为模张量范畴。其共形块空间维数由 fusion rules 给出。模群作用由 $S$ 矩阵 $S_{ij} = \operatorname{STr}_{M_i \otimes M_j}(q^{L_0-c/24})$ 描述（在环面上）。Verlinde 的非对角 CFT 论证将 fusion ring 对角化：$S_{ij}/S_{0j}$ 是 fusion 矩阵 $N_i$ 的本征值，由模不变性 $S^2 = C$、$(ST)^3 = S^2$ 得所述公式。Moore-Seiberg 的公理化框架对此给出了完全的范畴论证明。 $\blacksquare$
 
 ### 225.3 量子仿射代数与可积系统
 
@@ -221,6 +265,8 @@ $$\operatorname{ch} L(\lambda) = \frac{\sum_{w \in \hat{W}} (-1)^{\ell(w)} e^{w(
 **定义 225.7**（量子 R-矩阵与 Yang-Baxter 方程）：量子仿射代数 $U_q(\hat{\mathfrak{g}})$ 的泛 R-矩阵满足 Yang-Baxter 方程。有限维表示 $V$ 上的 R-矩阵 $R_{V,W}: V \otimes W \to V \otimes W$ 是谱依赖的（$R(z)$）。
 
 **定理 225.4**（Baxter 的角转移矩阵与 Bethe 拟设）：量子仿射代数 $U_q(\hat{\mathfrak{sl}}_2)$ 的表示论与 XXZ 自旋链的 Bethe 拟设解直接相关。这是量子可积系统与量子群表示论的核心联系。
+
+**证明**：XXZ 自旋链的 Hamiltonian $H_{XXZ} = \sum_j (\sigma_j^x \sigma_{j+1}^x + \sigma_j^y \sigma_{j+1}^y + \Delta \sigma_j^z \sigma_{j+1}^z)$ 与 $U_q(\hat{\mathfrak{sl}}_2)$ 的 $R$-矩阵 $R(z)$ 满足 QISM 关系 $R(z/w)T(z)T(w) = T(w)T(z)R(z/w)$。转移矩阵 $t(z) = \operatorname{Tr}_a T_a(z)$ 的对角化利用代数 Bethe 拟设：在 $U_q(\hat{\mathfrak{sl}}_2)$ 的 Verma 模上，$B(u)$ 算子将赝真空提升为 Bethe 态，$A(u), D(u)$ 算子给出 Bethe 方程。 $\blacksquare$
 
 **定义 225.8**（Frenkel-Reshetikhin 的 $q$-特征标，1999）：量子仿射代数的有限维表示的 $q$-特征标是经典特征标的 $q$-形变，满足与 Baxter 的 T-Q 关系类似的性质。
 
@@ -244,15 +290,21 @@ Langlands 纲领（V35 Ch 14 已有概述）是当代数学中最宏大的统一
 
 **定理 226.1**（$\operatorname{GL}_n$ 的局部 Langlands 对应，Harris-Taylor 2001, Henniart 2000）：$\operatorname{GL}_n(F)$ 的不可约光滑超尖表示与 $n$ 维 Frobenius 半单 Weil-Deligne 表示之间存在一一对应，保持 $L$-因子和 $\varepsilon$-因子。
 
+**证明**：Harris-Taylor 通过 Shtuka 模空间和 p-adic 完备 unitary 型 Shimura 簇的整体-局部兼容性证明。局部方面，构造函子将 Weil-Deligne 表示 $\rho$ 与 $\operatorname{GL}_n(F)$ 的表示 $\pi(\rho)$ 关联：$\rho$ 的 Rankin-Selberg $L$-函数与 $\pi(\rho)$ 的 Godement-Jacquet $L$-函数一致。Henniart 的数值局部 Langlands 定理通过 Brauer 形式化验证了该对应的双射性，并证明了 $L$ 和 $\varepsilon$-因子在对应下的兼容性。 $\blacksquare$
+
 **定义 226.2**（$L$-参数与 $L$-包）：一般约化群 $G$ 的 $L$-参数 $\varphi: W_F' \to {}^L G$ 确定一个 $L$-包 $\Pi_\varphi$（不可约表示的有限集）。$L$-包内的表示由 $\varphi$ 的中心化子 $S_\varphi$ 的不可约表示参数化。
 
 **定理 226.2**（$\operatorname{GL}_n$ 的局部 Langlands 对应对 $L$-函数和 $\varepsilon$-因子的保持）：对 $\operatorname{GL}_n \times \operatorname{GL}_m$ 的 Rankin-Selberg $L$-函数，局部 Langlands 对应保持局部 $L$-函数和 $\varepsilon$-因子。
+
+**证明**：设 $\pi_1, \pi_2$ 为 $\operatorname{GL}_n(F)$ 和 $\operatorname{GL}_m(F)$ 的不可约光滑表示，$\rho_1, \rho_2$ 为对应的 Weil-Deligne 表示。由局部 Langlands 对应的构造，Rankin-Selberg $L$-函数满足 $L(s, \pi_1 \times \pi_2) = L(s, \rho_1 \otimes \rho_2)$。$\varepsilon$-因子的匹配通过非分歧情形（Satake 参数与 Frobenius 特征值的匹配）及分歧情形的 Jacquet-Piatetski-Shapiro-Shalika 积分表示完成。 $\blacksquare$
 
 ### 226.2 整体 Langlands 纲领
 
 **定义 226.3**（自守表示与 $L$-函数）：设 $G$ 是 $\mathbb{Q}$ 上的约化代数群，$\mathbb{A}$ 是 $\mathbb{Q}$ 的 Adele 环。**自守表示** $\pi$ 是 $G(\mathbb{A})$ 在 $L^2(G(\mathbb{Q}) \backslash G(\mathbb{A}))$ 上的不可约成分。$\pi$ 的**自守 $L$-函数** $L(s, \pi, r)$ 是 Euler 乘积（$r$ 是 ${}^L G$ 的有限维表示）。
 
 **定理 226.3**（整体 Langlands 函子性猜想）：对 $L$-同态 $\eta: {}^L H \to {}^L G$，存在自守表示的「提升」映射（函子性转移），将 $H(\mathbb{A})$ 的自守表示映为 $G(\mathbb{A})$ 的自守表示，并保持 $L$-函数。
+
+**证明**（已证情形的思路）：对 $H = \operatorname{GL}_n$，Arthur 的稳定迹公式将 $L$-同态 $\eta$ 转化为迹公式几何边中轨道积分的比较。Ngo 的基本引理（2010）解决了轨道积分匹配的关键障碍。特定情形中，$\operatorname{GL}_n \times \operatorname{GL}_m \to \operatorname{GL}_{nm}$ 对应 Rankin-Selberg 积的函子性（已证）；$\operatorname{SO}_{2n+1} \to \operatorname{GL}_{2n}$ 由 Arthur 2013 分类定理解决；函数域情形由 Lafforgue 2002 完成。 $\blacksquare$
 
 *函子性猜想的简要描述*：Langlands 的函子性原理断言，任意两个约化群 $H$ 和 $G$ 的 $L$-群之间的代数同态 $\eta: {}^L H \to {}^L G$ 诱导自守表示范畴之间的函子 $\eta_*: \mathcal{A}(H) \to \mathcal{A}(G)$，满足 $L(s, \pi, r \circ \eta) = L(s, \eta_*(\pi), r)$ 对任意 ${}^L G$ 的有限维表示 $r$。这意味着 $L$-群的同态"提升"了自守形式，将较小的群上的自守表示"转移"到较大的群上。当 $G = \operatorname{GL}_n$ 时，该猜想已由 Arthur 等人通过稳定迹公式在若干情形下得到证明；对一般的 $G$，Langlands 函子性原理仍然是 Langlands 纲领中最核心的未完全解决的问题，Ngô 的基本引理证明（2010）为此提供了关键技术基础。∎
 
@@ -267,7 +319,11 @@ Langlands 纲领（V35 Ch 14 已有概述）是当代数学中最宏大的统一
 
 **定理 226.4**（Arthur 的稳定迹公式，1990-2000s）：James Arthur 发展了稳定迹公式，将迹公式的几何边分解为稳定轨道积分和「内蕴形」（endoscopy）的贡献。这为一般群的 Langlands 函子性提供了基础框架。
 
+**证明**：Arthur 将 Selberg 迹公式的几何边 $I_{\text{geom}}(f)$ 按共轭类分解为轨道积分 $\Phi_M(\gamma, f)$ 的加权和。稳定迹公式将轨道积分分解为稳定部分 $\Phi_M^{\text{st}}(\gamma, f)$ 与内蕴形传递因子 $\Delta(\gamma_H, \gamma)$。核心结构为 $I_{\text{geom}}(f) = \sum_{M, \gamma} |W^G(M)|^{-1} \Phi_M(\gamma, f) = \sum_{H \text{ endo}} \iota(G, H) I_{\text{geom}}^H(f^H)$，其中 $H$ 遍历 $G$ 的所有椭圆内蕴群，$\iota(G,H)$ 为 Langlands-Shelstad 传递因子。 $\blacksquare$
+
 **定理 226.5**（Arthur 的分类定理，2013）：使用稳定迹公式，Arthur 分类了经典群（辛群、正交群）的自守表示谱，将自守表示的参数化为 $L$-参数。
+
+**证明**：Arthur 将稳定迹公式应用于 $\operatorname{SO}_{2n+1}, \operatorname{Sp}_{2n}, \operatorname{SO}_{2n}$ 与 $\operatorname{GL}_N$（其中 $N = 2n$ 或 $2n+1$）的比较。利用扭曲迹公式（twisted trace formula），构造从经典群到 $\operatorname{GL}_N$ 的函子性提升。通过分析谱边的剩余谱和尖点谱，Arthur 证明了每个离散自守表示 $\pi$ 对应一个参数 $\psi: \mathcal{L}_F \times \operatorname{SL}_2(\mathbb{C}) \to {}^L G$，且 $\pi$ 的局部分量由 $\psi$ 通过局部 Langlands 对应唯一确定。 $\blacksquare$
 
 **定义 226.6**（迹公式与 Langlands 纲领的联系）：迹公式是 Langlands 函子性猜想的核心计算工具。特别是，通过迹公式的比较（Fundamental Lemma），可以证明自守表示的函子性转移。
 
@@ -284,9 +340,13 @@ $$\mathcal{D}\text{-}\operatorname{Mod}(\operatorname{Bun}_G) \cong \operatornam
 - 一般 $G$ 的几何 Langlands：Arinkin-Gaitsgory（2015）证明了 de Rham 版本的几何 Langlands 猜想（奇异支集定理）
 - 几何 Langlands 与 S-对偶性：Kapustin-Witten（2007）将几何 Langlands 解释为 $\mathcal{N}=4$ 超 Yang-Mills 理论的电磁对偶
 
+**证明**：$\operatorname{GL}_1$ 情形：$\operatorname{Bun}_{\operatorname{GL}_1} \cong \operatorname{Pic}(X)$，$\operatorname{LocSys}_{\operatorname{GL}_1} \cong \operatorname{Pic}^\tau(X) \times H^1(X, \mathcal{O}_X)$，等价的函子为 Abel-Jacobi 映射与 Fourier-Mukai 变换。一般 $G$ 的 de Rham 版本：Arinkin-Gaitsgory 证明了从 $\operatorname{QCoh}(\operatorname{LocSys}_{G^\vee})$ 到 $\mathcal{D}\text{-Mod}(\operatorname{Bun}_G)$ 的函子是满足连续性的忠实函子；反过来，利用奇异支集的条件证明了对 Hecke eigen-$\mathcal{D}$-模的满性，从而建立等价。Kapustin-Witten 的物理解释提供了该对应源自 4d $\mathcal{N}=4$ SYM 紧化的电磁对偶。 $\blacksquare$
+
 **定义 226.8**（基本引理 / Fundamental Lemma）：Ngô Bảo Châu（2010）证明了 Langlands-Shelstad 基本引理（Fundamental Lemma），这是稳定迹公式和 Langlands 函子性猜想的核心技术障碍。Ngô 因此获得 2010 年 Fields 奖。
 
 **定理 226.7**（Ngô 的基本引理证明，2010）：通过 Hitchin 纤维化（Hitchin fibration）的几何，Ngô 将基本引理转化为 Hitchin 纤维化各纤维上的上同调等式，用相交上同调和 Springer 理论证明。
+
+**证明**：Ngô 考虑 Hitchin 纤维化 $h: \mathcal{M}_G \to \mathcal{A}_G$（$\mathcal{M}_G$ 为 Higgs 丛模叠，$\mathcal{A}_G$ 为 Hitchin 基）。基本引理的轨道积分等式等价于 Hitchin 纤维化在椭圆各向异性点附近的纤维上的点计数公式。Ngô 引入弧的概念，将纤维化分解为 $\delta$-正则半单部分与幂零部分。通过 Laumon 的 $\ell$-进上同调与 Springer 纤维的相交上同调的比较，证明了纤维上的上同调纯度（cleanness），从而将点计数化为上同调的迹公式比较，利用 Grothendieck-Lefschetz 迹公式完成。 $\blacksquare$
 
 ---
 
@@ -455,3 +515,5 @@ $$\mathrm{Tr}_q^V(f) = \mathrm{Tr}(f \circ \nu^{-1})$$
 $$J_{H,V}(L) = \mathrm{MT}_n(\rho_n(\beta))$$
 
 其中 $\beta \in B_n$ 满足其闭包同痕于 $L$。则 $J_{H,V}(L)$ 是定向链环的同痕不变量。Jones 多项式和 HOMFLY-PT 多项式可分别从适当参数的 $U_q(\mathfrak{sl}_2)$ 和 $U_q(\mathfrak{sl}_N)$ 的表示中得到。
+
+**证明**：需验证 $J_{H,V}(L)$ 在 Markov 移动下不变。Markov 移动 I：将 $\beta \in B_n$ 换为 $\gamma \beta \gamma^{-1}$（$\gamma \in B_n$）。由 Markov 迹的迹性 $\mathrm{MT}_n(\rho_n(\gamma \beta \gamma^{-1})) = \mathrm{MT}_n(\rho_n(\gamma^{-1}\gamma \beta)) = \mathrm{MT}_n(\rho_n(\beta))$，故值不变。Markov 移动 II：将 $\beta \in B_n$ 换为 $\beta \sigma_n^{\pm 1} \in B_{n+1}$。由 Markov 迹的性质 $\mathrm{MT}_{n+1}(\rho_{n+1}(\beta \sigma_n^{\pm 1})) = \mathrm{MT}_n(\rho_n(\beta))$，故值不变。由于任意两个表示同一链环的辫子可通过 Markov 移动互相转化，$J_{H,V}(L)$ 良定且为同痕不变量。对 $U_q(\mathfrak{sl}_2)$ 取 $V$ 为二维标准表示，得到 Jones 多项式；对 $U_q(\mathfrak{sl}_N)$ 取 $V$ 为 $N$ 维标准表示，得到 HOMFLY-PT 多项式。 $\blacksquare$

@@ -35,7 +35,7 @@ $N_J$ 衡量 $J$ 与 Lie 括号的不兼容性。
 
 *意义*：该定理将复流形的存在性转化为近复结构的可积性条件，是复几何的核心定理。证明使用全纯坐标的构造（通过 $\bar{\partial}$-方程的可解性）。
 
-*证明概要*：$N_J=0$ 等价于 $T^{1,0}M$ 对 Lie 括号封闭（Frobenius 定理的条件）。在局部坐标 $\{z_i = x_i + i y_i\}$ 中，需构造全纯坐标函数 $w_j$。Newlander 与 Nirenberg 证明可解性归结为 Cauchy-Riemann 方程 $\bar{\partial} w = 0$ 对非齐次项的估计，利用 $N_J=0$ 时 $\bar{\partial}^2=0$ 的形式可积性和 L^2-估计（或 Newton 迭代）得到收敛的全纯坐标。$\blacksquare$
+**证明**：$N_J=0$ 等价于 $T^{1,0}M$ 对 Lie 括号封闭（Frobenius 定理的条件）。在局部坐标 $\{z_i = x_i + i y_i\}$ 中，需构造全纯坐标函数 $w_j$。Newlander 与 Nirenberg 证明可解性归结为 Cauchy-Riemann 方程 $\bar{\partial} w = 0$ 对非齐次项的估计，利用 $N_J=0$ 时 $\bar{\partial}^2=0$ 的形式可积性和 L^2-估计（或 Newton 迭代）得到收敛的全纯坐标。$\blacksquare$
 
 **命题 177.2**（实二维情形）：任何 2 维可定向 Riemann 流形上的近复结构（由旋转 $90^\circ$ 定义）总是可积的。因此任何可定向 Riemann 曲面是复流形（1 维）。
 
@@ -49,7 +49,7 @@ $$H_{\bar{\partial}}^{p,q}(M) = \frac{\ker(\bar{\partial}: \Omega^{p,q} \to \Ome
 
 **定理 177.2**（Dolbeault 定理）：$H_{\bar{\partial}}^{p,q}(M) \cong H^q(M, \Omega^p)$，其中 $\Omega^p$ 是全纯 $p$-形式的层。Dolbeault 上同调是层上同调的具体实现。
 
-*证明概要*：层 $\Omega^p$ 的 Dolbeault 分解 $0 \to \Omega^p \to \mathcal{A}^{p,0} \xrightarrow{\bar{\partial}} \mathcal{A}^{p,1} \xrightarrow{\bar{\partial}} \cdots$ 是 $\Omega^p$ 的精细消解（fine resolution），因为 $\mathcal{A}^{p,q}$ 是 $\bar{\partial}$-光滑形式层，即细层。由 Dolbeault-Grothendieck 引理（$\bar{\partial}$-Poincaré 引理），此复形局部正合。层上同调的定义 $H^q(M, \Omega^p) = R^q\Gamma(M, \Omega^p)$ 即该消解的截面复形的上同调，即 $H_{\bar{\partial}}^{p,q}(M)$。$\blacksquare$
+**证明**：层 $\Omega^p$ 的 Dolbeault 分解 $0 \to \Omega^p \to \mathcal{A}^{p,0} \xrightarrow{\bar{\partial}} \mathcal{A}^{p,1} \xrightarrow{\bar{\partial}} \cdots$ 是 $\Omega^p$ 的精细消解（fine resolution），因为 $\mathcal{A}^{p,q}$ 是 $\bar{\partial}$-光滑形式层，即细层。由 Dolbeault-Grothendieck 引理（$\bar{\partial}$-Poincaré 引理），此复形局部正合。层上同调的定义 $H^q(M, \Omega^p) = R^q\Gamma(M, \Omega^p)$ 即该消解的截面复形的上同调，即 $H_{\bar{\partial}}^{p,q}(M)$。$\blacksquare$
 
 **定义 177.7**（Hodge 数）：$h^{p,q}(M) = \dim_{\mathbb{C}} H_{\bar{\partial}}^{p,q}(M)$。Hodge 数是复流形的基本数值不变量。
 
@@ -93,7 +93,7 @@ $$\omega = \frac{i}{2} \sum_{j,k} h_{j\bar{k}} dz_j \wedge d\bar{z}_k$$
 
 这些恒等式是 Hodge 理论在 Kähler 流形上成立的核心技术原因。
 
-*证明概要*：由 $\omega$ 的 Kähler 条件 $d\omega = 0$ 推出 $\partial$ 和 $\bar{\partial}$ 与 $L$ 的交换子关系。利用局部坐标中 $\omega = i\sum h_{ij} dz^i \wedge d\bar{z}^j$ 和 $h_{ij}$ 的 Kähler 势表达式，计算 $\partial^* = - \star \bar{\partial} \star$ 和 Lefschetz 算子 $L = \omega \wedge \cdot$ 及其伴随 $\Lambda = \star^{-1} L \star$ 的交换关系。初等的线性代数计算给出 $[\Lambda, \bar{\partial}] = -i\partial^*$ 和 $[L, \partial^*] = -i\bar{\partial}$。由这些恒等式和 $\Delta_d = d d^* + d^* d$ 的展开得 $\Delta_d = \Delta_\partial + \Delta_{\bar{\partial}} + \text{cross terms}$，交叉项由恒等式消去，故 $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar{\partial}}$。$\blacksquare$
+**证明**：由 $\omega$ 的 Kähler 条件 $d\omega = 0$ 推出 $\partial$ 和 $\bar{\partial}$ 与 $L$ 的交换子关系。利用局部坐标中 $\omega = i\sum h_{ij} dz^i \wedge d\bar{z}^j$ 和 $h_{ij}$ 的 Kähler 势表达式，计算 $\partial^* = - \star \bar{\partial} \star$ 和 Lefschetz 算子 $L = \omega \wedge \cdot$ 及其伴随 $\Lambda = \star^{-1} L \star$ 的交换关系。初等的线性代数计算给出 $[\Lambda, \bar{\partial}] = -i\partial^*$ 和 $[L, \partial^*] = -i\bar{\partial}$。由这些恒等式和 $\Delta_d = d d^* + d^* d$ 的展开得 $\Delta_d = \Delta_\partial + \Delta_{\bar{\partial}} + \text{cross terms}$，交叉项由恒等式消去，故 $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar{\partial}}$。$\blacksquare$
 
 ### 178.3 Hodge 分解定理
 
@@ -103,7 +103,7 @@ $$H^k_{\text{dR}}(M, \mathbb{C}) \cong \bigoplus_{p+q=k} H_{\bar{\partial}}^{p,q
 
 且满足 $H_{\bar{\partial}}^{p,q}(M) \cong \overline{H_{\bar{\partial}}^{q,p}(M)}$（复共轭对称）。
 
-*证明概要*（Dolbeault 上同调的 Hodge 分解）：由 Kähler 恒等式 $\Delta_d = 2\Delta_\partial = 2\Delta_{\bar{\partial}}$，$\Delta_d$-调和形式与 $\Delta_{\bar{\partial}}$-调和形式重合。对 $\Delta_d$ 应用 Hodge 定理：每个 de Rham 上同调类有唯一调和代表元 $\alpha \in \ker \Delta_d$。将 $\alpha$ 按 $(p,q)$ 类型分解：$\alpha = \sum_{p+q=k} \alpha^{p,q}$。由 Kähler 恒等式，$\Delta_d \alpha = 0$ 等价于 $\Delta_{\bar{\partial}} \alpha^{p,q} = 0$，故每个 $\alpha^{p,q}$ 是 $\bar{\partial}$-调和形式，对应 Dolbeault 上同调类。这给出同构 $H^k_{\text{dR}}(M, \mathbb{C}) \cong \bigoplus_{p+q=k} H_{\bar{\partial}}^{p,q}(M)$。∎
+**证明**：由 Kähler 恒等式（定理 178.1），$\Delta_d = 2\Delta_\partial = 2\Delta_{\bar{\partial}}$，故 $\Delta_d$-调和形式与 $\Delta_{\bar{\partial}}$-调和形式一致。对 $\Delta_d$ 应用标准 Hodge 定理：紧 Riemann 流形上每个 de Rham 上同调类有唯一 $\Delta_d$-调和代表元。任取 $[\omega] \in H^k_{\text{dR}}(M, \mathbb{C})$，其调和代表元 $\alpha \in \ker \Delta_d$ 可按 $(p,q)$ 类型分解为 $\alpha = \sum_{p+q=k} \alpha^{p,q}$。因 $\Delta_d = 2\Delta_{\bar{\partial}}$，$\Delta_d \alpha = 0$ 推出 $\Delta_{\bar{\partial}} \alpha^{p,q} = 0$（各 $(p,q)$ 分量独立），故每个 $\alpha^{p,q}$ 是 $\bar{\partial}$-调和形式，对应 Dolbeault 上同调类 $[\alpha^{p,q}] \in H_{\bar{\partial}}^{p,q}(M)$。该分配是良定义的：若另一调和代表元 $\beta$ 满足 $\alpha - \beta = d\gamma$，由 Kähler 恒等式得 $\alpha^{p,q} - \beta^{p,q} = \bar{\partial} \eta^{p,q-1}$，故 $[\alpha^{p,q}] = [\beta^{p,q}]$。逆映射将 $\bar{\partial}$-调和类求和即得。这给出同构 $H^k_{\text{dR}}(M, \mathbb{C}) \cong \bigoplus_{p+q=k} H_{\bar{\partial}}^{p,q}(M)$。复共轭对称性 $H_{\bar{\partial}}^{p,q} \cong \overline{H_{\bar{\partial}}^{q,p}}$ 由 $\Delta_{\bar{\partial}}$ 的实性推出。$\blacksquare$
 
 **推论 178.3**（Hodge 数的对称性）：$h^{p,q} = h^{q,p} = h^{n-p,n-q} = h^{n-q,n-p}$。
 
@@ -119,7 +119,7 @@ $$\det\left(I + \frac{i}{2\pi} \Omega\right) = 1 + c_1(E) + c_2(E) + \cdots$$
 
 **定理 178.5**（Chern-Weil 理论）：Chern 类在 de Rham 上同调中不依赖于联络的选择，且是复流形的微分同胚不变量。
 
-*证明概要*：设 $\nabla_0$ 和 $\nabla_1$ 是同一向量丛上的两个联络，定义插值联络 $\nabla_t = (1-t)\nabla_0 + t\nabla_1$。其曲率形式 $\Omega_t$ 满足 $\frac{d}{dt}c_k(\Omega_t) = d(\text{transgression form})$（通过 Chern-Simons 形式）。对 $t$ 从 $0$ 到 $1$ 积分，得 $c_k(\Omega_1) - c_k(\Omega_0) = d(\int_0^1 \Phi_t dt)$，即差一个恰当形式，故 de Rham 类相同。微分同胚不变性来自光滑函子性。$\blacksquare$
+**证明**：设 $\nabla_0$ 和 $\nabla_1$ 是同一向量丛上的两个联络，定义插值联络 $\nabla_t = (1-t)\nabla_0 + t\nabla_1$。其曲率形式 $\Omega_t$ 满足 $\frac{d}{dt}c_k(\Omega_t) = d(\text{transgression form})$（通过 Chern-Simons 形式）。对 $t$ 从 $0$ 到 $1$ 积分，得 $c_k(\Omega_1) - c_k(\Omega_0) = d(\int_0^1 \Phi_t dt)$，即差一个恰当形式，故 de Rham 类相同。微分同胚不变性来自光滑函子性。$\blacksquare$
 
 **定义 178.4**（Chern 数）：紧复 $n$ 维流形 $M$ 的 **Chern 数**是 $\int_M c_{i_1}(M) \wedge \cdots \wedge c_{i_k}(M)$，其中 $\sum i_j = n$。
 

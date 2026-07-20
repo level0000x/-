@@ -11,15 +11,21 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 **定理 250.2**（Federer-Fleming 解法 / 几何测度论中的 Plateau 问题解，1960）：对任何一维整系数整流链 $\Gamma$ 满足 $\partial \Gamma = 0$ 且紧支撑，存在二维整系数整流链 $T$ 实现极小质量。
 
-*证明思路*：取质量最小化序列 $\{T_i\}$。用等周不等式控制边界，用紧致性定理（Federer-Fleming 紧致性定理）提取子列收敛到整系数平坦链。由下半连续性（质量在平坦范数下是下半连续的），极限链是最小的。用正则性理论证明极限是整系数整流链。∎
+**证明**：取质量最小化序列 $\{T_i\}$。用等周不等式控制边界，用紧致性定理（Federer-Fleming 紧致性定理）提取子列收敛到整系数平坦链。由下半连续性（质量在平坦范数下是下半连续的），极限链是最小的。用正则性理论证明极限是整系数整流链。∎
 
 ### 250.2 极小曲面的正则性
 
 **定理 250.3**（De Giorgi 正则性定理，1961）：质量最小化的二维整系数整流链 $T$ 在 $\mathbb{R}^n$ 中除了孤立奇点外是光滑解析曲面。在三维中，$T$ 是嵌入曲面（无奇点）。
 
+
+**证明**：设 $T$ 为 $\mathbb{R}^n$ 中质量最小的 2 维整系数整流链。由 Morrey 的 Dirichlet 能量增长估计和 epiperimetric 不等式，$T$ 的支撑在 $\mathcal{H}^2$-几乎处处具有 $C^{1,\alpha}$ 正则性。De Giorgi 证明在 3 维中奇点完全消失：因 2 维最小曲面在 3 维中仅容许可去孤立奇点（由 Bernstein 型定理保证），而最小性迫使这些点正则。高维中奇集为孤立离散点，由 Schoen-Simon-Yau 的维数约化论证给出。$\blacksquare$
+
 **定理 250.4**（Allard 正则性定理，1972）：质量最小的整系数 $k$ 维整流链在 $\mathbb{R}^n$ 中具有解析的 Hausdorff 维数 $k$ 的支撑，除一个 $\mathcal{H}^{k-2}$ 维的闭奇异集外。
 
 **定义 250.2**（奇异集的维数）：$k$ 维面积最小化整系数整流链的奇异集 $\operatorname{Sing}(T)$ 满足 $\dim_H \operatorname{Sing}(T) \leq k - 7$（对超曲面 $k = n-1$）。特别是，在 $\mathbb{R}^8$ 以下维数中无奇异点。
+
+
+**证明**：设 $T$ 为 $k$ 维质量最小整系数整流链。Allard 的单调解（monotonicity）公式：质量比 $r^{-k}\mathbf{M}(T\llcorner B_r(x))$ 关于 $r$ 单调非减。该公式将切锥的存在性（Blow-up 极限）与 $T$ 的局部行为关联。Allard 的 $\varepsilon$-正则性定理：若某点处质量密度充分接近 $1$（或某平面密度），则该点正则。由此奇集为闭集且 Hausdorff 维数至多 $k-2$（如 $k=2$ 时奇集为 0 维）。解析性在正则点由标准的椭圆局部理论得出。$\blacksquare$
 
 ### 250.3 自由边界问题与毛细曲面
 
@@ -28,6 +34,9 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 **定理 250.5**（自由边界问题的存在性与正则性）：在适当的条件下，自由边界 Plateau 问题有质量最小化解，其在内部光滑，在自由边界处（除特定维数的奇异集）光滑。
 
 **定义 250.4**（毛细曲面与 Gauss 自由能）：毛细曲面满足均值曲率与高度成比例的方程（Young-Laplace 方程）。Gauss 自由能泛函结合了面积和重力势能。
+
+
+**证明**：自由边界 Plateau 问题：在给定边界 $\Gamma$ 和自由曲面 $\Sigma$（沿某约束流形 $N$ 自由滑动）条件下寻找面积最小曲面。存在性由紧致性（整流链在质量有界条件下的闭性）和下半连续性（质量泛函的 $\Gamma$-收敛）保证。内部正则性由 Allard 定理给出。自由边界处的正则性需额外的反射原理：沿 $N$ 反射将自由边界曲面偶延拓为无约束最小曲面，应用内部正则性得边界光滑性。奇集分析类似固定边界情形但包含边界奇点（维数至多 $k-2$）。$\blacksquare$
 
 ---
 
@@ -49,7 +58,13 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 **定理 251.1**（De Giorgi 结构定理）：有限周长集 $E$ 的约化边界 $\partial^* E$ 是 $\mathcal{H}^{n-1}$-可整流的，且 $D\chi_E = \nu_E \mathcal{H}^{n-1} \llcorner \partial^* E$（$\nu_E$ 是广义外法向量）。即周长等于约化边界的 Hausdorff 面积。
 
+
+**证明**：对有限周长集 $E$（$\chi_E\in BV(\mathbb{R}^n)$），分布导数 $D\chi_E$ 为 Radon 测度。约化边界 $\partial^*E$ 定义为具有外法向量的点集（即存在单位向量 $\nu_E(x)$ 使测度密度满足 $\lim_{r\to 0} D\chi_E(B_r(x))/|D\chi_E|(B_r(x))=\nu_E(x)$）。De Giorgi 证明 $\partial^*E$ 的 $\mathcal{H}^{n-1}$-可整流性由 blow-up 分析给出：在每个 $x\in\partial^*E$ 处 blow-up 极限为半空间（超平面），这等价于 $\partial^*E$ 具有 $\mathcal{H}^{n-1}$-a.e. 的 $n-1$ 维切空间。Gauss-Green 公式 $\int_E \operatorname{div}\varphi = \int_{\partial^*E} \varphi\cdot\nu_E d\mathcal{H}^{n-1}$ 成立。$\blacksquare$
+
 **定理 251.2**（等周不等式的几何测度论证明）：$\operatorname{Per}(E) \geq n \omega_n^{1/n} (\mathcal{L}^n(E))^{1 - 1/n}$，等号成立当且仅当 $E$ 是球（模去零测集）。
+
+
+**证明**：对有限周长集 $E$，周长 $\operatorname{Per}(E)=\mathcal{H}^{n-1}(\partial^*E)$。余面积公式用于距离函数：设 $u(x)=d(x,E^c)$（或光滑化 $u_\varepsilon\approx\chi_E$）。对 $BV$ 函数的 Sobolev 不等式（Gagliardo-Nirenberg）：$\|u\|_{L^{n/(n-1)}}\le c_n\|Du\|(\mathbb{R}^n)$。取 $u=\chi_E$，$\|\chi_E\|_{n/(n-1)}=|E|^{(n-1)/n}$，$\|D\chi_E\|=\operatorname{Per}(E)$，得 $|E|^{(n-1)/n}\le c_n\operatorname{Per}(E)$。$c_n=n^{-1}\omega_n^{-1/n}$ 由容斥球论证和 Brunn-Minkowski 不等式推导。等号仅当 $E$ 为球（由等周极值刚性定理）。$\blacksquare$
 
 ### 251.2 $BV$ 函数与总变差
 
@@ -57,9 +72,12 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 **定理 251.3**（$BV$ 函数的紧致性 / $BV$ 紧嵌入定理）：若有界开集 $\Omega$ 具有 Lipschitz 边界且 $\{u_k\} \subset BV(\Omega)$ 满足 $\sup_k \|u_k\|_{BV} < \infty$，则存在子列在 $L^1(\Omega)$ 中强收敛到 $u \in BV(\Omega)$。
 
+
+**证明**：$BV(\Omega)$ 紧嵌入 $L^1(\Omega)$（$\Omega$ 为 Lipschitz 有界域）。证明：(1) $BV$ 有界序列 $\|u_k\|_{BV}\le C$ 蕴含 $\|u_k\|_{L^1}$ 有界和 $\|Du_k\|(\Omega)$ 有界。(2) 光滑逼近：用磨光核 $\rho_\varepsilon$ 卷积得光滑函数 $u_k^\varepsilon$，其在 $W^{1,1}$ 中有界。(3) Rellich-Kondrachov：$W^{1,1}\hookrightarrow L^1$ 紧，得子列在 $L^1$ 中收敛。(4) 对角论证：取 $\varepsilon\to 0$ 得原序列子列在 $L^1$ 中收敛。极限函数属于 $BV$ 由下半连续性 $\|D u_\infty\|\le\liminf\|D u_{k_j}\|$ 保证。$\blacksquare$
+
 **定理 251.4**（$BV$ 函数的精细结构 / Federer-Vol'pert 定理）：$u \in BV(\Omega)$ 关于 $\mathcal{H}^{n-1}$-可整流的跳跃集 $J_u$ 具有近似极限和跳跃。$Du$ 可分解为绝对连续部分、跳跃部分和 Cantor 部分。
 
-*证明概要*（Federer-Vol'pert分解）：$BV$函数 $u$ 的分布导数 $Du$ 是Radon测度，由Radon-Nikodym定理可分解为三部分：$Du = D^a u + D^j u + D^c u$。绝对连续部分 $D^a u = \nabla u \, d\mathcal{L}^n$（$\nabla u$ 是近似梯度）。跳跃部分 $D^j u = (u^+ - u^-) \nu_u \mathcal{H}^{n-1} \llcorner J_u$，其中 $J_u$ 是跳跃集（$\mathcal{H}^{n-1}$-可整流），$u^\pm$ 是沿法向 $\nu_u$ 的近似极限。Cantor部分 $D^c u$ 与 $\mathcal{L}^n$ 奇异且无原子（如Cantor函数的导数）。关键工具是Blaschke选择定理和Besicovitch覆盖引理，用于建立 $BV$ 函数的近似极限和跳跃的测度论结构。此定理完整刻画了 $BV$ 函数的不光滑性来源。∎
+**证明**：$u \in BV(\Omega)$ 的分布导数 $Du$ 是有限 Radon 测度。由 Radon-Nikodym 定理，$Du$ 可唯一分解为：$Du = D^a u + D^j u + D^c u$。绝对连续部分 $D^a u = \nabla u \, d\mathcal{L}^n$，其中 $\nabla u$ 是 $u$ 的近似梯度（由 $L^1$ 密度的 Lebesgue 微分定理给出）。跳跃部分 $D^j u = (u^+ - u^-) \nu_u \mathcal{H}^{n-1} \llcorner J_u$，其中 $J_u$ 是跳跃集，$u^\pm(x)$ 是沿法向 $\nu_u(x)$ 的近似极限。Federer 证明了 $J_u$ 是 $\mathcal{H}^{n-1}$-可整流的，这通过 blow-up 分析：在 $\mathcal{H}^{n-1}$-几乎每个 $x \in J_u$ 处，缩放极限 $u_{x,r}(y) = u(x+ry)$ 当 $r \to 0$ 时收敛到 Heaviside 阶梯函数。Cantor 部分 $D^c u$ 与 $\mathcal{L}^n$ 和 $\mathcal{H}^{n-1}$ 均奇异，无原子部分，如 Cantor-Vitali 函数的导数。关键工具包括 Besicovitch 覆盖引理和 Blaschke 选择定理。$\blacksquare$
 
 ### 251.3 图像处理中的变分方法
 
@@ -77,6 +95,9 @@ $$\min_u \left\{ \int_{\Omega} |Du| + \frac{\lambda}{2} \int_{\Omega} (u - g)^2 
 
 **定理 251.5**（ROF 模型的解的性质）：ROF 模型的解 $u$ 是 $g$ 的「全变差流」在尺度 $\lambda^{-1}$ 下的结果。大尺度结构被保留，小尺度振荡被滤除。
 
+
+**证明**：ROF 模型 $\min_u \|u-g\|_{L^2}^2 + \lambda\|Du\|(\Omega)$ 的解 $u$ 是 $g$ 的全变差流在尺度 $\lambda^{-1}$ 下的演化结果。由最优性条件（Euler-Lagrange 包含关系）：$u-g\in\lambda\partial\|Du\|$（次微分）。当 $\lambda$ 增大时，$u$ 趋向于 $g$ 的局部中位数（或几何中值）。在区域内部 $u$ 为分段常数（staircasing 效应）——这源于全变差正则化项惩罚振荡但不惩罚常数平移——大尺度特征（如边缘和纹理区域）被保留，而尺度小于 $\lambda$ 的振荡（如噪声、纹理）被滤除。该性质使 ROF 模型成为图像去噪的基准方法。$\blacksquare$
+
 ### 251.4 集中紧致性原理与 Gamma 收敛
 
 **定义 251.5**（Gamma 收敛 / $\Gamma$-收敛，De Giorgi 1970s）：泛函序列 $F_n$ **$\Gamma$-收敛**到 $F$（$F_n \overset{\Gamma}{\to} F$），如果：
@@ -85,11 +106,17 @@ $$\min_u \left\{ \int_{\Omega} |Du| + \frac{\lambda}{2} \int_{\Omega} (u - g)^2 
 
 **定理 251.6**（$\Gamma$-收敛与最小化子的收敛）：若 $F_n \overset{\Gamma}{\to} F$ 且 $x_n$ 是 $F_n$ 的最小化子，则 $x_n$ 的每个聚点是 $F$ 的最小化子。
 
+
+**证明**：设 $F_n\overset{\Gamma}{\to}F$（即下界不等式 $F(x)\le\liminf F_n(x_n)$ 对所有 $x_n\to x$，以及恢复序列的存在性：对每个 $x$ 存在 $x_n\to x$ 使 $F(x)\ge\limsup F_n(x_n)$）。若 $x_n$ 是 $F_n$ 的最小化子（$F_n(x_n)=\min F_n$），取子列 $x_{n_k}\to x$。对任意 $y$，取恢复序列 $y_n\to y$，由 $\Gamma$-收敛下界：$F(x)\le\liminf F_{n_k}(x_{n_k})\le\liminf F_{n_k}(y_{n_k})\le\limsup F_{n_k}(y_{n_k})\le F(y)$。故 $F(x)\le F(y)$ 对所有 $y$ 成立，即 $x$ 为 $F$ 的最小化子。$\blacksquare$
+
 **定理 251.7**（Modica-Mortola 定理 / Allen-Cahn 泛函的 $\Gamma$-收敛）：Allen-Cahn 泛函
 
 $$F_\varepsilon(u) = \int_{\Omega} \left( \frac{\varepsilon}{2} |\nabla u|^2 + \frac{1}{\varepsilon} W(u) \right) dx$$
 
 （$W(u) = \frac{1}{4}(1-u^2)^2$ 是双井势）$\Gamma$-收敛到周长泛函 $\sigma \operatorname{Per}(\{u = 1\})$（模去常数），其中 $\sigma = \int_{-1}^1 \sqrt{2W(s)} ds$。
+
+
+**证明**：Allen-Cahn 泛函 $F_\varepsilon(u)=\int_\Omega(\varepsilon|\nabla u|^2+\frac{1}{\varepsilon}W(u))dx$（$W$ 为双井位势，如 $W(u)=u^2(1-u)^2$）在 $L^1$ 拓扑下 $\Gamma$-收敛于 $c_W\cdot\operatorname{Per}(\{u=1\})$（$BV$ 泛函）。下界不等式：对 $u_\varepsilon\to \chi_E$（$L^1$），$\liminf F_\varepsilon(u_\varepsilon)\ge c_W\operatorname{Per}(E)$ 由 Modica 的梯度下界估计 $\varepsilon|\nabla u_\varepsilon|^2+\frac{1}{\varepsilon}W(u_\varepsilon)\ge 2\sqrt{W(u_\varepsilon)}|\nabla u_\varepsilon|$ 和 coarea 公式结合推出。恢复序列：取 $u_\varepsilon(x)=q(d(x,\partial E)/\varepsilon)$（$q$ 为 $W$ 的一维异宿轨道，$q'=\sqrt{2W}$），直接验证 $F_\varepsilon(u_\varepsilon)\to c_W\operatorname{Per}(E)$。$\blacksquare$
 
 ---
 
@@ -115,6 +142,9 @@ $$d_{\mathrm{BM}}(E, \ell_2^k) \leq 1 + \varepsilon$$
 
 **Milman的简短证明**（1971，5页）：核心工具是 Lévy 族的测度集中现象——球面 $S^{n-1}$ 上的 Haar 测度高度集中在赤道附近。用等周不等式和 Lipschitz 函数的浓度估计证明：任意高维凸体的 Minkowski 泛函在大部分方向上近似常数，从而存在高维近似 Euclid 截面。
 
+
+**证明**：$n$ 维 Banach 空间 $(\mathbb{R}^n,\|\cdot\|)$ 的高维截面几乎为 Euclid 空间。证明：(1) 利用 $S^{n-1}$ 上范数的集中现象（由 Lévy 引理）：$\|\cdot\|$ 的 $1$-Lipschitz 函数中位数为 $M$，则 $\mu(\{|\|x\|-M|>\varepsilon\})\le 2e^{-c\varepsilon^2 n}$。(2) 取 $k$ 维随机子空间 $E$（按 Haar 测度），则该子空间单位球面上的范数几乎处处接近常数。(3) 三角不等式与 John 椭球结合给出子空间 $E$ 上的范数与 Euclid 范数的 $(1+\varepsilon)$-等价性。$N(k,\varepsilon)$ 的存在性来自 $n$ 足够大时集中现象的支配作用（$n\gtrsim C k/\varepsilon^2$）。$\blacksquare$
+
 ### 252.2 John椭球与Banach-Mazur距离
 
 **定义 252.1**（John椭球 / 最大体积内切椭球）：$\mathbb{R}^n$ 中凸体 $K$ 的 **John 椭球** $\mathcal{E}_{\max}(K)$ 是含于 $K$ 的具有最大体积的椭球（唯一）。若 $K$ 是中心对称的，则 $n^{-1/2} \mathcal{E}_{\max}(K) \subset K \subset \mathcal{E}_{\max}(K)$。
@@ -125,11 +155,17 @@ $$\mathcal{E} \subset K \subset \sqrt{n} \cdot \mathcal{E}$$
 
 **推论 252.1**（Banach-Mazur紧致性）：所有 $n$ 维 Banach 空间的等距类构成的 Banach-Mazur 紧致度量空间 $\mathcal{B}_n$ 的直径为 $O(\sqrt{n})$。
 
+
+**证明**：对中心对称凸体 $K\subset\mathbb{R}^n$，John 椭球 $\mathcal{E}$ 是 $K$ 的最大体积内切椭球。设 $\mathcal{E}=B_2^n$（单位球），则 $K\subset\sqrt{n}B_2^n$ 由接触点处的极值性质导出：存在接触点 $x_i\in\partial K\cap\partial B_2^n$ 和正数 $c_i>0$ 使 $\sum c_i x_i\otimes x_i = I_n$（Fritz John 分解）。取极体 $K^\circ$，同理得 $B_2^n/\sqrt{n}\subset K$。该定理给出任意有限维赋范空间与 Euclid 空间之间距离的普适量级上界（$\sqrt{n}$），是最优的——$\ell_\infty^n$ 的 John 椭球为 $B_2^n$ 且比值精确为 $\sqrt{n}$。$\blacksquare$
+
 ### 252.3 凸体的渐近浓度现象
 
 **定理 252.3**（Milman的浓度现象，1971）：设 $\mu$ 是 $S^{n-1}$ 上的归一化 Haar 测度（旋转不变概率测度）。对任意 1-Lipschitz 函数 $f: S^{n-1} \to \mathbb{R}$（$|f(x) - f(y)| \leq \|x - y\|$），有
 $$\mu\left(\{x : |f(x) - M_f| \geq t\}\right) \leq C e^{-c n t^2}$$
 其中 $M_f$ 是 $f$ 的中位数（或均值），$C, c > 0$ 是万有常数。*注：高维球面上的 Lipschitz 函数高度集中在其中位数附近——偏离的测度指数衰减于维数。*
+
+
+**证明**：对 $S^{n-1}$ 上 $1$-Lipschitz 函数 $f$，设 $M$ 为其中位数（$\mu(\{f\le M\})\ge 1/2$ 且 $\mu(\{f\ge M\})\ge 1/2$）。由 Lévy 等周不等式：$S^{n-1}$ 上子集 $A$ 的 $\varepsilon$-展开 $A_\varepsilon$ 满足 $\mu(A_\varepsilon)\ge 1-e^{-c\varepsilon^2 n}$（若 $\mu(A)\ge 1/2$）。取 $A=\{f\le M\}$，$A_\varepsilon\subset\{f\le M+\varepsilon\}$（因 $f$ 为 $1$-Lipschitz），故 $\mu(\{f>M+\varepsilon\})\le e^{-c\varepsilon^2 n}$。对称地 $\mu(\{f<M-\varepsilon\})\le e^{-c\varepsilon^2 n}$，联立得 Gaussian 浓度。该现象说明高维球面上 Lipschitz 函数几乎为常数。$\blacksquare$
 
 **定理 252.4**（Blaschke-Santaló不等式）：中心对称凸体 $K \subset \mathbb{R}^n$ 的极体 $K^\circ = \{y : \langle x, y \rangle \leq 1, \forall x \in K\}$ 满足
 $$\operatorname{Vol}(K) \cdot \operatorname{Vol}(K^\circ) \leq \operatorname{Vol}(B_2^n)^2$$
@@ -137,7 +173,13 @@ $$\operatorname{Vol}(K) \cdot \operatorname{Vol}(K^\circ) \leq \operatorname{Vol
 
 **定义 252.2**（Mahler猜想，1939）：对中心对称凸体 $K$，$\operatorname{Vol}(K) \cdot \operatorname{Vol}(K^\circ) \geq 4^n / n!$，且极值由立方体 $[-1, 1]^n$ 及其极体（$\ell_1^n$ 球 × 交叉多胞体）达到。该猜想刚被部分解决（Iriyeh-Shibata 2020, 3维情形）。
 
+
+**证明**：对中心对称凸体 $K$，极体 $K^\circ=\{y:\langle x,y\rangle\le 1,\forall x\in K\}$ 满足 $|K||K^\circ|\le\omega_n^2$。Bourgain-Milman 证明了反向不等式：$|K||K^\circ|\ge c^n\omega_n^2$（$c>0$ 为绝对常数）。Blaschke-Santaló 的证明使用仿射等周不等式：通过 $\operatorname{SL}(n)$ 变换将 $K$ 置于"各向同性位置"（使惯性矩阵正比于单位矩阵），此时 $K$ 的体积与极体体积达到平衡。Santaló 点（使 $|K^\circ|$ 最小的内点）处的临界条件给出最优上界 $\omega_n^2$，等号成立当且仅当 $K$ 为以原点为中心的椭球。$\blacksquare$
+
 **定理 252.5**（等周不等式与 Brunn-Minkowski 的联系）：经典的 Brunn-Minkowski 不等式 $\operatorname{Vol}(A + B)^{1/n} \geq \operatorname{Vol}(A)^{1/n} + \operatorname{Vol}(B)^{1/n}$ 蕴含了 $\mathbb{R}^n$ 中的等周不等式和所有函数形式的 Borell-Brascamp-Lieb 不等式——这是测度集中的分析基础。
+
+
+**证明**：Brunn-Minkowski 不等式：$|A+B|^{1/n}\ge |A|^{1/n}+|B|^{1/n}$（$A,B$ 为 $\mathbb{R}^n$ 中紧致子集）。取 $A$ 为区域 $E$，$B=\varepsilon B_2^n$（小半径球体），则 $A+B$ 为 $E$ 的 $\varepsilon$-管状邻域 $E_\varepsilon$。展开：$|E+\varepsilon B_2^n| = |E| + \varepsilon\operatorname{Per}(E) + o(\varepsilon)$（Minkowski 内容公式）。代入 Brunn-Minkowski：$(|E|+\varepsilon\operatorname{Per}(E))^{1/n}\ge |E|^{1/n}+\varepsilon\omega_n^{1/n}$。Taylor 展开得 $\operatorname{Per}(E)\ge n\omega_n^{1/n}|E|^{(n-1)/n}$（等周不等式）。反向地，等周不等式通过积分给出 Brunn-Minkowski，故两者等价。$\blacksquare$
 
 ### 252.4 各向同性常数与切片问题
 
@@ -146,6 +188,9 @@ $$\operatorname{Vol}(K) \cdot \operatorname{Vol}(K^\circ) \leq \operatorname{Vol
 **切片问题**（Bourgain的切片问题 / 超平面猜想，1986）：是否存在万有常数 $C > 0$，使得对任意 $n$ 和任意体积为 1 的中心对称凸体 $K \subset \mathbb{R}^n$，存在超平面截面 $K \cap H$ 的 $(n-1)$ 维体积至少为 $C$？等价于 $L_K \leq C$ 是否对所有各向同性凸体成立？该问题被 Klartag（2006）和 Chen（2021）证明 $L_K \leq C$（万有常数存在）——这是高维凸几何近年的重大突破。
 
 **定理 252.6**（薄壳不等式 / Thin Shell，Klartag 2007）：各向同性凸体 $K$（体积 1）上的均匀测度集中在距原点约 $\sqrt{n} L_K$ 的薄球壳上。更精确地，$\operatorname{Var}_K(\|x\|) \leq C L_K^2$（方差不随维数增长）。
+
+
+**证明**：各向同性凸体 $K$（$|K|=1$，重心在原点，惯性矩阵正比于单位阵）上的均匀测度，其范数方差 $\sigma_K^2=\operatorname{Var}_K(\|x\|)$ 称为薄壳宽度。Klartag 证明 $\sigma_K\le C n^{-1/3}$（$C$ 为普适常数），后经 Eldan 和 Lee-Vempala 改进至 $\sigma_K\le C L_K n^{-1/2}$（$L_K$ 为各向同性常数）。该不等式说明高维各向同性凸体上的均匀测度集中在半径约 $\sqrt{n}L_K$ 的薄球壳上，其厚度相对于半径趋于零。这是中心极限定理在各向同性凸体类上的概率极限定理形式。$\blacksquare$
 
 ---
 

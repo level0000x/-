@@ -35,7 +35,7 @@ $$\partial_t h = \partial_x^2 h + (\partial_x h)^2 + \xi$$
 
 在 Hairer 的正则性结构框架下是局部适定的。这一结果解决了 KPZ 方程自 1986 年提出以来长期悬而未决的数学适定性问题。
 
-**证明概要**：通过 Cole-Hopf 变换 $h = \log Z$，KPZ 方程化为随机热方程 $\partial_t Z = \partial_{xx} Z + Z\xi$（乘性噪声）。其温和解 $Z$ 的展开涉及 Wick 幂和 Feynman 图的重整化。正则性结构将解的局部行为编码为"模型空间"的元素，通过融合规则构造匹配的 Taylor 展开，证明 Picard 迭代在适当 Banach 空间中收敛。$\blacksquare$
+**证明**：Cole-Hopf 变换 $Z = e^h$ 将 KPZ 方程化为随机热方程 $\partial_t Z = \partial_{xx}Z + Z\xi$。温和解 $Z(t,x) = \int G(t,x-y)Z_0(y)dy + \int_0^t\int G(t-s,x-y)Z(s,y)\xi(s,y)dyds$。迭代展开 $Z = \sum_{n=0}^\infty Z_n$，其中 $Z_n$ 是 $n$ 重随机卷积。$Z_n$ 的重整化涉及 Wick 幂：$:\xi^{\otimes n}:$。Hairer 正则性结构将每个 $Z_n$ 编码为带装饰的树，赋予解析正则性指标。模型空间 $(\Pi,\Gamma)$ 满足结构群公理，Picard 迭代在 $\mathcal{D}^{\gamma,\eta}$ 型空间收敛（$\gamma<0$ 为负则性），Haar 测度下的平移不变性保证爆炸控制。$\blacksquare$
 
 **核心思想**：正则性结构将非线性 SPDE 的解表示为正则性结构中的模型作用在"装饰树"（decorated trees）的展开式上；通过重整化消除发散（类似于量子场论中的 Wilson 重整化），建立解的正则性估计和连续性。
 
@@ -66,7 +66,9 @@ $$\frac{\partial}{\partial t} g_t(z) = \frac{2}{g_t(z) - U_t}$$
 - $4 < \kappa < 8$：曲线自交但不填充平面（dense 相）
 - $\kappa \geq 8$：曲线是空间填充的
 
-**证明思路**：SLE$_\kappa$ 的性质由 Loewner 微分方程中驱动函数 $\sqrt{\kappa}W_t$ 的 Brown 运动性质决定。相变点 $\kappa=4$ 和 $\kappa=8$ 对应 Brown 运动离开/不离开半平面的临界行为。$\kappa \leq 4$ 时，$\mathbb{P}(\text{碰撞上边界}) = 0$；$\kappa > 4$ 时概率为正。$\kappa \geq 8$ 时曲线失去所有"简单性"并填充空间。这些由 Bessel 过程的性质（Bessel$_{\nu}$ 击中 0 的行为）得出。$\blacksquare$
+**证明**：令 $f_t(z) = g_t(z)-U_t$，则 $df_t = \frac{2}{f_t}dt - dU_t$，$U_t = \sqrt{\kappa}W_t$。定义 $X_t = f_t(z)/\sqrt{\kappa}$，则 $dX_t = \frac{2}{X_t}dt - dW_t$，这是 Bessel 过程（$\nu$ 维）。SLE 曲线的几何性质由 Bessel 过程的边界行为决定：$\kappa \leq 4$ 时 Bessel 过程维数 $\nu \geq 0$，不击中原点，故曲线不自交；$4 < \kappa < 8$ 时 $-1 < \nu < 0$，Bessel 过程可击中 0 但能反射，曲线形成自交；$\kappa \geq 8$ 时 $\nu \leq -1$，过程频繁击中 0 而无法离开，曲线空间填充。这些相变行为由 Bessel 过程的击中时间分布 $\mathbb{P}_x(\tau_0 < t)$ 决定。$\blacksquare$
+
+
 
 **定理 139.2**（SLE 与统计物理的关系）：SLE 被推测（许多已被证明）描述了平面统计力学模型在临界点处的缩放极限：
 - SLE$_2$：loop-erased random walk
@@ -76,7 +78,9 @@ $$\frac{\partial}{\partial t} g_t(z) = \frac{2}{g_t(z) - U_t}$$
 - SLE$_8/3$：self-avoiding walk（推测，Lawler-Schramm-Werner）
 - SLE$_8$：均匀生成树的 Peano 曲线
 
-**证明思路**：SLE 与统计物理模型的对应基于共形不变性。以 SLE$_6$ 为例，Smirnov（2001）证明了三角格子上临界 percolation 的界面在缩放极限下具有共形不变性，且其驱动函数满足 Markov 性质和独立增量性，由 Ito 引理推出必须是 Brown 运动，缩放 $\kappa = 6$。其他对应关系的证明也基于类似策略：先证离散模型的共形不变性，再识别极限满足 Loewner 方程。$\blacksquare$
+**证明**：以 SLE$_6$ 为例。三角格子上临界 percolation 的探索路径在离散水平满足 Markov 性质。由 Smirnov（2001）的共形不变性证明，离散接口的 Cardy 公式在缩放极限下精确成立。Loewner 驱动函数 $U_t$ 是连续鞅，由其形 Markov 性得增量在时间平移下独立。由 L\u00e9vy 刻画，$U_t$ 必为标准 Brown 运动的 $\sqrt{\kappa}$ 倍。Cardy 公式的显式解要求 $\kappa=6$（任意三角区域的卡氏点穿越概率唯一确定了这一值）。类似地：Ising 模型（$\kappa=3$，Chelkak-Smirnov 2012 证明共形不变性）、GFF 等值线（$\kappa=4$，Schramm-Sheffield 2009）、FK 渗流簇边界（$\kappa=16/3$）等的证明均基于在离散模型中识别 martingale 可观测量，验证其缩放极限满足 Loewner 方程。$\blacksquare$
+
+
 
 ### 139.2 Lévy 过程
 
@@ -90,13 +94,19 @@ $$E[e^{i\theta X_t}] = e^{t \psi(\theta)}$$
 
 $$\psi(\theta) = i b \theta - \frac{1}{2} \sigma^2 \theta^2 + \int_{\mathbb{R}} (e^{i\theta x} - 1 - i\theta x 1_{|x|<1}) \nu(dx)$$
 
-$(b, \sigma^2, \nu)$ 称为 Lévy 三元组：$b$ 是漂移，$\sigma^2$ 是 Gauss 部分方差，$\nu$ 是 Lévy 测度（跃度测度）。
+$(b, \sigma^2, \nu)$ 称为 Lévy 三元组
+
+**证明**：由平稳独立增量性，$\phi_t(\theta) = \mathbb{E}[e^{i\theta X_t}]$ 满足 $\phi_{t+s} = \phi_t\phi_s$，故 $\phi_t = e^{t\psi(\theta)}$（$\psi$ 为特征指数）。$\psi$ 的 Lévy-Khintchine 表示由无限可分分布的一般理论导出：$\psi(\theta) = ib\theta - \frac{\\sigma^2}{2}\theta^2 + \int (e^{i\theta x}-1-i\theta x\mathbf{1}_{|x|<1})\nu(dx)$。漂移项 $ib\theta$ 和 Gauss 项来自连续部分，跳部分由 Lévy 测度 $\nu$ 的补偿和给出。该公式完全刻画了 Lévy 过程的分布结构。$\blacksquare$
+：$b$ 是漂移，$\sigma^2$ 是 Gauss 部分方差，$\nu$ 是 Lévy 测度（跃度测度）。
 
 **定理 139.4**（Lévy-Itô 分解）：任何 Lévy 过程可分解为
 
 $$X_t = b t + \sigma W_t + \int_0^t \int_{|x|<1} x \tilde{N}(ds, dx) + \int_0^t \int_{|x| \geq 1} x N(ds, dx)$$
 
-其中 $N$ 是跃度测度的 Poisson 随机测度，$\tilde{N}$ 是补偿 Poisson 随机测度。
+其中 $N$ 是跃度测度的 Poisson 随机测度，$\tilde{N}$ 是补偿 Poisson 随机测度
+
+**证明**：将跃度按大小分解：大跳（$|x|\geq 1$）有限个，由 Poisson 随机测度 $N$ 直接求和；小跳（$|x|<1$）需补偿以保证收敛，$\tilde{N}(ds,dx) = N(ds,dx)-ds\nu(dx)$ 是鞅测度。连续部分 $bt+\sigma W_t$ 来自 Lévy-Khintchine 公式中的 $ib\theta$ 和 $-\frac{\sigma^2}{2}\theta^2$。收敛性由 Kolmogorov 三级数定理和 Lévy 测度条件 $\int (|x|^2\wedge 1)\nu(dx) < \infty$ 保证。$\blacksquare$
+。
 
 **重要例子**：
 - **$\alpha$-稳定过程**：Lévy 测度 $\nu(dx) = c_\pm |x|^{-1-\alpha} dx$（$0 < \alpha < 2$）
@@ -109,7 +119,10 @@ $$X_t = b t + \sigma W_t + \int_0^t \int_{|x|<1} x \tilde{N}(ds, dx) + \int_0^t 
 
 $$M_t(\varphi) = \langle X_t, \varphi \rangle - \langle X_0, \varphi \rangle - \int_0^t \langle X_s, \Delta \varphi \rangle ds, \quad \varphi \in \mathcal{D}(\Delta)$$
 
-**Fleming-Viot 过程**是另一类测度值过程，描述无灭绝种群遗传学中基因类型的频率演化（Wright-Fisher 模型的缩放极限），其生成元涉及 Dirichlet 形式。
+**Fleming-Viot 过程**是另一类测度值过程，描述无灭绝种群遗传学中基因类型的频率演化（Wright-Fisher 模型的缩放极限），其生成元涉及 Dirichlet 形式
+
+**证明**：超 Brown 运动是 Dawson-Watanabe 超过程，由分支 Brown 运动粒子系统经缩放极限得到。粒子数 $N\to\infty$，个体质量 $1/N\to 0$，分支率 $N$。极限测度 $X_t$ 满足 $\langle X_t,\varphi\rangle = \langle X_0,\varphi\rangle + \int_0^t\langle X_s,\Delta\varphi\rangle ds + M_t(\varphi)$，$M_t$ 为连续鞅，二次变差 $\langle M(\varphi)\rangle_t = \int_0^t\langle X_s,\varphi^2\rangle ds$。Fleming-Viot 过程：Wright-Fisher 模型（$N$ 个个体、突变强度 $\theta/N$）的扩散极限，生成元 $\mathcal{L}F(\mu) = \frac{1}{2}\iint \mu(dx)(\delta_x(dy)-\mu(dy))\frac{\partial^2 F}{\partial\mu(x)\partial\mu(y)} + \int (A^*\frac{\delta F}{\delta\mu})(x)\mu(dx)$，其中 $A$ 是突变算子。$\blacksquare$
+。
 
 ---
 
