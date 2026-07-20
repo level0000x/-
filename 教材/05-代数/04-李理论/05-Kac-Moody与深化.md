@@ -36,7 +36,7 @@ $$\frac{1}{|G|} \sum_{g \in G} \chi_i(g) \overline{\chi_j(g)} = \delta_{ij}$$
 
 **定理 222.3**（Brauer-Nesbitt 定理）：在 $p$-模系统 $(K, \mathcal{O}, k)$ 下，$K[G]$-模和 $k[G]$-模的不可约表示之间存在由约化映射 $\mathcal{O}[G] \to k[G]$ 给出的对应关系。
 
-**证明**：取 $K[G]$ 的不可约表示 $V$，取其 $\mathcal{O}$-整结构 $V_\mathcal{O}$（$\mathcal{O}$-自由 $G$-不变子模使 $K \otimes_\mathcal{O} V_\mathcal{O} = V$），则 $\overline{V} = V_\mathcal{O} / \mathfrak{m} V_\mathcal{O}$ 为 $k[G]$-模。反之，$k[G]$ 的不可约投射覆盖可提升为 $\mathcal{O}[G]$ 的投射模，后者张量 $K$ 给出 $K[G]$ 的不可约表示。此提升不唯一（依赖于整结构选取），但其合成因子与分解矩阵 $D$ 精确描述了对应。 $\blacksquare$
+**证明**：取 $K[G]$ 的不可约表示 $V$，取其 $\mathcal{O}$-整结构 $V_{\mathcal{O}}$（$\mathcal{O}$-自由 $G$-不变子模使 $K \otimes_{\mathcal{O}} V_{\mathcal{O}} = V$），则 $\overline{V} = V_{\mathcal{O}} / \mathfrak{m} V_{\mathcal{O}}$ 为 $k[G]$-模。反之，$k[G]$ 的不可约投射覆盖可提升为 $\mathcal{O}[G]$ 的投射模，后者张量 $K$ 给出 $K[G]$ 的不可约表示。此提升不唯一（依赖于整结构选取），但其合成因子与分解矩阵 $D$ 精确描述了对应。 $\blacksquare$
 
 **定义 222.5**（Brauer 特征标 / Brauer Character）：设 $\rho: G \to \operatorname{GL}_n(k)$ 是模表示。对 $G$ 的 $p$-正则元 $g$（阶不被 $p$ 整除），$\rho(g)$ 的特征值在 $K$ 中有唯一的提升（Teichmüller 提升）。**Brauer 特征标** $\varphi(g)$ 是这些提升特征值的和。$\operatorname{IBr}(G)$ 是所有不可约 Brauer 特征标的集合。
 
@@ -356,7 +356,11 @@ $$\mathcal{D}\text{-}\operatorname{Mod}(\operatorname{Bun}_G) \cong \operatornam
 
 ## Hopf 代数与量子群导引
 
-### 代数与余代数结构
+Hopf 代数是同时具有代数结构和余代数结构的代数对象，两者通过双代数公理相容，并通过对极（antipode）映射实现"逆元"的对偶概念。Hopf 代数的概念由 Heinz Hopf 在 1941 年关于流形上同调环的工作中首次出现，随后在 1960-70 年代由 Sweedler、Milnor、Moore 等人发展为系统的代数理论。Hopf 代数的核心思想是自我对偶性：代数结构（乘法 $\mu$、单位 $\eta$）刻画了"如何将两个元素合并为一个"，而余代数结构（余乘法 $\Delta$、余单位 $\varepsilon$）刻画了"如何将一个元素分解为两个部分"。当这两个结构在双代数中相容时，Hopf 代数就自然地出现在群代数、包络代数、坐标环等基本例子中。
+
+量子群是 Hopf 代数的非交换、非余交换变体，由 Drinfeld 和 Jimbo 在 1985 年独立发现，最初作为量子可积系统（Yang-Baxter 方程）的代数框架。量子群 $U_q(\mathfrak{g})$ 是李代数 $\mathfrak{g}$ 的泛包络代数 $U(\mathfrak{g})$ 的 $q$-形变，当 $q \to 1$ 时恢复经典包络代数。量子群的关键创新在于它打破了 Hopf 代数的余交换性，引入了拟三角结构（泛 R-矩阵 $\mathcal{R} \in H \otimes H$），该结构满足 Yang-Baxter 方程 $\mathcal{R}_{12}\mathcal{R}_{13}\mathcal{R}_{23} = \mathcal{R}_{23}\mathcal{R}_{13}\mathcal{R}_{12}$。这一结构使得量子群的表示范畴成为辫子幺半范畴，辫子由 $\mathcal{R}$ 通过表示作用给出。
+
+Hopf 代数与量子群在数学物理中有着深远的影响。辫子幺半范畴提供了构造纽结和链环不变量的代数框架——通过丝带 Hopf 代数的量子迹和 Markov 迹，每个定向链环 $L$ 对应一个标量不变量 $J_{H,V}(L)$。Jones 多项式（1984）和 HOMFLY-PT 多项式正是从 $U_q(\mathfrak{sl}_2)$ 和 $U_q(\mathfrak{sl}_N)$ 的适当表示中得到的特例。此外，量子群还在共形场论（Wess-Zumino-Witten 模型）、可积系统（量子逆散射方法）和三维拓扑量子场论（Reshetikhin-Turaev 不变量）中扮演核心角色。本章将系统介绍 Hopf 代数的公理化定义、Sweedler 记号、基本例子（群代数、包络代数、坐标环）、量子群 $U_q(\mathfrak{sl}_2)$ 的构造、拟三角 Hopf 代数与泛 R-矩阵、辫子幺半范畴，以及量子迹与纽结不变量的构造。
 
 **定义 1**（代数）：设 $k$ 是交换环。一个 $k$-**代数**是一个三元组 $(A, \mu, \eta)$，其中 $A$ 是 $k$-模，$\mu: A \otimes_k A \to A$ 是乘法（乘法映射），$\eta: k \to A$ 是单位映射，满足以下交换图：
 $$\mu \circ (\mu \otimes \mathrm{id}_A) = \mu \circ (\mathrm{id}_A \otimes \mu) \quad (\text{结合律})$$

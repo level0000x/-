@@ -30,6 +30,9 @@ $$\int_0^{2\pi} \log^+ \left|\frac{f'(re^{i\theta})}{f(re^{i\theta})}\right| d\t
 ---
 
 ## Ch 109 拟共形映射与Teichmüller空间
+
+拟共形映射是共形映射的自然推广，允许有界角度畸变，其理论由 Grotzsch（1928）、Ahlfors（1935）和 Teichmüller（1939）奠基，并由 Bers 学派在 1960 年代系统发展。拟共形映射的核心是 Beltrami 方程 $f_{\bar{z}} = \mu(z) f_z$，其中 Beltrami 系数 $\mu$ 度量了共形性的偏离程度。拟共形映射不仅是复分析的重要工具，更是 Riemann 面模空间（Teichmüller 空间）理论的核心语言——Teichmüller 空间上的 Teichmüller 度量由拟共形映射的伸缩商所定义，而 Bers 嵌入定理将 Teichmüller 空间实现为全纯二次微分的复 Banach 空间中的有界域。拟共形映射在复动力系统（Sullivan 的"无游荡域定理"）、低维拓扑（Mostow 刚性定理的证明）和偏微分方程（椭圆型方程组的正则性）中均有深刻应用。
+
 ### 拟共形映射
 
 拟共形映射是共形映射的自然推广，允许有界的角度畸变。其解析定义基于**Beltrami方程**：
@@ -73,6 +76,9 @@ $$\tilde{f}(z) = \frac{1}{2\pi i} \int_{|\zeta| = R} \frac{f(\zeta, z')}{\zeta -
 ---
 
 ## Ch 112：多复变核心定理
+
+多复变函数论的核心定理构成了该领域的基本骨架，它们将单复变中的经典结果推广到高维——或揭示高维独有的全新现象。本章聚焦于两个核心方向：其一，Stein 流形理论与 Cartan-Thullen 定理，建立了全纯域、全纯凸性、Stein 性和伪凸性之间的等价关系，其中 Oka 对 Levi 问题的解答是 20 世纪多复变理论的里程碑；其二，$\bar{\partial}$-问题的 $L^2$ 估计（Hörmander, 1965），它不仅是多复变正则性理论的核心技术工具，也是现代复几何（如 Ohsawa-Takegoshi $L^2$ 延拓定理）和代数几何（如 Kawamata-Viehweg 消灭定理的解析证明）的基础。这些定理共同揭示了多复变中全纯函数的内在刚性——Hartogs 延拓现象和 $\bar{\partial}$-Neumann 问题的次椭圆性正是这种刚性的体现。
+
 ### Stein流形与Cartan-Thullen定理
 
 **定义112.1**（Stein流形）：复流形$X$为**Stein流形**若：(1) $X$为Hausdorff且第二可数；(2) 全纯函数分离点；(3) 全纯函数给出局部坐标；(4) $X$是全纯凸的——对任意紧集$K \subset X$，其全纯凸包$\hat{K} = \{x \in X : |f(x)| \leq \sup_K |f|, \forall f \in \mathcal{O}(X)\}$为紧。

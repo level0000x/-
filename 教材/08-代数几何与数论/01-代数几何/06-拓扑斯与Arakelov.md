@@ -3,7 +3,7 @@ Arakelov 几何将代数几何的概型方法推广到算术情形，在 $\opera
 
 ### 88.1 算术曲面与 Hermite 度量
 
-**定义 88.1**（算术曲面）：**算术曲面**是一个平坦、有限型的态射 $\pi: \mathcal{X} \to \operatorname{Spec} \mathbb{Z}$，其一般纤维 $\mathcal{X}_\mathbb{Q} = \mathcal{X} \times_{\operatorname{Spec} \mathbb{Z}} \operatorname{Spec} \mathbb{Q}$ 是一条光滑射影曲线。实数纤维 $\mathcal{X}(\mathbb{C}) = \mathcal{X} \times_{\operatorname{Spec} \mathbb{Z}} \operatorname{Spec} \mathbb{C}$ 是紧 Riemann 面（不一定连通）。在每个连通分支 $\mathcal{X}_\sigma$（$\sigma \in \mathcal{X}(\mathbb{C})$ 的连通分支）上需装备 **Kähler 度量**——称为 Hermite 度量或 Kähler 形式 $\omega_\sigma$。
+**定义 88.1**（算术曲面）：**算术曲面**是一个平坦、有限型的态射 $\pi: \mathcal{X} \to \operatorname{Spec} \mathbb{Z}$，其一般纤维 $\mathcal{X}_{\mathbb{Q}} = \mathcal{X} \times_{\operatorname{Spec} \mathbb{Z}} \operatorname{Spec} \mathbb{Q}$ 是一条光滑射影曲线。实数纤维 $\mathcal{X}(\mathbb{C}) = \mathcal{X} \times_{\operatorname{Spec} \mathbb{Z}} \operatorname{Spec} \mathbb{C}$ 是紧 Riemann 面（不一定连通）。在每个连通分支 $\mathcal{X}_\sigma$（$\sigma \in \mathcal{X}(\mathbb{C})$ 的连通分支）上需装备 **Kähler 度量**——称为 Hermite 度量或 Kähler 形式 $\omega_\sigma$。
 
 在每个非无穷远点 $p$（即正素数），$\mathcal{X}$ 的纤维 $\mathcal{X}_p = \mathcal{X} \times_{\operatorname{Spec} \mathbb{Z}} \operatorname{Spec} \mathbb{F}_p$ 是有限域 $\mathbb{F}_p$ 上的代数曲线（带有可能的奇点）。
 

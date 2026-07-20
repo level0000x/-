@@ -1,10 +1,14 @@
 ## 第87章：Borel-Weil-Bott 定理
 
-### 87.1 旗簇与齐性线丛
+Borel-Weil-Bott 定理是李理论表示论中最辉煌的几何实现定理之一，它将紧 Lie 群的不可约表示实现为旗簇 $G/B$ 上齐性线丛的全纯截面。这一定理的历史可追溯至 Borel 和 Weil 在 1954 年的开创性工作，他们证明了紧半单 Lie 群 $G$ 的每个支配整权 $\lambda \in \Lambda^+$ 对应的不可约表示 $V_\lambda$ 同构于 $G/B$ 上线丛 $\mathcal{L}_\lambda$ 的整体截面空间 $H^0(G/B, \mathcal{L}_\lambda)$。Raoul Bott 于 1957 年将这一结果推广为完整的 Bott-Borel-Weil 定理，精确计算了所有线丛 $\mathcal{L}_\lambda$（$\lambda \in \Lambda$）的层上同调 $H^i(G/B, \mathcal{L}_\lambda)$——它们要么为零，要么同构于某个支配权对应的不可约表示。
+
+Borel-Weil-Bott 定理的几何意义深远：它将李代数的纯代数表示论转化为复几何和代数几何的问题。具体而言，旗簇 $G/B$ 是紧半单 Lie 群 $G$ 的完备齐性空间，其上的齐性线丛 $\mathcal{L}_\lambda$ 由权 $\lambda$ 参数化。当 $\lambda$ 是支配整权时，$\mathcal{L}_\lambda$ 是丰沛线丛，其整体截面空间 $H^0$ 就是 $V_\lambda$，而高阶上同调 $H^{>0}$ 全部消失（Kempf 消没定理）。当 $\lambda$ 不是支配权时，截面空间 $H^0$ 为零，但高阶上同调 $H^i$ 可能非零，且 Bott 定理精确地告诉我们在哪个 $i = \ell(w)$ 处非零（其中 $w$ 是使得 $w \bullet \lambda = w(\lambda + \rho) - \rho$ 为支配权的唯一 Weyl 群元素），且该非零上同调群同构于 $V_{w \bullet \lambda}$。
+
+Bott-Borel-Weil 定理的证明结合了代数几何（Schubert 胞腔的层上同调）、表示论（Demazure 算符）和微分几何（等变 K-理论）三种工具。Schubert 胞腔分层将 $G/B$ 分解为仿射空间 $\mathbb{C}^{\ell(w)}$ 的并，将层上同调的计算归约为组合问题。Demazure 算符 $D_\alpha$ 则捕捉了 $\mathbb{P}^1$-纤维化 $\pi_\alpha: G/B \to G/P_\alpha$ 上同调的递归行为。Weyl 特征公式作为 Euler-Poincare 特征公式的推论自然得出，而 Borel-Weil 定理自身则作为 Bott 定理在 $\lambda$ 支配时的特例。本章将系统介绍旗簇的几何、齐性线丛的构造、Borel-Weil 定理、Bott-Borel-Weil 定理及其与 Weyl 特征公式的联系，为几何表示论（卷十六）和等变 K-理论（卷二十）奠定基础。
 
 **定义 87.1**（旗簇）：设 $G$ 为 $\mathbb{C}$ 上的连通半单代数群，$B \subset G$ 为 Borel 子群（极大连通可解子群），$T \subset B$ 为极大环面。**旗簇**（flag variety）定义为完备齐性空间
 $$\mathcal{B} = G/B$$
-$\mathcal{B}$ 为光滑射影簇，维数 $\dim \mathcal{B} = |\Phi^+|$（正根的个数）。$G$ 通过左平移传递作用于 $\mathcal{B}$。基本例子：$G = GL_n(\mathbb{C})$ 时，$\mathcal{B}$ 同构于 $\mathbb{C}^n$ 中全体完全旗 $\{0\} = V_0 \subset V_1 \subset \cdots \subset V_n = \mathbb{C}^n$（$\dim_\mathbb{C} V_i = i$）构成的空间。
+$\mathcal{B}$ 为光滑射影簇，维数 $\dim \mathcal{B} = |\Phi^+|$（正根的个数）。$G$ 通过左平移传递作用于 $\mathcal{B}$。基本例子：$G = GL_n(\mathbb{C})$ 时，$\mathcal{B}$ 同构于 $\mathbb{C}^n$ 中全体完全旗 $\{0\} = V_0 \subset V_1 \subset \cdots \subset V_n = \mathbb{C}^n$（$\dim_{\mathbb{C}} V_i = i$）构成的空间。
 
 **定义 87.2**（权与特征）：权格为 $\Lambda = \operatorname{Hom}_{\text{alg}}(T, \mathbb{C}^\times)$。Borel 子群 $B$ 决定了正根集 $\Phi^+ \subset \Phi$。**支配整权**集为
 $$\Lambda^+ = \{\lambda \in \Lambda : \langle \lambda, \alpha^\vee \rangle \geq 0,\ \forall \alpha \in \Phi^+\}$$
@@ -75,7 +79,7 @@ $$\chi(G/B, \mathcal{L}_\lambda) = \frac{\sum_{w \in W} (-1)^{\ell(w)} e^{w(\lam
 
 ### 87.5 Demazure 模与 Schubert 簇
 
-**定义 87.5**（Schubert 簇）：对 $w \in W$，**Schubert 簇** $X_w = \overline{B w B / B} \subseteq G/B$ 是 Schubert 胞腔 $\mathcal{O}_w \cong \mathbb{C}^{\ell(w)}$ 的 Zariski 闭包。$\dim_\mathbb{C} X_w = \ell(w)$，且 $X_w$ 为正规射影簇（一般非光滑）。全体 $\{X_w\}_{w \in W}$ 按 Bruhat 偏序 $v \leq w \iff X_v \subseteq X_w$ 分层。
+**定义 87.5**（Schubert 簇）：对 $w \in W$，**Schubert 簇** $X_w = \overline{B w B / B} \subseteq G/B$ 是 Schubert 胞腔 $\mathcal{O}_w \cong \mathbb{C}^{\ell(w)}$ 的 Zariski 闭包。$\dim_{\mathbb{C}} X_w = \ell(w)$，且 $X_w$ 为正规射影簇（一般非光滑）。全体 $\{X_w\}_{w \in W}$ 按 Bruhat 偏序 $v \leq w \iff X_v \subseteq X_w$ 分层。
 
 **定义 87.6**（Demazure 模）：对 $\lambda \in \Lambda^+$ 和 $w \in W$，**Demazure 模** $V_\lambda(w)$ 为 $V_\lambda$ 中由极值权空间 $V_\lambda(w\lambda)$ 在 Borel 子代数 $\mathfrak{b}$ 作用下生成的子模：
 $$V_\lambda(w) = U(\mathfrak{b}) \cdot V_\lambda(w\lambda) \subseteq V_\lambda$$
