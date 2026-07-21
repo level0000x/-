@@ -1,4 +1,4 @@
-## 第230章：Arakelov 几何
+## 第257章：Arakelov 几何
 Arakelov 几何将代数几何的概型方法推广到算术情形，在 $\operatorname{Spec} \mathbb{Z}$ 上构造"算术曲面"，并在每个无穷远点处附加 Hermite 度量以赋予"紧性"。这是将代数几何方法与解析工具相结合的交叉领域，其核心应用包括 Faltings 对 Mordell 猜想的证明。
 
 ### 88.1 算术曲面与 Hermite 度量
@@ -86,7 +86,7 @@ $$\widehat{\chi}(\overline{L}^{\otimes n}) = \frac{\widehat{\deg}(\overline{L})}
 ---
 ---
 
-## 第231章（补充）
+### 231.A 拓扑斯补充
 拓扑斯理论（Topos Theory）由 Grothendieck（1963）、Lawvere（1964）和 Tierney（1972）创立，是连接逻辑、代数和几何的桥梁。一个拓扑斯是一个"广义的集合论宇宙"，在其中可以做几乎所有的数学——同时保留了范畴论的一致性和几何的局部性质。
 
 ### Grothendieck拓扑与景

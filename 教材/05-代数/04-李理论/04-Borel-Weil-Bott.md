@@ -1,4 +1,4 @@
-## 第87章：Borel-Weil-Bott 定理
+## 第113章：Borel-Weil-Bott 定理
 
 Borel-Weil-Bott 定理是李理论表示论中最辉煌的几何实现定理之一，它将紧 Lie 群的不可约表示实现为旗簇 $G/B$ 上齐性线丛的全纯截面。这一定理的历史可追溯至 Borel 和 Weil 在 1954 年的开创性工作，他们证明了紧半单 Lie 群 $G$ 的每个支配整权 $\lambda \in \Lambda^+$ 对应的不可约表示 $V_\lambda$ 同构于 $G/B$ 上线丛 $\mathcal{L}_\lambda$ 的整体截面空间 $H^0(G/B, \mathcal{L}_\lambda)$。Raoul Bott 于 1957 年将这一结果推广为完整的 Bott-Borel-Weil 定理，精确计算了所有线丛 $\mathcal{L}_\lambda$（$\lambda \in \Lambda$）的层上同调 $H^i(G/B, \mathcal{L}_\lambda)$——它们要么为零，要么同构于某个支配权对应的不可约表示。
 
