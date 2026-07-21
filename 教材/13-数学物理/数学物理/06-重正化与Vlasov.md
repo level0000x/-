@@ -18,6 +18,8 @@ $$\mathcal{A}_G = \mu^{2\varepsilon} \int \frac{d^dk}{(2\pi)^d} I_G(k,p_i)$$
 $$\int \frac{d^dk}{(2\pi)^d} \frac{1}{(k^2 + 2p\cdot k + M^2)^\alpha} = \frac{i(-1)^\alpha}{(4\pi)^{d/2}} \frac{\Gamma(\alpha - d/2)}{\Gamma(\alpha)} \frac{1}{(M^2 - p^2)^{\alpha - d/2}}$$
 此公式是维数正规化中计算所有 Feynman 积分的基础。$\Gamma$ 函数在 $d=4$（$\alpha=2$）时产生极点 $\Gamma(2-d/2) = \Gamma(\varepsilon/2) \sim 2/\varepsilon - \gamma_E + O(\varepsilon)$。
 
+**证明**：利用 Schwinger 参数化：$\frac{1}{A^\alpha} = \frac{1}{\Gamma(\alpha)} \int_0^\infty dt \, t^{\alpha-1} e^{-tA}$。取 $A = k^2 + 2p\cdot k + M^2$，则积分变为 $\int \frac{d^d k}{(2\pi)^d} \frac{1}{\Gamma(\alpha)} \int_0^\infty dt \, t^{\alpha-1} \exp(-t(k^2 + 2p\cdot k + M^2))$。交换积分次序，完成平方：$k^2 + 2p\cdot k + M^2 = (k + p)^2 + M^2 - p^2$。做平移 $k' = k + p$，则动量积分化为 Gauss 积分：$\int \frac{d^d k'}{(2\pi)^d} e^{-t k'^2} = \frac{1}{(4\pi t)^{d/2}}$。于是积分 $= \frac{1}{\Gamma(\alpha)} \int_0^\infty dt \, t^{\alpha-1} \frac{1}{(4\pi t)^{d/2}} e^{-t(M^2-p^2)} = \frac{1}{(4\pi)^{d/2}\Gamma(\alpha)} \int_0^\infty dt \, t^{\alpha - d/2 - 1} e^{-t(M^2-p^2)}$。由 $\Gamma$ 函数的定义 $\int_0^\infty t^{s-1} e^{-at} dt = \Gamma(s) / a^s$，得最终结果 $\frac{i(-1)^\alpha}{(4\pi)^{d/2}} \frac{\Gamma(\alpha - d/2)}{\Gamma(\alpha)} \frac{1}{(M^2 - p^2)^{\alpha - d/2}}$。$i$ 因子来自 Wick 旋转（$k^0 \to i k^0_E$）。$\blacksquare$
+
 **其他正规化方法**：
 - **Pauli-Villars 正规化**：引入辅助大质量场以抵消发散，保持 Lorentz 协变性但在非 Abel 规范理论中破坏规范不变性；
 - **格点正规化**：将时空离散化为格点 $a\mathbb{Z}^4$，动量积分截断在 $\pi/a$，保持规范不变性（Wilson 作用量）但破坏 Lorentz 协变性（在连续极限 $a\to 0$ 中恢复）；
@@ -37,7 +39,7 @@ $$\bar{R}_G = I_G + \sum_{\{\gamma_1,\ldots,\gamma_k\} \in \mathcal{F}(G)} I_{G/
 
 **定理 372.2**（BPHZ 定理，Bogoliubov-Parasiuk 1957, Hepp 1966, Zimmermann 1969）：对任意可重整的量子场论，森林公式和 $R$-操作给出的重正化振幅 $R_G$ 对所有 Feynman 图 $G$ 是有限的、Lorentz 不变的，且满足因果性和幺正性。重整化后的 Feynman 振幅对动量截断 $\Lambda\to\infty$（或 $\varepsilon\to 0$）一致收敛。
 
-**证明概要**：关键步骤包括：(1) 证明 Zimmermann 森林公式与 Bogoliubov $R$-操作的等价性——两者均给出相同的重正化值。(2) Hepp 的收敛定理：对每个已被适当减除的 Feynman 积分，通过将积分区域剖分为 Hepp 扇区（sectors）并逐扇区估计，证明积分在 $\Lambda\to\infty$ 下绝对收敛。核心是分析每个扇区中积分的渐近行为，利用 Taylor 减法算子消去所有发散项。(3) 幺正性和因果性在微扰论每一阶的验证：重正化不破坏 $S$ 矩阵的幺正性（$S^\dagger S = 1$），这等价于 Cutkosky 切割规则在重正化后仍然成立。$\blacksquare$
+**证明**：证明分三个核心步骤。(1) 森林公式与 $R$-操作的等价性：对每个 Feynman 图 $G$，Zimmermann 森林公式对所有森林（两两互不重叠的连通发散子图族）求和，每个森林 $\gamma_1, \ldots, \gamma_k$ 对应一组减法操作 $(-t_{\gamma_1})\cdots(-t_{\gamma_k})$。Bogoliubov $R$-操作递归定义 $\bar{R}_G = I_G + \sum I_{G/\{\gamma_i\}} \circ \prod_i (-t^{\gamma_i} \bar{R}_{\gamma_i})$，两者通过森林与子图缩并的对应关系等价。(2) Hepp 的收敛定理：对每个已被适当减除的 Feynman 积分，将积分区域（$\mathbb{R}^d$ 中的圈动量）剖分为 Hepp 扇区。在每个扇区中，动量按大小排序，积分可写为迭代积分。Taylor 减法算子 $t_\gamma$ 精确消除了所有扇区中的发散子积分——在子图 $\gamma$ 的动量趋于无穷时，$t_\gamma$ 减去了 $I_\gamma$ 的 Taylor 展开（至发散阶 $d(\gamma)$），使得减除后的积分在 $\Lambda \to \infty$ 下绝对收敛。每种扇区中的收敛性由幂次计数（power counting）保证：减除后有效发散度 $\omega_{\text{eff}}(\gamma) < 0$。(3) 幺正性和因果性：重正化后的 $S$ 矩阵满足 $S^\dagger S = 1$ 等价于 Cutkosky 切割规则在重正化后成立。重正化不改变 $S$ 矩阵的解析结构（极点位置和留数），因此保持幺正性。因果性由 Bogoliubov-Shirkov 因果条件保证，重正化操作保持微扰展开的因果结构。$\blacksquare$
 
 **定义 372.6**（重整化方案）：不同重整化方案对应不同的减法条件：
 - **在壳方案**（on-shell）：减除在物理质量壳上 $p^2 = m_{\text{phys}}^2$ 处进行，参数直接对应物理可观测量；
@@ -63,6 +65,8 @@ $$\mu\frac{d}{d\mu}\Gamma^{(n)}_B = 0 \Rightarrow \left(\mu\frac{\partial}{\part
 **定理 372.4**（渐近自由与 Gross-Wilczek-Politzer 定理，1973）：$SU(N)$ 规范理论（无标量场或费米子数有限）是渐近自由的：$\beta(g) < 0$ 对小 $g$ 成立。具体地，对 $SU(N)$ 规范理论与 $N_f$ 味 Dirac 费米子，
 $$\beta_0 = -\frac{1}{(4\pi)^2}\left(\frac{11}{3}N - \frac{2}{3}N_f\right)$$
 当 $N_f < 11N/2$ 时 $\beta_0 < 0$，理论为渐近自由。QCD（$N=3, N_f=6$）满足此条件，解释了高能实验中夸克表现为几乎自由粒子的现象（渐近自由）。Gross、Wilczek 和 Politzer 因此获得 2004 年 Nobel 物理学奖。
+
+**证明**：$\beta$ 函数的单圈系数 $\beta_0$ 由三个贡献之和给出：规范场自相互作用（胶子圈）、鬼场圈（Faddeev-Popov 鬼）和费米子圈。在 $SU(N)$ 规范理论中，规范场对 $\beta_0$ 的贡献为 $-\frac{11}{3}N$（来自三胶子和四胶子顶点的单圈修正），费米子（$N_f$ 味）的贡献为 $+\frac{2}{3}N_f$（来自费米子圈的真空极化）。具体计算：$\beta(g) = -\frac{g^3}{(4\pi)^2} \beta_0 + O(g^5)$，其中 $\beta_0 = \frac{11}{3}C_2(G) - \frac{4}{3}T(R)N_f$，对 $SU(N)$ 有 $C_2(G) = N$，$T(R) = 1/2$（基础表示），故 $\beta_0 = \frac{11}{3}N - \frac{2}{3}N_f$。当 $N_f < 11N/2$ 时 $\beta_0 > 0$，但 $\beta(g) = -\beta_0 g^3/(4\pi)^2 + \cdots$，故 $\beta(g) < 0$（渐近自由）。$\blacksquare$
 
 ### 372.4 Wilson重正化群流
 
@@ -125,6 +129,8 @@ $$\frac{d}{dt} \iint \left(\frac{1}{2}|v|^2 f^\varepsilon + \frac{1}{2}|E^\varep
 
 **定理 373.2**（Pfaffelmoser 经典解，1992）：对 $C^1$ 且紧支撑的初值 $f_0$，Vlasov-Poisson 系统在 $d=3$ 时存在全局经典解。Pfaffelmoser 证明的关键在于沿特征线估计速度的最大增长，证明了 $|V(t)| \leq C(1+t)^{1+\varepsilon}$，从而防止了有限时间爆破。
 
+**证明**：由特征线法，$f(t, X(t), V(t)) = f_0(x, v)$ 沿特征线 $\dot{X} = V$，$\dot{V} = E(t, X)$ 为常数。电场 $E(t, x) = \frac{x}{|x|^3} * \rho(t, x)$（Coulomb 力）。关键估计：对任意粒子，$|V(t)| \leq C (1+t)^{2/3} \log(2+t)$。Pfaffelmoser 将相空间按速度大小分层，对每层粒子分别估计其对电场的贡献。设 $f_0$ 支撑在 $|v| \leq R$ 内。对 $t$ 时刻速度 $|V(t)| \geq R$ 的粒子，其对应的初始位置在 $|x| \leq R t + O(1)$ 内。将此区域的电荷分布分解为"近场"和"远场"贡献，利用 Poisson 方程和 Newton 位势的衰减性质，证明 $|E(t, X(t))| \leq C (1+t)^{-2/3+o(1)}$。积分 $\dot{V} = E$ 得 $|V(t)| \leq C (1+t)^{1/3+o(1)}$，更精细的 bootstrap 论证将此改进为 $|V(t)| \leq C (1+t)^{1+\varepsilon}$（对任意 $\varepsilon > 0$）。由于特征线全局存在，解 $f$ 全局存在且保持 $C^1$ 正则性。$\blacksquare$
+
 ### 373.3 Landau阻尼的线性理论
 
 **定理 373.3**（线性 Landau 阻尼，Landau 1946）：考虑空间均匀平衡态 $f_0(v)$（$d=1$ 情形）上的线性化 Vlasov-Poisson 系统。对扰动 $f_1(t,x,v) = g(t,v)e^{ikx}$，电场 $E(t,x) = \hat{E}(t)e^{ikx}$。由 Laplace 变换分析，当 $t\to\infty$ 时，
@@ -137,10 +143,7 @@ $$\hat{E}(t) \sim C e^{-i\omega_p t - \gamma t}, \quad \gamma = \frac{\pi}{2}\fr
 
 **定理 373.4**（Mouhot-Villani 非线性 Landau 阻尼，2011）：对充分光滑（Gevrey 类）且小振幅的初值扰动，非线性 Vlasov-Poisson 系统（$d \geq 1$，周期边界条件或全空间）的解在 $t\to\infty$ 时以几乎多项式速率（$O(t^{-N})$ 对任意 $N$）衰减至空间均匀态，验证了非线性稳定性和 Landau 阻尼在非线性水平上的严格成立。
 
-**证明概要**：Mouhot-Villani 使用 Newton 迭代和正则化方法。关键步骤：
-(1) 证明线性化算子的 Landau 阻尼性质：在线性层面，扰动以指数速率衰减（速度空间中的正则性假设下）。
-(2) 构造非线性响应的级数展开：将非线性解写为 $f = f_0 + \sum_{n\geq 1} f^{(n)}$，其中 $f^{(n)}$ 为 $n$ 阶非线性贡献。利用等离子体回波（plasma echo）的抵消机制控制非线性项的共振增长——不同波数间的非线性相互作用在适当正则性下互相抵消，抑制了长期共振积累。
-(3) 在 Gevrey 类解析函数空间中建立一致估计：通过分析 Fourier 模式在复平面中的解析延拓，证明非线性项在长时间尺度上保持可控。核心是证明非线性回波不会导致不稳定性——即不同波数间的非线性相互作用在适当正则性下互相抵消，使得 Landau 阻尼在非线性层面依然有效。$\blacksquare$
+**证明**：Mouhot-Villani 使用 Newton 迭代和正则化方法，分三个核心步骤。(1) 线性 Landau 阻尼：在线性层面，对空间均匀平衡态 $f_0(v)$ 的扰动，Vlasov 方程的线性化算子 $L = -v\cdot\nabla_x - E[f_1]\cdot\nabla_v f_0$ 具有连续谱。Gevrey 类正则性假设下，扰动 $f_1(t,x,v)$ 的 Fourier 模 $\hat{f}_1(k,v,t)$ 满足 $\hat{f}_1(k,v,t) \sim e^{-ik v t} \hat{f}_1(k,v,0) + \text{Landau 阻尼项}$，后者以 $e^{-\lambda|k|^{1/(1+s)} t}$ 衰减（$s$ 为 Gevrey 指数）。在线性层面，这给出指数衰减。(2) 非线性响应的级数展开：将非线性解写为 $f = f_0 + \sum_{n\geq 1} f^{(n)}$，其中 $f^{(n)}$ 为 $n$ 阶非线性贡献。关键挑战是控制等离子体回波（plasma echo）：不同波数 $k, k'$ 间的非线性相互作用产生共振项 $\sim e^{i(k-k')v t}$，这些共振项可能随 $t$ 增长，破坏衰减。Mouhot-Villani 证明，在 Gevrey 正则性下，不同波数间回波的叠加相互抵消——即回波链（echo chain）的估计在长时间尺度上保持可控。这一抵消机制是通过分析 Fourier 模式在复平面中的解析延拓实现的，其中不同波数间的非线性相互作用导致围道积分中的相消。(3) 在 Gevrey 类函数空间中建立一致估计：通过 Newton 迭代，在适当的加权范数下证明解的全局存在性，且扰动以几乎多项式速率 $O(t^{-N})$ 衰减至零。关键是将非线性项视为线性化问题的扰动，利用线性估计的指数衰减在迭代中控制非线性项的增长。$\blacksquare$
 
 ### 373.4 引力Vlasov-Poisson系统与稳定性
 

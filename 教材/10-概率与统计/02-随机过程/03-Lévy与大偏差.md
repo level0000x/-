@@ -105,6 +105,8 @@ $$X_t = b t + \sigma W_t + \int_0^t \int_{|x| \geq 1} x N(ds, dx) + \int_0^t \in
 
 其中 $N$ 为 Poisson 随机测度（强度 $\nu(dx) dt$）。第一项为确定性漂移，第二项为 Brown 扩散，第三项为大幅跳跃之和（复合 Poisson 过程），第四项为补偿小跳跃的纯断鞅（compensated small jumps martingale）。这四项之和给出 Levy 过程的完整 Levy-Ito 分解。
 
+**证明**：由 Levy-Khintchine 公式，Levy 过程的特征函数由 $(b, \sigma^2, \nu)$ 唯一确定。将 Levy 测度 $\nu$ 分解为 $\nu = \nu|_{|x| < 1} + \nu|_{|x| \geq 1}$。小跳部分 $\nu|_{|x| < 1}$ 满足 $\int_{|x| < 1} |x|^2 \nu(dx) < \infty$（由 Levy 测度的定义），故可构造对应的平方可积鞅——即补偿 Poisson 随机积分 $\int_0^t \int_{|x| < 1} x (N(ds, dx) - \nu(dx) ds)$。大跳部分 $\nu|_{|x| \geq 1}$ 是有限测度，故 $\int_0^t \int_{|x| \geq 1} x N(ds, dx)$ 是复合 Poisson 过程。Brown 运动部分 $W_t$ 由特征函数中 $\exp(-t \sigma^2 u^2/2)$ 项对应，漂移 $bt$ 由 $\exp(i t b u)$ 项对应。各部分的独立性由 Levy 过程的独立增量性及其特征函数的乘积形式直接得出。$\blacksquare$
+
 **定义 137.2**（重要的 Levy 过程示例）：
 - **Brown 运动**：$\nu = 0$，$\sigma^2 = 1$，$b = 0$（连续路径）
 - **Poisson 过程**：$\nu = \lambda \delta_1$，$\sigma^2 = 0$，$b = 0$（单位跳跃）
