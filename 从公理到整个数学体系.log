@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.7.12)  21 JUL 2026 14:07
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.7.12)  21 JUL 2026 14:33
  restricted system commands enabled.
 **c:/Users/xingg/Desktop/数学教材/从公理到整个数学体系.tex
 (c:/Users/xingg/Desktop/数学教材/从公理到整个数学体系.tex
@@ -3373,10 +3373,6 @@ x[]; [] ; x[]\OT1/cmr/m/n/12 ) : \OML/cmm/m/it/12 x[]$[] |\LTJY3/SimSun(1)/m/n/
 [669
 
 ] [670] [671] [672] [673]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 55.1 on input line 22032.
-
 ignored error Infinite glue shrinkage found in box being split [674]
 Overfull \hbox (2.6973pt too wide) in paragraph at lines 22048--22049
 []|\LTJY3/SimSun(1)/m/n/12 结 |晶 |群 |理 |论 |在 \TU/TimesNewRoman(0)/m/
@@ -5203,12 +5199,7 @@ cmm/m/it/12 w[] \OT1/cmr/m/n/12 = [][] \OML/cmm/m/it/12 Sq[]\OT1/cmr/m/n/12 (\O
 ML/cmm/m/it/12 v[]\OT1/cmr/m/n/12 )$[]
  []
 
-[1057] [1058] [1059] [1060] [1061]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 96.1 on input line 31732.
-
-[1062] [1063] [1064]
+[1057] [1058] [1059] [1060] [1061] [1062] [1063] [1064]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@text@composite@x' on input line 31834.
@@ -6071,12 +6062,7 @@ imSun(1)/m/sl/12 差 |分 |方 |程 |与 |函 |数 |方 |程\TU/TimesNewRoman(0
 
 ]
 第一百三十三章
-[1431]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 133.1 on input line 39741.
-
-[1432] [1433] [1434] [1435] [1436] [1437] [1438
+[1431] [1432] [1433] [1434] [1435] [1436] [1437] [1438
 
 ]
 第一百三十四章
@@ -7341,25 +7327,309 @@ Neu-mann |\LTJY3/SimSun(1)/m/n/12 级 |数 |收 |敛 |因 |为 $\OMS/cmsy/m/n/1
 /cmm/m/it/12 iI\OT1/cmr/m/n/12 )[]\OMS/cmsy/m/n/12 k \OML/cmm/m/it/12 <
  []
 
+[1740] [1741] [1742] [1743] [1744
+
+]
+第一百六十八章
+
+Overfull \hbox (0.6851pt too wide) in paragraph at lines 46954--46955
+[]|\LTJY3/SimSun(1)/b/it/12 正 |则 |量 |子 |化 |的 |动 |机 [] |\LTJY3/S
+imSun(1)/m/n/12 经 |典 |场 |的 |正 |则 |变 |量 |为 $\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$ |\LTJY3/SimSun(1)/m/n/12 
+和 $\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$[] 
+\TU/TimesNewRoman(0)/m/n/12 Pois-son |\LTJY3/SimSun(1)/m/n/12 括 |号 |为 $\O
+MS/cmsy/m/n/12 f\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m
+/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g \OT1/cmr/m/n/12 =
+ []
+
+[1745]
+Overfull \hbox (6.19566pt too wide) in paragraph at lines 46964--46965
+\TU/TimesNewRoman(0)/m/n/12 Poincaré |\LTJY3/SimSun(1)/m/n/12 群 $\OMS/cmsy/m
+/n/12 P[]$ |\LTJY3/SimSun(1)/m/n/12 的 |强 |连 |续 |幺 |正 |表 |示 $\OM
+L/cmm/m/it/12 U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; \OT1/cmr/m/n/12 )$[] |\LTJ
+Y3/SimSun(1)/m/n/12 真 |空 |态 $\OT1/cmr/m/n/12 
+ \OMS/cmsy/m/n/12 2 H$ |\LTJY3/SimSun(1)/m/n/12 为 |仅 |有 |的 |平 |移 |
+不 |变 |态 []$\OML/cmm/m/it/12 U\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a; \OT1/cm
+r/m/n/12 1)
+ =
+ []
+
+[1746]
+Overfull \hbox (87.81577pt too wide) in paragraph at lines 46982--46983
+|\LTJY3/SimSun(1)/m/n/12 下 |协 |变 [] \TU/TimesNewRoman(0)/m/n/12 (2) |\LTJ
+Y3/SimSun(1)/m/n/12 反 |射 |正 |性 []\TU/TimesNewRoman(0)/m/n/12 OS |\LTJY3
+/SimSun(1)/m/n/12 正 |性 [] [] $[][] [] \OML/cmm/m/it/12 S[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; [] ; x[]; y[]; [] ; y[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[]; [] ; y[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dxdy \OMS/cmsy/m/n/12 
+ []
+
+
+Overfull \hbox (42.36409pt too wide) in paragraph at lines 46984--46985
+|\LTJY3/SimSun(1)/m/n/12 反 |射 |正 |性 |定 |义 |半 |正 |定 |内 |积 
+$\OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 f; g\OMS/cmsy/m/n/12 i \OT1/cmr/m/n/12 = []
+ \OML/cmm/m/it/12 S[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; [] ; x[]; y[]; []
+ ; y[]\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y[
+]; [] ; y[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dxdy$
+ []
+
+[1747] [1748]
+Overfull \hbox (62.5092pt too wide) in paragraph at lines 47008--47009
+|\LTJY3/SimSun(1)/m/n/12 对 $\OML/cmm/m/it/12 J$ |\LTJY3/SimSun(1)/m/n/12 逐 
+|次 |求 |导 [] $\OML/cmm/m/it/12 n$ |\LTJY3/SimSun(1)/m/n/12 为 |奇 |数 |
+时 |关 |联 |函 |数 |为 |零 [] $\OML/cmm/m/it/12 n$ |\LTJY3/SimSun(1)/m/n
+/12 为 |偶 |数 |时 $\OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\O
+ML/cmm/m/it/12 x[]\OT1/cmr/m/n/12 ) [] \OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/
+cmm/m/it/12 x[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 i[] \OT1/cmr/m/n/12 = []\OML/c
+mm/m/it/12 e[][][]$[]
+ []
+
+[1749] [1750] [1751] [1752
+
+]
+第一百六十九章
+[1753]
+Overfull \hbox (21.12544pt too wide) in paragraph at lines 47066--47066
+|\LTJY3/SimSun(1)/m/n/12 计 |算 |度 |规 |的 |变 |分 [] |利 |用 \TU/Tim
+esNewRoman(0)/m/n/12 Pala-tini |\LTJY3/SimSun(1)/m/n/12 恒 |等 |式 $\OML/cmm
+/m/it/12 R[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 r[]\OML/cmm/m/it/12 \OT1/cmr/
+m/n/12 ^^@[] \OMS/cmsy/m/n/12 ^^@ r[]\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ^^@[]$ |
+\LTJY3/SimSun(1)/m/n/12 和 $\OML/cmm/m/it/12 \OT1/cmr/m/n/12 ([]) = \OMS/cmsy
+/m/n/12 ^^@[][]\OML/cmm/m/it/12 g[]g[]$[]
+ []
+
+[1754]
+Overfull \hbox (0.46pt too wide) in paragraph at lines 47090--47091
+[][]\TU/TimesNewRoman(0)/b/n/12 4[] Friedmann-Lemaître-Robertson-Walker (FLRW) |\LTJY3/SimSun(1)/b/it/12 
+度 |规 [] $\OML/cmm/m/it/12 ds[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 ^^@\OML/c
+mm/m/it/12 dt[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m
+/it/12 t\OT1/cmr/m/n/12 )[][[] +
+ []
+
+[1755]
+Overfull \hbox (1.4858pt too wide) in paragraph at lines 47120--47121
+[]|\LTJY3/SimSun(1)/b/it/12 定 |理 \TU/TimesNewRoman(0)/b/n/12 151.8 [] |\LTJ
+Y3/SimSun(1)/m/n/12 正 |质 |量 |定 |理 \TU/TimesNewRoman(0)/m/n/12 / Schoen
+-Yau, Wit-ten[] [] |\LTJY3/SimSun(1)/m/n/12 若 |时 |空 |满 |足 |主 |导 |
+能 |量 |条 |件 [] |则 $\OML/cmm/m/it/12 M[] \OMS/cmsy/m/n/12 
+ []
+
+[1756] [1757] [1758] [1759] [1760] [1761] [1762] [1763] [1764
+
+]
+第一百七十章
+[1765]
+Overfull \hbox (15.61528pt too wide) in paragraph at lines 47266--47267
+[]|\LTJY3/SimSun(1)/b/it/12 定 |理 \TU/TimesNewRoman(0)/b/n/12 370.2 []\TU/Ti
+mesNewRoman(0)/m/n/12 Vi-ra-soro |\LTJY3/SimSun(1)/m/n/12 代 |数 [] \TU/Times
+NewRoman(0)/m/n/12 Vi-ra-soro 1970[] [] Witt |\LTJY3/SimSun(1)/m/n/12 代 |数 
+|的 |非 |平 |凡 |中 |心 |扩 |张 [] |由 $\OML/cmm/m/it/12 H[]\OT1/cmr/m
+/n/12 ([]\OML/cmm/m/it/12 ; \U/msb/m/n/12 C\OT1/cmr/m/n/12 ) []
+ []
+
+[1766] [1767] [1768] [1769]
+Overfull \hbox (22.68283pt too wide) in paragraph at lines 47380--47381
+[]|\LTJY3/SimSun(1)/b/it/12 证 |明 [] |\LTJY3/SimSun(1)/m/n/12 框 |架 [] []
+ \TU/TimesNewRoman(0)/m/n/12 GLM |\LTJY3/SimSun(1)/m/n/12 方 |程 |是 |第 |
+二 |类 \TU/TimesNewRoman(0)/m/n/12 Fred-holm |\LTJY3/SimSun(1)/m/n/12 积 |
+分 |方 |程 [] $\OML/cmm/m/it/12 K\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; y\OT1/
+cmr/m/n/12 ) + \OML/cmm/m/it/12 F\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m
+/n/12 + \OML/cmm/m/it/12 y\OT1/cmr/m/n/12 ) + [][] \OML/cmm/m/it/12 K\OT1/cmr/m
+/n/12 (\OML/cmm/m/it/12 x; z\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 F\OT1/cmr/m/n/12 
+(\OML/cmm/m/it/12 z \OT1/cmr/m/n/12 +
+ []
+
+[1770]
+第一百七十一章
+[1771
+
+] [1772] [1773] [1774] [1775] [1776] [1777] [1778] [1779] [1780
+
+]
+第一百七十二章
+[1781] [1782] [1783] [1784] [1785] [1786]
+Missing character: There is no ∎ (U+220E) in font "name:Times New Roman:mode=n
+ode;script=latn;language=dflt;+tlig;"!
+Missing character: There is no ∎ (U+220E) in font "name:Times New Roman:mode=n
+ode;script=latn;language=dflt;+tlig;"!
+[1787
+Missing character: There is no ∎ (U+220E) in font "name:Times New Roman:mode=n
+ode;script=latn;language=dflt;+tlig;"!
+]
+Overfull \hbox (5.02428pt too wide) in paragraph at lines 47701--47702
+[]|\LTJY3/SimSun(1)/b/it/12 证 |明 [] |\LTJY3/SimSun(1)/m/n/12 在 $\OML/cmm/
+m/it/12 N$ |\LTJY3/SimSun(1)/m/n/12 个 |未 |排 |序 |元 |素 |中 |搜 |
+索 |标 |记 |元 |素 [] |制 |备 |初 |态 $\OMS/cmsy/m/n/12 j\OML/cmm/m/it
+/12 s\OMS/cmsy/m/n/12 i \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 H[]\OMS/cmsy/m/n/12 
+j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 i[] \OT1/cmr/m/n/12 = [] [][] \OMS/cmsy/m/n/
+12 j\OML/cmm/m/it/12 x\OMS/cmsy/m/n/12 i$[]
+ []
+
+
+Overfull \hbox (84.88521pt too wide) in paragraph at lines 47705--47706
+[]|\LTJY3/SimSun(1)/b/it/12 证 |明 [] |\LTJY3/SimSun(1)/m/n/12 设 \TU/TimesN
+ewRoman(0)/m/n/12 Or-a-cle $\OML/cmm/m/it/12 O[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it
+/12 x\OMS/cmsy/m/n/12 i \OT1/cmr/m/n/12 = (\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 
+1)[]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 x\OMS/cmsy/m/n/12 i$[] |\LTJY3/SimSun(1)
+/m/n/12 量 |子 |算 |法 $\OML/cmm/m/it/12 T$ |\LTJY3/SimSun(1)/m/n/12 次 |
+查 |询 |后 |状 |态 |为 $\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  []\OMS/cmsy/m
+/n/12 i \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 U[]O[]U[]O[] [] U[]O[]U[]\OMS/cmsy/m
+/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 i$[]
+ []
+
+[1788] [1789] [1790] [1791] [1792]
+第一百七十三章
+[1793
+
+] [1794
+
+]
+第一百七十四章
+[1795] [1796] [1797] [1798]
+Overfull \hbox (9.71556pt too wide) in paragraph at lines 47861--47862
+[]|\LTJY3/SimSun(1)/b/it/12 第 |二 \TU/TimesNewRoman(0)/b/n/12 Piola-Kirchhoff
+ |\LTJY3/SimSun(1)/b/it/12 应 |力 $\TU/TimesNewRoman(0)/b/n/12 S$[] |\LTJY3/S
+imSun(1)/m/n/12 完 |全 |在 |参 |考 |构 |型 |中 |的 |对 |称 |应 |
+力 [] $\TU/TimesNewRoman(0)/b/n/12 S \OT1/cmr/m/n/12 = \TU/TimesNewRoman(0)/b/
+n/12 F[]P \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 J\TU/TimesNewRoman(0)/b/n/12 F[][]
+F[]$[] 
+ []
+
+[1799] [1800] [1801] [1802
+
+]
+第一百七十五章
+[1803] [1804
+
+]
+第一百七十六章
+[1805]
+Overfull \hbox (19.76297pt too wide) in paragraph at lines 47931--47932
+$\OML/cmm/m/it/12 H$ |\LTJY3/SimSun(1)/m/n/12 是 |系 |统 |的 |首 |次 |
+积 |分 [] |守 |恒 |量 [] [] |在 $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; y[]\OT1/cmr/m/n/12 )$ |\LTJY3/SimSun(1)/m/n/12 
+处 $\OML/cmm/m/it/12 H$ |\LTJY3/SimSun(1)/m/n/12 的 \TU/TimesNewRoman(0)/m/n/
+12 Hes-sian |\LTJY3/SimSun(1)/m/n/12 矩 |阵 |正 |定 []$[] \OML/cmm/m/it/12 
+H \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 \OT1/cmr/m/n/12 /(\OML/cmm/m/it/12 x[]
+y[]\OT1/cmr/m/n/12 )[] \OML/cmm/m/it/12 >
+ []
+
+[1806] [1807]
+Overfull \hbox (6.73119pt too wide) in paragraph at lines 47959--47960
+\OML/cmm/m/it/12 d\OT1/cmr/m/n/12 /\OML/cmm/m/it/12 da \OT1/cmr/m/n/12 = \OMS/
+cmsy/m/n/12 ^^@\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a\OT1/cmr/m/
+n/12 )\OML/cmm/m/it/12 \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 )$[]
+ |\LTJY3/SimSun(1)/m/n/12 且 |种 |群 |增 |长 |率 $\OML/cmm/m/it/12 r$ |\L
+TJY3/SimSun(1)/m/n/12 由 \TU/TimesNewRoman(0)/b/n/12 Euler-Lotka |\LTJY3/SimSu
+n(1)/b/it/12 特 |征 |方 |程 $\OT1/cmr/m/n/12 1 = [][] \OML/cmm/m/it/12 e[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 e[]da$
+ []
+
+[1808] [1809] [1810] [1811]
+Overfull \hbox (0.77036pt too wide) in paragraph at lines 48037--48038
+|\LTJY3/SimSun(1)/m/n/12 其 |中 $\OML/cmm/m/it/12 v[]; v[]$ |\LTJY3/SimSun(1)
+/m/n/12 是 |最 |大 |反 |应 |速 |率 [] $\OML/cmm/m/it/12 K[]; K[]$ |\LTJY
+3/SimSun(1)/m/n/12 是 |以 $\OML/cmm/m/it/12 W[]$ |\LTJY3/SimSun(1)/m/n/12 
+为 |尺 |度 |的 |归 |一 |化 \TU/TimesNewRoman(0)/m/n/12 Michaelis |\LTJY3
+/SimSun(1)/m/n/12 常 |数 [] |当 $\OML/cmm/m/it/12 K[]; K[] \OMS/cmsy/m/n/12 
+
+ []
+
+[1812]
+第一百七十七章
+[1813
+
+] [1814
+
+]
+第一百七十八章
+[1815] [1816] [1817] [1818] [1819] [1820] [1821] [1822] [1823] [1824]
+第一百七十九章
+[1825
+
+] [1826
+
+]
+第一百八十章
+[1827] [1828] [1829] [1830] [1831]
+Overfull \hbox (0.41508pt too wide) in paragraph at lines 48568--48569
+[]|\LTJY3/SimSun(1)/b/it/12 定 |理 \TU/TimesNewRoman(0)/b/n/12 x+1.7 []\TU/Ti
+mesNewRoman(0)/m/n/12 Kirch-hoff |\LTJY3/SimSun(1)/m/n/12 衍 |射 |积 |分 |
+公 |式 [] [] |设 $\OML/cmm/m/it/12  $ |\LTJY3/SimSun(1)/m/n/12 为 |单 |
+色 |标 |量 |波 |场 |的 |复 |振 |幅 [] |满 |足 \TU/TimesNewRoman(0)/m
+/n/12 Helmholtz
+ []
+
+[1832] [1833] [1834] [1835]
+Overfull \hbox (5.49513pt too wide) in paragraph at lines 48702--48703
+[]|\LTJY3/SimSun(1)/m/n/12 积 |分 |项 |为 $\OML/cmm/m/it/12 g \OT1/cmr/m/n/
+12 : \OML/cmm/m/it/12 M[] \OMS/cmsy/m/n/12 ! \OML/cmm/m/it/12 SU\OT1/cmr/m/n/12
+ (\OML/cmm/m/it/12 N\OT1/cmr/m/n/12 )$ |\LTJY3/SimSun(1)/m/n/12 的 |拓 |扑 |
+绕 |数 $\OML/cmm/m/it/12 w\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 g\OT1/cmr/m/n/12 
+)$[] |\LTJY3/SimSun(1)/m/n/12 取 |整 |数 |值 [] |当 $\OML/cmm/m/it/12 M[] 
+\OT1/cmr/m/n/12 = \OML/cmm/m/it/12 S[]$ |\LTJY3/SimSun(1)/m/n/12 时 [] $\OML/c
+mm/m/it/12 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 SU\OT1/cmr/m/n/12 (\OML/cmm/m/i
+t/12 N\OT1/cmr/m/n/12 )) =
+ []
+
+[1836] [1837] [1838
+
+]
+(c:/Users/xingg/Desktop/数学教材/从公理到整个数学体系.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026/06/23>
+ ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+Package rerunfilecheck Info: File `从公理到整个数学体系.out' has not 
+changed.
+(rerunfilecheck)             Checksum: B9FFEE19BFBA43D4BDC3ECA6D1633031;411657.
+
 )
-Runaway argument?
-{A+B|_{\\mathcal{D}}\)的自伴性。\(\blacksquare \) \par \textbf {\ETC.
-! File ended while scanning use of \overline .
-<inserted text> 
-                \par 
-<*> ...教材/从公理到整个数学体系.tex
-                                                  
 
 Here is how much of LuaTeX's memory you used:
- 35354 strings out of 476081
+ 39299 strings out of 476081
  381819,2373549 words of node,token memory allocated
- 170951 words of node memory still in use:
-   112 hlist, 3 vlist, 237 rule, 4 disc, 12 local_par, 2 dir, 90 math, 506 glue,
- 69 kern, 128 penalty, 10 sub_mlist, 780 glyph, 71833 attribute, 66 glue_spec, 6
-537 attribute_list, 2 temp, 3 write, 27 user_defined, 1 pdf_dest nodes
-   avail lists: 1:6,2:39900,3:853,4:585,5:1197,6:170,7:5228,8:173,9:2679,10:36,1
-1:107,12:1
- 51756 multiletter control sequences out of 65536+600000
+ 127373 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 10 sub_mlist, 1 glyph, 58088 attrib
+ute, 66 glue_spec, 5289 attribute_list, 2 write, 10 user_defined nodes
+   avail lists: 1:6,2:54895,3:982,4:602,5:1273,6:182,7:6600,8:173,9:3021,10:36,1
+1:111,12:1
+ 55450 multiletter control sequences out of 65536+600000
  178 fonts using 169944911 bytes
- 102i,17n,111p,2462b,641s stack positions out of 10000i,1000n,20000p,200000b,200000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 102i,17n,111p,2462b,2487s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/users/xingg/appdata/local/programs/miktex/fonts/opentype/public/lm/lmsans12-
+regular.otf><C:/Windows/Fonts/timesbi.ttf><c:/users/xingg/appdata/local/programs
+/miktex/fonts/opentype/public/lm/lmsans8-regular.otf><C:/Windows/Fonts/timesi.tt
+f><C:/Windows/Fonts/simkai.ttf><C:/Windows/Fonts/timesbd.ttf><C:/Windows/Fonts/s
+imhei.ttf><C:/Windows/Fonts/times.ttf><C:/Windows/Fonts/simsun.ttc><C:/Users/xin
+gg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/U
+sers/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.p
+fb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cme
+xtra/cmex8.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/xingg/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/xingg/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/xingg/AppData/Loca
+l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/xingg/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/xi
+ngg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/U
+sers/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb
+><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r8.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy6.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts
+/type1/public/amsfonts/euler/eufm10.pfb><C:/Users/xingg/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/amsfonts/euler/eufm7.pfb><C:/Users/xingg/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/xingg/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
+Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/ms
+bm7.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/rsfs/rs
+fs10.pfb><C:/Users/xingg/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwa
+ter/stmary10.pfb>
+Output written on 从公理到整个数学体系.pdf (1840 pages, 12501372 bytes
+).
+
+PDF statistics: 18886 PDF objects out of 22161 (max. 8388607)
+ 5539 named destinations out of 6186 (max. 1048576)
+ 19416 words of extra memory for PDF output out of 19531 (max. 100000000)
+
