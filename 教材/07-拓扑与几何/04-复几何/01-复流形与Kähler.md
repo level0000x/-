@@ -4,7 +4,7 @@
 复几何的核心特征在于复流形的"刚性"——与光滑流形不同，复流形上的全纯函数由极大值原理在紧流形上必然为常数，这使得复流形范畴中的对象比实流形范畴中的对象更加"刚性"。但同时，Kahler 条件又为复流形注入了足够的"柔性"——Kahler 度量与 Ricci 曲率之间的关系（通过 Ricci 形式）产生了丰富的 Hodge 理论结构。复几何与代数几何的关系由 Serre 的 GAGA 原理和 Kodaira 嵌入定理架起桥梁：紧复流形是射影代数的当且仅当它容许一个 Hodge 度量（即 Kahler 形式是整上同调类）。
 
 ---
-## 第222章：复流形
+## 第221章：复流形
 复流形是局部同胚于 $\mathbb{C}^n$ 且转移函数为全纯的拓扑空间。复流形的研究是复几何的起点。
 
 ### 177.1 复流形的定义
@@ -65,7 +65,7 @@ $$H_{\bar{\partial}}^{p,q}(M) = \frac{\ker(\bar{\partial}: \Omega^{p,q} \to \Ome
 **证明**：Serre 对偶是凝聚层上同调的 Serre 对偶定理的特殊情形。对偶层 $\Omega^p$ 的 Serre 对偶为 $\Omega^{n-p}$（因为 $\Omega^n$ 是典范丛，$\Omega^p$ 与 $\Omega^{n-p}$ 的对偶由 $\wedge$ 配对给出）。利用层上同调的 Serre 对偶定理，得 $H^q(M, \Omega^p)^* \cong \operatorname{Ext}^{n-q}(\Omega^p, \Omega^n) \cong H^{n-q}(M, \Omega^{n-p})$。$\blacksquare$
 
 ---
-## 第223章：Kahler 几何
+## 第222章：Kahler 几何
 Kahler 流形是同时具有 Riemann 度量、复结构和辛结构且三者兼容的流形。Kahler 几何是复几何的绝对核心。
 
 ### 178.1 Kahler 度量的定义

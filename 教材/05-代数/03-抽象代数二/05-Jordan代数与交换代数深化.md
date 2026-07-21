@@ -1,4 +1,4 @@
-## 第95章：Jordan 代数
+## 第94章：Jordan 代数
 Jordan 代数是满足交换律 $x \cdot y = y \cdot x$ 与 **Jordan 恒等式** $(x \cdot y) \cdot x^2 = x \cdot (y \cdot x^2)$ 的非结合代数。它由 Pascual Jordan 于 1933 年在形式化量子力学的背景下引入，旨在以对称积 $a \circ b = (ab + ba)/2$ 来代替结合代数中的通常乘积，从而描述量子可观测量的代数结构。Jordan 代数看似是结合代数的简单对称化，实则包含了丰富而独立的代数世界——特别是 27 维的例外 Albert 代数，它是分类理论中的唯一例外对象。
 
 ### 74.1 基本定义与 Jordan 恒等式
@@ -89,7 +89,7 @@ Jordan 代数理论在 20 世纪下半叶经历了深刻的变革，其核心主
 
 ---
 
-## 第96章：交换代数深化
+## 第95章：交换代数深化
 
 交换代数深化在卷十一交换代数的基础上，进一步探讨了 Cohen-Macaulay 环、Gorenstein 环、局部上同调和 Grothendieck 对偶等高级主题。这些概念在现代代数几何中扮演着核心角色——它们将代数簇的几何性质（如光滑性、奇点解消、对偶性）转化为交换环的代数性质。Cohen-Macaulay 性质是介于正则性和一般 Noether 性之间的关键中间概念：正则环必为 Cohen-Macaulay 环，但反之不然——环面簇的齐次坐标环是 Cohen-Macaulay 的却未必正则，这一现象在环面几何中具有基本重要性。Auslander-Buchsbaum 公式（$\operatorname{pd}_R(M) + \operatorname{depth}(M) = \operatorname{depth}(R)$）将投射维数与深度联系起来，是交换代数中最优美的等式之一，它精确量化了模的"同调复杂度"与"正则序列长度"之间的对偶关系。
 

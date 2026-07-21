@@ -1,4 +1,4 @@
-## 第279章：Sobolev 空间
+## 第278章：Sobolev 空间
 
 Sobolev 空间是 PDE 理论的基石，由 С.Л. Соболев 于 1930 年代引入。它将函数的可微性与 $L^p$ 可积性统一起来，使得 PDE 的弱解理论成为可能。本章建立从弱导数到嵌入定理的完整框架。
 
@@ -133,7 +133,7 @@ $$\int_\Omega A \nabla u \cdot \nabla v \,dx = \int_\Omega f v\,dx, \quad \foral
 
 ---
 
-## 第280章：KAM 理论与自由边界问题
+## 第279章：KAM 理论与自由边界问题
 
 本章涵盖两个看似独立、实则共享"小扰动下结构稳定性"这一核心主题的数学领域。KAM 理论（Kolmogorov-Arnold-Moser）是 Hamilton 动力系统微扰理论的核心成就，证明了近可积 Hamilton 系统在满足 Diophantine 条件的频率下，大多数不变环面在小扰动下得以存留——这颠覆了 Boltzmann 的"遍历假设"，揭示了可积系统的显著刚性。自由边界问题处理 PDE 的解域边界本身是未知的、由解决定的边值问题，其经典例子包括 Stefan 问题（冰-水相变的自由界面演化）和障碍问题（膜与障碍物接触的边界）。
 
@@ -178,7 +178,7 @@ $$\Delta u \leq 0, \quad u \geq \psi, \quad (u - \psi) \Delta u = 0$$
 **定义 96.4**（Hele-Shaw 流动）：描述两平行平板间粘性流体的界面演化。对 Hele-Shaw 胞腔，压强 $p$ 在流体区域满足 $\Delta p = 0$，在自由边界上 $p = 0$ 且法向速度 $V_n = -\partial p / \partial n$。其数学模型等价于 Laplacian 增长（DLA 的连续极限），小扰动下界面不稳定（Saffman-Taylor 指进现象）。
 
 ---
-## 第281章：特殊函数与正交多项式
+## 第280章：特殊函数与正交多项式
 
 本章对 Gamma、Beta、Bessel、Legendre 及超几何函数给出编号定义、定理与完整证明，作为数学物理中特殊函数的标准知识库。
 
