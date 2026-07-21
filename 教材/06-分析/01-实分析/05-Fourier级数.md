@@ -155,6 +155,8 @@ $$\lim_{N \to \infty} \max_{x \in (x_0, x_0+\delta)} S_N f(x) - f(x_0^+) \approx
 
 **证明**：不妨设 $f$ 为符号函数 $\operatorname{sgn}$ 在 $[-\pi, \pi]$ 上的周期延拓。$S_N f(x) = \frac{2}{\pi} \int_0^x \frac{\sin((N+1/2)t)}{2\sin(t/2)} dt$。当 $N \to \infty$ 时，$S_N f(x) \to \frac{2}{\pi} \operatorname{Si}((N+1/2)x)$，其中 $\operatorname{Si}(u) = \int_0^u \frac{\sin t}{t} dt$ 为正弦积分。$\operatorname{Si}$ 在 $u = \pi$ 处取最大值 $\approx 1.8519$，故过冲为 $\frac{2}{\pi} \cdot 1.8519 - 1 \approx 0.17898 / 2$（符号函数跳跃为 $2$），相对过冲约 $8.95\%$。$\blacksquare$
 
+Gibbs 现象不仅仅是 Fourier 级数理论中的一则数学趣闻，它在实际的信号和图像处理中有着直接的表现。当 Fourier 系数被截断（前 $N$ 项部分和）时，间断点附近的振荡不会随 $N$ 增大而消失，仅被压缩到越来越窄的区间内。这一特性意味着，单纯增加 Fourier 系数的数量并不能消除间断处的伪影，必须借助更精巧的求和策略。
+
 **注记 50.6.1**：Gibbs 现象在信号处理中有实际意义——在图像压缩（JPEG）中，Fourier 系数的截断会在边缘处产生振铃效应（ringing artifact），这正是 Gibbs 现象的二维版本。为缓解这一问题，实践中常使用 Fejér 平均（完全消除 Gibbs 现象，但降低分辨率）或使用更光滑的求和核（如 Lanczos 核）。
 
 ---
@@ -199,7 +201,11 @@ $$
 
 **定义 50.9.1（Wiener 代数）**：Wiener 代数 $A(\mathbb{T})$ 定义为 Fourier 系数满足 $\sum_{n=-\infty}^{\infty} |c_n| < \infty$ 的所有连续周期函数构成的空间，配以范数 $\|f\|_A = \sum |c_n|$。
 
+Wiener 代数的引入源于这样一个自然的问题：Fourier 级数何时不仅逐点收敛，而且绝对收敛——即系数的 $\ell^1$ 范数有限？这种强收敛模式保证了 Fourier 级数一致收敛，且其和函数具有许多良好的代数性质。下面的 Wiener 引理是 Banach 代数理论的开山之作之一，它表明 $A(\mathbb{T})$ 在逐点取倒数操作下是封闭的——这在 Fourier 分析中远非显然，因为 $1/f$ 的 Fourier 系数与 $f$ 的系数之间没有简单的代数关系。
+
 **定理 50.9.1（Wiener 引理）**：若 $f \in A(\mathbb{T})$ 且 $f(x) \neq 0$（对所有 $x$），则 $1/f \in A(\mathbb{T})$。Wiener 引理是 Banach 代数理论中谱不变性的经典结果，在 Tauber 定理和信号处理中有重要应用。
+
+Wiener 引理解决了代数封闭性问题，但如何判断一个函数是否属于 $A(\mathbb{T})$ 仍然需要可操作的判据。光滑性是保证绝对收敛的最自然途径——直觉上，函数越光滑，其 Fourier 系数衰减越快。Bernstein 定理将这一直觉精确化为定量的 Hölder 连续性条件，给出了 $f \in A(\mathbb{T})$ 的一个充分判据。特别地，它揭示了绝对收敛与分数阶可微性之间的内在联系，是 Fourier 系数衰减估计的经典应用。
 
 **定理 50.9.2（Bernstein 定理）**：若 $f$ 是 $\alpha$-Holder 连续的（$\alpha > 1/2$），则 $f \in A(\mathbb{T})$。更精确地，若 $f \in C^{k,\alpha}$（$k$ 阶导数 $\alpha$-Holder 连续），则 Fourier 系数满足 $|c_n| = O(|n|^{-k-\alpha})$，从而当 $k + \alpha > 1/2$ 时 Fourier 级数绝对收敛。$\blacksquare$
 
@@ -209,14 +215,22 @@ $$
 
 **定理 50.10.1（ $L^1$ 中 Fourier 级数的不收敛性）**：存在 $f \in L^1([-\pi, \pi])$，其 Fourier 级数的部分和 $S_N f$ 在 $L^1$ 范数下不收敛于 $f$。这一事实与 $L^p$（$p > 1$）形成鲜明对比，表明 $L^1$ 是 Fourier 级数理论的"边界情形"。
 
+$L^1$ 中依范数收敛的失效只是一个序曲。更令人震惊的是，Kolmogorov 在年仅 19 岁时构造的例子：存在 $L^1$ 函数，其 Fourier 级数非但在 $L^1$ 范数下不收敛，而且在每一个点上都发散——这与 $L^p$（$p > 1$）中 Hunting 和 Carleson 建立的几乎处处收敛形成尖锐对照。Kolmogorov 的反例彻底埋葬了"Fourier 级数对一切可积函数都几乎处处收敛"的天真想法，确定了 $L^1$ 恰是几乎处处收敛的精确边界。
+
 **定理 50.10.2（Kolmogorov 1923 反例）**：存在 $f \in L^1([-\pi, \pi])$，其 Fourier 级数几乎处处发散。Kolmogorov 的构造极为精巧：利用无界发散的三角级数和一个"帐篷函数"（tent function）的叠加，构造了 $L^1$ 中 Fourier 级数在每点都发散的病态函数。这一反例确立了 $L^1$ 是 Fourier 级数几乎处处收敛的精确边界——$L^p$（$p > 1$）中几乎处处收敛（Carleson-Hunt 定理），但 $L^1$ 中不成立。
 
+Kolmogorov 的否定性结果让学界沉默了近四十年，直到 1966 年 Carleson 在 $L^2$ 情形下取得了突破性进展——他证明了 $L^2$ 函数的 Fourier 级数几乎处处收敛。这一结果被誉为 20 世纪分析学中最伟大的成就之一，其证明引入的"时频分解"技术后来被 Fefferman 系统化为相空间分析方法，完全改变了调和分析的研究范式。Carleson 定理表明，从 $L^1$ 到 $L^2$ 这一看似微小的提升，在逐点收敛的意义下却是天壤之别。
+
 **定理 50.10.3（Carleson 定理，1966）**：若 $f \in L^2([-\pi, \pi])$，则 $f$ 的 Fourier 级数几乎处处收敛到 $f(x)$。Hunt 在 1968 年将此推广到 $L^p$（$p > 1$）。Carleson 定理的证明极为复杂（原始论文长达 22 页），核心思想是将 Carleson 极大算子 $C f(x) = \sup_N |S_N f(x)|$ 的弱 $(2,2)$ 型估计与精细的时频分析（time-frequency analysis）相结合。Fefferman 后来将 Carleson 的证明重构为"相空间分解"（phase space decomposition）的框架，这一方法成为现代调和分析中处理 Fourier 级数逐点收敛的标准工具。
+
+Carleson 定理的完整证明虽然艰深，但有一条相对初等的路径可以通过 Hardy-Littlewood 极大函数来获得部分结果。下面这个不等式将 Fourier 级数部分和的点态行为与极大函数控制联系起来，虽不能给出最优的 $p > 1$ 结论，但提供了理解逐点收敛机制的直观几何视角——Fourier 级数的部分和本质上由函数的局部平均（极大函数）所控制。
 
 **定理 50.10.4（Hardy-Littlewood 极大函数与 Fourier 级数）**：Hardy-Littlewood 极大函数 $Mf$ 控制 Fourier 级数的部分和：$|S_N f(x)| \leq C \cdot Mf(x)$（对 $f \in L^p$，$p > 1$ 时成立）。这一不等式表明 Fourier 级数的逐点收敛性可由极大函数的弱型估计导出，是 Carleson 定理的简化版本（仅适用于 $p > 1$ 且不给出几乎处处收敛的最优结果）。
 
 ### 50.11 Fourier 级数的多重推广与球面调和
 
 **定义 50.11.1（多重 Fourier 级数）**：设 $f \in L^1(\mathbb{T}^n)$（$n$ 维环面）。其多重 Fourier 级数为 $f(x) \sim \sum_{k \in \mathbb{Z}^n} c_k e^{i k \cdot x}$，其中 $c_k = \frac{1}{(2\pi)^n} \int_{\mathbb{T}^n} f(x) e^{-i k \cdot x} dx$。多重 Fourier 级数的收敛性问题远比一维情形复杂——球面部分和、方形部分和和矩形部分和的行为有本质不同。Fefferman 在 1971 年证明了"圆盘乘子猜想"不成立：球面部分和的 $L^p$ 有界性在 $p \neq 2$ 时失效（$n \geq 2$），这一深刻结果揭示了高维 Fourier 分析与一维之间的本质差异。
+
+当底空间从平坦的环面 $\mathbb{T}^n$ 转移到弯曲的球面 $S^{n-1}$ 时，Fourier 分析的基本框架发生了根本性的转变。环面上的指数函数 $e^{i k \cdot x}$ 被球面调和函数（spherical harmonics）所取代，后者是 Laplace-Beltrami 算子在球面上的特征函数族。这种推广不仅是数学上的自然延拓，更在物理中有着直接的对应——量子力学中的角动量本征态正是球面调和函数的物理化身。下面的定理描述了球面上 $L^2$ 函数的正交分解，它是 Fourier 级数在非平坦空间中的完整类比。
 
 **定理 50.11.1（球面调和展开）**：在单位球面 $S^{n-1}$ 上，$L^2(S^{n-1})$ 可分解为球面调和函数空间 $\mathcal{H}_k$（$k$ 阶齐次调和多项式在球面上的限制）的正交直和。球面调和函数是 Laplace 算子在球面上的特征函数，其 Fourier 展开推广了圆周上的三角级数展开。球面调和理论在量子力学（角动量理论）、地球物理学（重力场展开）和计算机图形学（环境光照的球面调和表示）中有广泛应用。$\blacksquare$
