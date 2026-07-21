@@ -141,7 +141,9 @@ $$F_\varepsilon(u) = \int_{\Omega} \left( \frac{\varepsilon}{2} |\nabla u|^2 + \
 ---
 ---
 
-## 第216章（补充）
+
+**第216章（补充）**
+
 高维渐近凸几何（Asymptotic Convex Geometry / Local Theory of Banach Spaces）研究高维凸体在大维数极限下的渐近行为。它以 Dvoretzky 定理（1971）和 Milman 的浓度现象为核心，连接泛函分析、概率论和组合数学。Princeton Companion 将其列为独立数学分支。
 
 ### 252.1 Dvoretzky定理
