@@ -1,0 +1,1 @@
+﻿C:\Users\xingg\Desktop\数学教材\教材\13-数学物理\数学物理\11-电磁学与经典场论.md	22358	Microsoft.PowerShell.Commands.GenericMeasureInfo.Count	## 第x章：Maxwell方程与规范场|||## 第x+1章：电磁波与散射|||## 第x+2章：纤维丛与规范场论
