@@ -1,4 +1,4 @@
-## 第229章：Ricci 流
+## 第225章：Ricci 流
 
 Ricci 流方程 $\partial_t g = -2\operatorname{Ric}(g)$ 由 Richard Hamilton 在 1982 年引入，是 20 世纪几何分析最重大的创见之一——其基本想法是将 Ricci 曲率视为度量张量的"热扩散"驱动力，使得曲率在演化过程中趋于均匀，从而实现微分几何与抛物方程理论在最高层次上的统一。Hamilton 本人证明了正 Ricci 曲率的三维流形在 Ricci 流下必然收缩为球面（从而证明此类流形必微分同胚于 $S^3/\Gamma$），并在 1980 年代和 1990 年代发展了 Ricci 流的奇点分析、Harnack 不等式和紧致性定理。Perelman 在 2002-2003 年的三篇著名预印本（后由多位数学家证实）引入了熵泛函 $\mathcal{W}$、约化体积和 $\kappa$-解的关键概念，成功克服了奇点处"外科手术"的技术困难，从而完成了 Thurston 几何化猜想的完整证明——这不仅蕴含了 Poincare 猜想，还给出了任意闭三维流形的标准几何分解。在本书体系中，Ricci 流与 Yamabe 问题（第206章）共享共形几何的理论渊源：Yamabe 问题的变分结构事实上是 Ricci 流在共形类内的"静态"版本。
 
@@ -111,7 +111,7 @@ Cheeger-Gromoll 分裂定理是关于非负 Ricci 曲率完备 Riemann 流形结
 ---
 ---
 
-## 第230章：Yamabe 问题与共形几何
+## 第226章：Yamabe 问题与共形几何
 
 Yamabe 问题是最具历史深度的几何分析问题之一：给定紧 Riemann 流形 $(M^n, g)$（$n \geq 3$），在度量 $g$ 的共形类 $[g]$ 中是否存在常标量曲率度量？这一问题由 Yamabe Hidehiko 在 1960 年提出，给出的证明包含一个深刻错误（被 Neil Trudinger 在 1968 年发现），最终由 Thierry Aubin（1976 年，对于非共形平坦且 $n \geq 6$ 的情形）和 Richard Schoen（1984 年，通过正质量定理完成剩余情形）彻底解决。从分析角度看，Yamabe 问题等价于求解半线性椭圆方程 $-\Delta_g u + \frac{n-2}{4(n-1)} R_g u = \lambda u^{\frac{n+2}{n-2}}$（共形 Laplace/Yamabe 方程），其非线性指数 $\frac{n+2}{n-2}$ 恰是 Sobolev 嵌入的临界指数——这使得变分问题失去了紧性，需要 Aubin 和 Schoen 发展的集中紧性原理和爆破分析技巧。在几何学中，Yamabe 不变的符号是度量共形类的核心分类数据：正 Yamabe 不变量的流形容许正标量曲率度量（与正质量定理和广义相对论中的正能量条件密切相关），而零和负的 Yamabe 不变量则通向非紧致流形的共形几何。本章与 Ricci 流（第205章）之间的关系是：Ricci 流方程在共形类内取定标量曲率常值的"静态解"，恰好对应于 Yamabe 问题的极值度量。
 
@@ -174,7 +174,7 @@ Kazdan-Warner 障碍条件表明，并非每个光滑正函数都可以实现为
 ---
 ---
 
-## 第231章：几何 PDE 选讲
+## 第227章：几何 PDE 选讲
 
 本章补充介绍几何分析中与 Ricci 流和 Yamabe 问题并列的其他核心几何偏微分方程。平均曲率流（mean curvature flow，MCF）是超曲面在外法向方向以平均曲率速度演化的几何热流——其方程 $\partial_t X = -H \mathbf{n}$ 是 Ricci 流在余维数大于 1 情形的自然类比，在曲面论的 Grayson 定理、Huisken 的凸性理论和 Brakke 的 varifold 弱解理论中产生了深刻结果。Yang-Mills 方程则源于规范场论：联络 $A$ 的 Yang-Mills 泛函 $\|F_A\|_{L^2}^2$ 的 Euler-Lagrange 方程 $D_A^* F_A = 0$ 是四维流形 Donaldson 理论（第193章）的出发点，其 anti-self-dual 解（瞬子）在低维拓扑的 Floer 同调（第192章）和四维光滑结构分类中发挥了核心作用。调和映射热流则将映射间的能量泛函极小化问题转化为梯度流，在 Eells-Sampson 关于非正截面曲率存在性定理和 Sacks-Uhlenbeck 的泡泡分析中具有里程碑意义。这三类 PDE 共享的数学结构——能量泛函极小化、单调性公式和奇点形成-分析的正则化——构成了几何分析中"变分法 + 热流"范式的教科书示例。
 
