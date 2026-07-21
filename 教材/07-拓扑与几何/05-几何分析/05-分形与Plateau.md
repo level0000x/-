@@ -17,10 +17,14 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 ### 250.2 极小曲面的正则性
 
+Douglas 和 Radó 的存在性定理保证了极小曲面作为某种变分问题的解总是存在的，但它们留下了一个关键问题：这些解在几何上到底有多"光滑"？De Giorgi 在 1961 年给出的正则性定理是几何测度论早期最辉煌的成就之一——它证明了质量最小化的整系数整流链在低余维情形中几乎处处光滑，奇点至多是孤立点。
+
 **定理 250.3**（De Giorgi 正则性定理，1961）：质量最小化的二维整系数整流链 $T$ 在 $\mathbb{R}^n$ 中除了孤立奇点外是光滑解析曲面。在三维中，$T$ 是嵌入曲面（无奇点）。
 
 
 **证明**：设 $T$ 为 $\mathbb{R}^n$ 中质量最小的 2 维整系数整流链。由 Morrey 的 Dirichlet 能量增长估计和 epiperimetric 不等式，$T$ 的支撑在 $\mathcal{H}^2$-几乎处处具有 $C^{1,\alpha}$ 正则性。De Giorgi 证明在 3 维中奇点完全消失：因 2 维最小曲面在 3 维中仅容许可去孤立奇点（由 Bernstein 型定理保证），而最小性迫使这些点正则。高维中奇集为孤立离散点，由 Schoen-Simon-Yau 的维数约化论证给出。$\blacksquare$
+
+De Giorgi 的正则性理论聚焦于二维整流链（余维数为 1），而 Allard 在 1972 年将正则性理论推广到任意维数和余维数的情形，建立了以单调解（monotonicity）公式和 $\varepsilon$-正则性为核心的普适框架。这一推广使得极小曲面的正则性理论能够处理高维和高余维的几何变分问题。
 
 **定理 250.4**（Allard 正则性定理，1972）：质量最小的整系数 $k$ 维整流链在 $\mathbb{R}^n$ 中具有解析的 Hausdorff 维数 $k$ 的支撑，除一个 $\mathcal{H}^{k-2}$ 维的闭奇异集外。
 
@@ -30,6 +34,8 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 **证明**：设 $T$ 为 $k$ 维质量最小整系数整流链。Allard 的单调解（monotonicity）公式：质量比 $r^{-k}\mathbf{M}(T\llcorner B_r(x))$ 关于 $r$ 单调非减。该公式将切锥的存在性（Blow-up 极限）与 $T$ 的局部行为关联。Allard 的 $\varepsilon$-正则性定理：若某点处质量密度充分接近 $1$（或某平面密度），则该点正则。由此奇集为闭集且 Hausdorff 维数至多 $k-2$（如 $k=2$ 时奇集为 0 维）。解析性在正则点由标准的椭圆局部理论得出。$\blacksquare$
 
 ### 250.3 自由边界问题与毛细曲面
+
+经典 Plateau 问题的边界是事先固定的闭曲线。然而在物理应用中（如液体与容器壁的接触），极小曲面的边界可以沿一个给定的支撑曲面"自由滑动"。这种自由边界条件在数学上引入了额外的复杂性——极小曲面与支撑曲面必须以垂直角度相交——但同时也催生了丰富的几何正则性理论。
 
 **定义 250.3**（自由边界 Plateau 问题）：极小曲面不仅张成给定曲线，还要与某固定曲面 $W$（如容器壁）以自由边界条件相交。极小曲面与 $W$ 沿边界以垂直角度相交。
 
@@ -56,6 +62,8 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 
 ### 251.1 Caccioppoli 集与有限周长集
 
+经典变分法中极小曲面由光滑参数化定义，但在处理奇点和一般的存在性问题时，光滑范畴的局限性变得明显。De Giorgi 引入的 Caccioppoli 集（即有限周长集）是几何测度论对变分法最根本的贡献之一：它将集合的"边界面积"概念推广到仅需分布导数有意义的一般 Borel 集，而不要求边界的任何光滑性。
+
 **定义 251.1**（有限周长集 / Caccioppoli 集）：Borel 集 $E \subset \mathbb{R}^n$ 是**有限周长集**（Caccioppoli 集），如果其特征函数 $\chi_E$ 是有界变差函数（$BV$），即分布导数 $D\chi_E$ 是有限 Radon 测度。周长定义为 $\operatorname{Per}(E) = \int |D\chi_E|$。
 
 **定理 251.1**（De Giorgi 结构定理）：有限周长集 $E$ 的约化边界 $\partial^* E$ 是 $\mathcal{H}^{n-1}$-可整流的，且 $D\chi_E = \nu_E \mathcal{H}^{n-1} \llcorner \partial^* E$（$\nu_E$ 是广义外法向量）。即周长等于约化边界的 Hausdorff 面积。
@@ -69,6 +77,8 @@ Plateau 问题（求以给定闭曲线为边界的极小面积曲面）是变分
 **证明**：对有限周长集 $E$，周长 $\operatorname{Per}(E)=\mathcal{H}^{n-1}(\partial^*E)$。余面积公式用于距离函数：设 $u(x)=d(x,E^c)$（或光滑化 $u_\varepsilon\approx\chi_E$）。对 $BV$ 函数的 Sobolev 不等式（Gagliardo-Nirenberg）：$\|u\|_{L^{n/(n-1)}}\le c_n\|Du\|(\mathbb{R}^n)$。取 $u=\chi_E$，$\|\chi_E\|_{n/(n-1)}=|E|^{(n-1)/n}$，$\|D\chi_E\|=\operatorname{Per}(E)$，得 $|E|^{(n-1)/n}\le c_n\operatorname{Per}(E)$。$c_n=n^{-1}\omega_n^{-1/n}$ 由容斥球论证和 Brunn-Minkowski 不等式推导。等号仅当 $E$ 为球（由等周极值刚性定理）。$\blacksquare$
 
 ### 251.2 $BV$ 函数与总变差
+
+Caccioppoli 集的理论建立在特征函数上，而 $BV$ 函数空间将这一框架从集合推广到一般函数。$BV$（有界变差）空间是 Sobolev 空间 $W^{1,1}$ 的最自然的推广——它允许函数具有跳跃间断，同时保留了足以进行变分分析的正则性结构（如紧嵌入和下半连续性）。
 
 **定义 251.2**（有界变差函数 / $BV$ 函数）：$u \in L^1(\Omega)$ 属于 $BV(\Omega)$，如果其分布导数 $Du$ 是有限 Radon 测度。总变差为 $|Du|(\Omega)$。$BV$ 空间是 Sobolev 空间 $W^{1,1}$ 的自然推广（允许跳跃间断）。
 
@@ -161,6 +171,8 @@ $$\mathcal{E} \subset K \subset \sqrt{n} \cdot \mathcal{E}$$
 **证明**：对中心对称凸体 $K\subset\mathbb{R}^n$，John 椭球 $\mathcal{E}$ 是 $K$ 的最大体积内切椭球。设 $\mathcal{E}=B_2^n$（单位球），则 $K\subset\sqrt{n}B_2^n$ 由接触点处的极值性质导出：存在接触点 $x_i\in\partial K\cap\partial B_2^n$ 和正数 $c_i>0$ 使 $\sum c_i x_i\otimes x_i = I_n$（Fritz John 分解）。取极体 $K^\circ$，同理得 $B_2^n/\sqrt{n}\subset K$。该定理给出任意有限维赋范空间与 Euclid 空间之间距离的普适量级上界（$\sqrt{n}$），是最优的——$\ell_\infty^n$ 的 John 椭球为 $B_2^n$ 且比值精确为 $\sqrt{n}$。$\blacksquare$
 
 ### 252.3 凸体的渐近浓度现象
+
+浓度现象是高维几何中最引人注目的特征之一：在高维空间中，Lipschitz 函数在概率意义下几乎为常数，偏离中位数的测度以维数的指数速率衰减。这一现象由 Milman 在 1971 年作为 Dvoretzky 定理证明的核心工具引入，它从根本上解释了为什么高维 Banach 空间必然包含近 Euclid 截面——范数作为 $S^{n-1}$ 上的 Lipschitz 函数，在高维下几乎处处集中在其中位值附近。
 
 **定理 252.3**（Milman的浓度现象，1971）：设 $\mu$ 是 $S^{n-1}$ 上的归一化 Haar 测度（旋转不变概率测度）。对任意 1-Lipschitz 函数 $f: S^{n-1} \to \mathbb{R}$（$|f(x) - f(y)| \leq \|x - y\|$），有
 $$\mu\left(\{x : |f(x) - M_f| \geq t\}\right) \leq C e^{-c n t^2}$$

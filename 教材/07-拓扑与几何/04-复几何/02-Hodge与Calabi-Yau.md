@@ -14,9 +14,11 @@ $$H_{\bar{\partial}}^{p,q}(M) \cong \mathcal{H}^{p,q}(M)$$
 
 *证明*：$\Delta_{\bar{\partial}}$ 是椭圆算子（在紧流形上），其核是有限维的。$\bar{\partial}$-上同调类与 $\Delta_{\bar{\partial}}$-调和形式通过正交分解 $H_{\bar{\partial}}^{p,q} \cong \ker \Delta_{\bar{\partial}}$ 建立同构。∎
 
-### 179.2 Lefschetz 分解
+### 179.2 Lefschetz 分解与 $\mathfrak{sl}_2$-表示
 
-**定义 179.2**（Lefschetz 算子与原始形式）：定义 $L: \Omega^{p,q} \to \Omega^{p+1,q+1}$ 为 $L(\alpha) = \omega \wedge \alpha$（Kähler 形式的外乘）。$(p,q)$-形式 $\alpha$ 称为**原始**的（primitive），如果 $L^{n-p-q+1} \alpha = 0$（$n = \dim_{\mathbb{C}} M$）。
+Hodge 定理在每一上同调层次给出了调和形式的存在性，但它并未揭示不同次数的 Hodge 分量之间的代数关系。Lefschetz 分解正是描述这些关系的基本结构——它表明 Hodge 结构的各个分量实际上构成了 $\mathfrak{sl}_2$ 表示论中的有限维不可约表示，从而将复几何与李代数的表示理论建立了深刻的联系。
+
+**定义 179.2**（Lefschetz 算子与对偶 Lefschetz 算子）：定义 $L: \Omega^{p,q} \to \Omega^{p+1,q+1}$ 为 $L(\alpha) = \omega \wedge \alpha$（Kähler 形式的外乘）。$(p,q)$-形式 $\alpha$ 称为**原始**的（primitive），如果 $L^{n-p-q+1} \alpha = 0$（$n = \dim_{\mathbb{C}} M$）。
 
 **定理 179.2**（Lefschetz 分解，硬 Lefschetz 定理）：对紧 Kähler 流形，$L^k: H^{n-k}(M, \mathbb{C}) \to H^{n+k}(M, \mathbb{C})$ 是同构（$0 \leq k \leq n$）。每个 $k$-形式可唯一分解为
 
@@ -48,6 +50,8 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 
 ### 179.4 Hodge 结构的变分
 
+Hodge 结构的本质不仅仅在于单个复流形上静态的 $(p,q)$-分解，更在于当复流形在一族中连续变化时，这些分解如何随之演化。Griffiths 在 1960-70 年代建立的理论表明，Hodge 分解的变分受到严格的微分约束（横截性），而这些约束反过来通过周期映射精确控制了复结构的模空间几何。
+
 **定义 179.5**（Hodge 结构）：权 $k$ 的**有理 Hodge 结构**由有限维有理向量空间 $V_{\mathbb{Q}}$ 和 $V_{\mathbb{C}} = V_{\mathbb{Q}} \otimes \mathbb{C}$ 上的分解 $V_{\mathbb{C}} = \bigoplus_{p+q=k} V^{p,q}$ 组成，满足 $\overline{V^{p,q}} = V^{q,p}$。等价地，Hodge 结构可用两个滤过刻画：**Hodge 滤过** $F^p = \bigoplus_{i \geq p} V^{i,k-i}$ 是 $V_{\mathbb{C}}$ 的下降滤过，满足 $F^p \oplus \overline{F^{k-p+1}} \cong V_{\mathbb{C}}$；**权滤过** $W_\bullet$ 是定义在 $V_{\mathbb{Q}}$ 上的递增滤过，满足 $W_m = 0$（$m < 0$）且 $W_k = V_{\mathbb{Q}}$。称 $(V_{\mathbb{Q}}, F^\bullet, W_\bullet)$ 为**混合 Hodge 结构**。当 $W_{k-1} = 0$ 时即为**纯 Hodge 结构**。纯 Hodge 结构的基本例子包括：光滑复射影代数簇 $X$ 的 $k$ 阶上同调 $H^k(X, \mathbb{Q})$ 带由其 Kähler 结构诱导的 Hodge 分解 $H^k(X, \mathbb{C}) \cong \bigoplus_{p+q=k} H^{p,q}(X)$；以及 Abel 簇（复环面）的 $H^1$ 上的极化的纯 Hodge 结构。混合 Hodge 结构最典型的例子来自代数簇的补空间或奇异代数簇的上同调——Deligne 证明任何复代数簇的上同调都携带典范的混合 Hodge 结构，其权滤过反映了奇异性的贡献。
 
 **定理 179.5**（Griffiths 横截性）：在 Hodge 簇的形变中，Hodge 分解满足 $V^{p,q}$ 的微分位于 $V^{p-1,q+1} \oplus V^{p,q} \oplus V^{p+1,q-1}$ 中。这是周期映射的基本性质。
@@ -71,6 +75,8 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 
 ### 180.1 无穷小形变
 
+形变理论的基本思想是研究复流形在保持其复解析结构的前提下能如何连续变化。这一问题由 Kodaira 和 Spencer 在 1950-60 年代系统地转化为上同调计算——这是一个典型的将几何问题翻译为代数问题（层上同调）的范例。
+
 **定义 180.1**（形变）：紧复流形 $M$ 的**形变**是光滑族 $\pi: \mathcal{M} \to B$（$B$ 是连通复流形），使得 $\pi^{-1}(0) = M$（$0 \in B$）。$M_t = \pi^{-1}(t)$ 是形变后的复流形。
 
 **定义 180.2**（无穷小形变）：$M$ 的**无穷小形变**空间是 $H^1(M, \Theta_M)$，其中 $\Theta_M = \mathcal{O}(TM)$ 是全纯切丛的层。
@@ -84,6 +90,8 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 **定理 180.2**（Kodaira 阻碍定理）：形变存在阻碍，阻碍空间为 $H^2(M, \Theta_M)$。若 $H^2(M, \Theta_M) = 0$，则每个无穷小形变可积为真正的形变（$M$ 无阻碍）。
 
 **证明**：给定 $\theta \in H^1(M,\Theta_M)$，逐阶构造形变的幂级数。一阶可积性由 $\bar{\partial}\theta=0$ 保证。二阶可积性要求 Maurer-Cartan 方程 $[\theta,\theta]=0 \in H^2(M,\Theta_M)$。一般地，第 $k$ 阶阻碍均落在 $H^2(M,\Theta_M)$ 中。若该空间为零，则所有阻碍消失，形变全局可积。$\blacksquare$
+
+Kodaira 阻碍定理回答了无穷小形变何时可积的问题，但它仍然留下了一个更精细的问题：当 $H^2(M, \Theta_M) \neq 0$ 时，形变空间的局部结构是什么？Kuranishi 在 1965 年通过 Banach 尺度上的不动点定理给出了完整的刻画——形变空间在一个形式幂级数的零点附近被精确描述。
 
 **定理 180.3**（Kuranishi 定理，1965）：紧复流形 $M$ 存在**半通用形变**（Kuranishi 族），其参数空间是 $H^1(M, \Theta_M)$ 在 $0$ 处的一个邻域中由 $H^2(M, \Theta_M)$ 定义的解析子集。即形变由
 
@@ -121,6 +129,8 @@ $$f \star g = fg + \frac{i\hbar}{2}\{f, g\} + \sum_{k \geq 2} \hbar^k B_k(f, g)$
 Calabi-Yau 流形是第一 Chern 类为零（$c_1(M) = 0$）的紧 Kahler 流形，其重要性在现代数学物理中无可替代。Calabi 在 1954 年的著名猜想——具有给定 Kahler 类和消失的第一 Chern 类的紧 Kahler 流形上，存在唯一的 Ricci 平坦 Kahler 度量——由丘成桐（Shing-Tung Yau）在 1976 年通过求解复 Monge-Ampere 方程严格证明，这是几何分析最辉煌的胜利之一，丘成桐也因此获得 1982 年菲尔兹奖。Yau 定理的直接推论是：所有 $c_1 = 0$ 的紧 Kahler 流形必定是 Ricci 平坦的，其 holonomy 群包含在 $SU(n)$ 中——这正是超弦理论中"紧化"所需的几何条件。在理论物理中，Calabi-Yau 三维流形（复三维，实六维）是超弦理论中隐藏的"额外维"的候选模型，而镜对称（mirror symmetry）则是 20 世纪 90 年代由 Candelas、Greene、Vafa、Kontsevich 等人发展的惊人发现：每对镜对称的 Calabi-Yau 流形 $(M, W)$ 满足 $h^{p,q}(M) = h^{n-p,q}(W)$，且 $M$ 上的 A-模型（Gromov-Witten 不变量）与 $W$ 上的 B-模型（变分复结构）完全等价。本章与前章（Hodge 理论第 199 章和形变理论第 200 章）密切呼应——镜对称以 Hodge 菱形和周期映射为基本工具展开。
 
 ### 181.1 Calabi 猜想与 Yau 定理
+
+Calabi-Yau 流形在现代几何中占据核心地位，因为它们同时满足了代数几何、微分几何和数学物理三重视角下的极端条件：代数几何中 $c_1=0$ 意味着典范丛是平凡的，微分几何中这等价于存在 Ricci 平坦度量，而物理中这提供了超弦理论紧化所需的六维内部空间。Calabi 在 1954 年提出了一个大胆的猜想：在这些代数约束下，每个 Kähler 类中恰有一个 Ricci 平坦度量。Yau 在 1976 年通过求解复 Monge-Ampere 方程证明了这一猜想，标志着几何分析的顶峰成就之一。
 
 **定义 181.1**（Calabi-Yau 流形）：紧 Kähler 流形 $M$ 称为 **Calabi-Yau 流形**，如果 $c_1(M) = 0$（在实上同调中）。等价地，$M$ 的典范丛 $K_M = \bigwedge^n T^*M$ 是平凡的。
 

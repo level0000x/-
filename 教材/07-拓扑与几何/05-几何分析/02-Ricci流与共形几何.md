@@ -31,6 +31,8 @@ $$\frac{\partial R_{ijkl}}{\partial t} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk}
 
 *意义*：这是 Hamilton 开创 Ricci 流的动因——证明 3 维 Poincaré 猜想在正 Ricci 曲率下的特例。Hamilton 获 2011 年 Shaw 奖。
 
+Hamilton 的正 Ricci 曲率定理（1982）首次展示了 Ricci 流作为几何化工具的潜力。然而，若要处理一般情形的奇异性，仅仅依赖曲率张量的点态估计是不够的——需要沿 Ricci 流演变的不变量来控制曲率的时空行为。这便是 Hamilton 在 1993 年引入微分 Harnack 不等式的动机。
+
 **定理 184.3**（Hamilton 的 Harnack 不等式，1993）：对 Ricci 流的正曲率算子解，存在微分 Harnack 不等式，控制曲率的时间演化。
 
 **证明**：设曲率算子 $\operatorname{Rm} \geq 0$。定义 Harnack 量 $Z_{ijkl} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk} + B_{ikjl} - B_{iljk}) + \frac{1}{t}R_{ijkl}$。Hamilton 证明对任意向量场 $U, V$，二次型 $Z(U, V) \geq 0$。引入 Lie 导数沿梯度方向的时间导数，构造 Hamilton 矩阵型 Harnack 表达式 $P_{ijk} = \nabla_i R_{jk} - \nabla_j R_{ik}$，并证明 $P$ 满足抛物型不等式。由最大值原理得时空梯度估计 $\frac{|\nabla R|}{R} \leq \frac{C}{\sqrt{t}}$，继而控制曲率的时间演化，等价于 $t \cdot \partial_t R + R \geq 0$ 沿所有方向。$\blacksquare$
@@ -39,7 +41,13 @@ $$\frac{\partial R_{ijkl}}{\partial t} = \Delta R_{ijkl} + 2(B_{ijkl} - B_{ijlk}
 
 **证明**：设 $(M_k, g_k(t))$ 为完备 Ricci 流解序列，$t \in [0, T]$，满足 $|\operatorname{Rm}| \leq C$，$\operatorname{diam} \leq D$，$\operatorname{inj} \geq \iota > 0$。由 Cheeger-Gromov 紧致性定理，对每个 $t$，$(M_k, g_k(t))$ 在 Cheeger-Gromov 意义下子列收敛到光滑极限流形。Shi 的局部导数估计 $\|\nabla^m \operatorname{Rm}\| \leq C_m t^{-m/2}$ 给出 $C^\infty$ 有界性。由 Arzela-Ascoli 定理（在各时间片的 $C^\infty$ 拓扑下），对角论证得子列在 $C^\infty$ 中时空收敛。极限满足 Ricci 流方程（连续性）。$\blacksquare$
 
-### 184.3 Perelman 的工作与 Poincaré 猜想
+Hamilton 的 Harnack 不等式和紧致性定理为分析 Ricci 流的奇点结构提供了关键技术基础，但它们本身不足以处理奇点形成时流形的"塌缩"问题。Perelman 在 2002 年的突破正是从这一点切入的——他引入了一系列沿 Ricci 流单调的熵泛函，成功排除了塌缩现象。
+
+### 184.3 Perelman 的工作与 Poincaré 猜想（概述，详见 V13）
+
+下面给出 Perelman 在 2002-2003 年三篇里程碑式预印本中的核心定义和定理陈述。Grigory Perelman 的贡献是使用 Ricci 流（带手术）证明了 Thurston 几何化猜想（从而 Poincaré 猜想作为推论）。
+
+Perelman 首次引入 $W$-熵泛函（2002 年的预印本中 §3），旨在利用 $W$-熵的单调性来控制沿 Ricci 流的有界熵推导出**紧性**（compactness），从而对任何极限中的奇点模型进行分类。$W$-熵的单调性是 Perelman 工作体系中最根本的分析工具：它确保了在 Ricci 流奇点处取缩放极限时，极限流形不会发生"塌缩"——即内射半径下有正下界控制。
 
 **定理 184.5**（Perelman 的 $\mathcal{F}$-泛函与 $\mathcal{W}$-泛函，2002）：Perelman 引入两个关键泛函：
 
@@ -47,13 +55,15 @@ $$\mathcal{F}(g, f) = \int_M (R + |\nabla f|^2) e^{-f} \, dV$$
 
 $$\mathcal{W}(g, f, \tau) = \int_M [\tau(R + |\nabla f|^2) + f - n] (4\pi\tau)^{-n/2} e^{-f} \, dV$$
 
-$\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathcal{W}$ 沿 Ricci 流（与 $\tau$ 的适当演化耦合）单调不减。这给出了 Ricci 流的不变量。
+$\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathcal{W}$ 沿 Ricci 流（与 $\tau$ 的适当演化耦合）单调不减。
 
 **证明**：$\mathcal{F}$ 沿 Ricci 流 $\partial_t g = -2\operatorname{Ric}$ 和共轭热方程 $\partial_t f = -\Delta f + |\nabla f|^2 - R$ 的演化：$\frac{d}{dt}\mathcal{F}(g,f) = 2\int_M |\operatorname{Ric} + \nabla^2 f|^2 e^{-f} dV \geq 0$。$\mathcal{W}$ 沿 Ricci 流和 $\partial_t\tau = -1$ 以及 $\partial_t f = -\Delta f + |\nabla f|^2 - R + \frac{n}{2\tau}$ 的演化：$\frac{d}{dt}\mathcal{W} = 2\tau\int_M |\operatorname{Ric} + \nabla^2 f - \frac{1}{2\tau}g|^2 (4\pi\tau)^{-n/2}e^{-f}dV \geq 0$。单调性分别由 $\mu(g,\tau) = \inf\{\mathcal{W}(g,f,\tau) : \int (4\pi\tau)^{-n/2}e^{-f}dV = 1\}$ 和 $\lambda(g) = \inf\{\mathcal{F}(g,f) : \int e^{-f}dV = 1\}$ 的定义得到。$\blacksquare$
 
 **定理 184.6**（非塌缩定理）：Perelman 证明在 Ricci 流下，曲率有界的区域体积非塌缩（内射半径有下界）。这排除了 Cheeger-Gromov 意义下的"塌缩"现象。
 
 **证明**：设 $(M, g(t))$ 为 Ricci 流解，$p \in M$，$r > 0$ 满足 $|\operatorname{Rm}| \leq r^{-2}$ 在 $B_t(p, r)$ 上。Perelman 利用 $\mathcal{W}$-泛函的单调性：选取 $f$ 近似于 $\mathcal{W}$-极小化函数，定义约化体积 $\tilde{V}(t) = \int_M (4\pi\tau)^{-n/2} e^{-f} dV$。$\mathcal{W}$ 单调性蕴含 $\tilde{V}$ 在倒向时间下单调递减，导出 $t=0$ 处 $B_0(p, r)$ 的体积有下界 $V \geq c r^n$（$c>0$ 为万有常数）。由 Bishop-Gromov 体积比较，内射半径 $\operatorname{inj}(p) \geq c' r$。$\blacksquare$
+
+非塌缩定理排除了 Ricci 流奇点分析中最棘手的障碍：它确保了在奇点处缩放后所得的规范模型（canonical models）具有正的内射半径，从而可以被有效地分类。在建立了奇点模型的分类型论之后，下一步自然是在 Ricci 流遇到奇点时执行几何手术——切除高曲率区域并粘贴标准帽，使得流可以继续光滑演化。
 
 **定理 184.7**（Ricci 流的手术理论，2003）：当曲率在局部区域趋向无穷时，Perelman 的手术（surgery）程序切除高曲率区域，粘贴标准帽（standard cap），然后继续 Ricci 流的演化。手术次数有限。
 
@@ -74,6 +84,8 @@ $\mathcal{F}$ 沿 Ricci 流（与共轭热方程耦合）单调不减。$\mathca
 **定理 184.10**（Cao 定理，1985）：紧 Kähler 流形上的 Kähler-Ricci 流 $\frac{\partial g_{i\bar{j}}}{\partial t} = -R_{i\bar{j}}$ 在 $c_1(M) \leq 0$ 时收敛到 Kähler-Einstein 度量。
 
 **证明**：Kähler-Ricci 流在 Kähler 类内演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t)$。若 $c_1(M)=0$，此为 Yau 的定理（Ricci 平坦度量）。若 $c_1(M)<0$，演化为 $\frac{\partial}{\partial t} \omega_t = -\operatorname{Ric}(\omega_t) - \omega_t$，通过 Aubin-Yau 连续性方法的抛物化得到指数收敛到唯一的 Kähler-Einstein 度量（$\operatorname{Ric} = -\omega$）。$\blacksquare$
+
+Cao 定理将 Ricci 流的应用从实几何扩展到了复几何框架。当 $c_1(M)>0$（即 Fano 流形情形）时，问题变得更加微妙——Kähler-Ricci 流的收敛性等价于流形的 $K$-稳定性，这是一个代数几何概念。这一深刻的联系由 Chen-Donaldson-Sun 在 2014 年完整证明，完成了 Yau-Tian-Donaldson 猜想的最后一环。
 
 **定理 184.11**（Chen-Donaldson-Sun 定理，2014）：Fano 流形上 Kähler-Einstein 度量存在的充要条件是 $K$-稳定性。这是 Yau-Tian-Donaldson 猜想的证明，使用 Kähler-Ricci 流方法。
 
@@ -137,10 +149,14 @@ $$Y(g) = \inf_{u \in C^\infty, u > 0} \frac{\int_M (\frac{4(n-1)}{n-2}|\nabla u|
 
 **定义 185.3**（预定标量曲率问题 / Nirenberg 问题）：给定 $S^2$ 上的函数 $K(x)$，是否存在 $S^2$ 上共形于标准度量的度量，其 Gauss 曲率为 $K(x)$？
 
+Yamabe 问题的解决回答了"是否存在常标量曲率度量"这一存在性问题；而 Nirenberg 问题更进一步——它要求度量上的标量曲率恰好取为给定的函数 $K(x)$。这是一个本质上更为困难的反问题，其可解性不仅取决于 $K$ 的正则性，还受到深刻的拓扑障碍制约。
+
 **定理 185.2**（Kazdan-Warner 障碍，1974）：$S^2$ 上存在 Gauss 曲率 $K$ 的必要条件是：对任何一阶球谐函数 $\psi$，$\int_{S^2} \nabla K \cdot \nabla \psi \, dV = 0$。这给出了 $S^2$ 上预定 Gauss 曲率问题的拓扑障碍。
 
 
 **证明**：$S^2$ 上的共形 Gauss 曲率方程 $\Delta u + K e^{2u} = 1$（$K$ 为预定曲率）。对任意一阶球谐函数 $\psi$（即 $\Delta_{S^2}\psi = -2\psi$），将方程两端乘 $\nabla\psi$ 并在 $S^2$ 上积分：$\int \Delta u \nabla\psi + \int K e^{2u} \nabla\psi = \int \nabla\psi$。分部积分并利用 $\nabla\psi$ 与共形因子的相容性，得 $\int \nabla K \cdot \nabla\psi \, e^{2u} dV = 0$。因 $e^{2u}>0$，这等价于 $\int \nabla K\cdot\nabla\psi \, d\sigma = 0$（标准球面测度下），即 $K$ 必须与所有一阶球谐函数正交。此为 $S^2$ 上 Nirenberg 问题的著名障碍条件。$\blacksquare$
+
+Kazdan-Warner 障碍条件表明，并非每个光滑正函数都可以实现为 $S^2$ 上某个度量的 Gauss 曲率——这是一个纯分析的 PDE 问题中存在全局拓扑障碍的典型案例。在排除了这些障碍之后，能否给出充分条件保证解的存在性？Chang 和 Yang 的工作正是沿着这一方向给出了一组较为一般的充分条件。
 
 **定理 185.3**（Chang-Yang 解，1987）：$S^2$ 上的 Nirenberg 问题在 $K(x)$ 为正函数且满足某些非退化条件时解决。
 
@@ -213,6 +229,8 @@ $$D_A^* F_A = 0$$
 **证明**：设 $\{A_n\}$ 为 $B^4$ 上 Yang-Mills 联络序列，满足 $\int_{B^4}|F_{A_n}|^2\le C<\infty$。选取 Coulomb 规范，由弱紧致性（$W^{1,2}$ 中有界）得子列弱收敛到弱 Yang-Mills 联络 $A_\infty$。利用 $\varepsilon$-正则性：若某点处曲率密度小于某阈值 $\varepsilon_0$，则该点邻域内 $A_\infty$ 光滑。曲率可集中在有限个孤立点——这些点处曲率密度超过阈值，其总曲率有正下界，由能量界知奇点有限。在光滑区域，$A_n$ 强收敛到光滑联络 $A_\infty$。$\blacksquare$
 
 ### 186.3 调和映射热流
+
+调和映射热流是 Eells-Sampson 关于调和映射存在性理论的自然抛物化。从变分角度看，调和映射是 Dirichlet 能量的临界点，而热流则是沿此能量的最速下降方向寻找临界点的动力学过程。这一思想与 Ricci 流（面积/体积泛函的梯度流）和平均曲率流（面积泛函的梯度流）一脉相承，共同构成了几何热流理论的三大支柱。
 
 **定义 186.3**（调和映射热流）：调和映射的热流方程为
 
