@@ -1,4 +1,4 @@
-## 第254章：Arakelov 几何
+## 第277章：Arakelov 几何
 Arakelov 几何将代数几何的概型方法推广到算术情形，在 $\operatorname{Spec} \mathbb{Z}$ 上构造"算术曲面"，并在每个无穷远点处附加 Hermite 度量以赋予"紧性"。这是将代数几何方法与解析工具相结合的交叉领域，其核心应用包括 Faltings 对 Mordell 猜想的证明。
 
 ### 88.1 算术曲面与 Hermite 度量
