@@ -1,5 +1,6 @@
 ## 第199章：Hodge 理论
-Hodge 理论是紧 Kähler 流形上同调理论的核心，揭示了调和形式、上同调类与复结构之间的深层关系。
+
+Hodge 理论是紧 Kahler 流形上同调理论的核心，由 W. V. D. Hodge 在 1930-1940 年代系统创立。其最基本结果是 Hodge 分解定理：在紧 Kahler 流形 $M$ 上，每个 de Rham 上同调类都有唯一的调和形式代表元。更精确地，复值上同调群 $H^k(M, \mathbb{C})$ 可以按 $(p,q)$ 类型分解为调和 $(p,q)$-形式空间的直和 $H^k(M, \mathbb{C}) = \bigoplus_{p+q=k} \mathcal{H}^{p,q}(M)$，且满足 Hodge 对偶 $\mathcal{H}^{p,q} \cong \overline{\mathcal{H}^{q,p}}$。这一分解的几何意义极为深远：Hodge 数 $h^{p,q} = \dim \mathcal{H}^{p,q}$ 不仅给出了 Betti 数的精细分解（$\sum_{p+q=k} h^{p,q} = b_k$），其 Hodge 菱形对称性还同时编码了 Serre 对偶、复共轭对称以及 Lefschetz 分解（通过 Kahler 类的楔积给出 $H^{p,q} \to H^{p+1,q+1}$ 的同构）。在代数几何中，Hodge 理论是 Hodge 猜想（每个有理 $(p,p)$ 类必是代数闭链的有理线性组合）的基础，后者是 Clay 数学研究所的七大千禧问题之一。本章与形变理论（第200章）的联系在于：Hodge 结构随复结构的形变而变化，产生了 Griffiths 周期映射，这直接引向 Calabi-Yau 流形（第201章）的镜对称研究。
 
 ### 179.1 调和形式与 Hodge 定理
 
@@ -65,7 +66,8 @@ $$\alpha = \sum_{j \geq \max(0, k-n)} L^j \alpha_j$$
 ---
 
 ## 第200章：形变理论
-形变理论研究复流形在保持复结构前提下的连续变化。由 Kodaira 和 Spencer 在 1950 年代创立。
+
+形变理论（deformation theory）研究复流形在保持复解析结构前提下的连续变动，由 Kunihiko Kodaira 和 Donald Spencer 在 1950-1960 年代通过发展复结构的偏微分方程方法系统建立。核心问题是：给定一个紧复流形 $M$，其"近邻"有多少个不同的复结构？Kodaira-Spencer 映射将这一问题转化为上同调的计算：一阶无穷小形变由 $H^1(M, \Theta_M)$（全纯切丛的上同调）参数化，而形变的障碍（即无穷小形变是否能积分为真正的形变族）位于 $H^2(M, \Theta_M)$ 中。当 $H^2(M, \Theta_M) = 0$ 时，Kodaira 定理保证所有一阶形变都能积分——形变空间在该点是光滑的，且其局部维数等于 $h^1(M, \Theta_M)$。形变理论在代数几何和镜对称中的关键应用包括：Calabi-Yau 流形（第201章）的复结构模空间的维数计算（在天野-田刚-Yau 定理中 $\dim H^1(M, \Theta_M)$ 恰好是复结构模空间的维数），以及 Griffiths 周期映射通过 Hodge 结构（第199章）的形变来刻画模空间的几何。
 
 ### 180.1 无穷小形变
 
@@ -115,7 +117,8 @@ $$f \star g = fg + \frac{i\hbar}{2}\{f, g\} + \sum_{k \geq 2} \hbar^k B_k(f, g)$
 ---
 
 ## 第201章：Calabi-Yau 流形与镜对称
-Calabi-Yau 流形是第一 Chern 类为零的紧 Kähler 流形，在弦论和镜对称中占据核心地位。
+
+Calabi-Yau 流形是第一 Chern 类为零（$c_1(M) = 0$）的紧 Kahler 流形，其重要性在现代数学物理中无可替代。Calabi 在 1954 年的著名猜想——具有给定 Kahler 类和消失的第一 Chern 类的紧 Kahler 流形上，存在唯一的 Ricci 平坦 Kahler 度量——由丘成桐（Shing-Tung Yau）在 1976 年通过求解复 Monge-Ampere 方程严格证明，这是几何分析最辉煌的胜利之一，丘成桐也因此获得 1982 年菲尔兹奖。Yau 定理的直接推论是：所有 $c_1 = 0$ 的紧 Kahler 流形必定是 Ricci 平坦的，其 holonomy 群包含在 $SU(n)$ 中——这正是超弦理论中"紧化"所需的几何条件。在理论物理中，Calabi-Yau 三维流形（复三维，实六维）是超弦理论中隐藏的"额外维"的候选模型，而镜对称（mirror symmetry）则是 20 世纪 90 年代由 Candelas、Greene、Vafa、Kontsevich 等人发展的惊人发现：每对镜对称的 Calabi-Yau 流形 $(M, W)$ 满足 $h^{p,q}(M) = h^{n-p,q}(W)$，且 $M$ 上的 A-模型（Gromov-Witten 不变量）与 $W$ 上的 B-模型（变分复结构）完全等价。本章与前章（Hodge 理论第 199 章和形变理论第 200 章）密切呼应——镜对称以 Hodge 菱形和周期映射为基本工具展开。
 
 ### 181.1 Calabi 猜想与 Yau 定理
 
