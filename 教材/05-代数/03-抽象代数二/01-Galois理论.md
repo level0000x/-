@@ -158,6 +158,24 @@ $$\operatorname{Gal}(\mathbb{Q}(\zeta_n)/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{
 
 Galois 上同调是类域论和 Langlands 纲领的基本技术工具。Tate 上同调、局部类域论中的 Brauer 群的计算、以及 étale 上同调都是 Galois 上同调的自然推广。在算术几何中，Galois 上同调被用于研究椭圆曲线的 Selmer 群和 Birch-Swinnerton-Dyer 猜想。
 
+### 32.8 Brauer 群与交叉积代数
+
+**定义 32.12**（Brauer 群）：域 $K$ 的 **Brauer 群** $\operatorname{Br}(K)$ 是 $K$ 上中心单代数的同构类在张量积下构成的群。两个中心单代数 $A, B$ 等价（在 Brauer 意义下）当且仅当存在 $m, n$ 使得 $A \otimes_K M_m(K) \cong B \otimes_K M_n(K)$。
+
+**定理 32.8.1**（Brauer 群与 Galois 上同调）：设 $K$ 为域，$\overline{K}$ 为可分闭包，$G_K = \operatorname{Gal}(\overline{K}/K)$ 为绝对 Galois 群。则
+$$\operatorname{Br}(K) \cong H^2(G_K, \overline{K}^\times)$$
+同构由交叉积代数（crossed product algebra）构造给出：对 2-上循环 $a(\sigma, \tau) \in H^2(G_K, \overline{K}^\times)$，对应中心单代数 $\bigoplus_{\sigma \in G_K} \overline{K} \cdot u_\sigma$，乘法为 $u_\sigma u_\tau = a(\sigma, \tau) u_{\sigma\tau}$。
+
+**定理 32.8.2**（局部类域论中的 Brauer 群）：对局部域 $K$（$\mathbb{R}$、$\mathbb{C}$、有限扩张的 $\mathbb{Q}_p$ 或 $\mathbb{F}_q((t))$），Brauer 群有简单形式：
+$$\operatorname{Br}(K) \cong \begin{cases} \mathbb{Z}/2\mathbb{Z} & K = \mathbb{R} \\ 0 & K = \mathbb{C} \\ \mathbb{Q}/\mathbb{Z} & K \text{ 为非 Archimedes 局部域} \end{cases}$$
+同构由 **Hasse 不变量**（Hasse invariant）$\operatorname{inv}_K: \operatorname{Br}(K) \to \mathbb{Q}/\mathbb{Z}$ 给出，这是类域论中局部互反映射的核心内容。
+
+**定理 32.8.3**（整体-局部原理，Hasse 原理）：对整体域 $K$（数域或函数域），存在正合列：
+$$0 \to \operatorname{Br}(K) \to \bigoplus_v \operatorname{Br}(K_v) \xrightarrow{\sum \operatorname{inv}_v} \mathbb{Q}/\mathbb{Z} \to 0$$
+其中 $v$ 遍历 $K$ 的所有位。此即 **Brauer-Hasse-Noether 定理**——中心单代数在整体域上由其在所有完备化处的局部行为唯一决定，且局部不变量之和为零是整体存在的充要条件。
+
+
+
 ---
 
 ---

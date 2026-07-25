@@ -1,3 +1,94 @@
+## 第127章：表示论基础
+表示论研究群（或代数）通过线性变换的具体实现，是连接抽象代数与线性代数的桥梁。
+
+### 69.1 群的表示
+
+**定义 69.1**（群的线性表示）：设 $G$ 是有限群，$V$ 是域 $k$ 上的有限维向量空间。$G$ 在 $V$ 上的一个**线性表示**是一个群同态 $\rho: G \to \operatorname{GL}(V)$。
+
+$V$ 的维数称为表示的**维数**（或**次数**）。若 $\rho$ 是单射，则称表示为**忠实的**。
+
+**定义 69.2**（不变子空间与不可约表示）：表示 $\rho: G \to \operatorname{GL}(V)$ 的子空间 $W \subseteq V$ 称为**不变的**（或 $G$-子模），如果 $\rho(g)(W) \subseteq W$ 对所有 $g \in G$ 成立。表示 $(\rho, V)$ 称为**不可约的**，如果 $V \neq 0$ 且唯一的不变子空间是 $\{0\}$ 和 $V$。
+
+**定义 69.3**（表示的直和）：若 $V = V_1 \oplus V_2$（$\dim V_i > 0$）且 $V_1, V_2$ 都是 $G$-不变的，则称 $(\rho, V)$ 是 $(\rho|_{V_1}, V_1)$ 和 $(\rho|_{V_2}, V_2)$ 的**直和**。若表示不能分解为非平凡子表示的直和，则称其为**不可分解的**。
+
+**定理 69.1**（Maschke 定理）：设 $G$ 是有限群，$k$ 是域且 $\operatorname{char}(k) \nmid |G|$。则 $G$ 在 $k$ 上的每个有限维表示都是完全可约的（即可分解为不可约表示的直和）。
+
+*证明*：设 $W \subseteq V$ 是 $G$-不变子空间。需构造 $G$-不变的补空间 $W'$。取任意线性投影 $\pi: V \to W$（非 $G$-等变）。定义平均投影
+
+$$\tilde{\pi}(v) = \frac{1}{|G|} \sum_{g \in G} \rho(g) \pi(\rho(g^{-1})v)$$
+
+则 $\tilde{\pi}$ 是 $G$-等变的（$\tilde{\pi}(\rho(h)v) = \rho(h)\tilde{\pi}(v)$），且 $\tilde{\pi}|_W = \operatorname{id}_W$。于是 $W' = \ker \tilde{\pi}$ 是 $G$-不变的补空间。∎
+
+### 69.2 特征标理论
+
+以下设 $k = \mathbb{C}$（复数域），$G$ 是有限群。
+
+**定义 69.4**（特征标）：表示 $\rho: G \to \operatorname{GL}(V)$ 的**特征标**是函数 $\chi_V: G \to \mathbb{C}$，$\chi_V(g) = \operatorname{tr}(\rho(g))$。
+
+特征标是**类函数**：$\chi_V(hgh^{-1}) = \chi_V(g)$。因此 $\chi_V$ 在共轭类上取常值。
+
+**命题 69.2**（特征标的基本性质）：
+1. $\chi_V(e) = \dim V$。
+2. $\chi_{V \oplus W} = \chi_V + \chi_W$。
+3. $\chi_{V \otimes W} = \chi_V \cdot \chi_W$。
+4. $\chi_V(g^{-1}) = \overline{\chi_V(g)}$（对 $g$ 的阶有限）。
+
+**定义 69.5**（特征标的内积）：对于类函数 $\varphi, \psi: G \to \mathbb{C}$，定义内积
+
+$$\langle \varphi, \psi \rangle = \frac{1}{|G|} \sum_{g \in G} \varphi(g) \overline{\psi(g)}$$
+
+**定理 69.3**（不可约特征标的正交性）：
+1. 若 $\chi$ 是不可约表示的特征标，则 $\langle \chi, \chi \rangle = 1$。
+2. 若 $\chi$ 和 $\psi$ 是两个不同构的不可约表示的特征标，则 $\langle \chi, \psi \rangle = 0$。
+3. 不可约特征标构成类函数空间的一组正交规范基。
+
+**证明**：设 $\rho: G \to \operatorname{GL}(V)$ 和 $\sigma: G \to \operatorname{GL}(W)$ 是两个不可约表示，特征标分别为 $\chi, \psi$。定义算子 $T = \sum_{g \in G} \rho(g) \circ S \circ \sigma(g^{-1})$，其中 $S: W \to V$ 为任意线性映射。则 $T$ 是 $G$-等变映射：$\rho(h) T = \sum_g \rho(hg) S \sigma(g^{-1}) = \sum_g \rho(g) S \sigma(g^{-1}h) = T \sigma(h)$。由 Schur 引理，若 $\rho \not\cong \sigma$，则 $T = 0$；若 $\rho \cong \sigma$，则 $T = \lambda \operatorname{id}_V$。取 $S$ 为矩阵单位 $E_{ij}$（在 $V$ 基下），计算 $\operatorname{tr}(T)$ 得 $\sum_g \rho_{ii}(g) \sigma_{jj}(g^{-1}) = \frac{|G|}{\dim V} \delta_{ij}$（当 $\rho \cong \sigma$）。整理得 $\langle \chi, \psi \rangle = \frac{1}{|G|} \sum_g \chi(g) \overline{\psi(g)} = \delta_{\rho \cong \sigma}$。不可约特征标的正交规范性得证。$\blacksquare$
+
+**推论 69.4**：表示 $V$ 不可约当且仅当 $\langle \chi_V, \chi_V \rangle = 1$。
+
+**定理 69.5**：$G$ 的不可约表示的同构类个数等于 $G$ 的共轭类个数。且若 $d_1, \ldots, d_r$ 是不可约表示的维数，则
+
+$$\sum_{i=1}^r d_i^2 = |G|$$
+
+**证明**：类函数空间 $\mathcal{C}(G)$ 的维数等于 $G$ 的共轭类个数。由定理 69.3，不可约特征标构成 $\mathcal{C}(G)$ 的一组正交规范基，故不可约表示个数等于 $\dim \mathcal{C}(G) =$ 共轭类个数。对于维数平方和，取正则表示 $\rho_{\text{reg}}$（$G$ 在 $\mathbb{C}[G]$ 上的左乘作用），其分解为 $\rho_{\text{reg}} \cong \bigoplus_{i=1}^r V_i^{\oplus d_i}$（每个不可约表示 $V_i$ 出现 $\dim V_i$ 次）。比较维数：$|G| = \dim \mathbb{C}[G] = \sum_{i=1}^r d_i \cdot d_i = \sum_{i=1}^r d_i^2$。$\blacksquare$
+
+### 69.3 诱导表示与 Frobenius 互反律
+
+**定义 69.6**（诱导表示）：设 $H \leq G$，$(\rho, W)$ 是 $H$ 的表示。定义 $G$ 的**诱导表示** $\operatorname{Ind}_H^G W$ 为
+
+$$\operatorname{Ind}_H^G W = \{f: G \to W : f(gh) = \rho(h^{-1})f(g), \; \forall h \in H\}$$
+
+$G$ 的作用为 $(\tilde{g} \cdot f)(g) = f(\tilde{g}^{-1} g)$。
+
+**定理 69.6**（Frobenius 互反律）：设 $\chi$ 是 $H$ 的特征标，$\psi$ 是 $G$ 的特征标。则
+
+$$\langle \operatorname{Ind}_H^G \chi, \psi \rangle_G = \langle \chi, \operatorname{Res}_H^G \psi \rangle_H$$
+
+其中 $\operatorname{Res}_H^G \psi$ 是 $\psi$ 限制为 $H$ 的特征标。
+
+**证明**：诱导特征标的值为 $\operatorname{Ind}_H^G \chi(g) = \frac{1}{|H|} \sum_{x \in G} \dot{\chi}(xgx^{-1})$（$\dot{\chi}$ 在 $H$ 外为零延拓）。计算内积得 $\langle \operatorname{Ind}_H^G \chi, \psi \rangle_G = \frac{1}{|G||H|} \sum_{g \in G} \sum_{x \in G} \dot{\chi}(xgx^{-1}) \overline{\psi(g)}$。交换求和并换元 $h = xgx^{-1}$，注意 $g = x^{-1}hx$ 且 $\psi(g) = \psi(h)$（特征标为类函数）。对每固定的 $x$，$g$ 跑遍 $G$ 等价于 $h$ 跑遍 $G$，故和式化为 $\frac{1}{|H|} \sum_{h \in H} \chi(h) \overline{\psi(h)} = \langle \chi, \operatorname{Res}_H^G \psi \rangle_H$。$\blacksquare$
+
+### 69.4 Burnside 定理
+
+**定理 69.7**（Burnside $p^a q^b$ 定理）：若 $G$ 是有限群，$|G| = p^a q^b$（$p, q$ 为素数），则 $G$ 是可解群。
+
+**证明**：反设 $G$ 为非可解单群，$|G| = p^a q^b$。取 $G$ 的非平凡共轭类 $C$，$|C| = p^c q^d > 1$。由特征标理论，存在不可约特征标 $\chi$ 使 $\chi(1)$ 与 $|C|$ 互素（否则由特征标正交性导出的矛盾）。令 $\omega_\chi(C) = \frac{|C| \chi(g)}{\chi(1)}$（$g \in C$），此为代数整数。由互素条件，存在整数 $u, v$ 使 $u \chi(1) + v |C| = 1$。则 $\frac{1}{\chi(1)} = u + v \frac{|C|}{\chi(1)}$ 为代数整数。由此 $\chi(1)$ 为代数整数也是有理数，故为整数。但 $\chi(1)$ 整除 $|G|$，且由特征标正交性 $\sum_{i} \chi_i(1)^2 = |G|$。$G$ 为单群意味着 $\chi(1) = 1$ 仅对平凡特征标成立，其余 $\chi(1) \geq 2$。考虑 $|G| = \sum \chi_i(1)^2$，这迫使 $|G|$ 必须为素数（否则由 Burnside 定理的群论分析，$G$ 有非平凡正规子群）。矛盾。因此 $G$ 有非平凡正规子群，归纳得 $G$ 可解。$\blacksquare$
+
+**推论 69.8**：最小非 Abel 单群是 $A_5$（阶 60 = $2^2 \cdot 3 \cdot 5$）。所有阶小于 60 的群都是可解群。
+
+### 69.5 群代数与表示的上同调
+
+**定义 69.7**（群代数）：有限群 $G$ 在域 $k$ 上的**群代数** $k[G]$ 是以 $G$ 为基的 $k$-向量空间，乘法由 $G$ 的群运算线性扩展定义：$(\sum a_g g)(\sum b_h h) = \sum_{g,h} a_g b_h (gh)$。群 $G$ 的表示等价于 $k[G]$-模。
+
+**定理 69.9**（Maschke 定理的模论表述）：$k[G]$ 是半单环当且仅当 $\operatorname{char}(k) \nmid |G|$。此时 $k[G] \cong \bigoplus_{i=1}^r M_{d_i}(k)$（矩阵代数的直和），其中 $d_i$ 是不可约表示的维数。
+
+**定义 69.8**（群上同调）：$G$ 的系数在 $k[G]$-模 $M$ 中的 $n$ 次**上同调群**定义为 $H^n(G, M) = \operatorname{Ext}_{k[G]}^n(k, M)$。低维上同调有具体解释：
+- $H^0(G, M) = M^G$（$G$-不变量）
+- $H^1(G, M)$ 分类 $G$ 到 $M$ 的交叉同态模去主交叉同态
+- $H^2(G, M)$ 分类 $G$ 以 $M$ 为核的群扩张
+
+---
+
 ## 第134章：有限群表示深化
 有限群表示论的经典理论建立在复数域上，其中 Maschke 定理保证了群代数的半单性——每个表示完全可约，不可约表示数目等于共轭类数。然而，当基域的特征 $p$ 整除群阶 $|G|$ 时，这一优美的理论框架彻底崩塌：群代数不再是半单的，不可约表示的数目少于 $p$-正则共轭类数，出现了块分解（block decomposition）和投射模与不可约模之间的复杂关系。这一现象最早由 Richard Brauer 在 1930-1940 年代系统研究，他引入了 Brauer 特征标、分解矩阵和 Cartan 矩阵等核心工具，建立了模表示论的基本框架。模表示论与有限群论的深层联系体现在 Brauer 的三个主定理中：第一主定理建立了 $G$ 的 $p$-块与 $p$-局部子群 $N_G(D)$ 的块之间的双射对应（Brauer 对应）；第二主定理将特征标的诱导与限制通过 Brauer 对应联系起来；第三主定理则为块论提供了计算工具。Green 的不可分解模理论（1959）和 Green 对应（1964）进一步揭示了模表示论与 $p$-局部子群之间的深刻关系。本章将在 V12 第 69 章经典表示论的基础上，系统建立模表示论、块论和 Green 对应的理论框架，并介绍 McKay 猜想、Alperin 权猜想等现代前沿问题。
 
@@ -435,3 +526,35 @@ $$J_{H,V}(L) = \mathrm{MT}_n(\rho_n(\beta))$$
 其中 $\beta \in B_n$ 满足其闭包同痕于 $L$。则 $J_{H,V}(L)$ 是定向链环的同痕不变量。Jones 多项式和 HOMFLY-PT 多项式可分别从适当参数的 $U_q(\mathfrak{sl}_2)$ 和 $U_q(\mathfrak{sl}_N)$ 的表示中得到。
 
 **证明**：需验证 $J_{H,V}(L)$ 在 Markov 移动下不变。Markov 移动 I：将 $\beta \in B_n$ 换为 $\gamma \beta \gamma^{-1}$（$\gamma \in B_n$）。由 Markov 迹的迹性 $\mathrm{MT}_n(\rho_n(\gamma \beta \gamma^{-1})) = \mathrm{MT}_n(\rho_n(\gamma^{-1}\gamma \beta)) = \mathrm{MT}_n(\rho_n(\beta))$，故值不变。Markov 移动 II：将 $\beta \in B_n$ 换为 $\beta \sigma_n^{\pm 1} \in B_{n+1}$。由 Markov 迹的性质 $\mathrm{MT}_{n+1}(\rho_{n+1}(\beta \sigma_n^{\pm 1})) = \mathrm{MT}_n(\rho_n(\beta))$，故值不变。由于任意两个表示同一链环的辫子可通过 Markov 移动互相转化，$J_{H,V}(L)$ 良定且为同痕不变量。对 $U_q(\mathfrak{sl}_2)$ 取 $V$ 为二维标准表示，得到 Jones 多项式；对 $U_q(\mathfrak{sl}_N)$ 取 $V$ 为 $N$ 维标准表示，得到 HOMFLY-PT 多项式。 $\blacksquare$
+
+## 第32章附录：Galois 表示与 Langlands 纲领
+
+### A.1 Galois 表示论初步
+
+**定义 A.1**（Galois 表示）：设 $K$ 是域，$G_K = \operatorname{Gal}(\overline{K}/K)$ 为绝对 Galois 群。$K$ 上的 **$\ell$-进 Galois 表示**是连续同态 $\rho: G_K \to \operatorname{GL}_n(\overline{\mathbb{Q}}_\ell)$，其中 $\overline{\mathbb{Q}}_\ell$ 是 $\ell$-进数域的代数闭包，拓扑由 $\ell$-进拓扑诱导。
+
+**例 A.1**（分圆表示）：对任意整数 $m$，**分圆表示** $\chi_{\ell}^m: G_{\mathbb{Q}} \to \overline{\mathbb{Q}}_\ell^\times$ 定义为 $\chi_{\ell}(\sigma) = \lim_{\leftarrow n} \sigma(\zeta_{\ell^n})/\zeta_{\ell^n}$（其中 $\zeta_{\ell^n}$ 为 $\ell^n$ 次本原单位根）。$\chi_\ell$ 将 $\ell$-进分圆域 $\mathbb{Q}(\zeta_{\ell^\infty})$ 的 Galois 群嵌入 $\mathbb{Z}_\ell^\times$。
+
+**定义 A.2**（Tate 模）：设 $E/K$ 为椭圆曲线。对素数 $\ell \neq \operatorname{char} K$，$E$ 的 **Tate 模** 定义为：
+$$T_\ell(E) = \varprojlim_n E[\ell^n] \cong \mathbb{Z}_\ell^2$$
+其中 $E[\ell^n]$ 为 $E$ 的 $\ell^n$ 阶挠点子群。$G_K$ 在 $T_\ell(E)$ 上的作用给出 $\ell$-进 Galois 表示 $\rho_{E,\ell}: G_K \to \operatorname{GL}_2(\mathbb{Z}_\ell)$。
+
+**定理 A.1**（Serre 的开像定理，1972）：设 $E/\mathbb{Q}$ 是没有复乘法的椭圆曲线。则 $\ell$-进表示 $\rho_{E,\ell}: G_{\mathbb{Q}} \to \operatorname{GL}_2(\mathbb{Z}_\ell)$ 的像在 $\operatorname{GL}_2(\mathbb{Z}_\ell)$ 中是开的（事实上是有限指数子群）。对充分大的 $\ell$，$\operatorname{im} \rho_{E,\ell} = \operatorname{GL}_2(\mathbb{Z}_\ell)$。
+
+**定理 A.2**（Faltings 定理，1983）：对椭圆曲线 $E_1, E_2/\mathbb{Q}$，$\operatorname{Hom}_{G_{\mathbb{Q}}}(T_\ell(E_1), T_\ell(E_2)) \otimes \mathbb{Q}_\ell \cong \operatorname{Hom}_{\mathbb{Q}}(E_1, E_2) \otimes \mathbb{Q}_\ell$。即 Galois 表示完全决定椭圆曲线的同源类。此定理是 Faltings 证明 Mordell 猜想的中心工具之一。
+
+### A.2 Langlands 纲领概要
+
+**猜想 A.1**（Langlands 对应，粗略形式）：整体域 $K$ 上的 $n$ 维 $\ell$-进 Galois 表示（在某种意义下）与 $K$ 上 $\operatorname{GL}_n$ 的自守表示一一对应。此对应保持 $L$-函数不变。
+
+对 $n=1$，Langlands 对应就是类域论：一维 Galois 表示 $\leftrightarrow$ Hecke 特征标。对 $n=2$ 和 $K=\mathbb{Q}$，此对应即 **模性定理**（已由 Wiles、Taylor、Breuil-Conrad-Diamond-Taylor 等人在 1995-2001 年间证明）：$\mathbb{Q}$ 上的每个椭圆曲线（即 $\operatorname{GL}_2$ 的 $2$ 维 Galois 表示）是模的——对应于一个权为 $2$ 的尖点 Hecke 本征形式。模性定理是 Fermat 大定理证明的核心。
+
+**定理 A.3**（模性定理，Wiles 等 1995-2001）：设 $E/\mathbb{Q}$ 是半稳定椭圆曲线。则存在权为 $2$、水平为 $N$（等于 $E$ 的导子 conductor）的尖点 Hecke 本征形式 $f$，使得 $E$ 的 $\ell$-进 Galois 表示 $\rho_{E,\ell}$ 同构于 $f$ 的 $\ell$-进表示（由 Eichler-Shimura 构造给出）。等价地，$E$ 的 Hasse-Weil $L$-函数 $L(E, s)$ 等于 $f$ 的 Hecke $L$-函数 $L(f, s)$。
+
+**推论 A.1**（Fermat 大定理）：对整数 $n \geq 3$，方程 $x^n + y^n = z^n$ 无正整数解。
+
+**证明概要**（Wiles, 1995）：假设存在反例 $a^p + b^p = c^p$（$p \geq 5$ 为素数），考虑 Frey 曲线 $E_{a,b}: y^2 = x(x - a^p)(x + b^p)$。Serre 的 $\varepsilon$-猜想（由 Ribet 证明）指出，若 $E_{a,b}$ 是模的，则存在水平 $2$ 的 Hecke 本征形式，但水平 $2$ 的权 $2$ 尖点形式空间维数为 $0$，矛盾。Wiles 证明了半稳定椭圆曲线的模性（Taniyama-Shimura 猜想的特例），从而 $E_{a,b}$ 必须是模的，导出矛盾。因此不存在反例。$\blacksquare$
+
+Langlands 纲领是当代数论中最深远的数学统一纲领，它将 Galois 表示（算术对象）与自守表示（分析对象）通过 $L$-函数联系起来，深刻地影响了数论、表示论、代数几何和算术几何的各个分支。超越 $\operatorname{GL}_n$ 的情形（如对一般约化群以及函数域上几何 Langlands 对应）是当前数学研究的前沿——Laurent Lafforgue（2002 Fields 奖）证明了 $\operatorname{GL}_n$ 在函数域上的 Langlands 对应，Vincent Lafforgue（2018 Fields 奖）将其推广到一般约化群。
+
+---
