@@ -1,4 +1,4 @@
-## 第351章：随机微分方程
+## 第352章：随机微分方程
 随机微分方程（SDE）描述受随机噪声影响的动力系统，形如
 
 $$dX_t = b(t, X_t) dt + \sigma(t, X_t) dW_t$$
@@ -72,7 +72,7 @@ $$\frac{\partial p}{\partial t} = -\frac{\partial}{\partial x}(b p) + \frac{1}{2
 ---
 ---
 
-## 第352章：Malliavin 分析
+## 第353章：Malliavin 分析
 Malliavin 分析（Malliavin 计算）是无穷维空间上的微分分析，由 Paul Malliavin 在 1970 年代建立，其初始动机是证明 Hörmander 亚椭圆性定理的概率方法。它在随机分析中的地位相当于 Sobolev 理论在 PDE 中的地位。
 
 ### 137.1 Wiener 混沌分解
@@ -124,7 +124,7 @@ Skorohod 积分的定义域 $\operatorname{Dom}(\delta)$ 是 Malliavin Sobolev �
 
 ---
 
-## 第353章：Malliavin分析深化
+## 第354章：Malliavin分析深化
 
 Malliavin分析的核心力量在于其将随机变分法（无穷维微分学）与概率分布的正则性联系起来。上一章建立了基本框架——Wiener混沌分解、Malliavin导数和Skorohod积分。本章将深化这一理论：完整证明Clark-Ocone公式（利用Skorohod积分的伴随性），建立密度光滑性的Malliavin准则（Malliavin协方差矩阵的非退化性推出分布绝对连续且有光滑密度，给出完整证明），并探讨Hörmander条件和次椭圆性的概率证明——这是Malliavin创立该理论的原始动机，也是随机分析对偏微分方程理论的重大贡献。
 
@@ -236,7 +236,7 @@ $$\mathbb{P}(v^T \gamma_t v < \varepsilon) \leq C \varepsilon^q$$
 
 ---
 
-## 第354章：SPDE的解理论与Feynman-Kac
+## 第355章：SPDE的解理论与Feynman-Kac
 
 随机偏微分方程（SPDE）将随机分析与偏微分方程理论融合，描述受随机噪声驱动的无穷维动力系统。本章建立SPDE的严格数学框架：从Wiener混沌分解与多重Wiener-Itô积分出发，给出Cameron-Martin定理的泛函分析证明；进而研究抛物型SPDE的正则性理论（$L^2$理论与极大正则性）；最后讨论随机波动方程与随机热方程——这两类方程分别代表了双曲型和抛物型SPDE的典型行为。
 
@@ -319,7 +319,7 @@ $$u(t) = \cos(t\sqrt{-\Delta}) u_0 + \frac{\sin(t\sqrt{-\Delta})}{\sqrt{-\Delta}
 
 ---
 
-## 第355章：Itô 积分与随机积分
+## 第356章：Itô 积分与随机积分
 
 Itô 积分是随机分析的核心构造，由 Itô 在 1944 年建立。与 Riemann-Stieltjes 积分不同，被积函数在左端点取值（而非任意点），使得积分成为鞅，这在理论和应用中都至关重要。Itô 积分的构造是测度论概率论在现代数学中的典范应用：它结合了 Hilbert 空间理论（$L^2$ 空间的等距）、鞅论（Doob 的鞅不等式）和随机过程的正则性理论（Kolmogorov 连续性准则）。Itô 积分的核心应用领域包括：随机微分方程（SDE）——描述受噪声扰动的动力系统；金融数学——Black-Scholes 期权定价公式；滤波理论——Kalman-Bucy 滤波；以及随机控制——动态规划与 Hamilton-Jacobi-Bellman 方程。
 

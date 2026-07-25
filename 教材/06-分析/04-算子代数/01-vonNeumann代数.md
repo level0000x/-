@@ -1,4 +1,4 @@
-## 第181章：因子的 Murray-von Neumann 分类
+## 第182章：因子的 Murray-von Neumann 分类
 Murray 和 von Neumann（1936-1943）完成了因子的完整分类，依据是投影的维数函数的值域。这一分类是算子代数理论最辉煌的成就之一。
 
 ### 214.1 维数函数与迹
@@ -82,7 +82,7 @@ $$R_\lambda = \overline{\bigotimes}_{n=1}^\infty (M_2(\mathbb{C}), \phi_\lambda)
 ---
 ---
 
-## 第182章：Tomita-Takesaki 模理论
+## 第183章：Tomita-Takesaki 模理论
 Tomita-Takesaki 模理论（1967-1970）是 von Neumann 代数理论中最重要的结构定理之一。它从给定的 von Neumann 代数和其上一个忠实的正规半有限权出发，构造了一个单参数自同构群——模自同构群（modular automorphism group）——并建立了正锥与模算子的理论。
 
 ### 215.1 权的基本理论
@@ -184,7 +184,7 @@ $T(\mathcal{M})$ 是 $\mathbb{R}$ 的子群，不依赖于 $\varphi$ 的选择�
 ---
 ---
 
-## 第183章：自由概率论与随机矩阵
+## 第184章：自由概率论与随机矩阵
 自由概率论由 Voiculescu（1985）创立，是 von Neumann 代数理论和随机矩阵理论相结合的产物。它为 II$_1$ 型因子的研究提供了强大的新工具。
 
 ### 216.1 非交换概率空间
@@ -255,7 +255,7 @@ $$S_n = \frac{1}{\sqrt{n}} \sum_{i=1}^n a_i$$
 ---
 ---
 
-## 第184章：Fredholm 积分方程
+## 第185章：Fredholm 积分方程
 Fredholm 积分方程形如
 
 $$u(x) - \lambda \int_a^b K(x,y) u(y) dy = f(x)$$
